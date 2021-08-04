@@ -1,4 +1,4 @@
-package com.pimpmypc;
+package com.pimpmypc.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

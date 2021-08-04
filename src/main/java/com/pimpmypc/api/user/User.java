@@ -2,6 +2,7 @@ package com.pimpmypc.api.user;
 
 import com.pimpmypc.api.security.Role;
 import lombok.Data;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
