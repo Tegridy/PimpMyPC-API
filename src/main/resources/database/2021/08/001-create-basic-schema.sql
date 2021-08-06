@@ -7,8 +7,8 @@ CREATE TABLE USERS (
         `first_name` VARCHAR(50) NOT NULL,
         `last_name` VARCHAR(50) NOT NULL,
         `phone` VARCHAR(15),
-		`password` VARCHAR(50) NOT NULL,
-        `user_email` VARCHAR(50) NOT NULL,
+		`password` VARCHAR(155) NOT NULL,
+        `email` VARCHAR(50) NOT NULL,
         `created_at` DATETIME NOT NULL,
         `modified_at` DATETIME NULL DEFAULT NULL
 );

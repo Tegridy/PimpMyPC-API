@@ -1,10 +1,10 @@
 package com.pimpmypc.api.user;
 
+import com.pimpmypc.api.exception.UserNotFoundException;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class PmpUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -14,22 +14,18 @@ public class PmpUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-//        final User user = userRepository.findByUsername(s);
-//
-//        if (user == null) {
-//            throw new UsernameNotFoundException("User '" + s + "' not found");
-//        }
-//
-//        return org.springframework.security.core.userdetails.User//
-//                .withUsername(user.getUsername())//
-//                .password(user.getPassword())//
-//                .authorities(user.getRoles())//
-//                .accountExpired(false)//
-//                .accountLocked(false)//
-//                .credentialsExpired(false)//
-//                .disabled(false)//
-//                .build();
-        return null;
+    public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String s) {
+
+        final User user = userRepository.findByUsername(s).orElseThrow(() -> new UserNotFoundException("User " + s + " not found."));
+
+        return org.springframework.security.core.userdetails.User
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .authorities(user.getRoles())
+                .accountExpired(false)
+                .accountLocked(false)
+                .credentialsExpired(false)
+                .disabled(false)
+                .build();
     }
 }
