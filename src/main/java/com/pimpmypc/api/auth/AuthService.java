@@ -40,7 +40,7 @@ public class AuthService {
             user.setFirstName(newUser.getFirstName());
             user.setLastName(newUser.getLastName());
             user.setPhone(newUser.getPhone());
-            user.setRoles(List.of(Role.ROLE_USER));
+            user.setRoles(List.of(Role.ROLE_ADMIN));
             user.setEmail(newUser.getEmail());
             user.setCreatedAt(LocalDateTime.now());
             user.setModifiedAt(LocalDateTime.now());

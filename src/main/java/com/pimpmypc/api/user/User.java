@@ -25,7 +25,7 @@ public class User {
     List<Role> roles;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull(message = "Username is required.")
     private String username;
@@ -43,11 +43,9 @@ public class User {
     private String email;
 
     @CreatedDate
-    @NotNull
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     @LastModifiedDate
-    @NotNull
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 

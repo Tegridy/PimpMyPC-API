@@ -29,27 +29,23 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/register")
+    @PostMapping(value = "/register", produces = "application/json")
     public ResponseEntity<String> register(@RequestBody @Valid User user) {
         try {
-            System.out.println(user);
-            System.out.println(user);
-            System.out.println(user);
-            System.out.println(user);
-            System.out.println(user);
-            System.out.println(user);
-            System.out.println(user);
-            System.out.println(user);
-            System.out.println(user);
-            System.out.println(user);
-
 
             String u = authService.signUp(user);
             logger.info(String.format("User %s account successfully created.", user.getUsername()));
-            return new ResponseEntity<>("Register token: " + u, HttpStatus.CREATED);
+
+            return new ResponseEntity<>(
+                    String.format("""
+                            {
+                            "token": "%s"
+                            }""", u)
+                    , HttpStatus.CREATED);
+
         } catch (UserAlreadyExistException ex) {
             logger.error(String.format("User %s already exist in database.", user.getUsername()), ex);
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, ex.getMessage());
         }
     }
 
