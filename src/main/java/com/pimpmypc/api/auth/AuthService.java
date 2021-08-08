@@ -31,8 +31,8 @@ public class AuthService {
 
     public String signUp(User newUser) {
         if (userService.userAlreadyExist(newUser.getUsername())) {
-            logger.error("User with this username already exist in database.");
-            throw new UserAlreadyExistException("User with this username already exist in database.");
+            logger.error("User " + newUser.getUsername() + " already exist in database.");
+            throw new UserAlreadyExistException("User " + newUser.getUsername() + " already exist in database.");
         } else {
             User user = new User();
             user.setUsername(newUser.getUsername());
@@ -52,11 +52,6 @@ public class AuthService {
     }
 
     public String signIn(String username, String password) throws AuthenticationException {
-//
-//        User user = userService.findByUsername(username).orElseThrow(() ->
-//                new AuthenticationException("")
-//        );
-
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
         User user = userService.findByUsername(username)
@@ -64,6 +59,5 @@ public class AuthService {
 
         logger.info(String.format("Authentication successful for user %s.", username));
         return jwtTokenProvider.createToken(username, user.getRoles());
-        //throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Invalid username/password supplied", e);
     }
 }

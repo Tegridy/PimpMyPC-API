@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/auth")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 public class AuthController {
 
     private final AuthService authService;
@@ -44,12 +44,11 @@ public class AuthController {
                     , HttpStatus.CREATED);
 
         } catch (UserAlreadyExistException ex) {
-            logger.error(String.format("User %s already exist in database.", user.getUsername()), ex);
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, ex.getMessage());
+            throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
         }
     }
 
-    @PostMapping("/login")
+    @PostMapping(value = "/login", produces = "application/json")
     public ResponseEntity<String> login(@RequestBody UserDto loginRequest) {
         try {
             String token = authService.signIn(loginRequest.getUsername(), loginRequest.getPassword());
@@ -71,5 +70,10 @@ public class AuthController {
             logger.error("Login response processing error ", ex);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while creating login response object.");
         }
+    }
+
+    @GetMapping("/secured")
+    public String secured() {
+        return "secured";
     }
 }

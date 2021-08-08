@@ -8,7 +8,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -27,19 +28,29 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "Username is required.")
+
+    @NotEmpty(message = "Username is required.")
+    @Size(min = 4, max = 50, message = "Username length must have 4 to 50 characters.")
     private String username;
-    @NotNull(message = "First name is required.")
+
+    @NotEmpty(message = "First name is required.")
     @Column(name = "first_name")
+    @Size(min = 2, max = 50, message = "First name length must have 2 to 50 characters.")
     private String firstName;
-    @NotNull(message = "Last name is required.")
+
+    @NotEmpty(message = "Last name is required.")
     @Column(name = "last_name")
+    @Size(min = 2, max = 50, message = "Last name length must have 2 to 50 characters.")
     private String lastName;
+
     private String phone;
-    @NotNull(message = "Password is required.")
+
+    @NotEmpty(message = "Password is required.")
+    @Size(min = 8, message = "Password must have at least 8 characters.")
     private String password;
+
     @Email
-    @NotNull(message = "E-mail is required.")
+    @NotEmpty(message = "E-mail is required.")
     private String email;
 
     @CreatedDate
