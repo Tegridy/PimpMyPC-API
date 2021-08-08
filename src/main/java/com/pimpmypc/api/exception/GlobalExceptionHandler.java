@@ -45,5 +45,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
+    @ExceptionHandler(UserRoleNotFoundException.class)
+    protected ResponseEntity<Object> handleUserRoleNotFoundException(UserRoleNotFoundException ex,
+                                                                     HttpHeaders headers, HttpStatus status, WebRequest request) {
+        return ResponseEntity.internalServerError().body(ex.getMessage());
+    }
+
 
 }

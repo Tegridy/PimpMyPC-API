@@ -11,8 +11,3 @@ CREATE TABLE `users_roles` (
     ON UPDATE NO ACTION
 );
 
---liquibase formatted sql
---changeset tegridy:2
-
--- Grant test user admin
-INSERT INTO users_roles VALUES ((SELECT id FROM users WHERE username = 'test'), 2);

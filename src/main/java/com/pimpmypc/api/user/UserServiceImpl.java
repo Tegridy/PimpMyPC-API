@@ -1,5 +1,6 @@
 package com.pimpmypc.api.user;
 
+import com.pimpmypc.api.exception.UserRoleNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,6 +20,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
+
+        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+            throw new UserRoleNotFoundException("User must have at least a role set!");
+        }
+
         return userRepository.save(user);
     }
 
