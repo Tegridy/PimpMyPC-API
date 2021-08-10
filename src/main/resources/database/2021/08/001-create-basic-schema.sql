@@ -9,27 +9,27 @@ CREATE TABLE `users` (
         `phone` VARCHAR(15),
 		`password` VARCHAR(155) NOT NULL,
         `email` VARCHAR(50) NOT NULL,
-        `created_at` DATETIME NOT NULL DEFAULT NOW(),
+        `created_at` DATETIME NOT NULL,
         `modified_at` DATETIME NULL DEFAULT NULL
 );
 
---CREATE TABLE PRODUCTS (
---
---  `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
---  `userId` BIGINT NOT NULL,
---  `title` VARCHAR(75) NOT NULL,
---  `description` TEXT,
---  `type` VARCHAR(50),
---  `price` FLOAT NOT NULL DEFAULT 0,
---  `quantity` SMALLINT NOT NULL DEFAULT 0,
---  `createdAt` DATETIME NOT NULL,
---  `updatedAt` DATETIME NULL DEFAULT NULL,
---  CONSTRAINT `fk_products_users`
---    FOREIGN KEY (`userId`)
---    REFERENCES `users` (`id`)
---    ON DELETE NO ACTION
---    ON UPDATE NO ACTION
---);
+CREATE TABLE `products` (
+
+  `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_id` BIGINT NOT NULL,
+  `title` VARCHAR(75) NOT NULL,
+  `description` TEXT,
+  `type` VARCHAR(50),
+  `price` FLOAT NOT NULL DEFAULT 0,
+  `quantity` SMALLINT NOT NULL DEFAULT 0,
+  `created_at` DATETIME NOT NULL,
+  `modified_at` DATETIME NULL DEFAULT NULL,
+  CONSTRAINT `fk_products_users`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
 --
 --CREATE TABLE PRODUCTS_REVIEW (
 --   `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -48,28 +48,32 @@ CREATE TABLE `users` (
 --);
 --
 --
---  CREATE TABLE CATEGORIES (
---  `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
---  `title` VARCHAR(75) NOT NULL
---  );
---
---
---
---  CREATE TABLE `product_category` (
---  `productId` BIGINT NOT NULL,
---  `categoryId` BIGINT NOT NULL,
---  PRIMARY KEY (`productId`, `categoryId`),
---  CONSTRAINT `fk_pc_product`
---    FOREIGN KEY (`productId`)
---    REFERENCES `products` (`id`)
---    ON DELETE NO ACTION
---    ON UPDATE NO ACTION,
---  CONSTRAINT `fk_pc_categories`
---    FOREIGN KEY (`categoryId`)
---    REFERENCES `categories` (`id`)
---    ON DELETE NO ACTION
---    ON UPDATE NO ACTION);
---
+CREATE TABLE `categories` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `parent_id` BIGINT DEFAULT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (parent_id) REFERENCES categories (id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+  CREATE TABLE `product_category` (
+  `product_id` BIGINT NOT NULL,
+  `category_id` BIGINT NOT NULL,
+  PRIMARY KEY (`product_id`, `category_id`),
+  CONSTRAINT `fk_pc_product`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pc_categories`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `categories` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+
 --CREATE TABLE `basket` (
 --  `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 --  `userId` BIGINT NULL DEFAULT NULL,

@@ -1,18 +1,17 @@
 package com.pimpmypc.api.user;
 
 import com.pimpmypc.api.security.Role;
+import com.pimpmypc.api.utils.BaseEntity;
 import lombok.*;
-import org.hibernate.Hibernate;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -20,14 +19,11 @@ import java.util.Objects;
 @AllArgsConstructor
 @ToString
 @Entity(name = "users")
-public class User {
+public class User extends BaseEntity {
 
     @ElementCollection(fetch = FetchType.EAGER)
     List<Role> roles;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @NotEmpty(message = "Username is required.")
     @Size(min = 4, max = 50, message = "Username length must have 4 to 50 characters.")
@@ -53,28 +49,8 @@ public class User {
     @NotEmpty(message = "E-mail is required.")
     private String email;
 
-    @CreatedDate
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-    @LastModifiedDate
-    @Column(name = "modified_at")
-    private LocalDateTime modifiedAt;
 
     public List<Role> getRoles() {
         return roles;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
-
-        return Objects.equals(id, user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 562048007;
     }
 }

@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @ExtendWith(SpringExtension.class)
@@ -26,11 +27,6 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
     private User user;
-
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @BeforeEach
     public void setUp() {
@@ -56,7 +52,7 @@ public class UserRepositoryTest {
     public void shouldSaveUser() {
         userRepository.save(user);
         User fetchedUser = userRepository.findById(user.getId()).get();
-        assertEquals(1, fetchedUser.getId());
+        assertEquals(3, fetchedUser.getId());
     }
 
     @Test
@@ -76,5 +72,22 @@ public class UserRepositoryTest {
 
         Optional<User> optional = userRepository.findById(user2.getId());
         assertEquals(user1.getId(), optional.get().getId());
+    }
+
+    @Test()
+    public void shouldNotSaveSameUserTwice() {
+        assertThrows(UnsupportedOperationException.class, () -> {
+            userRepository.save(user);
+            userRepository.save(user);
+        });
+    }
+
+    @Test
+    public void shouldFindUserByUsername() {
+        String username = user.getUsername();
+
+        userRepository.save(user);
+
+        assertEquals(userRepository.findByUsername(username).get().getUsername(), user.getUsername());
     }
 }

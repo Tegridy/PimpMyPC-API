@@ -71,7 +71,7 @@ public class AuthControllerIntegrationTest {
 
     @Test
     @Transactional
-    public void shouldRegisterUserAndReturn201() throws Exception {
+    public void shouldRegisterUser() throws Exception {
 
         mvc.perform(post("/api/v1/auth/register")
                         .contentType(MediaType.APPLICATION_JSON).content(userJson))
@@ -82,7 +82,7 @@ public class AuthControllerIntegrationTest {
 
     @Test
     @Transactional
-    public void shouldThrowUserAlreadyExistAndReturn409() throws Exception {
+    public void shouldThrowUserAlreadyExist() throws Exception {
 
         userRepository.save(user);
 
