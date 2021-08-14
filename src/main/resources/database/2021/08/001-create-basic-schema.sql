@@ -3,7 +3,7 @@
 
 CREATE TABLE `users` (
 		`id` BIGINT AUTO_INCREMENT PRIMARY KEY,
-		`username` VARCHAR(50) NOT NULL,
+		`username` VARCHAR(50) NOT NULL UNIQUE,
         `first_name` VARCHAR(50) NOT NULL,
         `last_name` VARCHAR(50) NOT NULL,
         `phone` VARCHAR(15),
@@ -16,12 +16,14 @@ CREATE TABLE `users` (
 CREATE TABLE `products` (
 
   `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `user_id` BIGINT NOT NULL,
+  `user_id` BIGINT NULL,
   `title` VARCHAR(75) NOT NULL,
   `description` TEXT,
   `type` VARCHAR(50),
-  `price` FLOAT NOT NULL DEFAULT 0,
-  `quantity` SMALLINT NOT NULL DEFAULT 0,
+  `brand` VARCHAR(100) NULL DEFAULT NULL,
+  `model` VARCHAR(150),
+  `price` DECIMAL(13, 4) NOT NULL DEFAULT 0,
+  `quantity` INTEGER NOT NULL DEFAULT 0,
   `created_at` DATETIME NOT NULL,
   `modified_at` DATETIME NULL DEFAULT NULL,
   CONSTRAINT `fk_products_users`

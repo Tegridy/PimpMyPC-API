@@ -13,5 +13,6 @@ public class Category {
     private long parentId;
 
     private String title;
+    
 }
 

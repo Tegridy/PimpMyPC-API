@@ -20,7 +20,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers, HttpStatus status, WebRequest request) {
+                                                                  HttpHeaders headers,
+                                                                  HttpStatus status, WebRequest request) {
         List<String> details = new ArrayList<>();
         for (ObjectError error : ex.getBindingResult().getAllErrors()) {
             details.add(error.getDefaultMessage());
@@ -41,15 +42,22 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(JwtException.class)
     protected ResponseEntity<Object> handleJwtTokenException(JwtException ex,
-                                                             HttpHeaders headers, HttpStatus status, WebRequest request) {
+                                                             HttpHeaders headers,
+                                                             HttpStatus status, WebRequest request) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
     @ExceptionHandler(UserRoleNotFoundException.class)
     protected ResponseEntity<Object> handleUserRoleNotFoundException(UserRoleNotFoundException ex,
-                                                                     HttpHeaders headers, HttpStatus status, WebRequest request) {
+                                                                     HttpHeaders headers,
+                                                                     HttpStatus status, WebRequest request) {
         return ResponseEntity.internalServerError().body(ex.getMessage());
     }
 
-
+    @ExceptionHandler(ProductException.class)
+    protected ResponseEntity<Object> handleProductNotFoundExecution(ProductException ex,
+                                                                    WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse("Product exception", List.of(ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
 }

@@ -10,4 +10,3 @@ CREATE TABLE `users_roles` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
-

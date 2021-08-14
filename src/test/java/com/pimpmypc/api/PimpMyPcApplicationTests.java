@@ -3,10 +3,10 @@ package com.pimpmypc.api;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PimpMyPcApplicationTests {
+public class PimpMyPcApplicationTests {
 
-//	@Test
-//	void contextLoads() {
-//	}
+//    @Test
+//    void contextLoads() {
+//    }
 
 }

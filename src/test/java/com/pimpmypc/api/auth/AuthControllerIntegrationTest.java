@@ -16,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -114,8 +115,6 @@ public class AuthControllerIntegrationTest {
         user.setUsername(null);
         user.setEmail(null);
 
-        System.out.println(user.getPassword());
-
         userJson = mapper.writeValueAsString(user);
 
         mvc.perform(post("/api/v1/auth/register")
@@ -172,18 +171,22 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
+    @Transactional
     void shouldLoginAndGetContent() throws Exception {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(15);
+        String pass = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(pass);
+        userRepository.save(user);
 
         MvcResult login = mvc.perform(post("/api/v1/auth/login").contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"username\": \"test\", \"password\": \"qwerty\"}")
+                        .content("{\"username\": \"JD12\", \"password\": \"qwerty321321\"}")
                 )
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is(200))
+                .andExpect(status().isOk())
                 .andReturn();
 
         String token = mapper.readTree(login.getResponse().getContentAsString()).get("token").asText();
-        System.out.println(token);
 
         mvc.perform(get("/api/v1/auth/secured")
                         .header("Authorization", "Bearer " + token)
@@ -209,9 +212,12 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
+    @Transactional
     public void shouldThrowErrorWhenPasswordIsWrong() throws Exception {
+        userRepository.save(user);
+
         mvc.perform(post("/api/v1/auth/login").contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"username\": \"test\", \"password\": \"qwerty3\"}")
+                        .content("{\"username\": \"JD12\", \"password\": \"qwerty321321\"}")
                 )
                 .andDo(print())
                 .andExpect(status().isForbidden())

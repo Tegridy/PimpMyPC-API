@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -15,11 +15,10 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @ExtendWith(SpringExtension.class)
-@DataJpaTest
+@SpringBootTest
 @TestPropertySource(
         locations = "classpath:application-test.properties")
 public class UserRepositoryTest {
@@ -50,9 +49,10 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldSaveUser() {
-        userRepository.save(user);
-        User fetchedUser = userRepository.findById(user.getId()).get();
-        assertEquals(3, fetchedUser.getId());
+        User savedUser = userRepository.save(user);
+        User fetchedUser = userRepository.findById(savedUser.getId()).get();
+        assertEquals(savedUser.getId(), fetchedUser.getId());
+        assertEquals(1, userRepository.findAll().size());
     }
 
     @Test
@@ -76,10 +76,10 @@ public class UserRepositoryTest {
 
     @Test()
     public void shouldNotSaveSameUserTwice() {
-        assertThrows(UnsupportedOperationException.class, () -> {
-            userRepository.save(user);
-            userRepository.save(user);
-        });
+        userRepository.save(user);
+        userRepository.save(user);
+
+        assertEquals(userRepository.findAll().size(), 1);
     }
 
     @Test

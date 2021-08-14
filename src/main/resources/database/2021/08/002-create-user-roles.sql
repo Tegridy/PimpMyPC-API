@@ -10,9 +10,3 @@ CREATE TABLE `users_roles` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
-
---liquibase formatted sql
---changeset tegridy:2
-
--- Grant test user admin
-INSERT INTO users_roles VALUES (1, 2);

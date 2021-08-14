@@ -59,10 +59,10 @@ public class AuthController {
             user.put("username", loginRequest.getUsername());
             user.put("token", token);
 
-            String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user);
+            String loginJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user);
 
             logger.info(String.format("Login successful for user %s", loginRequest.getUsername()));
-            return ResponseEntity.ok(json);
+            return ResponseEntity.ok(loginJson);
         } catch (AuthenticationException ex) {
             logger.error("Authentication problem ", ex);
             throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
