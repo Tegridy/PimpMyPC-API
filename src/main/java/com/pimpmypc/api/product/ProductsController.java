@@ -1,7 +1,6 @@
 package com.pimpmypc.api.product;
 
-import com.pimpmypc.api.products.Motherboard;
-import com.pimpmypc.api.products.Processor;
+import com.pimpmypc.api.products.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,19 +25,59 @@ public class ProductsController {
         return ResponseEntity.ok().body(product);
     }
 
-    @GetMapping("")
+    @GetMapping(value = "", produces = "application/json")
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok().body(productService.getAllProducts());
     }
 
-    @GetMapping("/processors")
+    @GetMapping(value = "/processors", produces = "application/json")
     public ResponseEntity<List<Processor>> returnProcessor() {
         List<Processor> processors = productService.getAllProcessors();
         return ResponseEntity.ok().body(processors);
     }
 
-    @GetMapping("/motherboards")
+    @GetMapping(value = "/motherboards", produces = "application/json")
     public ResponseEntity<List<Motherboard>> getAllMotherboards() {
         return ResponseEntity.ok(productService.getAllMotherboards());
+    }
+
+    @GetMapping(value = "/cases", produces = "application/json")
+    public ResponseEntity<List<Case>> getAllCases() {
+        return ResponseEntity.ok(productService.getAllCases());
+    }
+
+    @GetMapping(value = "/rams", produces = "application/json")
+    public ResponseEntity<List<Ram>> getAllRamMemory() {
+        return ResponseEntity.ok(productService.getAllRamMemory());
+    }
+
+    @GetMapping(value = "/mouses", produces = "application/json")
+    public ResponseEntity<List<Mouse>> getAllMouses() {
+        return ResponseEntity.ok(productService.getAllMouses());
+    }
+
+    @GetMapping(value = "/keyboards", produces = "application/json")
+    public ResponseEntity<List<Keyboard>> getAllKeyboards() {
+        return ResponseEntity.ok(productService.getAllKeyboards());
+    }
+
+    @GetMapping(value = "/monitors", produces = "application/json")
+    public ResponseEntity<List<Monitor>> getAllMonitors() {
+        return ResponseEntity.ok(productService.getAllMonitors());
+    }
+
+    @GetMapping(value = "/drives", produces = "application/json")
+    public ResponseEntity<List<HardDrive>> getAllHardDrives() {
+        return ResponseEntity.ok(productService.getAllHardDrives());
+    }
+
+    @GetMapping(value = "/graphics", produces = "application/json")
+    public ResponseEntity<List<GraphicCard>> getAllGraphicCards() {
+        return ResponseEntity.ok(productService.getAllGraphicCards());
+    }
+
+    @GetMapping(value = "/laptops", produces = "application/json")
+    public ResponseEntity<List<Laptop>> getAllLaptops() {
+        return ResponseEntity.ok(productService.getAllLaptops());
     }
 }

@@ -54,7 +54,6 @@ public class ProductControllerIntegrationTest {
         product1.setTitle("Intel Processor");
         product1.setBrand("Intel");
         product1.setModel("i5");
-        product1.setType("");
         product1.setPrice(new BigDecimal("225.38"));
         product1.setQuantity(8);
         product1.setDescription("This is a processor");
@@ -72,7 +71,6 @@ public class ProductControllerIntegrationTest {
         product2.setTitle("AMD Processor");
         product2.setBrand("AMD");
         product2.setModel("FX");
-        product2.setType("");
         product2.setPrice(new BigDecimal("325.38"));
         product2.setQuantity(12);
         product2.setDescription("This is an AMD processor");
@@ -94,7 +92,6 @@ public class ProductControllerIntegrationTest {
         product3.setTitle("Generic product");
         product3.setBrand("Brand");
         product3.setModel("Model");
-        product3.setType("");
         product3.setPrice(new BigDecimal("33.38"));
         product3.setQuantity(2);
         product3.setDescription("This is a product");
@@ -189,7 +186,6 @@ public class ProductControllerIntegrationTest {
         product.setTitle("MOBO1");
         product.setBrand("Brand");
         product.setModel("Model");
-        product.setType("");
         product.setPrice(new BigDecimal("33.38"));
         product.setQuantity(2);
         product.setDescription("This is a product");
@@ -203,7 +199,6 @@ public class ProductControllerIntegrationTest {
         product2.setTitle("MOBO2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
-        product2.setType("");
         product2.setPrice(new BigDecimal("33.38"));
         product2.setQuantity(2);
         product2.setDescription("This is a product2");
@@ -226,6 +221,371 @@ public class ProductControllerIntegrationTest {
     void shouldReturnEmptyMotherboardsArray() throws Exception {
 
         mvc.perform(get("/api/v1/products/motherboards")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void shouldReturnAllCases() throws Exception {
+
+        Case product = new Case();
+
+        product.setTitle("CASE1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+        product.setMotherboardFormat(MotherboardFormat.Micro_ATX);
+        product.setColors(Set.of(Color.GREEN, Color.BLACK));
+
+        Case product2 = new Case();
+        product2.setTitle("CASE2");
+        product2.setBrand("Brand2");
+        product2.setModel("Model2");
+        product2.setPrice(new BigDecimal("33.38"));
+        product2.setQuantity(2);
+        product2.setDescription("This is a product2");
+        product2.setCreatedAt(LocalDateTime.now());
+        product2.setModifiedAt(LocalDateTime.now());
+        product2.setMotherboardFormat(MotherboardFormat.Micro_ATX);
+        product2.setColors(Set.of(Color.GREEN, Color.BLACK));
+
+        productRepository.save(product);
+        productRepository.save(product2);
+
+        mvc.perform(get("/api/v1/products/cases")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2));
+    }
+
+    @Test
+    void shouldReturnEmptyCasesArray() throws Exception {
+
+        mvc.perform(get("/api/v1/products/cases")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void shouldReturnAllRamMemory() throws Exception {
+
+        Ram product = new Ram();
+        product.setTitle("MEM1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        Ram product2 = new Ram();
+        product2.setTitle("MEM2");
+        product2.setBrand("Brand2");
+        product2.setModel("Model2");
+        product2.setPrice(new BigDecimal("33.38"));
+        product2.setQuantity(2);
+        product2.setDescription("This is a product2");
+        product2.setCreatedAt(LocalDateTime.now());
+        product2.setModifiedAt(LocalDateTime.now());
+
+        productRepository.save(product);
+        productRepository.save(product2);
+
+        mvc.perform(get("/api/v1/products/rams")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2));
+    }
+
+    @Test
+    void shouldReturnEmptyRamArray() throws Exception {
+
+        mvc.perform(get("/api/v1/products/rams")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void shouldReturnAllMouses() throws Exception {
+
+        Mouse product = new Mouse();
+        product.setTitle("Mouse1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        Mouse product2 = new Mouse();
+        product2.setTitle("Mouse2");
+        product2.setBrand("Brand2");
+        product2.setModel("Model2");
+        product2.setPrice(new BigDecimal("33.38"));
+        product2.setQuantity(2);
+        product2.setDescription("This is a product2");
+        product2.setCreatedAt(LocalDateTime.now());
+        product2.setModifiedAt(LocalDateTime.now());
+
+        productRepository.save(product);
+        productRepository.save(product2);
+
+        mvc.perform(get("/api/v1/products/mouses")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2));
+    }
+
+    @Test
+    void shouldReturnEmptyMousesArray() throws Exception {
+
+        mvc.perform(get("/api/v1/products/mouses")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void shouldReturnAllKeyboards() throws Exception {
+
+        Keyboard product = new Keyboard();
+        product.setTitle("Keyboard1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        Keyboard product2 = new Keyboard();
+        product2.setTitle("Keyboard2");
+        product2.setBrand("Brand2");
+        product2.setModel("Model2");
+        product2.setPrice(new BigDecimal("33.38"));
+        product2.setQuantity(2);
+        product2.setDescription("This is a product2");
+        product2.setCreatedAt(LocalDateTime.now());
+        product2.setModifiedAt(LocalDateTime.now());
+
+        productRepository.save(product);
+        productRepository.save(product2);
+
+        mvc.perform(get("/api/v1/products/keyboards")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2));
+    }
+
+    @Test
+    void shouldReturnEmptyKeyboardsArray() throws Exception {
+
+        mvc.perform(get("/api/v1/products/keyboards")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void shouldReturnAllMonitors() throws Exception {
+
+        Monitor product = new Monitor();
+        product.setTitle("Monitor1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setAspectRatio("16:9");
+        product.setRefreshRate(60);
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        Monitor product2 = new Monitor();
+        product2.setTitle("Monitor2");
+        product2.setBrand("Brand2");
+        product2.setModel("Model2");
+        product2.setPrice(new BigDecimal("33.38"));
+        product2.setQuantity(2);
+        product2.setAspectRatio("16:9");
+        product2.setRefreshRate(60);
+        product2.setDescription("This is a product2");
+        product2.setCreatedAt(LocalDateTime.now());
+        product2.setModifiedAt(LocalDateTime.now());
+
+        productRepository.save(product);
+        productRepository.save(product2);
+
+        mvc.perform(get("/api/v1/products/monitors")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2));
+    }
+
+    @Test
+    void shouldReturnEmptyMonitorsArray() throws Exception {
+
+        mvc.perform(get("/api/v1/products/monitors")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void shouldReturnAllHardDrives() throws Exception {
+
+        HardDrive product = new HardDrive();
+        product.setTitle("HDD1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setStorageType(StorageType.HDD);
+        product.setDescription("This is a product");
+        product.setCapacity(800000000L);
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        HardDrive product2 = new HardDrive();
+        product2.setTitle("SSD2");
+        product2.setBrand("Brand2");
+        product2.setModel("Model2");
+        product2.setPrice(new BigDecimal("33.38"));
+        product2.setQuantity(22);
+        product2.setCapacity(800000000L);
+        product2.setStorageType(StorageType.SSD);
+        product2.setDescription("This is a product2");
+        product2.setCreatedAt(LocalDateTime.now());
+        product2.setModifiedAt(LocalDateTime.now());
+
+        productRepository.save(product);
+        productRepository.save(product2);
+
+        mvc.perform(get("/api/v1/products/drives")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2));
+    }
+
+    @Test
+    void shouldReturnEmptyHardDrivesArray() throws Exception {
+
+        mvc.perform(get("/api/v1/products/drives")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void shouldReturnAllGraphicCards() throws Exception {
+
+        GraphicCard product = new GraphicCard();
+        product.setTitle("Graphic1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setVram(4000);
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        GraphicCard product2 = new GraphicCard();
+        product2.setTitle("Graphic2");
+        product2.setBrand("Brand2");
+        product2.setModel("Model2");
+        product2.setPrice(new BigDecimal("33.38"));
+        product2.setQuantity(22);
+        product2.setVram(4000);
+        product2.setDescription("This is a product2");
+        product2.setCreatedAt(LocalDateTime.now());
+        product2.setModifiedAt(LocalDateTime.now());
+
+        productRepository.save(product);
+        productRepository.save(product2);
+
+        mvc.perform(get("/api/v1/products/graphics")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2));
+    }
+
+    @Test
+    void shouldReturnEmptyGraphicCardsArray() throws Exception {
+
+        mvc.perform(get("/api/v1/products/graphics")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void shouldReturnAllLaptops() throws Exception {
+
+        Laptop product = new Laptop();
+
+        product.setTitle("Laptop1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+        product.setProcessor("AMD FX");
+        product.setHardDrive("500 GB SSD");
+
+        Laptop product2 = new Laptop();
+        product2.setTitle("Laptop2");
+        product2.setBrand("Brand2");
+        product2.setModel("Model2");
+        product2.setPrice(new BigDecimal("33.38"));
+        product2.setQuantity(2);
+        product2.setDescription("This is a product2");
+        product2.setCreatedAt(LocalDateTime.now());
+        product2.setModifiedAt(LocalDateTime.now());
+        product.setProcessor("Intel core i5");
+        product.setHardDrive("250 GB SSD");
+
+
+        productRepository.save(product);
+        productRepository.save(product2);
+
+        mvc.perform(get("/api/v1/products/laptops")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2));
+    }
+
+    @Test
+    void shouldReturnEmptyLaptopsArray() throws Exception {
+
+        mvc.perform(get("/api/v1/products/laptops")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))

@@ -1,7 +1,6 @@
 package com.pimpmypc.api.product;
 
-import com.pimpmypc.api.products.Motherboard;
-import com.pimpmypc.api.products.Processor;
+import com.pimpmypc.api.products.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -16,4 +15,29 @@ public interface ProductRepository<T extends Product> extends JpaRepository<T, L
 
     @Query("FROM motherboards")
     List<Motherboard> findAllMotherboards();
+
+    @Query("FROM cases")
+    List<Case> findAllCases();
+
+    @Query("FROM ram_memory")
+    List<Ram> findAllRamMemory();
+
+    @Query("FROM mouses")
+    List<Mouse> findAllMouses();
+
+    @Query("FROM keyboards")
+    List<Keyboard> findAllKeyboards();
+
+    @Query("FROM monitors")
+    List<Monitor> findAllMonitors();
+
+    @Query("FROM graphic_cards")
+    List<GraphicCard> findAllGraphicCards();
+
+    @Query("FROM hard_drives")
+    List<HardDrive> findAllHardDrives();
+
+
+    @Query("FROM laptops")
+    List<Laptop> findAllLaptops();
 }

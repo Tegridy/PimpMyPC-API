@@ -1,6 +1,10 @@
 --liquibase formatted sql
 --changeset tegridy:1
 
+
+--SET GLOBAL FOREIGN_KEY_CHECKS=0;
+
+
 CREATE TABLE `users` (
 		`id` BIGINT AUTO_INCREMENT PRIMARY KEY,
 		`username` VARCHAR(50) NOT NULL UNIQUE,
@@ -19,7 +23,6 @@ CREATE TABLE `products` (
   `user_id` BIGINT NULL,
   `title` VARCHAR(75) NOT NULL,
   `description` TEXT,
-  `type` VARCHAR(50),
   `brand` VARCHAR(100) NULL DEFAULT NULL,
   `model` VARCHAR(150),
   `price` DECIMAL(13, 4) NOT NULL DEFAULT 0,

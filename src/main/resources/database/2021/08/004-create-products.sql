@@ -16,6 +16,3 @@ CREATE TABLE processors
              CONSTRAINT processors_products_id_fk
                  FOREIGN KEY (id) REFERENCES products (id)
          );
-
-INSERT INTO products (user_id, title, description, type, price, quantity, created_at, modified_at) VALUES (1, 'intel i5', 'this is a processor', '????', 222.2200, 15, '2021-08-10 18:53:07', '2021-08-10 18:53:05');
-INSERT INTO processors (id, cores, base_clock, boost_clock, tdp, integrated_graphic, multithreading) VALUES (1, 4, 444444, 444444, 43, 'no', 1);

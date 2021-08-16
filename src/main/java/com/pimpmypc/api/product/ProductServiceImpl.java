@@ -1,8 +1,7 @@
 package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.exception.ProductException;
-import com.pimpmypc.api.products.Motherboard;
-import com.pimpmypc.api.products.Processor;
+import com.pimpmypc.api.products.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -40,5 +39,45 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Motherboard> getAllMotherboards() {
         return productRepository.findAllMotherboards();
+    }
+
+    @Override
+    public List<Case> getAllCases() {
+        return productRepository.findAllCases();
+    }
+
+    @Override
+    public List<Ram> getAllRamMemory() {
+        return productRepository.findAllRamMemory();
+    }
+
+    @Override
+    public List<Mouse> getAllMouses() {
+        return productRepository.findAllMouses();
+    }
+
+    @Override
+    public List<Keyboard> getAllKeyboards() {
+        return productRepository.findAllKeyboards();
+    }
+
+    @Override
+    public List<Monitor> getAllMonitors() {
+        return productRepository.findAllMonitors();
+    }
+
+    @Override
+    public List<HardDrive> getAllHardDrives() {
+        return productRepository.findAllHardDrives();
+    }
+
+    @Override
+    public List<GraphicCard> getAllGraphicCards() {
+        return productRepository.findAllGraphicCards();
+    }
+
+    @Override
+    public List<Laptop> getAllLaptops() {
+        return productRepository.findAllLaptops();
     }
 }

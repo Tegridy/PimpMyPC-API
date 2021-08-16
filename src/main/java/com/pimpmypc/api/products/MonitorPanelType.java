@@ -1,6 +1,6 @@
-//package com.pimpmypc.api.products;
-//
-//public enum MonitorPanelType {
-//    TN,
-//    IPS
-//}
+package com.pimpmypc.api.products;
+
+public enum MonitorPanelType {
+    TN,
+    IPS
+}

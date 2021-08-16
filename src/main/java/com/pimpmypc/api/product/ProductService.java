@@ -1,7 +1,6 @@
 package com.pimpmypc.api.product;
 
-import com.pimpmypc.api.products.Motherboard;
-import com.pimpmypc.api.products.Processor;
+import com.pimpmypc.api.products.*;
 
 import java.util.List;
 
@@ -14,4 +13,20 @@ public interface ProductService {
     List<Processor> getAllProcessors();
 
     List<Motherboard> getAllMotherboards();
+
+    List<Case> getAllCases();
+
+    List<Ram> getAllRamMemory();
+
+    List<Mouse> getAllMouses();
+
+    List<Keyboard> getAllKeyboards();
+
+    List<Monitor> getAllMonitors();
+
+    List<HardDrive> getAllHardDrives();
+
+    List<GraphicCard> getAllGraphicCards();
+
+    List<Laptop> getAllLaptops();
 }
