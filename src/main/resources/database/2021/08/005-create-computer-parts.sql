@@ -113,9 +113,9 @@ CREATE TABLE hard_drives
 create table graphic_cards
 (
 	id BIGINT NOT NULL auto_increment,
-	vram int null,
-	core_clock int null,
-	boost_clock int null,
+	vram VARCHAR(30) null,
+	core_clock VARCHAR(30) null,
+	boost_clock VARCHAR(30) null,
 	chipset VARCHAR(100) NULL,
 	graphic_card_length int null,
 	constraint graphic_cards_pk
@@ -152,17 +152,11 @@ CREATE TABLE colors
     id    BIGINT NOT NULL,
     color VARCHAR(20) NOT NULL,
     KEY (id),
-    CONSTRAINT colors_motherboards_id_fk
-        FOREIGN KEY (id) REFERENCES motherboards (id),
-    CONSTRAINT colors_cases_id_fk
-        FOREIGN KEY (id) REFERENCES cases (id),
-    CONSTRAINT colors_graphic_cards_id_fk
-        FOREIGN KEY (id) REFERENCES graphic_cards (id),
-    CONSTRAINT colors_keyboards_id_fk
-            FOREIGN KEY (id) REFERENCES keyboards (id)
+    CONSTRAINT colors_products_id_fk
+        FOREIGN KEY (id) REFERENCES products (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-);
+    );
 
 CREATE TABLE storage_types
 (

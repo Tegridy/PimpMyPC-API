@@ -4,23 +4,20 @@ import com.pimpmypc.api.product.Product;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 @Entity(name = "graphic_cards")
 @Getter
 @Setter
 public class GraphicCard extends Product {
     private String chipset;
-    private int vram;
+    private String vram;
     @Column(name = "core_clock")
-    private int coreClock;
+    private String coreClock;
     @Column(name = "boost_clock")
-    private int boostClock;
-    @Enumerated(EnumType.STRING)
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
-    private List<Color> color;
+    private String boostClock;
+
     @Column(name = "graphic_card_length")
     private int length;
 }

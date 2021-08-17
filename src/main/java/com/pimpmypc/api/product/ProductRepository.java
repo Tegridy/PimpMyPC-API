@@ -3,12 +3,13 @@ package com.pimpmypc.api.product;
 import com.pimpmypc.api.products.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ProductRepository<T extends Product> extends JpaRepository<T, Long> {
+public interface ProductRepository<T extends Product> extends JpaRepository<T, Long>, QuerydslPredicateExecutor<T> {
 
     @Query("FROM processors")
     List<Processor> findAllProcessors();

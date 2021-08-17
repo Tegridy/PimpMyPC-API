@@ -24,8 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ProductRepositoryTest {
 
     @Autowired
+    CategoryRepository categoryRepository;
+    @Autowired
     private ProductRepository<Product> productRepository;
-
     private Processor product1;
     private Motherboard product2;
 
@@ -40,8 +41,8 @@ public class ProductRepositoryTest {
         product1.setQuantity(8);
         product1.setDescription("This is a processor");
         product1.setCores(4);
-        product1.setBaseClock(4444444);
-        product1.setBoostClock(555555);
+        product1.setBaseClock("4444444");
+        product1.setBoostClock("555555");
         product1.setTdp(120);
         product1.setIntegratedGraphic("UHD630");
         product1.setMultithreading(true);
@@ -64,7 +65,7 @@ public class ProductRepositoryTest {
 
     @AfterEach
     void tearDown() {
-        productRepository.deleteAll();
+        // productRepository.deleteAll();
         product1 = null;
     }
 

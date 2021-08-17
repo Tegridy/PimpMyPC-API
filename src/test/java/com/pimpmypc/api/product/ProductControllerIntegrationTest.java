@@ -58,8 +58,8 @@ public class ProductControllerIntegrationTest {
         product1.setQuantity(8);
         product1.setDescription("This is a processor");
         product1.setCores(4);
-        product1.setBaseClock(4444444);
-        product1.setBoostClock(555555);
+        product1.setBaseClock("4444444");
+        product1.setBoostClock("555555");
         product1.setTdp(120);
         product1.setIntegratedGraphic("UHD630");
         product1.setMultithreading(true);
@@ -75,8 +75,8 @@ public class ProductControllerIntegrationTest {
         product2.setQuantity(12);
         product2.setDescription("This is an AMD processor");
         product2.setCores(8);
-        product2.setBaseClock(3444444);
-        product2.setBoostClock(5555555);
+        product2.setBaseClock("3444444");
+        product2.setBoostClock("5555555");
         product2.setTdp(220);
         product2.setIntegratedGraphic("Radeon");
         product2.setMultithreading(true);
@@ -508,7 +508,7 @@ public class ProductControllerIntegrationTest {
         product.setPrice(new BigDecimal("33.38"));
         product.setQuantity(2);
         product.setDescription("This is a product");
-        product.setVram(4000);
+        product.setVram("4 GB");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
 
@@ -518,7 +518,7 @@ public class ProductControllerIntegrationTest {
         product2.setModel("Model2");
         product2.setPrice(new BigDecimal("33.38"));
         product2.setQuantity(22);
-        product2.setVram(4000);
+        product2.setVram("4 GB");
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());

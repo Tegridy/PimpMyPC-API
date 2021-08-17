@@ -1,5 +1,6 @@
 package com.pimpmypc.api.product;
 
+import com.pimpmypc.api.products.Color;
 import com.pimpmypc.api.utils.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,14 @@ public class Product extends BaseEntity {
     private int quantity;
     private String brand;
     private String model;
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "color")
+    private Set<Color> colors;
 
     @ManyToMany
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))

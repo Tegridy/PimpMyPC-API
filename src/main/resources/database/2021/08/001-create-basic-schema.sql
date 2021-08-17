@@ -16,21 +16,17 @@ CREATE TABLE `users` (
 CREATE TABLE `products` (
 
   `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `user_id` BIGINT NULL,
-  `title` VARCHAR(75) NOT NULL,
+  `title` VARCHAR(150) NOT NULL,
   `description` TEXT,
-  `type` VARCHAR(50),
   `brand` VARCHAR(100) NULL DEFAULT NULL,
   `model` VARCHAR(150),
+  `image_url` VARCHAR(255) NULL,
   `price` DECIMAL(13, 4) NOT NULL DEFAULT 0,
   `quantity` INTEGER NOT NULL DEFAULT 0,
   `created_at` DATETIME NOT NULL,
-  `modified_at` DATETIME NULL DEFAULT NULL,
-  CONSTRAINT `fk_products_users`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+  `modified_at` DATETIME NULL DEFAULT NULL
+--    ON DELETE NO ACTION
+--    ON UPDATE NO ACTION
 );
 --
 --CREATE TABLE PRODUCTS_REVIEW (

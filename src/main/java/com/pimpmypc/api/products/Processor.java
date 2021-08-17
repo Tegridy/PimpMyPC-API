@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity(name = "processors")
 @NoArgsConstructor
@@ -18,9 +20,12 @@ public class Processor extends Product {
 
     private int cores;
     @Column(name = "base_clock")
-    private int baseClock;
+    private String baseClock;
     @Column(name = "boost_clock")
-    private int boostClock;
+    private String boostClock;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "motherboard_socket")
+    private MotherboardSocket motherboardSocket;
     private int tdp;
     @Column(name = "integrated_graphic")
     private String integratedGraphic;

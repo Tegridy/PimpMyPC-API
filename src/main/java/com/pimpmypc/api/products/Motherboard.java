@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @ToString
 public class Motherboard extends Product {
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "motherboard_socket")
     private MotherboardSocket motherboardSocket;
@@ -26,11 +26,7 @@ public class Motherboard extends Product {
     private int ramSlots;
     @Column(name = "max_ram")
     private long maxRam;
-    @Enumerated(EnumType.STRING)
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "color")
-    private Set<Color> colors;
+
 
     public void setMotherboardFormats(Set<MotherboardFormat> motherboardFormats) {
         this.motherboardFormats = motherboardFormats;
