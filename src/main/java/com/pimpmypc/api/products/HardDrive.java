@@ -13,7 +13,7 @@ import javax.persistence.Enumerated;
 @Getter
 @Setter
 public class HardDrive extends Product {
-    private long capacity;
+    private int capacity;
     @Enumerated(EnumType.STRING)
     private StorageType storageType;
     @Column(name = "platter_rpm")

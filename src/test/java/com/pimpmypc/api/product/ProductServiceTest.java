@@ -42,7 +42,7 @@ public class ProductServiceTest {
         product.setQuantity(2);
         product.setStorageType(StorageType.HDD);
         product.setDescription("This is a product");
-        product.setCapacity(800000000L);
+        product.setCapacity(8);
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
 
@@ -89,7 +89,7 @@ public class ProductServiceTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormat(MotherboardFormat.Micro_ATX);
+        product.setMotherboardFormat(Set.of(MotherboardFormat.Micro_ATX));
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Mockito.doReturn(Optional.of(product)).when(productRepository).findById(product.getId());
@@ -111,7 +111,7 @@ public class ProductServiceTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormat(MotherboardFormat.Micro_ATX);
+        product.setMotherboardFormat(Set.of(MotherboardFormat.Micro_ATX));
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Mockito.doThrow(new ProductException("Product with id " + product.getId() + " not found."))

@@ -20,7 +20,7 @@ public class Ram extends Product {
     private long moduleSize;
 
     @Column(name = "first_word_latency")
-    private float firstWordLatency;
+    private int firstWordLatency;
     @Column(name = "cas_timing")
     private int casTiming;
 }

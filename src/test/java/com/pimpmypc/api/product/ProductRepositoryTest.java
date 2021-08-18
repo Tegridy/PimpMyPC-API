@@ -59,7 +59,7 @@ public class ProductRepositoryTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
+        product2.setMotherboardFormats(MotherboardFormat.Micro_ATX);
         product2.setColors(Set.of(Color.GREEN, Color.BLACK));
     }
 
@@ -101,7 +101,7 @@ public class ProductRepositoryTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
+        product.setMotherboardFormats(MotherboardFormat.Micro_ATX);
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Motherboard product2 = new Motherboard();
@@ -114,7 +114,7 @@ public class ProductRepositoryTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
+        product2.setMotherboardFormats(MotherboardFormat.Micro_ATX);
         product2.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         List<Motherboard> motherboards = List.of(product, product2);

@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity(name = "motherboards")
 @Setter
@@ -18,17 +20,12 @@ public class Motherboard extends Product {
     @Column(name = "motherboard_socket")
     private MotherboardSocket motherboardSocket;
     @Enumerated(EnumType.STRING)
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "motherboard_formats", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "format")
-    private Set<MotherboardFormat> motherboardFormats;
+    @Column(name = "motherboard_format")
+    private MotherboardFormat motherboardFormats;
     @Column(name = "ram_slots")
     private int ramSlots;
     @Column(name = "max_ram")
     private long maxRam;
-
-
-    public void setMotherboardFormats(Set<MotherboardFormat> motherboardFormats) {
-        this.motherboardFormats = motherboardFormats;
-    }
+    @Column(name = "memory_type")
+    private String ramType;
 }

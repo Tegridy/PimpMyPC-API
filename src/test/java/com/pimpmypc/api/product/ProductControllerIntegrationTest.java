@@ -191,7 +191,7 @@ public class ProductControllerIntegrationTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
+        product.setMotherboardFormats(MotherboardFormat.Micro_ATX);
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Motherboard product2 = new Motherboard();
@@ -204,7 +204,7 @@ public class ProductControllerIntegrationTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
+        product2.setMotherboardFormats(MotherboardFormat.Micro_ATX);
         product2.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         productRepository.save(product);
@@ -240,7 +240,7 @@ public class ProductControllerIntegrationTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormat(MotherboardFormat.Micro_ATX);
+        product.setMotherboardFormat(Set.of(MotherboardFormat.Micro_ATX));
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Case product2 = new Case();
@@ -252,7 +252,7 @@ public class ProductControllerIntegrationTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardFormat(MotherboardFormat.Micro_ATX);
+        product2.setMotherboardFormat(Set.of(MotherboardFormat.Micro_ATX));
         product2.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         productRepository.save(product);
@@ -462,7 +462,7 @@ public class ProductControllerIntegrationTest {
         product.setQuantity(2);
         product.setStorageType(StorageType.HDD);
         product.setDescription("This is a product");
-        product.setCapacity(800000000L);
+        product.setCapacity(80000000);
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
 
@@ -472,7 +472,7 @@ public class ProductControllerIntegrationTest {
         product2.setModel("Model2");
         product2.setPrice(new BigDecimal("33.38"));
         product2.setQuantity(22);
-        product2.setCapacity(800000000L);
+        product2.setCapacity(80000000);
         product2.setStorageType(StorageType.SSD);
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());

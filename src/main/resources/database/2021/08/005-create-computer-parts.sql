@@ -21,7 +21,6 @@ CREATE TABLE cases
     id       BIGINT NOT NULL AUTO_INCREMENT,
     width    INT NULL,
     height   INT NULL,
-    motherboard_format VARCHAR(50) NULL,
     CONSTRAINT cases_pk
         PRIMARY KEY (id),
     CONSTRAINT cases_products_id_fk
@@ -34,6 +33,8 @@ CREATE TABLE motherboards
     id BIGINT NOT NULL AUTO_INCREMENT,
     ram_slots INT  NULL,
     max_ram   BIGINT NULL,
+    memory_type VARCHAR(8) NULL,
+    motherboard_format VARCHAR(15) NULL,
     motherboard_socket VARCHAR(100) NULL,
     CONSTRAINT motherboards_pk
         PRIMARY KEY (id),
@@ -49,7 +50,7 @@ CREATE TABLE ram_memory
     speed              BIGINT         NULL,
     number_of_modules  INT          NULL,
     module_size        BIGINT         NULL,
-    first_word_latency FLOAT        NULL,
+    first_word_latency INT        NULL,
     cas_timing         INT          NULL,
     CONSTRAINT ram_memory_pk
         PRIMARY KEY (id),
@@ -100,7 +101,7 @@ CREATE TABLE keyboards
 CREATE TABLE hard_drives
 (
     id          BIGINT NOT NULL AUTO_INCREMENT,
-    capacity    BIGINT       NULL,
+    capacity    INT       NULL,
     platter_rpm INT          NULL,
     interface   VARCHAR(100) NULL,
     storage_type VARCHAR(10) NOT NULL,
@@ -129,8 +130,6 @@ CREATE TABLE motherboard_formats
     id     BIGINT AUTO_INCREMENT,
     format VARCHAR(50) NULL,
     KEY (id),
-    CONSTRAINT motherboard_formats_motherboards_id_fk
-        FOREIGN KEY (id) REFERENCES motherboards (id),
     CONSTRAINT motherboard_formats_cases_id_fk
         FOREIGN KEY (id) REFERENCES cases (id)
     ON DELETE CASCADE
