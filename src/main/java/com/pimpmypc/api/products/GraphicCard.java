@@ -12,12 +12,12 @@ import javax.persistence.Entity;
 @Setter
 public class GraphicCard extends Product {
     private String chipset;
-    private String vram;
+    @Column(name = "vram")
+    private int vramGB;
     @Column(name = "core_clock")
-    private String coreClock;
+    private int coreClock;
     @Column(name = "boost_clock")
-    private String boostClock;
-
+    private int boostClock;
     @Column(name = "graphic_card_length")
     private int length;
 }

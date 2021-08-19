@@ -50,7 +50,7 @@ public class ProductRepositoryTest {
         product1.setModifiedAt(LocalDateTime.now());
 
         product2 = new Motherboard();
-        product2.setMotherboardSocket(MotherboardSocket.AM3);
+        product2.setMotherboardSocket(MotherboardSocket.AM4);
         product2.setTitle("MOBO2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
@@ -92,7 +92,7 @@ public class ProductRepositoryTest {
     @Test
     void shouldReturnListOfMotherboards() {
         Motherboard product = new Motherboard();
-        product.setMotherboardSocket(MotherboardSocket.AM3);
+        product.setMotherboardSocket(MotherboardSocket.LGA1151);
         product.setTitle("MOBO1");
         product.setBrand("Brand");
         product.setModel("Model");
@@ -105,7 +105,7 @@ public class ProductRepositoryTest {
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Motherboard product2 = new Motherboard();
-        product2.setMotherboardSocket(MotherboardSocket.AM3);
+        product2.setMotherboardSocket(MotherboardSocket.LGA1200);
         product2.setTitle("MOBO2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");

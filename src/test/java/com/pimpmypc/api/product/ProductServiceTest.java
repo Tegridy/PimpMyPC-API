@@ -34,7 +34,7 @@ public class ProductServiceTest {
     @Test
     void shouldReturnAllDifferentProducts() {
 
-        HardDrive product = new HardDrive();
+        HardDisc product = new HardDisc();
         product.setTitle("HDD1");
         product.setBrand("Brand");
         product.setModel("Model");
@@ -52,7 +52,7 @@ public class ProductServiceTest {
         product2.setModel("Model2");
         product2.setPrice(new BigDecimal("33.38"));
         product2.setQuantity(22);
-        product2.setVram("4 GB");
+        product2.setVramGB(4);
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());

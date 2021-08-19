@@ -35,8 +35,8 @@ public interface ProductRepository<T extends Product> extends JpaRepository<T, L
     @Query("FROM graphic_cards")
     List<GraphicCard> findAllGraphicCards();
 
-    @Query("FROM hard_drives")
-    List<HardDrive> findAllHardDrives();
+    @Query("FROM hard_discs")
+    List<HardDisc> findAllHardDiscs();
 
 
     @Query("FROM laptops")

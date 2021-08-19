@@ -67,8 +67,8 @@ public class ProductsController {
     }
 
     @GetMapping(value = "/drives", produces = "application/json")
-    public ResponseEntity<List<HardDrive>> getAllHardDrives() {
-        return ResponseEntity.ok(productService.getAllHardDrives());
+    public ResponseEntity<List<HardDisc>> getAllHardDrives() {
+        return ResponseEntity.ok(productService.getAllHardDiscs());
     }
 
     @GetMapping(value = "/graphics", produces = "application/json")

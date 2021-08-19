@@ -3,5 +3,8 @@ package com.pimpmypc.api.products;
 public enum Color {
     GREEN,
     RED,
-    BLACK
+    BLACK,
+    BLUE,
+    YELLOW,
+    WHITE
 }

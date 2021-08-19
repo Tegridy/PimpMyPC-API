@@ -9,10 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-@Entity(name = "hard_drives")
+@Entity(name = "hard_discs")
 @Getter
 @Setter
-public class HardDrive extends Product {
+public class HardDisc extends Product {
     private int capacity;
     @Enumerated(EnumType.STRING)
     private StorageType storageType;

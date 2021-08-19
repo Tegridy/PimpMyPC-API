@@ -24,7 +24,7 @@ public interface ProductService {
 
     List<Monitor> getAllMonitors();
 
-    List<HardDrive> getAllHardDrives();
+    List<HardDisc> getAllHardDiscs();
 
     List<GraphicCard> getAllGraphicCards();
 

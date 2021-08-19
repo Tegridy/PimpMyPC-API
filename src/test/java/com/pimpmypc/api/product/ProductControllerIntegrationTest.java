@@ -182,7 +182,7 @@ public class ProductControllerIntegrationTest {
     void shouldReturnAllMotherboards() throws Exception {
 
         Motherboard product = new Motherboard();
-        product.setMotherboardSocket(MotherboardSocket.AM3);
+        product.setMotherboardSocket(MotherboardSocket.AM4);
         product.setTitle("MOBO1");
         product.setBrand("Brand");
         product.setModel("Model");
@@ -195,7 +195,7 @@ public class ProductControllerIntegrationTest {
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Motherboard product2 = new Motherboard();
-        product2.setMotherboardSocket(MotherboardSocket.AM3);
+        product2.setMotherboardSocket(MotherboardSocket.AM4);
         product2.setTitle("MOBO2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
@@ -454,7 +454,7 @@ public class ProductControllerIntegrationTest {
     @Test
     void shouldReturnAllHardDrives() throws Exception {
 
-        HardDrive product = new HardDrive();
+        HardDisc product = new HardDisc();
         product.setTitle("HDD1");
         product.setBrand("Brand");
         product.setModel("Model");
@@ -466,7 +466,7 @@ public class ProductControllerIntegrationTest {
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
 
-        HardDrive product2 = new HardDrive();
+        HardDisc product2 = new HardDisc();
         product2.setTitle("SSD2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
@@ -508,7 +508,7 @@ public class ProductControllerIntegrationTest {
         product.setPrice(new BigDecimal("33.38"));
         product.setQuantity(2);
         product.setDescription("This is a product");
-        product.setVram("4 GB");
+        product.setVramGB(4);
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
 
@@ -518,7 +518,7 @@ public class ProductControllerIntegrationTest {
         product2.setModel("Model2");
         product2.setPrice(new BigDecimal("33.38"));
         product2.setQuantity(22);
-        product2.setVram("4 GB");
+        product2.setVramGB(4);
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
@@ -557,7 +557,7 @@ public class ProductControllerIntegrationTest {
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
         product.setProcessor("AMD FX");
-        product.setHardDrive("500 GB SSD");
+        product.setHardDiscCapacity(500);
 
         Laptop product2 = new Laptop();
         product2.setTitle("Laptop2");
@@ -569,7 +569,7 @@ public class ProductControllerIntegrationTest {
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
         product.setProcessor("Intel core i5");
-        product.setHardDrive("250 GB SSD");
+        product.setHardDiscCapacity(500);
 
 
         productRepository.save(product);

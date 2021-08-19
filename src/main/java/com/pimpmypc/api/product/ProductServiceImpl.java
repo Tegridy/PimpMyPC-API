@@ -67,8 +67,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<HardDrive> getAllHardDrives() {
-        return productRepository.findAllHardDrives();
+    public List<HardDisc> getAllHardDiscs() {
+        return productRepository.findAllHardDiscs();
     }
 
     @Override

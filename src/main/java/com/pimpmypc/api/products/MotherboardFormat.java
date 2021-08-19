@@ -1,5 +1,7 @@
 package com.pimpmypc.api.products;
 
 public enum MotherboardFormat {
-    Micro_ATX
+    Micro_ATX,
+    ATX,
+    Mini_ITX
 }

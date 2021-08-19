@@ -7,6 +7,6 @@ CREATE TABLE `users_roles` (
      CONSTRAINT `fk_users_roles`
     FOREIGN KEY (`users_id`)
     REFERENCES `users` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION
 );
