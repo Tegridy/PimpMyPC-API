@@ -172,7 +172,7 @@ CREATE TABLE laptops
         graphic_card VARCHAR(200) NULL,
         graphic_card_memory INT NULL,
         operating_system VARCHAR(255) NULL,
-        hard_disc_type VARCHAR(5) NULL,
+        hard_disc_type VARCHAR(15) NULL,
         hard_disc_capacity INT NULL,
         weight FLOAT NULL,
         CONSTRAINT laptops_pk
