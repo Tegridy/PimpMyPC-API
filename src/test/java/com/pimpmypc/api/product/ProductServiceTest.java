@@ -89,7 +89,7 @@ public class ProductServiceTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormat(Set.of(MotherboardFormat.Micro_ATX));
+        product.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Mockito.doReturn(Optional.of(product)).when(productRepository).findById(product.getId());
@@ -111,7 +111,7 @@ public class ProductServiceTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormat(Set.of(MotherboardFormat.Micro_ATX));
+        product.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Mockito.doThrow(new ProductException("Product with id " + product.getId() + " not found."))

@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "products")
@@ -33,7 +34,7 @@ public class Product extends BaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "color")
-    private Set<Color> colors;
+    private Set<Color> colors = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
@@ -41,6 +42,11 @@ public class Product extends BaseEntity {
 
     @Override
     public String toString() {
+        String res = "";
+
+        categories.forEach(System.out::println);
+
+
         return "Product{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +

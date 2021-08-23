@@ -17,5 +17,14 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     private Set<Product> products;
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", parentId=" + parentId +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }
 

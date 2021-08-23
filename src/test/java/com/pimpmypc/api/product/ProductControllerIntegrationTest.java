@@ -4,6 +4,7 @@ package com.pimpmypc.api.product;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pimpmypc.api.PimpMyPcApplication;
 import com.pimpmypc.api.products.*;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @TestPropertySource(
         locations = "classpath:application-test.properties")
+@Transactional
 public class ProductControllerIntegrationTest {
 
     @Autowired
@@ -50,7 +53,6 @@ public class ProductControllerIntegrationTest {
     @BeforeEach
     void setUp() {
         product1 = new Processor();
-        product1.setId(1L);
         product1.setTitle("Intel Processor");
         product1.setBrand("Intel");
         product1.setModel("i5");
@@ -65,9 +67,9 @@ public class ProductControllerIntegrationTest {
         product1.setMultithreading(true);
         product1.setCreatedAt(LocalDateTime.now());
         product1.setModifiedAt(LocalDateTime.now());
+        product1.setMotherboardSocket(MotherboardSocket.LGA1151);
 
         product2 = new Processor();
-        product2.setId(2L);
         product2.setTitle("AMD Processor");
         product2.setBrand("AMD");
         product2.setModel("FX");
@@ -82,13 +84,13 @@ public class ProductControllerIntegrationTest {
         product2.setMultithreading(true);
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
+        product2.setMotherboardSocket(MotherboardSocket.AM4);
 
         processorList = new ArrayList<>();
         processorList.add(product1);
         processorList.add(product2);
 
         product3 = new Product();
-        product3.setId(3L);
         product3.setTitle("Generic product");
         product3.setBrand("Brand");
         product3.setModel("Model");
@@ -109,7 +111,6 @@ public class ProductControllerIntegrationTest {
         product1 = null;
         product2 = null;
         productList.clear();
-        productRepository.deleteAll();
     }
 
     @Test
@@ -182,7 +183,7 @@ public class ProductControllerIntegrationTest {
     void shouldReturnAllMotherboards() throws Exception {
 
         Motherboard product = new Motherboard();
-        product.setMotherboardSocket(MotherboardSocket.AM4);
+        product.setMotherboardSocket(MotherboardSocket.LGA1200);
         product.setTitle("MOBO1");
         product.setBrand("Brand");
         product.setModel("Model");
@@ -195,7 +196,7 @@ public class ProductControllerIntegrationTest {
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Motherboard product2 = new Motherboard();
-        product2.setMotherboardSocket(MotherboardSocket.AM4);
+        product2.setMotherboardSocket(MotherboardSocket.LGA1200);
         product2.setTitle("MOBO2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
@@ -240,7 +241,7 @@ public class ProductControllerIntegrationTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormat(Set.of(MotherboardFormat.Micro_ATX));
+        product.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         Case product2 = new Case();
@@ -252,7 +253,7 @@ public class ProductControllerIntegrationTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardFormat(Set.of(MotherboardFormat.Micro_ATX));
+        product2.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
         product2.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         productRepository.save(product);
@@ -590,5 +591,377 @@ public class ProductControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void shouldReturnProcessorById() throws Exception {
+        product1.setCores(4);
+        Long id = productRepository.save(product1).getId();
+
+        mvc.perform(get("/api/v1/products/processors/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.title").value(product1.getTitle()))
+                .andExpect(jsonPath("$.cores").value(4));
+
+    }
+
+    @Test
+    void shouldNotFindProcessorById() throws Exception {
+        mvc.perform(get("/api/v1/products/processors/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Processor with id: 1 not found."));
+
+    }
+
+    @Test
+    void shouldReturnMotherboardById() throws Exception {
+        Motherboard product = new Motherboard();
+        product.setMotherboardSocket(MotherboardSocket.LGA1200);
+        product.setTitle("MOBO1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+        product.setMaxRam(64L);
+        product.setMotherboardFormats(MotherboardFormat.Micro_ATX);
+        product.setColors(Set.of(Color.GREEN, Color.BLACK));
+
+        Long id = productRepository.save(product).getId();
+
+        mvc.perform(get("/api/v1/products/motherboards/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.maxRam").value(64));
+    }
+
+    @Test
+    void shouldNotFindMotherboardById() throws Exception {
+        mvc.perform(get("/api/v1/products/motherboards/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Motherboard with id: 1 not found."));
+
+    }
+
+    @Test
+    void shouldReturnCaseById() throws Exception {
+        Case product = new Case();
+        product.setTitle("CASE1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+        product.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX, MotherboardFormat.ATX));
+        product.setColors(Set.of(Color.GREEN, Color.BLACK));
+
+        Long id = productRepository.save(product).getId();
+
+        mvc.perform(get("/api/v1/products/cases/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.colors").value(Matchers.containsInAnyOrder("GREEN", "BLACK")));
+    }
+
+    @Test
+    void shouldNotFindCaseById() throws Exception {
+        mvc.perform(get("/api/v1/products/cases/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Case with id: 1 not found."));
+
+    }
+
+    @Test
+    void shouldReturnRamById() throws Exception {
+        Ram product = new Ram();
+        product.setTitle("MEM1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCasTiming(15);
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        Long id = productRepository.save(product).getId();
+
+        mvc.perform(get("/api/v1/products/rams/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.casTiming").value(product.getCasTiming()));
+    }
+
+    @Test
+    void shouldNotFindRamById() throws Exception {
+        mvc.perform(get("/api/v1/products/rams/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Ram with id: 1 not found."));
+
+    }
+
+    @Test
+    void shouldReturnMouseById() throws Exception {
+        Mouse product = new Mouse();
+        product.setTitle("Mouse1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setConnection("Wireless");
+        product.setModifiedAt(LocalDateTime.now());
+
+        Long id = productRepository.save(product).getId();
+
+        mvc.perform(get("/api/v1/products/mouses/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.connection").value(product.getConnection()));
+    }
+
+    @Test
+    void shouldNotFindMouseById() throws Exception {
+        mvc.perform(get("/api/v1/products/mouses/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Mouse with id: 1 not found."));
+
+    }
+
+    @Test
+    void shouldReturnKeyboardById() throws Exception {
+        Keyboard product = new Keyboard();
+        product.setTitle("Keyboard1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setConnection("Wired");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        Long id = productRepository.save(product).getId();
+
+        mvc.perform(get("/api/v1/products/keyboards/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.connection").value(product.getConnection()));
+    }
+
+    @Test
+    void shouldNotFindKeyboardById() throws Exception {
+        mvc.perform(get("/api/v1/products/keyboards/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Keyboard with id: 1 not found."));
+
+    }
+
+    @Test
+    void shouldReturnMonitorById() throws Exception {
+        Monitor product = new Monitor();
+        product.setTitle("Monitor1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setAspectRatio("16:9");
+        product.setRefreshRate(60);
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        Long id = productRepository.save(product).getId();
+
+        mvc.perform(get("/api/v1/products/monitors/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.aspectRatio").value(product.getAspectRatio()));
+    }
+
+    @Test
+    void shouldNotFindMonitorById() throws Exception {
+        mvc.perform(get("/api/v1/products/monitors/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Monitor with id: 1 not found."));
+
+    }
+
+    @Test
+    void shouldReturnHardDiscById() throws Exception {
+        HardDisc product = new HardDisc();
+        product.setTitle("HDD1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setStorageType(StorageType.HDD);
+        product.setDescription("This is a product");
+        product.setCapacity(1000);
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        Long id = productRepository.save(product).getId();
+
+        mvc.perform(get("/api/v1/products/hard-discs/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.capacity").value(product.getCapacity()))
+                .andExpect(jsonPath("$.storageType").value("HDD"));
+    }
+
+    @Test
+    void shouldNotFindHardDiscById() throws Exception {
+        mvc.perform(get("/api/v1/products/hard-discs/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Hard disc with id: 1 not found."));
+
+    }
+
+    @Test
+    void shouldReturnGraphicCardById() throws Exception {
+        GraphicCard product = new GraphicCard();
+        product.setTitle("Graphic1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setVramGB(4);
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+
+        Long id = productRepository.save(product).getId();
+
+        mvc.perform(get("/api/v1/products/graphics/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.vramGB").value(product.getVramGB()));
+
+    }
+
+    @Test
+    void shouldNotFindGraphicCardById() throws Exception {
+        mvc.perform(get("/api/v1/products/graphics/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Graphic card with id: 1 not found."));
+
+    }
+
+    @Test
+    void shouldReturnLaptopById() throws Exception {
+        Laptop product = new Laptop();
+
+        product.setTitle("Laptop1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+        product.setProcessor("AMD FX");
+        product.setCpuSpeed(3.5F);
+        product.setHardDiscCapacity(500);
+
+        Long id = productRepository.save(product).getId();
+
+        mvc.perform(get("/api/v1/products/laptops/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.processor").value(product.getProcessor()))
+                .andExpect(jsonPath("$.cpuSpeed").value(product.getCpuSpeed()));
+
+    }
+
+    @Test
+    void shouldNotFindLaptopById() throws Exception {
+        mvc.perform(get("/api/v1/products/laptops/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Laptop with id: 1 not found."));
+
+    }
+
+    @Test
+    void shouldReturnComputerById() throws Exception {
+        Computer product = new Computer();
+        product.setTitle("Laptop1");
+        product.setBrand("Brand");
+        product.setModel("Model");
+        product.setPrice(new BigDecimal("33.38"));
+        product.setQuantity(2);
+        product.setDescription("This is a product");
+        product.setCreatedAt(LocalDateTime.now());
+        product.setModifiedAt(LocalDateTime.now());
+        product.setProcessor("AMD FX");
+        product.setGraphicCard("Nvidia RX 3070");
+
+        Long id = productRepository.save(product).getId();
+
+        mvc.perform(get("/api/v1/products/computers/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.processor").value(product.getProcessor()))
+                .andExpect(jsonPath("$.graphicCard").value(product.getGraphicCard()));
+
+    }
+
+    @Test
+    void shouldNotFindComputerById() throws Exception {
+        mvc.perform(get("/api/v1/products/computers/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.details").value("Computer with id: 1 not found."));
+
     }
 }

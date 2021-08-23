@@ -20,7 +20,7 @@ public class Case extends Product {
     @Column(name = "format")
     private Set<MotherboardFormat> motherboardFormats;
 
-    public void setMotherboardFormat(Set<MotherboardFormat> motherboardFormats) {
+    public void setMotherboardFormats(Set<MotherboardFormat> motherboardFormats) {
         this.motherboardFormats = motherboardFormats;
     }
 }

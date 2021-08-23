@@ -30,4 +30,13 @@ public class Processor extends Product {
     @Column(name = "integrated_graphic")
     private String integratedGraphic;
     private boolean multithreading;
+
+    @Override
+    public String toString() {
+        String res = "";
+
+        super.getCategories().forEach(System.out::println);
+
+        return "Processor{}";
+    }
 }

@@ -25,8 +25,6 @@ CREATE TABLE `products` (
   `quantity` INTEGER NOT NULL DEFAULT 0,
   `created_at` DATETIME NOT NULL,
   `modified_at` DATETIME NULL DEFAULT NULL
---    ON DELETE NO ACTION
---    ON UPDATE NO ACTION
 );
 --
 --CREATE TABLE PRODUCTS_REVIEW (
@@ -52,7 +50,8 @@ CREATE TABLE `categories` (
   `parent_id` BIGINT DEFAULT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (parent_id) REFERENCES categories (id)
-    ON DELETE CASCADE ON UPDATE CASCADE
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 
 
@@ -63,13 +62,13 @@ CREATE TABLE `categories` (
   CONSTRAINT `fk_pc_product`
     FOREIGN KEY (`product_id`)
     REFERENCES `products` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_pc_categories`
     FOREIGN KEY (`category_id`)
     REFERENCES `categories` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 
 --CREATE TABLE `basket` (

@@ -119,7 +119,7 @@ INSERT INTO products VALUES (374, "Lenovo laptop Lenovo Legion Y540-17IRH 17 ' 1
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", null, "Lenovo Legion Y540-17IRH", "https://a.allegroimg.com/original/11cc72/05c314c5410e8fec1031066f52fe", 1307.02, 9999, NOW(), NOW());
-INSERT INTO laptops VALUES (374, 17.0, "1920 x 1080", null, "Intel Core i7", 0.0, 16, "DDR4", null, 0, "Windows 10 64-bit","SSD + HDD",1500,2.0054903);
+INSERT INTO laptops VALUES (374, 17.0, "1920 x 1080", null, "Intel Core i7", 0.0, 16, "DDR4", null, 0, "Windows 10 64-bit","SSD_HDD",1500,2.0054903);
 INSERT INTO product_category VALUES (374, 2);
 INSERT INTO product_category VALUES (374, 11);
 INSERT INTO product_category VALUES (374, 14);
@@ -179,7 +179,7 @@ INSERT INTO products VALUES (379, "Acer laptop Acer 15,6 ' 16 GB / 1256 GB" , "L
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", null, "Acer", "https://a.allegroimg.com/original/11db35/c296933c4d0289c8b15cde03dee7", 816.99, 9999, NOW(), NOW());
-INSERT INTO laptops VALUES (379, 15.6, "1920 x 1080", null, "Intel Core i5", 0.0, 16, "DDR4", "NVIDIA GeForce GTX 1050", 4, "Windows 10 64-bit","SSD + HDD",1256,3.199262);
+INSERT INTO laptops VALUES (379, 15.6, "1920 x 1080", null, "Intel Core i5", 0.0, 16, "DDR4", "NVIDIA GeForce GTX 1050", 4, "Windows 10 64-bit","SSD_HDD",1256,3.199262);
 INSERT INTO product_category VALUES (379, 2);
 INSERT INTO product_category VALUES (379, 11);
 INSERT INTO product_category VALUES (379, 12);

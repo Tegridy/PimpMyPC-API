@@ -16,4 +16,6 @@ CREATE TABLE processors
                  PRIMARY KEY (id),
              CONSTRAINT processors_products_id_fk
                  FOREIGN KEY (id) REFERENCES products (id)
+             ON DELETE CASCADE
+             ON UPDATE CASCADE
          );

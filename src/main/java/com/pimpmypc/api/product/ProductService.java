@@ -29,4 +29,28 @@ public interface ProductService {
     List<GraphicCard> getAllGraphicCards();
 
     List<Laptop> getAllLaptops();
+
+    List<Computer> getAllComputers();
+
+    Processor getProcessorById(Long id);
+
+    Motherboard getMotherboardById(Long id);
+
+    Case getCaseById(Long id);
+
+    Ram getRamById(Long id);
+
+    Mouse getMouseById(Long id);
+
+    Keyboard getKeyboardById(Long id);
+
+    Monitor getMonitorById(Long id);
+
+    HardDisc getHardDiscById(Long id);
+
+    GraphicCard getGraphicCardById(Long id);
+
+    Laptop getLaptopById(Long id);
+
+    Computer getComputerById(Long id);
 }
