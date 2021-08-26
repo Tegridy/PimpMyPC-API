@@ -14,37 +14,37 @@ import java.util.Optional;
 public interface ProductRepository<T extends Product> extends JpaRepository<T, Long>, QuerydslPredicateExecutor<T> {
 
     @Query("FROM processors")
-    List<Processor> findAllProcessors();
+    List<Processor> findAllProcessors(Pageable pagable);
 
     @Query("FROM motherboards")
-    List<Motherboard> findAllMotherboards();
+    List<Motherboard> findAllMotherboards(Pageable pagable);
 
     @Query("FROM cases")
-    List<Case> findAllCases();
+    List<Case> findAllCases(Pageable pagable);
 
     @Query("FROM ram_memory")
-    List<Ram> findAllRamMemory();
+    List<Ram> findAllRamMemory(Pageable pagable);
 
     @Query("FROM mouses")
-    List<Mouse> findAllMouses();
+    List<Mouse> findAllMouses(Pageable pagable);
 
     @Query("FROM keyboards")
-    List<Keyboard> findAllKeyboards();
+    List<Keyboard> findAllKeyboards(Pageable pagable);
 
     @Query("FROM monitors")
-    List<Monitor> findAllMonitors();
+    List<Monitor> findAllMonitors(Pageable pagable);
 
     @Query("FROM graphic_cards")
-    List<GraphicCard> findAllGraphicCards();
+    List<GraphicCard> findAllGraphicCards(Pageable pagable);
 
     @Query("FROM hard_discs")
-    List<HardDisc> findAllHardDiscs();
+    List<HardDisc> findAllHardDiscs(Pageable pagable);
 
     @Query("FROM laptops")
-    List<Laptop> findAllLaptops(Pageable pageable);
+    List<Laptop> findAllLaptops(Pageable pagable);
 
     @Query("FROM computers")
-    List<Computer> findAllComputers();
+    List<Computer> findAllComputers(Pageable pagable);
 
     @Query("SELECT p FROM processors p WHERE id = ?1")
     Optional<Processor> findProcessorById(Long id);

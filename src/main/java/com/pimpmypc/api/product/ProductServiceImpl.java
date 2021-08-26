@@ -4,7 +4,7 @@ import com.pimpmypc.api.exception.ProductException;
 import com.pimpmypc.api.products.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,58 +33,58 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Processor> getAllProcessors() {
-        return productRepository.findAllProcessors();
+    public List<Processor> getAllProcessors(int page, int pageSize) {
+        return productRepository.findAllProcessors(PageRequest.of(page, pageSize));
     }
 
     @Override
-    public List<Motherboard> getAllMotherboards() {
-        return productRepository.findAllMotherboards();
+    public List<Motherboard> getAllMotherboards(int page, int pageSize) {
+        return productRepository.findAllMotherboards(PageRequest.of(page, pageSize));
     }
 
     @Override
-    public List<Case> getAllCases() {
-        return productRepository.findAllCases();
+    public List<Case> getAllCases(int page, int pageSize) {
+        return productRepository.findAllCases(PageRequest.of(page, pageSize));
     }
 
     @Override
-    public List<Ram> getAllRamMemory() {
-        return productRepository.findAllRamMemory();
+    public List<Ram> getAllRamMemory(int page, int pageSize) {
+        return productRepository.findAllRamMemory(PageRequest.of(page, pageSize));
     }
 
     @Override
-    public List<Mouse> getAllMouses() {
-        return productRepository.findAllMouses();
+    public List<Mouse> getAllMouses(int page, int pageSize) {
+        return productRepository.findAllMouses(PageRequest.of(page, pageSize));
     }
 
     @Override
-    public List<Keyboard> getAllKeyboards() {
-        return productRepository.findAllKeyboards();
+    public List<Keyboard> getAllKeyboards(int page, int pageSize) {
+        return productRepository.findAllKeyboards(PageRequest.of(page, pageSize));
     }
 
     @Override
-    public List<Monitor> getAllMonitors() {
-        return productRepository.findAllMonitors();
+    public List<Monitor> getAllMonitors(int page, int pageSize) {
+        return productRepository.findAllMonitors(PageRequest.of(page, pageSize));
     }
 
     @Override
-    public List<HardDisc> getAllHardDiscs() {
-        return productRepository.findAllHardDiscs();
+    public List<HardDisc> getAllHardDiscs(int page, int pageSize) {
+        return productRepository.findAllHardDiscs(PageRequest.of(page, pageSize));
     }
 
     @Override
-    public List<GraphicCard> getAllGraphicCards() {
-        return productRepository.findAllGraphicCards();
+    public List<GraphicCard> getAllGraphicCards(int page, int pageSize) {
+        return productRepository.findAllGraphicCards(PageRequest.of(page, pageSize));
     }
 
     @Override
-    public List<Laptop> getAllLaptops() {
-        return productRepository.findAllLaptops(Pageable.ofSize(9));
+    public List<Laptop> getAllLaptops(int page, int pageSize) {
+        return productRepository.findAllLaptops(PageRequest.of(page, pageSize));
     }
 
     @Override
-    public List<Computer> getAllComputers() {
-        return productRepository.findAllComputers();
+    public List<Computer> getAllComputers(int page, int pageSize) {
+        return productRepository.findAllComputers(PageRequest.of(page, pageSize));
     }
 
     @Override

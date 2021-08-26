@@ -3,6 +3,7 @@ package com.pimpmypc.api.products;
 import com.pimpmypc.api.product.Product;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.Enumerated;
 @Getter
 @Setter
 @Entity(name = "laptops")
+@ToString
 public class Laptop extends Product {
 
     @Column(name = "display_size")

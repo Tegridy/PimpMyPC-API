@@ -29,7 +29,6 @@ public class Product extends BaseEntity {
     private String model;
     @Column(name = "image_url")
     private String imageUrl;
-
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
@@ -38,7 +37,7 @@ public class Product extends BaseEntity {
 
     @ManyToMany
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     @Override
     public String toString() {

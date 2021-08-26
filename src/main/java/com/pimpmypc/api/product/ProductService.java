@@ -10,27 +10,27 @@ public interface ProductService {
 
     Product getProductById(long id);
 
-    List<Processor> getAllProcessors();
+    List<Processor> getAllProcessors(int page, int pageSize);
 
-    List<Motherboard> getAllMotherboards();
+    List<Motherboard> getAllMotherboards(int page, int pageSize);
 
-    List<Case> getAllCases();
+    List<Case> getAllCases(int page, int pageSize);
 
-    List<Ram> getAllRamMemory();
+    List<Ram> getAllRamMemory(int page, int pageSize);
 
-    List<Mouse> getAllMouses();
+    List<Mouse> getAllMouses(int page, int pageSize);
 
-    List<Keyboard> getAllKeyboards();
+    List<Keyboard> getAllKeyboards(int page, int pageSize);
 
-    List<Monitor> getAllMonitors();
+    List<Monitor> getAllMonitors(int page, int pageSize);
 
-    List<HardDisc> getAllHardDiscs();
+    List<HardDisc> getAllHardDiscs(int page, int pageSize);
 
-    List<GraphicCard> getAllGraphicCards();
+    List<GraphicCard> getAllGraphicCards(int page, int pageSize);
 
-    List<Laptop> getAllLaptops();
+    List<Laptop> getAllLaptops(int page, int pageSize);
 
-    List<Computer> getAllComputers();
+    List<Computer> getAllComputers(int page, int pageSize);
 
     Processor getProcessorById(Long id);
 
