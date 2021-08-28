@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -24,10 +25,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
 
+    private final int PAGE_SIZE = 9;
     @Autowired
     @InjectMocks
     private ProductServiceImpl productService;
-
     @Mock
     private ProductRepository<Product> productRepository;
 
@@ -138,9 +139,9 @@ public class ProductServiceTest {
         product.setModifiedAt(LocalDateTime.now());
 
 
-        Mockito.doReturn(List.of(product)).when(productRepository).findAllMonitors();
+        Mockito.doReturn(List.of(product)).when(productRepository).findAllMonitors(PageRequest.of(0, PAGE_SIZE));
 
-        assertEquals(List.of(product), productService.getAllMonitors());
+        assertEquals(List.of(product), productService.getAllMonitors(0, PAGE_SIZE));
     }
 
     @Test
@@ -155,9 +156,9 @@ public class ProductServiceTest {
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
 
-        Mockito.doReturn(List.of(product)).when(productRepository).findAllKeyboards();
+        Mockito.doReturn(List.of(product)).when(productRepository).findAllKeyboards(PageRequest.of(0, PAGE_SIZE));
 
-        assertEquals(List.of(product), productService.getAllKeyboards());
+        assertEquals(List.of(product), productService.getAllKeyboards(0, PAGE_SIZE));
     }
 
     @Test
@@ -173,8 +174,8 @@ public class ProductServiceTest {
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
 
-        Mockito.doReturn(List.of(product)).when(productRepository).findAllRamMemory();
+        Mockito.doReturn(List.of(product)).when(productRepository).findAllRamMemory(PageRequest.of(0, PAGE_SIZE));
 
-        assertEquals(List.of(product), productService.getAllRamMemory());
+        assertEquals(List.of(product), productService.getAllRamMemory(0, PAGE_SIZE));
     }
 }

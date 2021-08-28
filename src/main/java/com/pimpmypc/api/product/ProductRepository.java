@@ -1,50 +1,50 @@
 package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.products.*;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface ProductRepository<T extends Product> extends JpaRepository<T, Long>, QuerydslPredicateExecutor<T> {
 
     @Query("FROM processors")
-    List<Processor> findAllProcessors(Pageable pagable);
+    Page<Processor> findAllProcessors(Pageable pagable);
 
     @Query("FROM motherboards")
-    List<Motherboard> findAllMotherboards(Pageable pagable);
+    Page<Motherboard> findAllMotherboards(Pageable pagable);
 
     @Query("FROM cases")
-    List<Case> findAllCases(Pageable pagable);
+    Page<Case> findAllCases(Pageable pagable);
 
     @Query("FROM ram_memory")
-    List<Ram> findAllRamMemory(Pageable pagable);
+    Page<Ram> findAllRamMemory(Pageable pagable);
 
     @Query("FROM mouses")
-    List<Mouse> findAllMouses(Pageable pagable);
+    Page<Mouse> findAllMouses(Pageable pagable);
 
     @Query("FROM keyboards")
-    List<Keyboard> findAllKeyboards(Pageable pagable);
+    Page<Keyboard> findAllKeyboards(Pageable pagable);
 
     @Query("FROM monitors")
-    List<Monitor> findAllMonitors(Pageable pagable);
+    Page<Monitor> findAllMonitors(Pageable pagable);
 
     @Query("FROM graphic_cards")
-    List<GraphicCard> findAllGraphicCards(Pageable pagable);
+    Page<GraphicCard> findAllGraphicCards(Pageable pagable);
 
     @Query("FROM hard_discs")
-    List<HardDisc> findAllHardDiscs(Pageable pagable);
+    Page<HardDisc> findAllHardDiscs(Pageable pagable);
 
-    @Query("FROM laptops")
-    List<Laptop> findAllLaptops(Pageable pagable);
+    @Query("SELECT l FROM laptops l")
+    Page<Laptop> findAllLaptops(Pageable pagable);
 
     @Query("FROM computers")
-    List<Computer> findAllComputers(Pageable pagable);
+    Page<Computer> findAllComputers(Pageable pagable);
 
     @Query("SELECT p FROM processors p WHERE id = ?1")
     Optional<Processor> findProcessorById(Long id);
