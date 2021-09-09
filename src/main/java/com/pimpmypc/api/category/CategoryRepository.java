@@ -1,5 +1,6 @@
-package com.pimpmypc.api.product;
+package com.pimpmypc.api.category;
 
+import com.pimpmypc.api.product.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

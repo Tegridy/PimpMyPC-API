@@ -1,23 +1,23 @@
 --liquibase formatted sql
 --changeset tegridy:1
 
-INSERT INTO categories(title,parent_id)
-VALUES('Laptops',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Laptops', 'laptop-outline', NULL );
 
-INSERT INTO categories(title,parent_id)
-VALUES('Computers',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Computers', 'desktop-outline', NULL);
 
-INSERT INTO categories(title,parent_id)
-VALUES('Smartphones',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Smartphones', 'phone-portrait-outline', NULL);
 
-INSERT INTO categories(title, parent_id)
-VALUES('Build PC', null);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Build PC', 'hammer-outline', null);
 
-INSERT INTO categories(title,parent_id)
-VALUES('Computer assets',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Computer assets', 'hardware-chip-outline', NULL);
 
-INSERT INTO categories(title,parent_id)
-VALUES('Peripherals',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Peripherals', 'print-outline', NULL);
 
 -- ----------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ INSERT INTO categories(title,parent_id)
 VALUES('Motherboards',5);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Hard drives',5);
+VALUES('Hard discs',5);
 
 INSERT INTO categories(title,parent_id)
 VALUES('HDD',17);

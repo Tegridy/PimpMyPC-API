@@ -1,136 +1,87 @@
 --liquibase formatted sql
 --changeset tegridy:1
 
-INSERT INTO categories(title,parent_id)
-VALUES('Computers',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Laptops', 'laptop-outline', NULL );
 
-INSERT INTO categories(title,parent_id)
-VALUES('Laptops',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Computers', 'desktop-outline', NULL);
 
-INSERT INTO categories(title,parent_id)
-VALUES('Smartphones',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Smartphones', 'phone-portrait-outline', NULL);
 
-INSERT INTO categories(title,parent_id)
-VALUES('Computer assets',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Build PC', 'hammer-outline', null);
 
-INSERT INTO categories(title,parent_id)
-VALUES('Peripherals',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Computer assets', 'hardware-chip-outline', NULL);
 
-INSERT INTO categories(title,parent_id)
-VALUES('Accessories',NULL);
+INSERT INTO categories(title, icon_name, parent_id)
+VALUES('Peripherals', 'print-outline', NULL);
 
 -- ----------------------------------------------------------------------
 
 INSERT INTO categories(title,parent_id)
-VALUES('Office computers',1);
+VALUES('Office computers',2);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Gaming computers',1);
-
-INSERT INTO categories(title,parent_id)
-VALUES('Servers',1);
-
-INSERT INTO categories(title,parent_id)
-VALUES('Software',1);
+VALUES('Gaming computers',2);
 
 -- -----------------------------------------------------
 
 
 INSERT INTO categories(title,parent_id)
-VALUES('Laptops/Notebooks/Ultrabooks',2);
+VALUES('Laptops/Notebooks/Ultrabooks',1);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Laptops 15"',11);
+VALUES('Laptops 15"',9);
 INSERT INTO categories(title,parent_id)
-VALUES('Laptops 16"',11);
+VALUES('Laptops 16"',9);
 INSERT INTO categories(title,parent_id)
-VALUES('Laptops 17"',11);
-
-INSERT INTO categories(title,parent_id)
-VALUES('Laptops 2 in 1',2);
-
-INSERT INTO categories(title,parent_id)
-VALUES('Bags and cases',2);
-
+VALUES('Laptops 17"',9);
 
 -- -----------------------------------------------------
 
+INSERT INTO categories(title,parent_id)
+VALUES('Processors',5);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Smartphones and phones',3);
+VALUES('Memory RAM',5);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Tablets',3);
-
-
--- -----------------------------------------------------
-
-
+VALUES('Graphic cards',5);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Processors',4);
+VALUES('Motherboards',5);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Memory RAM',4);
+VALUES('Hard discs',5);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Graphic cards',4);
+VALUES('HDD',17);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Motherboards',4);
+VALUES('SSD',17);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Hard drives',4);
+VALUES('Power supply',5);
 
 INSERT INTO categories(title,parent_id)
-VALUES('HDD',4);
-
-INSERT INTO categories(title,parent_id)
-VALUES('SSD',4);
-
-INSERT INTO categories(title,parent_id)
-VALUES('Power supply',4);
-
-INSERT INTO categories(title,parent_id)
-VALUES('Cases',4);
+VALUES('Cases',5);
 
 
 -- -----------------------------------------------------
 
 
 INSERT INTO categories(title,parent_id)
-VALUES('Computer mouses',5);
+VALUES('Computer mouses',6);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Computer keyboards',5);
+VALUES('Computer keyboards',6);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Monitors',5);
-
-INSERT INTO categories(title,parent_id)
-VALUES('Printers',5);
-
--- -----------------------------------------------------
-
-
-INSERT INTO categories(title,parent_id)
-VALUES('Adapters',6);
-
-INSERT INTO categories(title,parent_id)
-VALUES('Cables',6);
-
-INSERT INTO categories(title,parent_id)
-VALUES('Flash memory',6);
+VALUES('Monitors',6);
 
 -- ---------------------------------------------------------------------
 -- ---------------------------------------------------------------------
--- Insert tablets(id 18) subcategory
 
-INSERT INTO categories(title,parent_id)
-VALUES('Tablets 10"',18);
-INSERT INTO categories(title,parent_id)
-VALUES('Tablets 11"',18);
-INSERT INTO categories(title,parent_id)
-VALUES('Tablets 12"',18);
-INSERT INTO categories(title,parent_id)
-VALUES('Tablets 13"',18);

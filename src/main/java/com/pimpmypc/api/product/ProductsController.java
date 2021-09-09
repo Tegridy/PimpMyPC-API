@@ -1,7 +1,12 @@
 package com.pimpmypc.api.product;
 
-import com.pimpmypc.api.products.*;
+import com.pimpmypc.api.category.CategoryService;
+import com.pimpmypc.api.products.Computer;
+import com.pimpmypc.api.products.Laptop;
+import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,16 +19,14 @@ import java.util.Map;
 @CrossOrigin("*")
 public class ProductsController {
 
-    private final ProductRepository<Product> productRepository;
-    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
     private final ProductService productService;
+
     private final int PAGE_SIZE = 9;
 
-    public ProductsController(ProductRepository<Product> productRepository,
-                              ProductService productService, CategoryRepository categoryRepository) {
-        this.productRepository = productRepository;
+    public ProductsController(ProductService productService, CategoryService categoryService) {
         this.productService = productService;
-        this.categoryRepository = categoryRepository;
+        this.categoryService = categoryService;
     }
 
 
@@ -80,14 +83,19 @@ public class ProductsController {
     }
 
     @GetMapping(value = "", produces = "application/json")
-    public ResponseEntity<List<Product>> getAllProducts() {
+    public ResponseEntity<List<Product>> getAllProducts(Pageable pageable) {
         return ResponseEntity.ok().body(productService.getAllProducts());
     }
 
     @GetMapping(value = "/laptops", produces = "application/json")
-    public ResponseEntity<Map<String, Object>> getAllLaptops(@RequestParam int page) {
+    public ResponseEntity<Map<String, Object>> getAllLaptops(Pageable pageable,
+                                                             @QuerydslPredicate(root = Laptop.class) Predicate predicate) {
 
-        Page<Laptop> laptops = productService.getAllLaptops(page, PAGE_SIZE);
+        System.out.println(predicate);
+
+        Page<Laptop> laptops = productService.getAllLaptops(predicate, pageable);
+        //Page<Laptop> laptops = productService.findAllLaptops(predicate, pageable);
+
 
         return ResponseEntity.ok(createResponse(laptops));
     }
@@ -101,72 +109,73 @@ public class ProductsController {
         return response;
     }
 
-//
-//    @GetMapping(value = "/computers", produces = "application/json")
-//    public ResponseEntity<List<Computer>> getAllComputers(@RequestParam int page) {
-//        return ResponseEntity.ok(productService.getAllComputers(page, PAGE_SIZE));
-//    }
+
+    @GetMapping(value = "/computers", produces = "application/json")
+    public ResponseEntity<Map<String, Object>> getAllComputers(Pageable pageable,
+                                                               @QuerydslPredicate(root = Computer.class) Predicate predicate) {
+        return ResponseEntity.ok(createResponse(productService.getAllComputers(predicate, pageable)));
+    }
 
     // Get product by id
 
-    @GetMapping(value = "/processors/{id}", produces = "application/json")
-    public ResponseEntity<Processor> getProcessor(@PathVariable Long id) {
-        Processor processor = productService.getProcessorById(id);
-        return ResponseEntity.ok().body(processor);
-    }
-
-    @GetMapping(value = "/motherboards/{id}", produces = "application/json")
-    public ResponseEntity<Motherboard> getMotherboard(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getMotherboardById(id));
-    }
-
-    @GetMapping(value = "/cases/{id}", produces = "application/json")
-    public ResponseEntity<Case> getCase(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getCaseById(id));
-    }
-
-    @GetMapping(value = "/rams/{id}", produces = "application/json")
-    public ResponseEntity<Ram> getRamMemory(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getRamById(id));
-    }
-
-    @GetMapping(value = "/mouses/{id}", produces = "application/json")
-    public ResponseEntity<Mouse> getMouse(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getMouseById(id));
-    }
-
-    @GetMapping(value = "/keyboards/{id}", produces = "application/json")
-    public ResponseEntity<Keyboard> getKeyboard(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getKeyboardById(id));
-    }
-
-    @GetMapping(value = "/monitors/{id}", produces = "application/json")
-    public ResponseEntity<Monitor> getMonitor(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getMonitorById(id));
-    }
-
-    @GetMapping(value = "/hard-discs/{id}", produces = "application/json")
-    public ResponseEntity<HardDisc> getHardDrive(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getHardDiscById(id));
-    }
-
-    @GetMapping(value = "/graphics/{id}", produces = "application/json")
-    public ResponseEntity<GraphicCard> getGraphicCard(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getGraphicCardById(id));
-    }
-
-    @GetMapping(value = "/laptops/{id}", produces = "application/json")
-    public ResponseEntity<Laptop> getLaptop(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getLaptopById(id));
-    }
-
-    @GetMapping(value = "/computers/{id}", produces = "application/json")
-    public ResponseEntity<Computer> getComputer(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getComputerById(id));
-    }
+//    @GetMapping(value = "/processors/{id}", produces = "application/json")
+//    public ResponseEntity<Processor> getProcessor(@PathVariable Long id) {
+//        Processor processor = productService.getProcessorById(id);
+//        return ResponseEntity.ok().body(processor);
+//    }
+//
+//    @GetMapping(value = "/motherboards/{id}", produces = "application/json")
+//    public ResponseEntity<Motherboard> getMotherboard(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.getMotherboardById(id));
+//    }
+//
+//    @GetMapping(value = "/cases/{id}", produces = "application/json")
+//    public ResponseEntity<Case> getCase(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.getCaseById(id));
+//    }
+//
+//    @GetMapping(value = "/rams/{id}", produces = "application/json")
+//    public ResponseEntity<Ram> getRamMemory(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.getRamById(id));
+//    }
+//
+//    @GetMapping(value = "/mouses/{id}", produces = "application/json")
+//    public ResponseEntity<Mouse> getMouse(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.getMouseById(id));
+//    }
+//
+//    @GetMapping(value = "/keyboards/{id}", produces = "application/json")
+//    public ResponseEntity<Keyboard> getKeyboard(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.getKeyboardById(id));
+//    }
+//
+//    @GetMapping(value = "/monitors/{id}", produces = "application/json")
+//    public ResponseEntity<Monitor> getMonitor(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.getMonitorById(id));
+//    }
+//
+//    @GetMapping(value = "/hard-discs/{id}", produces = "application/json")
+//    public ResponseEntity<HardDisc> getHardDrive(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.getHardDiscById(id));
+//    }
+//
+//    @GetMapping(value = "/graphics/{id}", produces = "application/json")
+//    public ResponseEntity<GraphicCard> getGraphicCard(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.getGraphicCardById(id));
+//    }
+//
+//    @GetMapping(value = "/laptops/{id}", produces = "application/json")
+//    public ResponseEntity<Laptop> getLaptop(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.getLaptopById(id));
+//    }
+//
+//    @GetMapping(value = "/computers/{id}", produces = "application/json")
+//    public ResponseEntity<Computer> getComputer(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.getComputerById(id));
+//    }
 
     @GetMapping(value = "/categories")
     public ResponseEntity<List<Category>> getCategories() {
-        return ResponseEntity.ok(categoryRepository.findAll());
+        return ResponseEntity.ok(categoryService.getAllCategories());
     }
 }

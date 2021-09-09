@@ -47,6 +47,7 @@ CREATE TABLE `products` (
 CREATE TABLE `categories` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
+  `icon_name` varchar(100) DEFAULT NULL,
   `parent_id` BIGINT DEFAULT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (parent_id) REFERENCES categories (id)
