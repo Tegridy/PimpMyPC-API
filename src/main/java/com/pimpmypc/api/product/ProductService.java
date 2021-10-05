@@ -3,7 +3,6 @@ package com.pimpmypc.api.product;
 import com.pimpmypc.api.products.Computer;
 import com.pimpmypc.api.products.Laptop;
 import com.querydsl.core.types.Predicate;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -33,9 +32,9 @@ public interface ProductService {
 ////
 ////    Page<GraphicCard> getAllGraphicCards(int page, int pageSize);
 
-    Page<Laptop> getAllLaptops(Predicate predicate, Pageable pageable);
+    ProductsDto<Laptop> getAllLaptops(Predicate predicate, Pageable pageable);
 
-    Page<Computer> getAllComputers(Predicate predicate, Pageable pageable);
+    ProductsDto<Computer> getAllComputers(Predicate predicate, Pageable pageable);
 
 //    Processor getProcessorById(Long id);
 //

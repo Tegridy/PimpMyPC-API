@@ -1,5 +1,6 @@
 package com.pimpmypc.api.product;
 
+import com.pimpmypc.api.category.CategoryRepository;
 import com.pimpmypc.api.products.Computer;
 import com.pimpmypc.api.products.ComputerRepository;
 import com.pimpmypc.api.products.Laptop;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -19,11 +21,15 @@ public class ProductServiceImpl implements ProductService {
 
     private final LaptopRepository laptopRepository;
     private final ComputerRepository computerRepository;
+    private final CategoryRepository categoryRepository;
+    private final FiltersRepository filterTypeRepository;
     private final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
-    public ProductServiceImpl(LaptopRepository laptopRepository, ComputerRepository computerRepository) {
+    public ProductServiceImpl(LaptopRepository laptopRepository, ComputerRepository computerRepository, CategoryRepository categoryRepository, FiltersRepository filterTypeRepository) {
         this.laptopRepository = laptopRepository;
         this.computerRepository = computerRepository;
+        this.categoryRepository = categoryRepository;
+        this.filterTypeRepository = filterTypeRepository;
     }
 
     @Override
@@ -87,14 +93,36 @@ public class ProductServiceImpl implements ProductService {
 //    }
 
     @Override
-    public Page<Laptop> getAllLaptops(Predicate predicate, Pageable pageable) {
-        return laptopRepository.findAllLaptops(predicate, pageable);
+    public ProductsDto<Laptop> getAllLaptops(Predicate predicate, Pageable pageable) {
+
+        Page<Laptop> laptops = laptopRepository.findAllLaptops(predicate, pageable);
+        long x = categoryRepository.findByName("Laptops").getId();
+
+
+        Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(x);
+
+        ProductsDto<Laptop> laptopsResponse = new ProductsDto<>();
+        laptopsResponse.setProducts(laptops);
+        laptopsResponse.setFilters(filters);
+
+        return laptopsResponse;
     }
 
 
     @Override
-    public Page<Computer> getAllComputers(Predicate predicate, Pageable pageable) {
-        return computerRepository.findAllComputers(predicate, pageable);
+    public ProductsDto<Computer> getAllComputers(Predicate predicate, Pageable pageable) {
+
+        Page<Computer> computers = computerRepository.findAllComputers(predicate, pageable);
+        long x = categoryRepository.findByName("Computers").getId();
+
+
+        Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(x);
+
+        ProductsDto<Computer> computersResponse = new ProductsDto<>();
+        computersResponse.setProducts(computers);
+        computersResponse.setFilters(filters);
+
+        return computersResponse;
     }
 
 //    @Override

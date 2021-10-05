@@ -1,5 +1,6 @@
 package com.pimpmypc.api.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +28,10 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     private Set<Product> products;
+
+    @OneToMany(mappedBy = "category")
+    @JsonIgnore
+    private Set<FilterType> filterTypes;
 
     @Override
     public String toString() {

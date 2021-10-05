@@ -21,12 +21,14 @@ public class ProductsController {
 
     private final CategoryService categoryService;
     private final ProductService productService;
+    private final FiltersRepository filterTypeRepository;
 
     private final int PAGE_SIZE = 9;
 
-    public ProductsController(ProductService productService, CategoryService categoryService) {
+    public ProductsController(ProductService productService, CategoryService categoryService, FiltersRepository filterTypeRepository) {
         this.productService = productService;
         this.categoryService = categoryService;
+        this.filterTypeRepository = filterTypeRepository;
     }
 
 
@@ -88,16 +90,14 @@ public class ProductsController {
     }
 
     @GetMapping(value = "/laptops", produces = "application/json")
-    public ResponseEntity<Map<String, Object>> getAllLaptops(Pageable pageable,
+    public ResponseEntity<ProductsDto<Laptop>> getAllLaptops(Pageable pageable,
                                                              @QuerydslPredicate(root = Laptop.class) Predicate predicate) {
 
-        System.out.println(predicate);
+//        Page<Laptop> laptops = productService.getAllLaptops(predicate, pageable);
+//        //Page<Laptop> laptops = productService.findAllLaptops(predicate, pageable);
+//        System.out.println(filterTypeRepository.findAll());
 
-        Page<Laptop> laptops = productService.getAllLaptops(predicate, pageable);
-        //Page<Laptop> laptops = productService.findAllLaptops(predicate, pageable);
-
-
-        return ResponseEntity.ok(createResponse(laptops));
+        return ResponseEntity.ok(productService.getAllLaptops(predicate, pageable));
     }
 
     private <T extends Product> Map<String, Object> createResponse(Page<T> product) {
@@ -111,9 +111,9 @@ public class ProductsController {
 
 
     @GetMapping(value = "/computers", produces = "application/json")
-    public ResponseEntity<Map<String, Object>> getAllComputers(Pageable pageable,
-                                                               @QuerydslPredicate(root = Computer.class) Predicate predicate) {
-        return ResponseEntity.ok(createResponse(productService.getAllComputers(predicate, pageable)));
+    public ResponseEntity<ProductsDto<Computer>> getAllComputers(Pageable pageable,
+                                                                 @QuerydslPredicate(root = Computer.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllComputers(predicate, pageable));
     }
 
     // Get product by id

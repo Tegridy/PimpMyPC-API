@@ -65,7 +65,7 @@ CREATE TABLE `categories` (
     REFERENCES `products` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_pc_categories`
+  CONSTRAINT `fk_product_category_categories`
     FOREIGN KEY (`category_id`)
     REFERENCES `categories` (`id`)
     ON DELETE CASCADE
