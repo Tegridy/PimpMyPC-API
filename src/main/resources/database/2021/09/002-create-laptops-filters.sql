@@ -22,19 +22,19 @@ INSERT INTO filters VALUES(
 );
 
 INSERT INTO filters_types VALUES (
-2, 1, "Screen size", "screenSize"
+2, 1, "Screen size", "displaySize"
 );
 
 INSERT INTO filters VALUES (
-5, 2, "15 inches", "15.0"
+5, 2, "15 inches", "15"
 );
 
 INSERT INTO filters VALUES (
-6, 2, "16 inches", "16.0"
+6, 2, "16 inches", "16"
 );
 
 INSERT INTO filters VALUES (
-7, 2, "17 inches" , "17.0"
+7, 2, "17 inches" , "17"
 );
 
 INSERT INTO filters_types VALUES (
@@ -113,10 +113,6 @@ INSERT INTO filters VALUES (
 
 INSERT INTO filters VALUES (
 21, 8, "Midi Tower" , "Midi+Tower"
-);
-
-INSERT INTO filters VALUES (
-22, 8, "ITX, Nettop" , "ITX+Nettop"
 );
 
 INSERT INTO filters VALUES (
