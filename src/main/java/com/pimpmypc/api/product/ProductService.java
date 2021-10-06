@@ -1,7 +1,6 @@
 package com.pimpmypc.api.product;
 
-import com.pimpmypc.api.products.Computer;
-import com.pimpmypc.api.products.Laptop;
+import com.pimpmypc.api.products.*;
 import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Pageable;
 
@@ -14,23 +13,25 @@ public interface ProductService {
 
     Product getProductById(long id);
 
-//    Page<Processor> getAllProcessors(int page, int pageSize);
-////
-////    Page<Motherboard> getAllMotherboards(int page, int pageSize);
-////
-////    Page<Case> getAllCases(int page, int pageSize);
-////
-////    Page<Ram> getAllRamMemory(int page, int pageSize);
-////
-////    Page<Mouse> getAllMouses(int page, int pageSize);
-////
-////    Page<Keyboard> getAllKeyboards(int page, int pageSize);
-////
-////    Page<Monitor> getAllMonitors(int page, int pageSize);
-////
-////    Page<HardDisc> getAllHardDiscs(int page, int pageSize);
-////
-////    Page<GraphicCard> getAllGraphicCards(int page, int pageSize);
+    ProductsDto<Processor> getAllProcessors(Predicate predicate, Pageable pageable);
+
+    ProductsDto<Motherboard> getAllMotherboards(Predicate predicate, Pageable pageable);
+
+    ProductsDto<Case> getAllCases(Predicate predicate, Pageable pageable);
+
+    ProductsDto<Ram> getAllRamMemory(Predicate predicate, Pageable pageable);
+
+    ProductsDto<Mouse> getAllMouses(Predicate predicate, Pageable pageable);
+
+    ProductsDto<Keyboard> getAllKeyboards(Predicate predicate, Pageable pageable);
+
+    ProductsDto<Monitor> getAllMonitors(Predicate predicate, Pageable pageable);
+
+    ProductsDto<HardDisc> getAllHardDiscs(Predicate predicate, Pageable pageable);
+
+    ProductsDto<PowerSupply> getAllPowerSupplies(Predicate predicate, Pageable pageable);
+
+    ProductsDto<GraphicCard> getAllGraphicCards(Predicate predicate, Pageable pageable);
 
     ProductsDto<Laptop> getAllLaptops(Predicate predicate, Pageable pageable);
 

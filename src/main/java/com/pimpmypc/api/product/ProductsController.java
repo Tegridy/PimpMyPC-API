@@ -1,8 +1,7 @@
 package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.category.CategoryService;
-import com.pimpmypc.api.products.Computer;
-import com.pimpmypc.api.products.Laptop;
+import com.pimpmypc.api.products.*;
 import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,51 +31,59 @@ public class ProductsController {
     }
 
 
-//    @GetMapping(value = "/processors", produces = "application/json")
-//    public ResponseEntity<List<Processor>> returnProcessors(@RequestParam int page) {
-//        List<Processor> processors = productService.getAllProcessors(page, PAGE_SIZE);
-//        return ResponseEntity.ok().body(processors);
-//    }
-//
-//    @GetMapping(value = "/motherboards", produces = "application/json")
-//    public ResponseEntity<List<Motherboard>> getAllMotherboards(@RequestParam int page) {
-//        return ResponseEntity.ok(productService.getAllMotherboards(page, PAGE_SIZE));
-//    }
-//
-//    @GetMapping(value = "/cases", produces = "application/json")
-//    public ResponseEntity<List<Case>> getAllCases(@RequestParam int page) {
-//        return ResponseEntity.ok(productService.getAllCases(page, PAGE_SIZE));
-//    }
-//
-//    @GetMapping(value = "/rams", produces = "application/json")
-//    public ResponseEntity<List<Ram>> getAllRamMemory(@RequestParam int page) {
-//        return ResponseEntity.ok(productService.getAllRamMemory(page, PAGE_SIZE));
-//    }
-//
-//    @GetMapping(value = "/mouses", produces = "application/json")
-//    public ResponseEntity<List<Mouse>> getAllMouses(@RequestParam int page) {
-//        return ResponseEntity.ok(productService.getAllMouses(page, PAGE_SIZE));
-//    }
-//
-//    @GetMapping(value = "/keyboards", produces = "application/json")
-//    public ResponseEntity<List<Keyboard>> getAllKeyboards(@RequestParam int page) {
-//        return ResponseEntity.ok(productService.getAllKeyboards(page, PAGE_SIZE));
-//    }
-//
-//    @GetMapping(value = "/monitors", produces = "application/json")
-//    public ResponseEntity<List<Monitor>> getAllMonitors(@RequestParam int page) {
-//        return ResponseEntity.ok(productService.getAllMonitors(page, PAGE_SIZE));
-//    }
-//
-//    @GetMapping(value = "/drives", produces = "application/json")
-//    public ResponseEntity<List<HardDisc>> getAllHardDrives(@RequestParam int page) {
-//        return ResponseEntity.ok(productService.getAllHardDiscs(page, PAGE_SIZE));
-//    }
-//
-//    @GetMapping(value = "/graphics", produces = "application/json")
-//    public ResponseEntity<List<GraphicCard>> getAllGraphicCards(@RequestParam int page) {
-//        return ResponseEntity.ok(productService.getAllGraphicCards(page, PAGE_SIZE));
-//    }
+    @GetMapping(value = "/processors", produces = "application/json")
+    public ResponseEntity<ProductsDto<Processor>> returnProcessors(Pageable pageable,
+                                                                   @QuerydslPredicate(root = Processor.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllProcessors(predicate, pageable));
+    }
+
+    @GetMapping(value = "/motherboards", produces = "application/json")
+    public ResponseEntity<ProductsDto<Motherboard>> getAllMotherboards(Pageable pageable,
+                                                                       @QuerydslPredicate(root = Motherboard.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllMotherboards(predicate, pageable));
+    }
+
+    @GetMapping(value = "/cases", produces = "application/json")
+    public ResponseEntity<ProductsDto<Case>> getAllCases(Pageable pageable,
+                                                         @QuerydslPredicate(root = Case.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllCases(predicate, pageable));
+    }
+
+    @GetMapping(value = "/rams", produces = "application/json")
+    public ResponseEntity<ProductsDto<Ram>> getAllRamMemory(Pageable pageable,
+                                                            @QuerydslPredicate(root = Ram.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllRamMemory(predicate, pageable));
+    }
+
+    @GetMapping(value = "/mouses", produces = "application/json")
+    public ResponseEntity<ProductsDto<Mouse>> getAllMouses(Pageable pageable,
+                                                           @QuerydslPredicate(root = Mouse.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllMouses(predicate, pageable));
+    }
+
+    @GetMapping(value = "/keyboards", produces = "application/json")
+    public ResponseEntity<ProductsDto<Keyboard>> getAllKeyboards(Pageable pageable,
+                                                                 @QuerydslPredicate(root = Keyboard.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllKeyboards(predicate, pageable));
+    }
+
+    @GetMapping(value = "/monitors", produces = "application/json")
+    public ResponseEntity<ProductsDto<Monitor>> getAllMonitors(Pageable pageable,
+                                                               @QuerydslPredicate(root = Monitor.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllMonitors(predicate, pageable));
+    }
+
+    @GetMapping(value = "/drives", produces = "application/json")
+    public ResponseEntity<ProductsDto<HardDisc>> getAllHardDiscs(Pageable pageable,
+                                                                 @QuerydslPredicate(root = HardDisc.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllHardDiscs(predicate, pageable));
+    }
+
+    @GetMapping(value = "/graphics", produces = "application/json")
+    public ResponseEntity<ProductsDto<GraphicCard>> getAllGraphicCards(Pageable pageable,
+                                                                       @QuerydslPredicate(root = GraphicCard.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllGraphicCards(predicate, pageable));
+    }
 
     @GetMapping(value = "/{productId}", produces = "application/json")
     public ResponseEntity<Product> getProductById(@PathVariable("productId") long id) {
@@ -92,10 +99,6 @@ public class ProductsController {
     @GetMapping(value = "/laptops", produces = "application/json")
     public ResponseEntity<ProductsDto<Laptop>> getAllLaptops(Pageable pageable,
                                                              @QuerydslPredicate(root = Laptop.class) Predicate predicate) {
-
-//        Page<Laptop> laptops = productService.getAllLaptops(predicate, pageable);
-//        //Page<Laptop> laptops = productService.findAllLaptops(predicate, pageable);
-//        System.out.println(filterTypeRepository.findAll());
 
         return ResponseEntity.ok(productService.getAllLaptops(predicate, pageable));
     }
