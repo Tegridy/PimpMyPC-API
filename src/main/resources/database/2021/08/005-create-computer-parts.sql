@@ -163,10 +163,10 @@ CREATE TABLE smartphones
 (
     id BIGINT NOT NULL AUTO_INCREMENT,
     memory INT NULL,
-    display_size FLOAT NULL,
+    display_size VARCHAR(200) NULL,
     resolution VARCHAR(25) NULL,
     processor VARCHAR(150) NULL,
-    cpu_speed FLOAT NULL,
+    cpu_speed VARCHAR(200) NULL,
     ram INT NULL,
     operating_system VARCHAR(255) NULL,
     battery_capacity INT NULL,

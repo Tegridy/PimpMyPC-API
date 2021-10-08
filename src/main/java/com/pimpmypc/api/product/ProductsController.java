@@ -79,10 +79,22 @@ public class ProductsController {
         return ResponseEntity.ok(productService.getAllHardDiscs(predicate, pageable));
     }
 
+    @GetMapping(value = "/power-supplies", produces = "application/json")
+    public ResponseEntity<ProductsDto<PowerSupply>> getAllPowerSupplies(Pageable pageable,
+                                                                        @QuerydslPredicate(root = PowerSupply.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllPowerSupplies(predicate, pageable));
+    }
+
     @GetMapping(value = "/graphics", produces = "application/json")
     public ResponseEntity<ProductsDto<GraphicCard>> getAllGraphicCards(Pageable pageable,
                                                                        @QuerydslPredicate(root = GraphicCard.class) Predicate predicate) {
         return ResponseEntity.ok(productService.getAllGraphicCards(predicate, pageable));
+    }
+
+    @GetMapping(value = "/smartphones", produces = "application/json")
+    public ResponseEntity<ProductsDto<Smartphone>> getAllSmartphones(Pageable pageable,
+                                                                     @QuerydslPredicate(root = Smartphone.class) Predicate predicate) {
+        return ResponseEntity.ok(productService.getAllSmartphones(predicate, pageable));
     }
 
     @GetMapping(value = "/{productId}", produces = "application/json")
@@ -90,6 +102,7 @@ public class ProductsController {
         Product product = productService.getProductById(id);
         return ResponseEntity.ok().body(product);
     }
+
 
     @GetMapping(value = "", produces = "application/json")
     public ResponseEntity<List<Product>> getAllProducts(Pageable pageable) {

@@ -35,6 +35,8 @@ public interface ProductService {
 
     ProductsDto<Laptop> getAllLaptops(Predicate predicate, Pageable pageable);
 
+    ProductsDto<Smartphone> getAllSmartphones(Predicate predicate, Pageable pageable);
+
     ProductsDto<Computer> getAllComputers(Predicate predicate, Pageable pageable);
 
 //    Processor getProcessorById(Long id);

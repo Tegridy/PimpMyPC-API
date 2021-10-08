@@ -56,7 +56,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "other (A4 Tech)", "Mysz BLOODY P85 Black RGB Pixart", "https://a.allegroimg.com/original/11c7fb/558e45ea4f28a1917ce719f04f9f", 155.84, 9999, NOW(), NOW());
 INSERT INTO mouses VALUES (338, "Gaming", "USB", "optical");
 INSERT INTO product_category VALUES (338, 22);
-INSERT INTO colors VALUES (338, "null");
+INSERT INTO colors VALUES (338, "BLACK");
 
 
 INSERT INTO products VALUES (339, "Wired mouse Logitech G502 Proteus Spectrum RGB sensor optical", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero neque, finibus ac sodales a, elementum in tortor. Praesent in feugiat dolor, vitae porttitor nunc. Nam imperdiet, lectus vitae dignissim rhoncus, ex dui facilisis velit, vel congue mauris nisl ut lorem. Aenean nec finibus odio. Mauris et iaculis nunc, in tincidunt massa. In sed enim cursus, dapibus ante non, scelerisque ex. Suspendisse potenti. Sed vel velit ultricies, euismod massa nec, maximus felis. Suspendisse potenti. Sed in arcu pulvinar, tristique metus quis, maximus velit. Nunc sit amet felis in sapien dictum blandit. Suspendisse elementum mi eget interdum mollis. Proin lacus sapien, commodo ut mattis et, imperdiet vitae sapien. Mauris rhoncus metus sed lorem ultricies rhoncus.

@@ -63,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductsDto<Ram> getAllRamMemory(Predicate predicate, Pageable pageable) {
         Page<Ram> rams = ramRepository.findAllRams(predicate, pageable);
-        long x = categoryRepository.findByName("Rams").getId();
+        long x = categoryRepository.findByName("Memory RAM").getId();
 
         return smth(rams, x);
     }
@@ -71,7 +71,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductsDto<Mouse> getAllMouses(Predicate predicate, Pageable pageable) {
         Page<Mouse> mice = mouseRepository.findAllMouses(predicate, pageable);
-        long x = categoryRepository.findByName("Mouses").getId();
+        long x = categoryRepository.findByName("Computer mouses").getId();
 
         return smth(mice, x);
     }
@@ -79,7 +79,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductsDto<Keyboard> getAllKeyboards(Predicate predicate, Pageable pageable) {
         Page<Keyboard> keyboards = keyboardRepository.findAllKeyboards(predicate, pageable);
-        long x = categoryRepository.findByName("Keyboards").getId();
+        long x = categoryRepository.findByName("Computer keyboards").getId();
 
         return smth(keyboards, x);
     }
@@ -114,6 +114,14 @@ public class ProductServiceImpl implements ProductService {
         long x = categoryRepository.findByName("Power supply").getId();
 
         return smth(powerSupplies, x);
+    }
+
+    @Override
+    public ProductsDto<Smartphone> getAllSmartphones(Predicate predicate, Pageable pageable) {
+        Page<Smartphone> smartphones = smartphoneRepository.findAllSmartphones(predicate, pageable);
+        long x = categoryRepository.findByName("Smartphones").getId();
+
+        return smth(smartphones, x);
     }
 
     private <T extends Product> ProductsDto<T> smth(Page<T> listt, long x) {

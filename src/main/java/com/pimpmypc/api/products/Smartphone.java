@@ -14,11 +14,11 @@ public class Smartphone extends Product {
 
     private int memory;
     @Column(name = "display_size")
-    private float displaySize;
+    private String displaySize;
     private String resolution;
     private String processor;
     @Column(name = "cpu_speed")
-    private float cpuSpeed;
+    private String cpuSpeed;
     private int ram;
     @Column(name = "operating_system")
     private String operatingSystem;
