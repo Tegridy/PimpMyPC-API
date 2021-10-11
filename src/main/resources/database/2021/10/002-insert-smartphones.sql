@@ -427,7 +427,7 @@ INSERT INTO products VALUES (583, "Smartphone Apple iPhone 11 4 GB / 64 GB yello
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", null, null, "https://a.allegroimg.com/original/119a12/652bdd9040148efcabce9d76359c", 271.09, 9999, NOW(), NOW());
-INSERT INTO smartphones VALUES (583, 64, "6,1 '", "2,532x1,170 pixels", "Apple A10 z koprocesorem M10", "2.9 Ghz", 4, "iOS", 3110);
+INSERT INTO smartphones VALUES (583, 64, "6,1 '", "2,532x1,170 pixels", "Apple A10", "2.9 Ghz", 4, "iOS", 3110);
 INSERT INTO product_category VALUES (583, 3);
 INSERT INTO colors VALUES (583, "YELLOW");
 
