@@ -11,5 +11,6 @@ public enum Color {
     GRAY,
     PURPLE,
     PINK,
+    GOLD,
     OTHER
 }

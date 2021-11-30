@@ -190,6 +190,18 @@ public class ProductsController {
 //        return ResponseEntity.ok(productService.getComputerById(id));
 //    }
 
+    @GetMapping(value = "/search", params = "productName")
+    public ResponseEntity<Page<Product>> getProductsByName(@RequestParam String productName, Pageable pageable) {
+        return ResponseEntity.ok(productService.findProductByName(productName, pageable));
+    }
+
+    @GetMapping(value = "/search", params = {"productName", "productCategory"})
+    public ResponseEntity<Page<Product>> getProductsByNameAndCategory(@RequestParam String productName,
+                                                                      @RequestParam String productCategory,
+                                                                      Pageable pageable) {
+        return ResponseEntity.ok(productService.findProductsByNameAndCategory(productName, productCategory, pageable));
+    }
+
     @GetMapping(value = "/categories")
     public ResponseEntity<List<Category>> getCategories() {
         return ResponseEntity.ok(categoryService.getAllCategories());

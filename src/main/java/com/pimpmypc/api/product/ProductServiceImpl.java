@@ -33,6 +33,7 @@ public class ProductServiceImpl implements ProductService {
     private final SmartphoneRepository smartphoneRepository;
     private final CategoryRepository categoryRepository;
     private final FiltersRepository filterTypeRepository;
+    private final ProductRepository<Product> productRepository;
     private final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
 
@@ -270,4 +271,24 @@ public class ProductServiceImpl implements ProductService {
 //            throw new ProductException("Computer with id: " + id + " not found.");
 //        });
 //    }
+
+
+    @Override
+    public Page<Product> findProductByName(String productName, Pageable pageable) {
+        return productRepository.findProductsByName(productName, pageable);
+    }
+
+    @Override
+    public Page<Product> findProductsByNameAndCategory(String productName, String productCategory, Pageable pageable) {
+//        List<Tuple> lst = productRepository.findProductsByNameAndCategory(productName, productCategory);
+//
+//        return lst.stream().map(product ->
+//                new SearchProductDto(
+//                        product.get(0, Long.class),
+//                        product.get(1, String.class),
+//                        product.get(2, String.class),
+//                        product.get(3, BigDecimal.class)
+//                )).toList();
+        return productRepository.findProductsByNameAndCategory(productName, productCategory, pageable);
+    }
 }
