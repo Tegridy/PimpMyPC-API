@@ -206,4 +206,19 @@ public class ProductsController {
     public ResponseEntity<List<Category>> getCategories() {
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
+
+    @GetMapping(value = "/top")
+    public ResponseEntity<List<Product>> getTopSellingItems() {
+        return ResponseEntity.ok(productService.getBestsellers());
+    }
+
+    @GetMapping(value = "/our-choice")
+    public ResponseEntity<List<Product>> getOurChoice() {
+        return ResponseEntity.ok(productService.getOurChoiceProducts());
+    }
+
+    @GetMapping(value = "/newest")
+    public ResponseEntity<Product> getNewestProduct() {
+        return ResponseEntity.ok(productService.getNewestProduct());
+    }
 }

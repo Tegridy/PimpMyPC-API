@@ -192,7 +192,7 @@ INSERT INTO cases VALUES (277, 53, 50);
 
 INSERT INTO product_category VALUES (277, 21);
 INSERT INTO colors VALUES (277, "BLACK");
-INSERT INTO motherboard_formats VALUES (277, "Mini-ITX");
+INSERT INTO motherboard_formats VALUES (277, "Mini_ITX");
 
 
 INSERT INTO products VALUES (278, "Cooler Master FORCE 500 Midi Tower", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero neque, finibus ac sodales a, elementum in tortor. Praesent in feugiat dolor, vitae porttitor nunc. Nam imperdiet, lectus vitae dignissim rhoncus, ex dui facilisis velit, vel congue mauris nisl ut lorem. Aenean nec finibus odio. Mauris et iaculis nunc, in tincidunt massa. In sed enim cursus, dapibus ante non, scelerisque ex. Suspendisse potenti. Sed vel velit ultricies, euismod massa nec, maximus felis. Suspendisse potenti. Sed in arcu pulvinar, tristique metus quis, maximus velit. Nunc sit amet felis in sapien dictum blandit. Suspendisse elementum mi eget interdum mollis. Proin lacus sapien, commodo ut mattis et, imperdiet vitae sapien. Mauris rhoncus metus sed lorem ultricies rhoncus.

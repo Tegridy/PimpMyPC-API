@@ -40,6 +40,14 @@ public interface ProductService {
 
     ProductsDto<Computer> getAllComputers(Predicate predicate, Pageable pageable);
 
+    List<Product> getBestsellers();
+
+    List<Product> getOurChoiceProducts();
+
+    Product getNewestProduct();
+
+    Product findProductById(Long id);
+
 //    Processor getProcessorById(Long id);
 //
 //    Motherboard getMotherboardById(Long id);

@@ -291,4 +291,24 @@ public class ProductServiceImpl implements ProductService {
 //                )).toList();
         return productRepository.findProductsByNameAndCategory(productName, productCategory, pageable);
     }
+
+    @Override
+    public List<Product> getOurChoiceProducts() {
+        return productRepository.findOurChoice();
+    }
+
+    @Override
+    public List<Product> getBestsellers() {
+        return productRepository.findBestsellers();
+    }
+
+    @Override
+    public Product getNewestProduct() {
+        return productRepository.findNewestProduct();
+    }
+
+    @Override
+    public Product findProductById(Long id) {
+        return productRepository.findProductById(id);
+    }
 }

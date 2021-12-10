@@ -26,8 +26,16 @@ public interface ProductRepository<T extends Product> extends JpaRepository<T, L
             "AND p.title LIKE CONCAT('%',:productName,'%')")
     Page<Product> findProductsByNameAndCategory(String productName, String category, Pageable pageable);
 
-    @Query(value = "SELECT p FROM products p ORDER BY p.numberOfItemsSold")
-    List<Product> findTopSellingProducts();
+    @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY number_of_sold DESC LIMIT 6", nativeQuery = true)
+    List<T> findOurChoice();
+
+    @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY number_of_sold DESC LIMIT 18", nativeQuery = true)
+    List<T> findBestsellers();
+
+    @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY id DESC LIMIT 1", nativeQuery = true)
+    T findNewestProduct();
+
+    Product findProductById(Long id);
 
 
 //    @Query("SELECT p FROM processors p WHERE id = ?1")
