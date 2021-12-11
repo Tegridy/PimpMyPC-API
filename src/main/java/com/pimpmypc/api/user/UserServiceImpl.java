@@ -1,5 +1,6 @@
 package com.pimpmypc.api.user;
 
+import com.pimpmypc.api.exception.UserNotFoundException;
 import com.pimpmypc.api.exception.UserRoleNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean userAlreadyExist(String username) {
         return userRepository.findByUsername(username).isPresent();
+    }
+
+    @Override
+    public User getUserAccountDetails(Long id) {
+        return userRepository.findUserById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with given id do not exist."));
     }
 }

@@ -1,5 +1,6 @@
 package com.pimpmypc.api.auth;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pimpmypc.api.exception.AuthenticationException;
 import com.pimpmypc.api.exception.UserAlreadyExistException;
 import com.pimpmypc.api.exception.UserNotFoundException;
@@ -63,14 +64,14 @@ public class AuthServiceTest {
     }
 
     @Test
-    void shouldLoginUser() throws AuthenticationException {
+    void shouldLoginUser() throws AuthenticationException, JsonProcessingException {
         Mockito.doReturn("token").when(authService).signIn(user.getUsername(), user.getPassword());
 
         assertEquals(authService.signIn(user.getUsername(), user.getPassword()), "token");
     }
 
     @Test
-    void shouldThrowUserNotFound() throws AuthenticationException {
+    void shouldThrowUserNotFound() throws AuthenticationException, JsonProcessingException {
         Mockito.doThrow(new UserNotFoundException("User Not an user not found.")).when(authService)
                 .signIn("Not an user", "Not a real password");
 
@@ -78,7 +79,7 @@ public class AuthServiceTest {
     }
 
     @Test
-    void shouldThrowBadCredentials() throws AuthenticationException {
+    void shouldThrowBadCredentials() throws AuthenticationException, JsonProcessingException {
         Mockito.doThrow(new BadCredentialsException("Bad Credentials.")).when(authService)
                 .signIn(user.getUsername(), "Not a real password");
 

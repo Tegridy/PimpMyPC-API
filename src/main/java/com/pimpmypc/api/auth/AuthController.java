@@ -2,8 +2,6 @@ package com.pimpmypc.api.auth;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.pimpmypc.api.exception.AuthenticationException;
 import com.pimpmypc.api.exception.UserAlreadyExistException;
 import com.pimpmypc.api.user.User;
@@ -51,15 +49,7 @@ public class AuthController {
     @PostMapping(value = "/login", produces = "application/json")
     public ResponseEntity<String> login(@RequestBody UserDto loginRequest) {
         try {
-            String token = authService.signIn(loginRequest.getUsername(), loginRequest.getPassword());
-
-            ObjectMapper mapper = new ObjectMapper();
-
-            ObjectNode user = mapper.createObjectNode();
-            user.put("username", loginRequest.getUsername());
-            user.put("token", token);
-
-            String loginJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user);
+            String loginJson = authService.signIn(loginRequest.getUsername(), loginRequest.getPassword());
 
             logger.info(String.format("Login successful for user %s", loginRequest.getUsername()));
             return ResponseEntity.ok(loginJson);
@@ -72,6 +62,7 @@ public class AuthController {
         }
     }
 
+    // For tests purposes only
     @GetMapping("/secured")
     public String secured() {
         return "secured";

@@ -14,5 +14,7 @@ public interface UserService {
 
     List<User> getAllUsers();
 
+    User getUserAccountDetails(Long id);
+
 }
 

@@ -1,5 +1,8 @@
 package com.pimpmypc.api.auth;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.pimpmypc.api.exception.AuthenticationException;
 import com.pimpmypc.api.exception.UserAlreadyExistException;
 import com.pimpmypc.api.exception.UserNotFoundException;
@@ -46,18 +49,28 @@ public class AuthService {
             user.setModifiedAt(LocalDateTime.now());
 
             userService.saveUser(user);
-            logger.info(String.format("User %s added to database.", user.getUsername()));
+            logger.info(String.format("User %s added into database.", user.getUsername()));
             return jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
         }
     }
 
-    public String signIn(String username, String password) throws AuthenticationException {
+    public String signIn(String username, String password) throws AuthenticationException, JsonProcessingException {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
         User user = userService.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException(String.format("User %s not found.", username)));
 
         logger.info(String.format("Authentication successful for user %s.", username));
-        return jwtTokenProvider.createToken(username, user.getRoles());
+
+        String token = jwtTokenProvider.createToken(username, user.getRoles());
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        ObjectNode userNode = mapper.createObjectNode();
+        userNode.put("username", user.getUsername());
+        userNode.put("userId", user.getId());
+        userNode.put("token", token);
+
+        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userNode);
     }
 }
