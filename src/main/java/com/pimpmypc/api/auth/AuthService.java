@@ -8,6 +8,7 @@ import com.pimpmypc.api.exception.UserAlreadyExistException;
 import com.pimpmypc.api.exception.UserNotFoundException;
 import com.pimpmypc.api.security.JwtTokenProvider;
 import com.pimpmypc.api.security.Role;
+import com.pimpmypc.api.user.Address;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserService;
 import lombok.AllArgsConstructor;
@@ -36,14 +37,22 @@ public class AuthService {
         if (userService.userAlreadyExist(newUser.getUsername())) {
             logger.error("User " + newUser.getUsername() + " already exist in database.");
             throw new UserAlreadyExistException("User " + newUser.getUsername() + " already exist in database.");
+        } else if (newUser.getAddress() == null) {
+            throw new RuntimeException("User must have an address.");
         } else {
+            Address userAddress = newUser.getAddress();
+            userAddress.setCreatedAt(LocalDateTime.now());
+            userAddress.setModifiedAt(LocalDateTime.now());
+
+
             User user = new User();
             user.setUsername(newUser.getUsername());
             user.setPassword(passwordEncoder.encode(newUser.getPassword()));
             user.setFirstName(newUser.getFirstName());
+            user.setAddress(userAddress);
             user.setLastName(newUser.getLastName());
             user.setPhone(newUser.getPhone());
-            user.setRoles(List.of(Role.ROLE_ADMIN));
+            user.setRoles(List.of(Role.ROLE_USER));
             user.setEmail(newUser.getEmail());
             user.setCreatedAt(LocalDateTime.now());
             user.setModifiedAt(LocalDateTime.now());

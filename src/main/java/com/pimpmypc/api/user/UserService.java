@@ -16,5 +16,8 @@ public interface UserService {
 
     User getUserAccountDetails(Long id);
 
+    void updateUserAccountDetails(Long id, User user);
+
+    void updateUserPersonalDetails(Long id, User user);
 }
 

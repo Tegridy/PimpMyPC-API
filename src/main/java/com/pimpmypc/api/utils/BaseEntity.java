@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @Setter
 @Getter
-@JsonIgnoreProperties(value = {"createdAt"})
+@JsonIgnoreProperties(value = {"createdAt", "modifiedAt"})
 public class BaseEntity {
 
     @Id

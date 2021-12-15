@@ -1,13 +1,11 @@
 package com.pimpmypc.api.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.utils.BaseEntity;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -43,12 +41,16 @@ public class User extends BaseEntity {
 
     @NotEmpty(message = "Password is required.")
     @Size(min = 8, message = "Password must have at least 8 characters.")
+    @JsonIgnore
     private String password;
 
     @Email
     @NotEmpty(message = "E-mail is required.")
     private String email;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private Address address;
 
     public List<Role> getRoles() {
         return roles;
