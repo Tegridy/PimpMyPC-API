@@ -20,8 +20,8 @@ import java.util.List;
 public class User extends BaseEntity {
 
     @ElementCollection(fetch = FetchType.EAGER)
+    @JsonIgnore
     List<Role> roles;
-
 
     @NotEmpty(message = "Username is required.")
     @Size(min = 4, max = 50, message = "Username length must have 4 to 50 characters.")
@@ -41,7 +41,6 @@ public class User extends BaseEntity {
 
     @NotEmpty(message = "Password is required.")
     @Size(min = 8, message = "Password must have at least 8 characters.")
-    @JsonIgnore
     private String password;
 
     @Email

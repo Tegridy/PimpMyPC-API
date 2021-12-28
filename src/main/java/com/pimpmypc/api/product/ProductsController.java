@@ -97,13 +97,6 @@ public class ProductsController {
         return ResponseEntity.ok(productService.getAllSmartphones(predicate, pageable));
     }
 
-    @GetMapping(value = "/{productId}", produces = "application/json")
-    public ResponseEntity<Product> getProductById(@PathVariable("productId") long id) {
-        Product product = productService.getProductById(id);
-        return ResponseEntity.ok().body(product);
-    }
-
-
     @GetMapping(value = "", produces = "application/json")
     public ResponseEntity<List<Product>> getAllProducts(Pageable pageable) {
         return ResponseEntity.ok().body(productService.getAllProducts());
@@ -130,6 +123,11 @@ public class ProductsController {
     public ResponseEntity<ProductsDto<Computer>> getAllComputers(Pageable pageable,
                                                                  @QuerydslPredicate(root = Computer.class) Predicate predicate) {
         return ResponseEntity.ok(productService.getAllComputers(predicate, pageable));
+    }
+
+    @GetMapping(value = "/{id}", produces = "application/json")
+    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.findProductById(id));
     }
 
     // Get product by id

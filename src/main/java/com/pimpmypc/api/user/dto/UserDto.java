@@ -1,4 +1,4 @@
-package com.pimpmypc.api.user;
+package com.pimpmypc.api.user.dto;
 
 import lombok.Data;
 

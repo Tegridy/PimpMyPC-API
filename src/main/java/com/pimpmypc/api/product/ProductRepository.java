@@ -35,7 +35,7 @@ public interface ProductRepository<T extends Product> extends JpaRepository<T, L
     @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY id DESC LIMIT 1", nativeQuery = true)
     T findNewestProduct();
 
-    Product findProductById(Long id);
+    T findProductById(Long id);
 
 
 //    @Query("SELECT p FROM processors p WHERE id = ?1")

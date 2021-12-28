@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pimpmypc.api.exception.AuthenticationException;
 import com.pimpmypc.api.exception.UserAlreadyExistException;
 import com.pimpmypc.api.user.User;
-import com.pimpmypc.api.user.UserDto;
+import com.pimpmypc.api.user.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

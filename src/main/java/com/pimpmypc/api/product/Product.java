@@ -1,5 +1,7 @@
 package com.pimpmypc.api.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.pimpmypc.api.order.Order;
 import com.pimpmypc.api.products.Color;
 import com.pimpmypc.api.utils.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -18,6 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonIgnoreProperties(value = {"quantity", "numberOfItemsSold", "categories", "createdAt", "modifiedAt"})
 public class Product extends BaseEntity {
 
     private String title;
@@ -37,9 +40,12 @@ public class Product extends BaseEntity {
     @Column(name = "color")
     private Set<Color> colors = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
+
+    @ManyToMany(mappedBy = "products")
+    private Set<Order> orders;
 
     @Override
     public String toString() {
