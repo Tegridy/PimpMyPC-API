@@ -17,7 +17,7 @@ import javax.persistence.Enumerated;
 public class Laptop extends Product {
 
     @Column(name = "display_size")
-    private float displaySize;
+    private String displaySize;
     private String processor;
     @Column(name = "cpu_speed")
     private float cpuSpeed;

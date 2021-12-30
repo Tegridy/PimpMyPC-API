@@ -4,6 +4,7 @@
 CREATE TABLE orders(
     id BIGINT AUTO_INCREMENT NOT NULL,
     delivery_address_id BIGINT,
+    user_id BIGINT,
     first_name VARCHAR(150) NOT NULL,
     last_name VARCHAR(150) NOT NULL,
     order_status VARCHAR(100) NOT NULL,
@@ -12,7 +13,8 @@ CREATE TABLE orders(
     created_at DATETIME NOT NULL,
     modified_at DATETIME NULL DEFAULT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT fk_orders_addresses FOREIGN KEY (delivery_address_id) REFERENCES addresses(id)
+    CONSTRAINT fk_orders_addresses FOREIGN KEY (delivery_address_id) REFERENCES addresses(id),
+    CONSTRAINT fk_orders_users FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE orders_products(

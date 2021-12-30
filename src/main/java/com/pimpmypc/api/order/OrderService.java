@@ -1,5 +1,7 @@
 package com.pimpmypc.api.order;
 
+import org.springframework.data.domain.Page;
+
 public interface OrderService {
 
     void saveOrder(Order order);
@@ -8,5 +10,5 @@ public interface OrderService {
 
     void changeOrderStatus(OrderStatus status);
 
-    Order getOrderDetails(Long id);
+    Page<Order> getUserOrdersDetails();
 }

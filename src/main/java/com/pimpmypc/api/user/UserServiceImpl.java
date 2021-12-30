@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         if (user.getRoles() == null || user.getRoles().isEmpty()) {
             throw new UserRoleNotFoundException("User must have at least a role set!");
         }
-        
+
         return userRepository.save(user);
     }
 
@@ -109,6 +109,4 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         log.info(String.format("User with id %d - password changed", id));
     }
-
-
 }

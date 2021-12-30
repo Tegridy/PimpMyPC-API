@@ -1,5 +1,6 @@
 package com.pimpmypc.api.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pimpmypc.api.order.Order;
 import com.pimpmypc.api.products.Color;
@@ -45,6 +46,7 @@ public class Product extends BaseEntity {
     private Set<Category> categories = new HashSet<>();
 
     @ManyToMany(mappedBy = "products")
+    @JsonIgnore
     private Set<Order> orders;
 
     @Override

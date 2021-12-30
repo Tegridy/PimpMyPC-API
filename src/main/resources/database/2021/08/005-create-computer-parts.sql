@@ -181,7 +181,7 @@ CREATE TABLE smartphones
 CREATE TABLE laptops
 (
     id BIGINT NOT NULL AUTO_INCREMENT,
-        display_size FLOAT NULL,
+        display_size VARCHAR(10) NULL,
         screen_resolution VARCHAR(25) NULL,
         panel_type VARCHAR(15) NULL,
         processor VARCHAR(150) NULL,

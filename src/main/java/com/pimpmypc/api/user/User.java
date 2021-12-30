@@ -1,9 +1,13 @@
 package com.pimpmypc.api.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pimpmypc.api.order.Order;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.utils.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -15,7 +19,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity(name = "users")
 public class User extends BaseEntity {
 
@@ -51,7 +54,21 @@ public class User extends BaseEntity {
     @JoinColumn(name = "id")
     private Address address;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> userOrders;
+
     public List<Role> getRoles() {
         return roles;
+    }
+
+    public void addUserOrder(Order order) {
+        this.userOrders.add(order);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userOrders=" + userOrders +
+                '}';
     }
 }

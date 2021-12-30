@@ -1,7 +1,9 @@
 package com.pimpmypc.api.order;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pimpmypc.api.product.Product;
 import com.pimpmypc.api.user.Address;
+import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.utils.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,4 +40,16 @@ public class Order extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Address deliveryAddress;
+
+    @ManyToOne
+    @JsonIgnore
+    private User user;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "customerFirstName='" + customerFirstName + '\'' +
+                ", customerLastName='" + customerLastName + '\'' +
+                '}';
+    }
 }

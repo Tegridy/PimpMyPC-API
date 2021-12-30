@@ -11,9 +11,7 @@ import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.Address;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserService;
-import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,19 +21,24 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@Slf4j
 public class AuthService {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
-    private final Logger logger = LoggerFactory.getLogger(AuthService.class);
 
+    public AuthService(UserService userService, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenProvider = jwtTokenProvider;
+    }
 
     public String signUp(User newUser) {
         if (userService.userAlreadyExist(newUser.getUsername())) {
-            logger.error("User " + newUser.getUsername() + " already exist in database.");
+            log.error("User " + newUser.getUsername() + " already exist in database.");
             throw new UserAlreadyExistException("User " + newUser.getUsername() + " already exist in database.");
         } else if (newUser.getAddress() == null) {
             throw new RuntimeException("User must have an address.");
@@ -58,7 +61,7 @@ public class AuthService {
             user.setModifiedAt(LocalDateTime.now());
 
             userService.saveUser(user);
-            logger.info(String.format("User %s added into database.", user.getUsername()));
+            log.info(String.format("User %s added into database.", user.getUsername()));
             return jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
         }
     }
@@ -69,7 +72,7 @@ public class AuthService {
         User user = userService.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException(String.format("User %s not found.", username)));
 
-        logger.info(String.format("Authentication successful for user %s.", username));
+        log.info(String.format("Authentication successful for user %s.", username));
 
         String token = jwtTokenProvider.createToken(username, user.getRoles());
 
