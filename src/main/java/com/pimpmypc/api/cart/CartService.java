@@ -12,4 +12,8 @@ public interface CartService {
     BigDecimal updateBasket(List<Long> productsIds);
 
     List<Product> getCustomerProductsInCart();
+
+    BigDecimal calculateCartTotalPrice();
+
+    void clear();
 }

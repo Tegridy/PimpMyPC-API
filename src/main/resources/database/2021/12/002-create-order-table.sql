@@ -10,6 +10,7 @@ CREATE TABLE orders(
     order_status VARCHAR(100) NOT NULL,
     customer_email VARCHAR(150) NOT NULL,
     customer_phone VARCHAR(25) NOT NULL,
+    total_price DECIMAL(13, 4) NOT NULL DEFAULT 0,
     created_at DATETIME NOT NULL,
     modified_at DATETIME NULL DEFAULT NULL,
     PRIMARY KEY (id),

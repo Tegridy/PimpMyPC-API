@@ -1,20 +1,19 @@
 package com.pimpmypc.api.order;
 
-import com.pimpmypc.api.user.Address;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @ToString
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class OrderDto {
 
-    private String customerFirstName;
-    private String customerLastName;
-    private String customerEmail;
-    private String customerPhone;
-    private Address deliveryAddress;
+    private Long id;
+    private OrderStatus orderStatus;
+    private BigDecimal price;
+    private LocalDate orderDate;
 }

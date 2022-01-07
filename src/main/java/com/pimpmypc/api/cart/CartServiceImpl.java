@@ -13,8 +13,8 @@ import java.util.List;
 @Getter
 public class CartServiceImpl implements CartService {
 
-    private final Cart customerCart;
     private final ProductService productService;
+    private Cart customerCart;
 
     public CartServiceImpl(ProductService productService) {
         customerCart = new Cart();
@@ -25,7 +25,9 @@ public class CartServiceImpl implements CartService {
     public BigDecimal updateBasket(List<Long> productsIds) {
         List<Product> products = productsIds.stream().map(productService::findProductById).toList();
         customerCart.setProductsInCart(products);
-        return calculateCartTotalPrice(products);
+
+        System.out.println(customerCart.getProductsInCart().size());
+        return calculateCartTotalPrice();
     }
 
     @Override
@@ -33,7 +35,13 @@ public class CartServiceImpl implements CartService {
         return this.customerCart.getProductsInCart();
     }
 
-    private BigDecimal calculateCartTotalPrice(List<Product> userCartItems) {
-        return userCartItems.stream().map(Product::getPrice).reduce(new BigDecimal(0), BigDecimal::add);
+    public BigDecimal calculateCartTotalPrice() {
+        return this.customerCart.getProductsInCart().stream().map(Product::getPrice)
+                .reduce(new BigDecimal(0), BigDecimal::add);
+    }
+
+    @Override
+    public void clear() {
+        customerCart = new Cart();
     }
 }

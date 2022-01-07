@@ -3,17 +3,24 @@ package com.pimpmypc.api.order;
 import com.pimpmypc.api.auth.AuthService;
 import com.pimpmypc.api.cart.CartService;
 import com.pimpmypc.api.exception.UserNotFoundException;
+import com.pimpmypc.api.product.Product;
+import com.pimpmypc.api.product.SingleOrderDto;
 import com.pimpmypc.api.user.AddressRepository;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -39,6 +46,7 @@ public class OrderServiceImpl implements OrderService {
         order.setCreatedAt(LocalDateTime.now());
         order.setModifiedAt(LocalDateTime.now());
         order.setProducts(cartService.getCustomerProductsInCart());
+        order.setTotalPrice(cartService.calculateCartTotalPrice());
 
 
         if (authentication.isAuthenticated()) {
@@ -51,8 +59,9 @@ public class OrderServiceImpl implements OrderService {
         }
 
 
-        log.info("Saving order");
+        log.info("Saving order...");
         orderRepository.save(order);
+        cartService.clear();
     }
 
     @Override
@@ -66,15 +75,32 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Page<Order> getUserOrdersDetails() {
+    public Page<OrderDto> getUserOrdersDetails(Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        List<OrderDto> userOrders = new ArrayList<>();
 
         if (authentication != null) {
-            //log user name
-            log.info(authentication.getName());
+            log.info(authentication.getName() + " is logged in. Returning user orders.");
+            User u = userRepository.findByUsername(authentication.getName())
+                    .orElseThrow(() -> new UserNotFoundException("User with given name not found."));
+
+
+            userOrders = u.getUserOrders().stream().map(order -> OrderDto.builder().orderStatus(order.getOrderStatus())
+                    .id(order.getId()).price(order.getTotalPrice()).orderDate(order.getCreatedAt().toLocalDate())
+                    .build()).toList();
         }
 
+        return new PageImpl<OrderDto>(userOrders, pageable, 9);
+    }
 
-        return null;
+    @Override
+    public SingleOrderDto getUserOrdersProducts(Long id) {
+        Order o = orderRepository.getById(id);
+        List<Product> orderProducts = o.getProducts();
+
+        return SingleOrderDto.builder().id(o.getId()).title("Order: " + o.getId())
+                .imageUrl(orderProducts.get(0).getImageUrl()).products(orderProducts).address(o.getDeliveryAddress())
+                .price(orderProducts.stream().map(Product::getPrice).reduce(new BigDecimal(0), BigDecimal::add))
+                .build();
     }
 }

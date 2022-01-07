@@ -1,5 +1,6 @@
 package com.pimpmypc.api.products;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringPath;
@@ -13,11 +14,18 @@ import org.springframework.data.querydsl.binding.SingleValueBinding;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface LaptopRepository extends JpaRepository<Laptop, Long>, QuerydslPredicateExecutor<Laptop>
         , QuerydslBinderCustomizer<QLaptop> {
     @Override
     default void customize(@NonNull QuerydslBindings bindings, @NonNull QLaptop entity) {
+        bindings.bind(entity.displaySize).all((path, value) -> {
+            BooleanBuilder predicate = new BooleanBuilder();
+            value.forEach(o -> predicate.or(path.containsIgnoreCase(o)));
+            return Optional.of(predicate);
+        });
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
     }
 

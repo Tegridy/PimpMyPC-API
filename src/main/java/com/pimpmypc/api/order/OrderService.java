@@ -1,6 +1,8 @@
 package com.pimpmypc.api.order;
 
+import com.pimpmypc.api.product.SingleOrderDto;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface OrderService {
 
@@ -10,5 +12,7 @@ public interface OrderService {
 
     void changeOrderStatus(OrderStatus status);
 
-    Page<Order> getUserOrdersDetails();
+    Page<OrderDto> getUserOrdersDetails(Pageable pageable);
+
+    SingleOrderDto getUserOrdersProducts(Long id);
 }

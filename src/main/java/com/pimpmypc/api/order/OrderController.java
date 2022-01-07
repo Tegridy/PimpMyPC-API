@@ -1,7 +1,9 @@
 package com.pimpmypc.api.order;
 
+import com.pimpmypc.api.product.SingleOrderDto;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +22,13 @@ public class OrderController {
         return ResponseEntity.ok("Ok");
     }
 
-    @GetMapping("/t")
-    public ResponseEntity<Page<Order>> getUserOrdersDetails() {
-        return ResponseEntity.ok(orderService.getUserOrdersDetails());
+    @GetMapping("")
+    public ResponseEntity<Page<OrderDto>> getUserOrdersDetails(Pageable pageable) {
+        return ResponseEntity.ok(orderService.getUserOrdersDetails(pageable));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SingleOrderDto> getUserOrdersProducts(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.getUserOrdersProducts(id));
     }
 }

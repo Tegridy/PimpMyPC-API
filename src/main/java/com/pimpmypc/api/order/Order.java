@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity(name = "orders")
@@ -33,6 +34,9 @@ public class Order extends BaseEntity {
     private String customerEmail;
     @Column(name = "customer_phone")
     private String customerPhone;
+
+    @Column(name = "total_price")
+    private BigDecimal totalPrice;
 
     @ManyToMany
     @JoinTable(name = "orders_products", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
