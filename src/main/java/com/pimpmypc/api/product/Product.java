@@ -21,7 +21,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonIgnoreProperties(value = {"quantity", "numberOfItemsSold", "categories", "createdAt", "modifiedAt"})
+@JsonIgnoreProperties(value = {"quantity", "numberOfItemsSold", "createdAt", "modifiedAt"})
 public class Product extends BaseEntity {
 
     private String title;

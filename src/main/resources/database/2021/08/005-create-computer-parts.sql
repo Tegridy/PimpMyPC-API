@@ -37,7 +37,7 @@ CREATE TABLE processors
              cores              INT          NULL,
              base_clock         VARCHAR(100) NULL,
              boost_clock        VARCHAR(100) NULL,
-             tdp                INT          NULL,
+             tdp                INT          DEFAULT 0,
              motherboard_socket VARCHAR(100) NULL,
              integrated_graphic VARCHAR(200) NULL,
              multithreading     BOOL         NULL,
@@ -132,11 +132,12 @@ CREATE TABLE hard_discs
 create table graphic_cards
 (
 	id BIGINT NOT NULL auto_increment,
-	vram INT null,
+	v_ram INT null,
 	core_clock INT null,
 	boost_clock INT null,
 	chipset VARCHAR(100) NULL,
 	graphic_card_length int null,
+	tdp INT DEFAULT 0,
 	constraint graphic_cards_pk
 		primary key (id),
 	constraint graphic_cards_products_id_fk
