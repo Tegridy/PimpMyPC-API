@@ -28,15 +28,17 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
+    private final ObjectMapper mapper;
 
     public AuthService(UserService userService, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
+        this.mapper = new ObjectMapper();
     }
 
-    public String signUp(User newUser) {
+    public String signUp(User newUser) throws JsonProcessingException {
         if (userService.userAlreadyExist(newUser.getUsername())) {
             log.error("User " + newUser.getUsername() + " already exist in database.");
             throw new UserAlreadyExistException("User " + newUser.getUsername() + " already exist in database.");
@@ -62,7 +64,12 @@ public class AuthService {
 
             userService.saveUser(user);
             log.info(String.format("User %s added into database.", user.getUsername()));
-            return jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
+            jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
+
+            ObjectNode userNode = mapper.createObjectNode();
+            userNode.put("username", user.getUsername());
+
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userNode);
         }
     }
 
@@ -75,8 +82,6 @@ public class AuthService {
         log.info(String.format("Authentication successful for user %s.", username));
 
         String token = jwtTokenProvider.createToken(username, user.getRoles());
-
-        ObjectMapper mapper = new ObjectMapper();
 
         ObjectNode userNode = mapper.createObjectNode();
         userNode.put("username", user.getUsername());

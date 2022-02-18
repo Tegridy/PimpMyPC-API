@@ -29,7 +29,3 @@ CREATE TABLE orders_products(
         FOREIGN KEY (product_id)
         REFERENCES products(id)
 );
---
---ALTER TABLE addresses ADD CONSTRAINT fk_address_orders
---                           FOREIGN KEY (id)
---                           REFERENCES orders(delivery_address_id);

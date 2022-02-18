@@ -6,7 +6,7 @@ INSERT INTO products VALUES (1, "Processor AMD Ryzen Threadripper 1950X 16 x 3,4
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "AMD", "AMD Ryzen Threadripper 1950X", "https://2.allegroimg.com/original/052687/ed6b8d214cf7b68f4e7e0ddb44a2", 1527.06, 9999, NOW(), NOW());
-INSERT INTO processors VALUES (1, 16, "3,4 GHz", "4 GHz", 0, "TR4", null, true);
+INSERT INTO processors VALUES (1, 16, "3,4 GHz", "4 GHz", null, "TR4", null, true);
 INSERT INTO product_category VALUES (1, 13);
 
 
@@ -33,7 +33,7 @@ INSERT INTO products VALUES (4, "Processor AMD Ryzen Threadripper 2970WX 24 x 3 
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "AMD", "AMD Ryzen Threadripper 2970WX", "https://a.allegroimg.com/original/0553f8/0b21f83f4c6c8b372a39afb9e3b5", 1761.99, 9999, NOW(), NOW());
-INSERT INTO processors VALUES (4, 24, "3 GHz", "4,2 GHz", 0, "TR4", null, true);
+INSERT INTO processors VALUES (4, 24, "3 GHz", "4,2 GHz", null, "TR4", null, true);
 INSERT INTO product_category VALUES (4, 13);
 
 
@@ -51,7 +51,7 @@ INSERT INTO products VALUES (6, "Processor AMD Ryzen 5 2500X 4 x 3,6 GHz", "Lore
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "AMD", "AMD Ryzen 5 2500X", "https://a.allegroimg.com/original/117cc7/0ea2a36340e19cf08f005fa2f92d", 1464.78, 9999, NOW(), NOW());
-INSERT INTO processors VALUES (6, 4, "3,6 GHz", null, 0, "AM4", null, true);
+INSERT INTO processors VALUES (6, 4, "3,6 GHz", null, null, "AM4", null, true);
 INSERT INTO product_category VALUES (6, 13);
 
 
@@ -132,7 +132,7 @@ INSERT INTO products VALUES (15, "Processor Ryzen 3 3100 4 x 3,9 GHz", "Lorem ip
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "AMD", "Ryzen 3 3100", "https://a.allegroimg.com/original/1149c1/81b890dd4d849e7f6c9f5aed0353", 1798.20, 9999, NOW(), NOW());
-INSERT INTO processors VALUES (15, 4, "3,9 GHz", null, 0, "AM4", null, true);
+INSERT INTO processors VALUES (15, 4, "3,9 GHz", null, null, "AM4", null, true);
 INSERT INTO product_category VALUES (15, 13);
 
 
@@ -186,7 +186,7 @@ INSERT INTO products VALUES (21, "Processor Ryzen 3 Pro 2200G 4 x 3,5 GHz", "Lor
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "AMD", "Ryzen 3 Pro 2200G", "https://a.allegroimg.com/original/11bc6d/7786a4f1462b8a929498179a3850", 1475.39, 9999, NOW(), NOW());
-INSERT INTO processors VALUES (21, 4, "3,5 GHz", null, 0, "AM4", null, true);
+INSERT INTO processors VALUES (21, 4, "3,5 GHz", null, null, "AM4", null, true);
 INSERT INTO product_category VALUES (21, 13);
 
 
@@ -213,7 +213,7 @@ INSERT INTO products VALUES (24, "Processor Ryzen 5 2600X 6 x 3,6 GHz", "Lorem i
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "AMD", "Ryzen 5 2600X", "https://a.allegroimg.com/original/11af78/ff9d99624549a689b308fcffa38f", 1544.68, 9999, NOW(), NOW());
-INSERT INTO processors VALUES (24, 6, "3,6 GHz", "4,2 GHz", 0, "AM4", null, true);
+INSERT INTO processors VALUES (24, 6, "3,6 GHz", "4,2 GHz", null, "AM4", null, true);
 INSERT INTO product_category VALUES (24, 13);
 
 
@@ -268,7 +268,7 @@ INSERT INTO products VALUES (420, "Processor Intel i3-10105 4 x 3,7 GHz", "Lorem
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Intel", "i3-10105", "https://a.allegroimg.com/original/115f1e/927ff7164aeda14d8a4aea3b3897", 1597.63, 9999, NOW(), NOW());
-INSERT INTO processors VALUES (420, 4, "3,7 GHz", null, 0, "LGA1200", null, true);
+INSERT INTO processors VALUES (420, 4, "3,7 GHz", null, null, "LGA1200", null, true);
 INSERT INTO product_category VALUES (420, 13);
 
 
@@ -331,7 +331,7 @@ INSERT INTO products VALUES (427, "Processor Intel BX80701G6405 2 x 4,1 GHz", "L
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Intel", "BX80701G6405", "https://a.allegroimg.com/original/11249c/9b4e31ae498682c72738185d1eed", 1710.98, 9999, NOW(), NOW());
-INSERT INTO processors VALUES (427, 2, "4,1 GHz", null, 0, "LGA1200", null, true);
+INSERT INTO processors VALUES (427, 2, "4,1 GHz", null, null, "LGA1200", null, true);
 INSERT INTO product_category VALUES (427, 13);
 
 
@@ -430,7 +430,7 @@ INSERT INTO products VALUES (438, "Processor Intel Intel Celeron 2 x 3,4 GHz", "
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Intel", "Intel Celeron", "https://a.allegroimg.com/original/11bfba/1b07ef0c4d7d9276493e9fb842b8", 1485.00, 9999, NOW(), NOW());
-INSERT INTO processors VALUES (438, 2, "3,4 GHz", "3,4 GHz", 0, "LGA1200", null, false);
+INSERT INTO processors VALUES (438, 2, "3,4 GHz", "3,4 GHz", null, "LGA1200", null, false);
 INSERT INTO product_category VALUES (438, 13);
 
 
@@ -439,7 +439,7 @@ INSERT INTO products VALUES (439, "Processor Intel i7-11700K 8 x 3,6 GHz", "Lore
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Intel", "i7-11700K", "https://a.allegroimg.com/original/11856c/d862c4114ac38d9ce191d752387e", 1477.64, 9999, NOW(), NOW());
-INSERT INTO processors VALUES (439, 8, "3,6 GHz", "5 GHz", 0, "LGA1200", "Intel UHD Graphics 750", true);
+INSERT INTO processors VALUES (439, 8, "3,6 GHz", "5 GHz", null, "LGA1200", "Intel UHD Graphics 750", true);
 INSERT INTO product_category VALUES (439, 13);
 
 

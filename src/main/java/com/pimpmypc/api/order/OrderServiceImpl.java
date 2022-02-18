@@ -35,11 +35,10 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public void saveOrder(Order order) {
+    public OrderDto saveOrder(Order order) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-
-        addressRepository.findByStreet(order.getDeliveryAddress().getStreet()).ifPresent(order::setDeliveryAddress);
+        // addressRepository.findByStreet(order.getDeliveryAddress().getStreet()).ifPresent(order::setDeliveryAddress);
 
         order.getDeliveryAddress().setCreatedAt(LocalDateTime.now());
         order.setOrderStatus(OrderStatus.IN_PROGRESS);
@@ -50,28 +49,18 @@ public class OrderServiceImpl implements OrderService {
 
 
         if (authentication.isAuthenticated()) {
-            User user = userRepository.findByUsername(authentication.getName()).orElseThrow(() ->
-                    new UserNotFoundException("User with given username not found")
-            );
-
-            user.addUserOrder(order);
-            order.setUser(user);
+            userRepository.findByUsername(authentication.getName()).ifPresent((user) -> {
+                user.addUserOrder(order);
+                order.setUser(user);
+            });
         }
 
 
         log.info("Saving order...");
-        orderRepository.save(order);
+        Order savedOrder = orderRepository.save(order);
         cartService.clear();
-    }
 
-    @Override
-    public Order getOrderStatus() {
-        return null;
-    }
-
-    @Override
-    public void changeOrderStatus(OrderStatus status) {
-
+        return OrderDto.builder().id(savedOrder.getId()).status(savedOrder.getOrderStatus()).build();
     }
 
     @Override
@@ -85,7 +74,7 @@ public class OrderServiceImpl implements OrderService {
                     .orElseThrow(() -> new UserNotFoundException("User with given name not found."));
 
 
-            userOrders = u.getUserOrders().stream().map(order -> OrderDto.builder().orderStatus(order.getOrderStatus())
+            userOrders = u.getUserOrders().stream().map(order -> OrderDto.builder().status(order.getOrderStatus())
                     .id(order.getId()).price(order.getTotalPrice()).orderDate(order.getCreatedAt().toLocalDate())
                     .build()).toList();
         }

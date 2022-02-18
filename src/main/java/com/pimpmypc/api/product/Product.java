@@ -1,6 +1,5 @@
 package com.pimpmypc.api.product;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pimpmypc.api.order.Order;
 import com.pimpmypc.api.products.Color;
@@ -21,7 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonIgnoreProperties(value = {"quantity", "numberOfItemsSold", "createdAt", "modifiedAt"})
+@JsonIgnoreProperties(value = {"quantity", "numberOfItemsSold", "categories", "createdAt", "modifiedAt", "orders"})
 public class Product extends BaseEntity {
 
     private String title;
@@ -39,31 +38,19 @@ public class Product extends BaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "color")
-    private Set<Color> colors = new HashSet<>();
+    private Set<Color> colors;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     @ManyToMany(mappedBy = "products")
-    @JsonIgnore
     private Set<Order> orders;
 
-    @Override
-    public String toString() {
-        String res = "";
-
-        categories.forEach(System.out::println);
-
-
-        return "Product{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                "super:  " + super.toString() +
-                '}';
+    public Set<Color> getColors() {
+        if (colors.isEmpty()) {
+            return null;
+        }
+        return colors;
     }
 }

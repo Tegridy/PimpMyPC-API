@@ -15,11 +15,6 @@ public interface ProductRepository<T extends Product> extends JpaRepository<T, L
     @Query(value = "SELECT p FROM products p WHERE p.title LIKE CONCAT('%',:productName,'%')")
     Page<Product> findProductsByName(String productName, Pageable pageable);
 
-//    @Query(value = "SELECT p.id, p.title, p.price FROM products as p " +
-//            "JOIN product_category as c ON c.product_id = p.id " +
-//            "JOIN categories as d ON d.id = c.category_id", nativeQuery = true)
-//    List<Tuple> findProductsByNameAndCategory(String productName, String category);
-
     @Query(value = "SELECT p FROM products p " +
             "JOIN p.categories c " +
             "WHERE c.title LIKE CONCAT('%',:category,'%') " +

@@ -16,7 +16,7 @@ INSERT INTO products VALUES (153, "Monitor LED ASUS TUF Gaming VG328H1B 31,5 ' V
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "ASUS", "TUF Gaming VG328H1B", "https://a.allegroimg.com/original/1152c2/46e9f8cf461d94f788aa70154da9", 182.51, 9999, NOW(), NOW());
-INSERT INTO monitors VALUES (153, "1920 x 1080 px", 0, 31.500000, 1, "16:09", "VA");
+INSERT INTO monitors VALUES (153, "1920 x 1080 px", null, 31.500000, 1, "16:09", "VA");
 
 INSERT INTO product_category VALUES (153, 24);
 
@@ -36,7 +36,7 @@ INSERT INTO products VALUES (155, "Monitor LED ASUS TUF Gaming VG27BQ 27 ' 2560 
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "ASUS", "TUF Gaming VG27BQ", "https://a.allegroimg.com/original/0535e0/c03b4d82410cab12b84a0fa66da4", 157.32, 9999, NOW(), NOW());
-INSERT INTO monitors VALUES (155, "2560 x 1440 px", 165, 27.000000, 0, "16:09", "TN");
+INSERT INTO monitors VALUES (155, "2560 x 1440 px", 165, 27.000000, null, "16:09", "TN");
 
 INSERT INTO product_category VALUES (155, 24);
 
@@ -86,7 +86,7 @@ INSERT INTO products VALUES (160, "Monitor LED ASUS ROG Strix XG27WQ 27 ' 2560 x
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "ASUS", "ROG Strix XG27WQ", "https://a.allegroimg.com/original/1131f6/e96dadf54e36ae431f445c7fb3c4", 184.60, 9999, NOW(), NOW());
-INSERT INTO monitors VALUES (160, "2560 x 1440 px", 0, 27.000000, 1, "16:09", "VA");
+INSERT INTO monitors VALUES (160, "2560 x 1440 px", null, 27.000000, 1, "16:09", "VA");
 
 INSERT INTO product_category VALUES (160, 24);
 

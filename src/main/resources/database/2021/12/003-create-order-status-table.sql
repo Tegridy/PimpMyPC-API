@@ -8,5 +8,3 @@ CREATE TABLE order_status(
     CONSTRAINT fk_order_status_orders
         FOREIGN KEY (id) REFERENCES orders (id)
 );
-
-ALTER TABLE addresses ADD UNIQUE INDEX (street);

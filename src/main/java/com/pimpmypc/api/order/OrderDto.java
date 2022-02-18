@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class OrderDto {
 
     private Long id;
-    private OrderStatus orderStatus;
+    private OrderStatus status;
     private BigDecimal price;
     private LocalDate orderDate;
 }

@@ -90,7 +90,7 @@ INSERT INTO products VALUES (83, "Memory RAM Micron DDR4 4 GB 3140", "Lorem ipsu
 Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapibus massa quis urna sodales, id suscipit velit tempus. Fusce ut dapibus ipsum. Ut varius semper nisl nec fringilla. Nunc hendrerit in purus et malesuada. Aenean ornare auctor ante sed faucibus. Ut pulvinar nunc id risus vulputate condimentum. Nullam ante orci, congue eu semper eget, vulputate et est.
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Micron", "MTA4ATF51264HZ-3G2J1", "https://a.allegroimg.com/original/11a24f/330c08034bdba4bc12a7f1963bcf", 153.80, 99, NOW(), NOW());
-INSERT INTO ram_memory VALUES (83, "DDR4", 3140, 1, 4, 0, 0);
+INSERT INTO ram_memory VALUES (83, "DDR4", 3140, 1, 4, null, null);
 
 INSERT INTO product_category VALUES (83, 14);
 INSERT INTO colors VALUES (83, "BLUE");

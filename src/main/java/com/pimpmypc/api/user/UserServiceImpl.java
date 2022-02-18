@@ -43,9 +43,11 @@ public class UserServiceImpl implements UserService {
 
         Address a = user.getAddress();
         addressRepository.findByStreet(a.getStreet()).ifPresent(user::setAddress);
-
-
-        //this.addressRepository.save(a);
+//
+//        if (a != null) {
+//            user
+//        }
+        //addressRepository.save(user.getAddress());
 
         if (user.getRoles() == null || user.getRoles().isEmpty()) {
             throw new UserRoleNotFoundException("User must have at least a role set!");

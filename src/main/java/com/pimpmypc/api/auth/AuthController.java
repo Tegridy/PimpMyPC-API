@@ -3,7 +3,6 @@ package com.pimpmypc.api.auth;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pimpmypc.api.exception.AuthenticationException;
-import com.pimpmypc.api.exception.UserAlreadyExistException;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.dto.UserDto;
 import org.slf4j.Logger;
@@ -28,22 +27,19 @@ public class AuthController {
     }
 
     @PostMapping(value = "/register", produces = "application/json")
-    public ResponseEntity<String> register(@RequestBody @Valid User user) {
-        try {
+    public ResponseEntity<String> register(@RequestBody @Valid User user) throws JsonProcessingException {
+//        try {
 
-            String u = authService.signUp(user);
-            logger.info(String.format("User %s account successfully created.", user.getUsername()));
+        String username = authService.signUp(user);
+        logger.info(String.format("User %s account successfully created.", user.getUsername()));
 
-            return new ResponseEntity<>(
-                    String.format("""
-                            {
-                            "token": "%s"
-                            }""", u)
-                    , HttpStatus.CREATED);
 
-        } catch (UserAlreadyExistException ex) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
-        }
+        return new ResponseEntity<>(username
+                , HttpStatus.CREATED);
+
+//        } catch (UserAlreadyExistException | JsonProcessingException ex) {
+//            throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
+//        }
     }
 
     @PostMapping(value = "/login", produces = "application/json")

@@ -262,7 +262,7 @@ INSERT INTO filters VALUES(
 );
 
 INSERT INTO filters_types VALUES (
-19, 16, "Socket", "motherboardSocket"
+19, 13, "Socket", "motherboardSocket"
 );
 
 INSERT INTO filters VALUES (
@@ -397,7 +397,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters_types VALUES (
-23, 15, "Virtual memory", "vram");
+23, 15, "Virtual memory", "vRam");
 
 INSERT INTO filters VALUES (
 73, 23, "1 GB" , "1"
@@ -498,7 +498,7 @@ INSERT INTO filters_types VALUES (
 27, 17, "Hard drive producer", "title");
 
 INSERT INTO filters VALUES (
-92, 27, "Origin" , "asus"
+92, 27, "Origin" , "origin"
 );
 
 INSERT INTO filters VALUES (
@@ -540,7 +540,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters VALUES (
-100, 29, "bequiet!" , "bequiet"
+100, 29, "Bequiet!" , "be quiet"
 );
 
 INSERT INTO filters_types VALUES (
@@ -559,7 +559,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters VALUES (
-104, 30, "80 PLUS Titanium" , "titanum"
+104, 30, "80 PLUS Titanium" , "titanium"
 );
 
 
@@ -579,7 +579,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters VALUES (
-107, 31, "bequiet!" , "bequiet"
+107, 31, "Bequiet!" , "be quiet"
 );
 
 ------------------------------------------------------------------------
@@ -657,7 +657,3 @@ INSERT INTO filters VALUES (
 INSERT INTO filters VALUES (
 122, 35, "240 Hz" , "240"
 );
-
---INSERT INTO filters_types VALUES (
---5, 1, "Price", "price"
---);

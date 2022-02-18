@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 public class Mouse extends Product {
-    private String style;
 
+    private String style;
     private String connection;
     private String tracking;
 }

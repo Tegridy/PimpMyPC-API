@@ -2,6 +2,7 @@ package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.category.CategoryService;
 import com.pimpmypc.api.products.*;
+import com.pimpmypc.api.products.dto.ProcessorDto;
 import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,8 +33,8 @@ public class ProductsController {
 
 
     @GetMapping(value = "/processors", produces = "application/json")
-    public ResponseEntity<ProductsDto<Processor>> returnProcessors(Pageable pageable,
-                                                                   @QuerydslPredicate(root = Processor.class) Predicate predicate) {
+    public ResponseEntity<ProductsDto2<ProcessorDto>> returnProcessors(Pageable pageable,
+                                                                       @QuerydslPredicate(root = Processor.class) Predicate predicate) {
         return ResponseEntity.ok(productService.getAllProcessors(predicate, pageable));
     }
 
@@ -74,8 +75,8 @@ public class ProductsController {
     }
 
     @GetMapping(value = "/drives", produces = "application/json")
-    public ResponseEntity<ProductsDto<HardDisc>> getAllHardDiscs(Pageable pageable,
-                                                                 @QuerydslPredicate(root = HardDisc.class) Predicate predicate) {
+    public ResponseEntity<ProductsDto<HardDrive>> getAllHardDiscs(Pageable pageable,
+                                                                  @QuerydslPredicate(root = HardDrive.class) Predicate predicate) {
         return ResponseEntity.ok(productService.getAllHardDiscs(predicate, pageable));
     }
 

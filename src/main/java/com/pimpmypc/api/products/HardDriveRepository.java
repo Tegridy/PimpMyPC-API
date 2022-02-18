@@ -12,14 +12,14 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.querydsl.binding.SingleValueBinding;
 import org.springframework.lang.NonNull;
 
-public interface HardDiscRepository extends JpaRepository<HardDisc, Long>, QuerydslPredicateExecutor<HardDisc>
-        , QuerydslBinderCustomizer<QHardDisc> {
+public interface HardDriveRepository extends JpaRepository<HardDrive, Long>, QuerydslPredicateExecutor<HardDrive>
+        , QuerydslBinderCustomizer<QHardDrive> {
     @Override
-    default void customize(@NonNull QuerydslBindings bindings, @NonNull QHardDisc entity) {
+    default void customize(@NonNull QuerydslBindings bindings, @NonNull QHardDrive entity) {
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
     }
 
-    default Page<HardDisc> findAllHardDiscs(Predicate predicate, Pageable pageable) {
+    default Page<HardDrive> findAllHardDiscs(Predicate predicate, Pageable pageable) {
         return this.findAll(predicate, pageable);
     }
 }

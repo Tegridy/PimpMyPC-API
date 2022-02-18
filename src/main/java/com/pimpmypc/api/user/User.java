@@ -22,6 +22,7 @@ import java.util.List;
 @Entity(name = "users")
 public class User extends BaseEntity {
 
+
     @ElementCollection(fetch = FetchType.EAGER)
     @JsonIgnore
     List<Role> roles;
@@ -49,6 +50,8 @@ public class User extends BaseEntity {
     @Email
     @NotEmpty(message = "E-mail is required.")
     private String email;
+
+    private Long addressId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")

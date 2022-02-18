@@ -11,4 +11,4 @@ CREATE TABLE addresses (
   modified_at DATETIME NULL DEFAULT NULL
 );
 
-ALTER TABLE users ADD CONSTRAINT fk_users_addresses FOREIGN KEY (id) REFERENCES addresses(id);
+ALTER TABLE users ADD CONSTRAINT fk_users_addresses FOREIGN KEY (address_id) REFERENCES addresses(id);

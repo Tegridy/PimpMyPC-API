@@ -50,14 +50,14 @@ public class AuthServiceTest {
     }
 
     @Test
-    public void shouldRegisterUser() {
-        Mockito.doReturn("token").when(authService).signUp(user);
+    public void shouldRegisterUser() throws JsonProcessingException {
+        Mockito.doReturn("username").when(authService).signUp(user);
 
-        assertEquals(authService.signUp(user), "token");
+        assertEquals(authService.signUp(user), "username");
     }
 
     @Test
-    void shouldThrowUserAlreadyExist() {
+    void shouldThrowUserAlreadyExist() throws JsonProcessingException {
         Mockito.doThrow(new UserAlreadyExistException("")).when(authService).signUp(user);
 
         assertThrows(UserAlreadyExistException.class, () -> authService.signUp(user));
