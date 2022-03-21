@@ -14,18 +14,22 @@ CREATE TABLE orders(
     created_at DATETIME NOT NULL,
     modified_at DATETIME NULL DEFAULT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT fk_orders_addresses FOREIGN KEY (delivery_address_id) REFERENCES addresses(id),
+    CONSTRAINT fk_orders_addresses FOREIGN KEY (delivery_address_id) REFERENCES addresses(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
     CONSTRAINT fk_orders_users FOREIGN KEY (user_id) REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 CREATE TABLE orders_products(
     order_id BIGINT NOT NULL,
     product_id BIGINT NOT NULL,
     PRIMARY KEY (order_id, product_id),
-    CONSTRAINT fk_order_product
-        FOREIGN KEY (order_id)
-        REFERENCES orders(id),
-    CONSTRAINT fk_product_order
-        FOREIGN KEY (product_id)
-        REFERENCES products(id)
+    CONSTRAINT fk_order_product FOREIGN KEY (order_id) REFERENCES orders(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+    CONSTRAINT fk_product_order FOREIGN KEY (product_id) REFERENCES products(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );

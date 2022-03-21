@@ -38,6 +38,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto saveOrder(Order order) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+        // TODO: Change product quantity after order is complete
         // addressRepository.findByStreet(order.getDeliveryAddress().getStreet()).ifPresent(order::setDeliveryAddress);
 
         order.getDeliveryAddress().setCreatedAt(LocalDateTime.now());

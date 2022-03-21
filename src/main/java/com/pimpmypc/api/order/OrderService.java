@@ -8,7 +8,6 @@ public interface OrderService {
 
     OrderDto saveOrder(Order order);
 
-
     Page<OrderDto> getUserOrdersDetails(Pageable pageable);
 
     SingleOrderDto getUserOrdersProducts(Long id);

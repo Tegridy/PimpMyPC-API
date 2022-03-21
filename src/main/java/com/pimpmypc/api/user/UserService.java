@@ -2,6 +2,7 @@ package com.pimpmypc.api.user;
 
 import com.pimpmypc.api.user.dto.UserAddressDto;
 import com.pimpmypc.api.user.dto.UserAuthDto;
+import com.pimpmypc.api.user.dto.UserPersonalDataDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,10 +20,10 @@ public interface UserService {
 
     User getUserAccountDetails(Long id);
 
-    void updateUserAddressDetails(Long id, UserAddressDto user);
+    UserAddressDto updateUserAddressDetails(Long id, UserAddressDto user);
 
-    void updateUserPersonalDetails(Long id, User user);
+    UserPersonalDataDto updateUserPersonalDetails(Long id, UserPersonalDataDto user);
 
-    void updateUserAuthDetails(Long id, UserAuthDto user);
+    UserAuthDto updateUserAuthDetails(Long id, String newPassword);
 }
 

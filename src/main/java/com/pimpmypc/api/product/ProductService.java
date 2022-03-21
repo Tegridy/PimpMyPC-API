@@ -1,7 +1,7 @@
 package com.pimpmypc.api.product;
 
+import com.pimpmypc.api.product.dto.ProductDto;
 import com.pimpmypc.api.products.*;
-import com.pimpmypc.api.products.dto.ProcessorDto;
 import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +15,7 @@ public interface ProductService {
 
     Product getProductById(long id);
 
-    ProductsDto2<ProcessorDto> getAllProcessors(Predicate predicate, Pageable pageable);
+    ProductsDto2<ProductDto> getAllProcessors(Predicate predicate, Pageable pageable);
 
     ProductsDto<Motherboard> getAllMotherboards(Predicate predicate, Pageable pageable);
 

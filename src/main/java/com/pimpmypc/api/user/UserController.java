@@ -2,7 +2,9 @@ package com.pimpmypc.api.user;
 
 import com.pimpmypc.api.user.dto.UserAddressDto;
 import com.pimpmypc.api.user.dto.UserAuthDto;
+import com.pimpmypc.api.user.dto.UserPersonalDataDto;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,24 +15,23 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/{id}/account-details")
-    public User getUserAccountDetails(@PathVariable Long id) {
-        return userService.getUserAccountDetails(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserAccountDetails(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUserAccountDetails(id));
     }
 
-    @PutMapping("/{id}/personal-details")
-    public void updateUserPersonalDetails(@PathVariable Long id, @RequestBody User user) {
-        userService.updateUserPersonalDetails(id, user);
+    @PatchMapping("/{id}/personal")
+    public ResponseEntity<UserPersonalDataDto> updateUserPersonalDetails(@PathVariable Long id, @RequestBody UserPersonalDataDto userPersonalDataDto) {
+        return ResponseEntity.ok(userService.updateUserPersonalDetails(id, userPersonalDataDto));
     }
 
-    @PutMapping("/{id}/address-details")
-    public void updateUserAddressDetails(@PathVariable Long id, @RequestBody UserAddressDto user) {
-        System.out.println(user.toString());
-        userService.updateUserAddressDetails(id, user);
+    @PatchMapping("/{id}/address")
+    public ResponseEntity<UserAddressDto> updateUserAddressDetails(@PathVariable Long id, @RequestBody UserAddressDto userAddressDto) {
+        return ResponseEntity.ok(userService.updateUserAddressDetails(id, userAddressDto));
     }
 
-    @PutMapping("/{id}/auth-details")
-    public void updateUserAuthDetails(@PathVariable Long id, @RequestBody UserAuthDto user) {
-        userService.updateUserAuthDetails(id, user);
+    @PatchMapping("/{id}/auth")
+    public ResponseEntity<UserAuthDto> updateUserAuthDetails(@PathVariable Long id, @RequestBody String newPassword) {
+        return ResponseEntity.ok(userService.updateUserAuthDetails(id, newPassword));
     }
 }

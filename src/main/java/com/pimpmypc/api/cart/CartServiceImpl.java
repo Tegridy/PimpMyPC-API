@@ -22,7 +22,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public BigDecimal updateBasket(List<Long> productsIds) {
+    public BigDecimal updateCartAndGetTotalPrice(List<Long> productsIds) {
         List<Product> products = productsIds.stream().map(productService::findProductById).toList();
         customerCart.setProductsInCart(products);
 

@@ -11,7 +11,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "products")
@@ -20,7 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonIgnoreProperties(value = {"quantity", "numberOfItemsSold", "categories", "createdAt", "modifiedAt", "orders"})
+@JsonIgnoreProperties(value = {"numberOfItemsSold", "createdAt", "modifiedAt", "orders", "quantity"})
 public class Product extends BaseEntity {
 
     private String title;
@@ -42,7 +42,7 @@ public class Product extends BaseEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories = new HashSet<>();
+    private List<Category> categories;
 
     @ManyToMany(mappedBy = "products")
     private Set<Order> orders;

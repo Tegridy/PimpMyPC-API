@@ -4,6 +4,7 @@ import com.pimpmypc.api.exception.UserNotFoundException;
 import com.pimpmypc.api.exception.UserRoleNotFoundException;
 import com.pimpmypc.api.user.dto.UserAddressDto;
 import com.pimpmypc.api.user.dto.UserAuthDto;
+import com.pimpmypc.api.user.dto.UserPersonalDataDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ public class UserServiceImpl implements UserService {
         this.addressRepository = addressRepository;
     }
 
+
     @Override
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -41,8 +43,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(User user) {
 
-        Address a = user.getAddress();
-        addressRepository.findByStreet(a.getStreet()).ifPresent(user::setAddress);
+//        Address a = user.getAddress();
+//        addressRepository.findByStreet(a.getStreet()).ifPresent(user::setAddress);
 //
 //        if (a != null) {
 //            user
@@ -61,54 +63,65 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username).isPresent();
     }
 
+//    private AddressDto mapToAddressDto(Address address) {
+//        return new AddressDto(address.getStreet(), address.getCity(), address.getState(), address.getZip());
+//    }
+
     @Override
     public User getUserAccountDetails(Long id) {
         return userRepository.findUserById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with given id do not exist."));
     }
 
-//    private AddressDto mapToAddressDto(Address address) {
-//        return new AddressDto(address.getStreet(), address.getCity(), address.getState(), address.getZip());
-//    }
-
     @Override
-    public void updateUserPersonalDetails(Long id, User newUser) {
-        User user = this.userRepository.findUserById(id).orElseThrow(() -> new UserNotFoundException("User with given id do not exist."));
+    public UserPersonalDataDto updateUserPersonalDetails(Long id, UserPersonalDataDto newUserPersonalData) {
+        User user = this.userRepository.findUserById(id).orElseThrow(
+                () -> new UserNotFoundException("User with given id do not exist."));
 
-        user.setFirstName(newUser.getFirstName());
-        user.setLastName(newUser.getLastName());
-        user.setPhone(newUser.getPhone());
-        user.setEmail(newUser.getEmail());
+        user.setFirstName(newUserPersonalData.getFirstName());
+        user.setLastName(newUserPersonalData.getLastName());
+        user.setPhone(newUserPersonalData.getPhone());
+        user.setEmail(newUserPersonalData.getEmail());
 
         user.setModifiedAt(LocalDateTime.now());
         this.userRepository.save(user);
         log.info(String.format("User with id %d - account personal details updated successfully", id));
+
+        return UserPersonalDataDto.builder().firstName(user.getFirstName()).lastName(user.getLastName())
+                .email(user.getEmail()).phone(user.getPhone()).build();
     }
 
     @Override
-    public void updateUserAddressDetails(Long id, UserAddressDto newAddress) {
-        User user = this.userRepository.findUserById(id).orElseThrow(() -> new UserNotFoundException("User with given id do not exist."));
+    public UserAddressDto updateUserAddressDetails(Long id, UserAddressDto newUserAddress) {
+        User user = this.userRepository.findUserById(id).orElseThrow(
+                () -> new UserNotFoundException("User with given id do not exist."));
         Address address = user.getAddress();
 
-        address.setStreet(newAddress.getStreet());
-        address.setCity(newAddress.getCity());
-        address.setState(newAddress.getState());
-        address.setZip(newAddress.getZip());
+        address.setStreet(newUserAddress.getStreet());
+        address.setCity(newUserAddress.getCity());
+        address.setState(newUserAddress.getState());
+        address.setZip(newUserAddress.getZip());
         address.setModifiedAt(LocalDateTime.now());
 
         user.setAddress(address);
         user.setModifiedAt(LocalDateTime.now());
         this.userRepository.save(user);
         log.info(String.format("User with id %d - address data updated successfully", id));
+
+        return UserAddressDto.builder().street(address.getStreet()).city(address.getCity()).state(address.getState())
+                .zip(address.getZip()).build();
     }
 
     @Override
-    public void updateUserAuthDetails(Long id, UserAuthDto newUser) {
-        User user = this.userRepository.findUserById(id).orElseThrow(() -> new UserNotFoundException("User with given id do not exist."));
+    public UserAuthDto updateUserAuthDetails(Long id, String newPassword) {
+        User user = this.userRepository.findUserById(id).orElseThrow(
+                () -> new UserNotFoundException("User with given id do not exist."));
 
-        user.setPassword(new BCryptPasswordEncoder(12).encode(newUser.getPassword()));
+        user.setPassword(new BCryptPasswordEncoder(12).encode(newPassword));
         user.setModifiedAt(LocalDateTime.now());
         userRepository.save(user);
         log.info(String.format("User with id %d - password changed", id));
+
+        return new UserAuthDto(user.getUsername());
     }
 }

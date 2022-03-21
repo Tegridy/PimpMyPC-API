@@ -1,9 +1,9 @@
 package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.category.CategoryRepository;
+import com.pimpmypc.api.product.dto.ProductDto;
 import com.pimpmypc.api.products.*;
 import com.pimpmypc.api.products.dto.BaseDto;
-import com.pimpmypc.api.products.dto.ProcessorDto;
 import com.pimpmypc.api.products.mappers.ProductsMapper;
 import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;
@@ -41,14 +41,26 @@ public class ProductServiceImpl implements ProductService {
     private final ProductsMapper productsMapper;
 
     @Override
-    public ProductsDto2<ProcessorDto> getAllProcessors(Predicate predicate, Pageable pageable) {
-        Page<Processor> processors = processorRepository.findAllProcessors(predicate, pageable);
+    public ProductsDto2<ProductDto> getAllProcessors(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> processors = processorRepository.findAllProcessors(predicate, pageable)
+                .map(proc -> ProductDto.builder().id(proc.getId()).price(proc.getPrice()).title(proc.getTitle()).imageUrl(proc.getImageUrl()).build());
         long x = categoryRepository.findByName("Processors").getId();
 
-        Page<ProcessorDto> l = processors.map(productsMapper::processorToProcessorDto);
+        // Page<ProcessorDto> l = processors.map(productsMapper::processorToProcessorDto);
 
 
-        return smth2(l, x);
+        return smth3(processors, x);
+    }
+
+    private ProductsDto2 smth3(Page<ProductDto> listt, long x) {
+
+        Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(x);
+
+        ProductsDto2<ProductDto> laptopsResponse = new ProductsDto2<>();
+        laptopsResponse.setProducts(listt);
+        laptopsResponse.setFilters(filters);
+
+        return laptopsResponse;
     }
 
     @Override
@@ -237,6 +249,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findProductById(Long id) {
+        // TODO: Check product quantity if q < 0 throw error
+
+
         return productRepository.findProductById(id);
     }
 }

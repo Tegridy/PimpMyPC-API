@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface CartService {
 
-    BigDecimal updateBasket(List<Long> productsIds);
+    BigDecimal updateCartAndGetTotalPrice(List<Long> productsIds);
 
     List<Product> getCustomerProductsInCart();
 

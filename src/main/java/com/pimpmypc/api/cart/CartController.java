@@ -13,10 +13,10 @@ import java.util.List;
 @AllArgsConstructor
 public class CartController {
 
-    private CartService cartService;
+    private final CartService cartService;
 
-    @PostMapping("/x")
-    ResponseEntity<BigDecimal> updateBasket(@RequestBody List<Long> productList) {
-        return ResponseEntity.ok(cartService.updateBasket(productList));
+    @PutMapping()
+    ResponseEntity<BigDecimal> updateCartAndGetTotalPrice(@RequestBody List<Long> productList) {
+        return ResponseEntity.ok(cartService.updateCartAndGetTotalPrice(productList));
     }
 }

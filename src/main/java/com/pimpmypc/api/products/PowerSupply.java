@@ -1,6 +1,5 @@
 package com.pimpmypc.api.products;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pimpmypc.api.product.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +13,6 @@ import javax.persistence.Entity;
 public class PowerSupply extends Product {
 
     @Column(name = "adapter_power")
-    @JsonProperty("Adapter power")
     private Integer adapterPower;
     private String standard;
     private String certificate;
