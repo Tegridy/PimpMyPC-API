@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository<T extends Product> extends JpaRepository<T, Long>, QuerydslPredicateExecutor<T> {
+public interface ProductRepository extends JpaRepository<Product, Long>, QuerydslPredicateExecutor<Product> {
 
     @Query(value = "SELECT p FROM products p WHERE p.title LIKE CONCAT('%',:productName,'%')")
     Page<Product> findProductsByName(String productName, Pageable pageable);
@@ -22,47 +22,13 @@ public interface ProductRepository<T extends Product> extends JpaRepository<T, L
     Page<Product> findProductsByNameAndCategory(String productName, String category, Pageable pageable);
 
     @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY number_of_sold DESC LIMIT 6", nativeQuery = true)
-    List<T> findOurChoice();
+    List<Product> findOurChoice();
 
     @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY number_of_sold DESC LIMIT 18", nativeQuery = true)
-    List<T> findBestsellers();
+    List<Product> findBestsellers();
 
     @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY id DESC LIMIT 1", nativeQuery = true)
-    T findNewestProduct();
+    Product findNewestProduct();
 
-    T findProductById(Long id);
-
-
-//    @Query("SELECT p FROM processors p WHERE id = ?1")
-//    Optional<Processor> findProcessorById(Long id);
-//
-//    @Query("SELECT m FROM motherboards m WHERE id = ?1")
-//    Optional<Motherboard> findMotherboardById(Long id);
-//
-//    @Query("SELECT c FROM cases c WHERE id = ?1")
-//    Optional<Case> findCasedById(Long id);
-//
-//    @Query("SELECT r FROM ram_memory r WHERE id = ?1")
-//    Optional<Ram> findRamById(Long id);
-//
-//    @Query("SELECT m FROM mouses m WHERE id = ?1")
-//    Optional<Mouse> findMousedById(Long id);
-//
-//    @Query("SELECT k FROM keyboards k WHERE id = ?1")
-//    Optional<Keyboard> findKeyboardById(Long id);
-//
-//    @Query("SELECT m FROM monitors m WHERE id = ?1")
-//    Optional<Monitor> findMonitorById(Long id);
-//
-//    @Query("SELECT h FROM hard_discs h WHERE id = ?1")
-//    Optional<HardDisc> findHardDiscById(Long id);
-//
-//    @Query("SELECT g FROM graphic_cards g WHERE id = ?1")
-//    Optional<GraphicCard> findGraphicCardById(Long id);
-//
-//    @Query("SELECT l FROM laptops l WHERE id = ?1")
-//    Optional<Laptop> findLaptopById(Long id);
-//
-//    @Query("SELECT c FROM computers c WHERE id = ?1")
-//    Optional<Computer> findComputerById(Long id);
+    Product findProductById(Long id);
 }

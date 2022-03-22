@@ -5,12 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.pimpmypc.api.exception.AuthenticationException;
 import com.pimpmypc.api.exception.UserAlreadyExistException;
-import com.pimpmypc.api.exception.UserNotFoundException;
 import com.pimpmypc.api.security.JwtTokenProvider;
 import com.pimpmypc.api.security.Role;
-import com.pimpmypc.api.user.Address;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserService;
+import com.pimpmypc.api.user.address.Address;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -49,7 +48,6 @@ public class AuthService {
             userAddress.setCreatedAt(LocalDateTime.now());
             userAddress.setModifiedAt(LocalDateTime.now());
 
-
             User user = new User();
             user.setUsername(newUser.getUsername());
             user.setPassword(passwordEncoder.encode(newUser.getPassword()));
@@ -76,8 +74,7 @@ public class AuthService {
     public String signIn(String username, String password) throws AuthenticationException, JsonProcessingException {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
-        User user = userService.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException(String.format("User %s not found.", username)));
+        User user = userService.findByUsername(username);
 
         log.info(String.format("Authentication successful for user %s.", username));
 

@@ -1,14 +1,15 @@
 package com.pimpmypc.api.order;
 
-import com.pimpmypc.api.product.SingleOrderDto;
+import com.pimpmypc.api.order.dto.OrderDto;
+import com.pimpmypc.api.order.dto.OrderResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface OrderService {
 
-    OrderDto saveOrder(Order order);
+    OrderResponse saveOrder(Order order);
 
-    Page<OrderDto> getUserOrdersDetails(Pageable pageable);
+    Page<OrderResponse> getUserOrders(Pageable pageable);
 
-    SingleOrderDto getUserOrdersProducts(Long id);
+    OrderDto getUserOrderDetails(Long id);
 }

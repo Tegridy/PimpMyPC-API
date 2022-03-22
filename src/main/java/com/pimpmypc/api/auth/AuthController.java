@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pimpmypc.api.exception.AuthenticationException;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.dto.UserDto;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,29 +18,18 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/v1/auth")
 @CrossOrigin("*")
+@AllArgsConstructor
 public class AuthController {
 
     private final AuthService authService;
     private final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
-
     @PostMapping(value = "/register", produces = "application/json")
     public ResponseEntity<String> register(@RequestBody @Valid User user) throws JsonProcessingException {
-//        try {
-
         String username = authService.signUp(user);
         logger.info(String.format("User %s account successfully created.", user.getUsername()));
 
-
-        return new ResponseEntity<>(username
-                , HttpStatus.CREATED);
-
-//        } catch (UserAlreadyExistException | JsonProcessingException ex) {
-//            throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
-//        }
+        return new ResponseEntity<>(username, HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/login", produces = "application/json")

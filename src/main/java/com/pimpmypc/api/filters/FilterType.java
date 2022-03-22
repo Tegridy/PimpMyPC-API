@@ -1,7 +1,8 @@
-package com.pimpmypc.api.product;
+package com.pimpmypc.api.filters;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pimpmypc.api.product.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -73,13 +73,13 @@ public class UserServiceTest {
     @Test
     public void shouldFindUserByUsername() {
         Mockito.when(userService.findByUsername(user.getUsername()))
-                .thenReturn(Optional.of(user));
+                .thenReturn(user);
 
         String username = user.getUsername();
 
-        Optional<User> user = userService.findByUsername(username);
+        User user = userService.findByUsername(username);
         Assertions.assertNotNull(user);
-        assertEquals(username, user.get().getUsername());
+        assertEquals(username, user.getUsername());
     }
 
     @Test
@@ -107,7 +107,7 @@ public class UserServiceTest {
         List<User> returnedUsers = userService.getAllUsers();
 
         assertEquals(returnedUsers, users);
-        
+
         Mockito.verify(userRepository, Mockito.times(1)).save(user);
         Mockito.verify(userRepository, Mockito.times(1)).save(user2);
         Mockito.verify(userRepository, Mockito.times(1)).findAll();

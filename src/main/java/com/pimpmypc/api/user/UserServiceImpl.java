@@ -2,33 +2,23 @@ package com.pimpmypc.api.user;
 
 import com.pimpmypc.api.exception.UserNotFoundException;
 import com.pimpmypc.api.exception.UserRoleNotFoundException;
+import com.pimpmypc.api.user.address.Address;
 import com.pimpmypc.api.user.dto.UserAddressDto;
 import com.pimpmypc.api.user.dto.UserAuthDto;
 import com.pimpmypc.api.user.dto.UserPersonalDataDto;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final AddressRepository addressRepository;
-
-    public UserServiceImpl(UserRepository userRepository, AddressRepository addressRepository) {
-        this.userRepository = userRepository;
-        this.addressRepository = addressRepository;
-    }
-
-
-    @Override
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
 
     @Override
     public List<User> getAllUsers() {
@@ -37,25 +27,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
-        return userRepository.getById(id);
+        return userRepository.findUserById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " not found"));
     }
 
     @Override
-    public User saveUser(User user) {
-
-//        Address a = user.getAddress();
-//        addressRepository.findByStreet(a.getStreet()).ifPresent(user::setAddress);
-//
-//        if (a != null) {
-//            user
-//        }
-        //addressRepository.save(user.getAddress());
-
+    public void saveUser(User user) {
         if (user.getRoles() == null || user.getRoles().isEmpty()) {
+            log.error("User must have at least a role set!");
             throw new UserRoleNotFoundException("User must have at least a role set!");
         }
 
-        return userRepository.save(user);
+        userRepository.save(user);
+
+        log.info("User: " + user.getUsername() + " saved successfully");
     }
 
     @Override
@@ -63,20 +48,16 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username).isPresent();
     }
 
-//    private AddressDto mapToAddressDto(Address address) {
-//        return new AddressDto(address.getStreet(), address.getCity(), address.getState(), address.getZip());
-//    }
-
     @Override
     public User getUserAccountDetails(Long id) {
         return userRepository.findUserById(id)
-                .orElseThrow(() -> new UserNotFoundException("User with given id do not exist."));
+                .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " do not exist"));
     }
 
     @Override
     public UserPersonalDataDto updateUserPersonalDetails(Long id, UserPersonalDataDto newUserPersonalData) {
         User user = this.userRepository.findUserById(id).orElseThrow(
-                () -> new UserNotFoundException("User with given id do not exist."));
+                () -> new UserNotFoundException("User with given id do not exist"));
 
         user.setFirstName(newUserPersonalData.getFirstName());
         user.setLastName(newUserPersonalData.getLastName());
@@ -85,7 +66,7 @@ public class UserServiceImpl implements UserService {
 
         user.setModifiedAt(LocalDateTime.now());
         this.userRepository.save(user);
-        log.info(String.format("User with id %d - account personal details updated successfully", id));
+        log.info(String.format("User with id: %d - account personal details updated successfully", id));
 
         return UserPersonalDataDto.builder().firstName(user.getFirstName()).lastName(user.getLastName())
                 .email(user.getEmail()).phone(user.getPhone()).build();
@@ -94,7 +75,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserAddressDto updateUserAddressDetails(Long id, UserAddressDto newUserAddress) {
         User user = this.userRepository.findUserById(id).orElseThrow(
-                () -> new UserNotFoundException("User with given id do not exist."));
+                () -> new UserNotFoundException("User with given id do not exist"));
         Address address = user.getAddress();
 
         address.setStreet(newUserAddress.getStreet());
@@ -106,7 +87,7 @@ public class UserServiceImpl implements UserService {
         user.setAddress(address);
         user.setModifiedAt(LocalDateTime.now());
         this.userRepository.save(user);
-        log.info(String.format("User with id %d - address data updated successfully", id));
+        log.info(String.format("User with id: %d - address data updated successfully", id));
 
         return UserAddressDto.builder().street(address.getStreet()).city(address.getCity()).state(address.getState())
                 .zip(address.getZip()).build();
@@ -115,13 +96,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserAuthDto updateUserAuthDetails(Long id, String newPassword) {
         User user = this.userRepository.findUserById(id).orElseThrow(
-                () -> new UserNotFoundException("User with given id do not exist."));
+                () -> new UserNotFoundException("User with given id do not exist"));
 
         user.setPassword(new BCryptPasswordEncoder(12).encode(newPassword));
         user.setModifiedAt(LocalDateTime.now());
         userRepository.save(user);
-        log.info(String.format("User with id %d - password changed", id));
+        log.info(String.format("User with id: %d - password changed", id));
 
         return new UserAuthDto(user.getUsername());
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException(String.format("User %s not found", username)));
     }
 }

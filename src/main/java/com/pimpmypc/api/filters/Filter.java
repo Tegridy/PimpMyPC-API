@@ -1,4 +1,4 @@
-package com.pimpmypc.api.product;
+package com.pimpmypc.api.filters;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
@@ -17,6 +17,7 @@ public class Filter implements Comparable<Filter> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     @Column(name = "filter_name")
     private String name;
 
@@ -38,12 +39,6 @@ public class Filter implements Comparable<Filter> {
 
     @Override
     public int compareTo(Filter o) {
-        if (this.name.compareTo(o.name) == 0) {
-            return 0;
-        } else if (this.name.compareTo(o.name) > 0) {
-            return 1;
-        } else {
-            return -1;
-        }
+        return Integer.compare(this.name.compareTo(o.name), 0);
     }
 }

@@ -31,8 +31,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(InternalAuthenticationServiceException.class)
-    public ResponseEntity<Object> handleInternalAuthenticationServiceException(InternalAuthenticationServiceException ex,
-                                                                               WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleInternalAuthenticationServiceException(InternalAuthenticationServiceException ex,
+                                                                                      WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
     }
@@ -45,36 +45,52 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(JwtException.class)
-    protected ResponseEntity<Object> handleJwtTokenException(JwtException ex,
-                                                             HttpHeaders headers,
-                                                             HttpStatus status, WebRequest request) {
-        return ResponseEntity.badRequest().body(ex.getMessage());
+    protected ResponseEntity<ErrorResponse> handleJwtTokenException(JwtException ex,
+                                                                    HttpHeaders headers,
+                                                                    HttpStatus status, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 
     @ExceptionHandler(UserRoleNotFoundException.class)
-    protected ResponseEntity<Object> handleUserRoleNotFoundException(UserRoleNotFoundException ex,
-                                                                     HttpHeaders headers,
-                                                                     HttpStatus status, WebRequest request) {
-        return ResponseEntity.internalServerError().body(ex.getMessage());
+    protected ResponseEntity<ErrorResponse> handleUserRoleNotFoundException(UserRoleNotFoundException ex,
+                                                                            HttpHeaders headers,
+                                                                            HttpStatus status, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 
     @ExceptionHandler(ProductException.class)
-    protected ResponseEntity<Object> handleProductNotFoundException(ProductException ex,
-                                                                    WebRequest request) {
+    protected ResponseEntity<ErrorResponse> handleProductNotFoundException(ProductException ex,
+                                                                           WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(UserAlreadyExistException.class)
-    protected ResponseEntity<Object> handleUserAlreadyExistException(UserAlreadyExistException ex,
-                                                                     WebRequest request) {
+    protected ResponseEntity<ErrorResponse> handleUserAlreadyExistException(UserAlreadyExistException ex,
+                                                                            WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    protected ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex,
-                                                                 WebRequest request) {
+    protected ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException ex,
+                                                                        WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(OrderNotFoundException.class)
+    protected ResponseEntity<ErrorResponse> handleOrderNotFoundException(OrderNotFoundException ex,
+                                                                         WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(CategoryNotFoundException.class)
+    protected ResponseEntity<ErrorResponse> handleCategoryNotFoundException(CategoryNotFoundException ex,
+                                                                            WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }

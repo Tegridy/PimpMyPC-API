@@ -2,12 +2,14 @@ package com.pimpmypc.api.order;
 
 import com.pimpmypc.api.auth.AuthService;
 import com.pimpmypc.api.cart.CartService;
+import com.pimpmypc.api.exception.OrderNotFoundException;
 import com.pimpmypc.api.exception.UserNotFoundException;
+import com.pimpmypc.api.order.dto.OrderDto;
+import com.pimpmypc.api.order.dto.OrderResponse;
 import com.pimpmypc.api.product.Product;
-import com.pimpmypc.api.product.SingleOrderDto;
-import com.pimpmypc.api.user.AddressRepository;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
+import com.pimpmypc.api.user.address.AddressRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -35,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public OrderDto saveOrder(Order order) {
+    public OrderResponse saveOrder(Order order) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         // TODO: Change product quantity after order is complete
@@ -57,39 +59,40 @@ public class OrderServiceImpl implements OrderService {
         }
 
 
-        log.info("Saving order...");
+        log.info("Saving order: " + order.getId());
         Order savedOrder = orderRepository.save(order);
-        cartService.clear();
+        cartService.clearCart();
 
-        return OrderDto.builder().id(savedOrder.getId()).status(savedOrder.getOrderStatus()).build();
+        return OrderResponse.builder().id(savedOrder.getId()).status(savedOrder.getOrderStatus()).build();
     }
 
     @Override
-    public Page<OrderDto> getUserOrdersDetails(Pageable pageable) {
+    public Page<OrderResponse> getUserOrders(Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        List<OrderDto> userOrders = new ArrayList<>();
+        List<OrderResponse> userOrders = new ArrayList<>();
 
         if (authentication != null) {
             log.info(authentication.getName() + " is logged in. Returning user orders.");
-            User u = userRepository.findByUsername(authentication.getName())
+            User user = userRepository.findByUsername(authentication.getName())
                     .orElseThrow(() -> new UserNotFoundException("User with given name not found."));
 
 
-            userOrders = u.getUserOrders().stream().map(order -> OrderDto.builder().status(order.getOrderStatus())
+            userOrders = user.getUserOrders().stream().map(order -> OrderResponse.builder().status(order.getOrderStatus())
                     .id(order.getId()).price(order.getTotalPrice()).orderDate(order.getCreatedAt().toLocalDate())
                     .build()).toList();
         }
 
-        return new PageImpl<OrderDto>(userOrders, pageable, 9);
+        return new PageImpl<OrderResponse>(userOrders, pageable, 9);
     }
 
     @Override
-    public SingleOrderDto getUserOrdersProducts(Long id) {
-        Order o = orderRepository.getById(id);
-        List<Product> orderProducts = o.getProducts();
+    public OrderDto getUserOrderDetails(Long id) {
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new OrderNotFoundException("Order with id: " + id + " not found."));
+        List<Product> orderProducts = order.getProducts();
 
-        return SingleOrderDto.builder().id(o.getId()).title("Order: " + o.getId())
-                .imageUrl(orderProducts.get(0).getImageUrl()).products(orderProducts).address(o.getDeliveryAddress())
+        return OrderDto.builder().id(order.getId()).title("Order: " + order.getId())
+                .imageUrl(orderProducts.get(0).getImageUrl()).products(orderProducts).address(order.getDeliveryAddress())
                 .price(orderProducts.stream().map(Product::getPrice).reduce(new BigDecimal(0), BigDecimal::add))
                 .build();
     }

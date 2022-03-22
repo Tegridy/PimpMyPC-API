@@ -1,5 +1,7 @@
 package com.pimpmypc.api.product;
 
+import com.pimpmypc.api.filters.FilterType;
+import com.pimpmypc.api.product.dto.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +14,8 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductsDto2<ProductDto> {
+public class ProductsResponse {
 
     private Page<ProductDto> products;
     private Set<FilterType> filters;
 }
-

@@ -3,6 +3,7 @@ package com.pimpmypc.api.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pimpmypc.api.order.Order;
 import com.pimpmypc.api.security.Role;
+import com.pimpmypc.api.user.address.Address;
 import com.pimpmypc.api.utils.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,6 +52,7 @@ public class User extends BaseEntity {
     @NotEmpty(message = "E-mail is required.")
     private String email;
 
+    @JsonIgnore
     private Long addressId;
 
     @OneToOne(cascade = CascadeType.ALL)

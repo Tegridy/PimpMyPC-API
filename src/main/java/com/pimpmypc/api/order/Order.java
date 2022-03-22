@@ -2,8 +2,8 @@ package com.pimpmypc.api.order;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pimpmypc.api.product.Product;
-import com.pimpmypc.api.user.Address;
 import com.pimpmypc.api.user.User;
+import com.pimpmypc.api.user.address.Address;
 import com.pimpmypc.api.utils.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

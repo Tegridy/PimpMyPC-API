@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-
 @Service
 @Getter
 public class CartServiceImpl implements CartService {
@@ -26,7 +25,6 @@ public class CartServiceImpl implements CartService {
         List<Product> products = productsIds.stream().map(productService::findProductById).toList();
         customerCart.setProductsInCart(products);
 
-        System.out.println(customerCart.getProductsInCart().size());
         return calculateCartTotalPrice();
     }
 
@@ -41,7 +39,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void clear() {
+    public void clearCart() {
         customerCart = new Cart();
     }
 }

@@ -2,8 +2,8 @@ package com.pimpmypc.api.configuration;
 
 import com.pimpmypc.api.security.JwtTokenFilterConfigure;
 import com.pimpmypc.api.security.JwtTokenProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,14 +19,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Slf4j
+@AllArgsConstructor
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
-    private final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
-
-    public WebSecurityConfig(JwtTokenProvider jwtTokenProvider) {
-        this.jwtTokenProvider = jwtTokenProvider;
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -46,9 +43,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.apply(new JwtTokenFilterConfigure(jwtTokenProvider));
 
-        // Optional, if you want to test the API from a browser
-        // http.httpBasic();
-        logger.info("HttpSecurity configured");
+        log.info("HttpSecurity configured");
     }
 
     @Override
@@ -60,12 +55,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/actuator/**")
                 .antMatchers("/webjars/**")//
                 .antMatchers("/public")
-
                 // Un-secure H2 Database (for testing purposes, H2 console shouldn't be unprotected in production)
                 .and()
                 .ignoring()
                 .antMatchers("/h2-console/**/**");
-        logger.info("WebSecurity configured");
+        log.info("WebSecurity configured");
     }
 
     @Bean

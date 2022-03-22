@@ -1,15 +1,16 @@
 package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.category.CategoryRepository;
+import com.pimpmypc.api.exception.CategoryNotFoundException;
+import com.pimpmypc.api.filters.FilterType;
+import com.pimpmypc.api.filters.FiltersRepository;
 import com.pimpmypc.api.product.dto.ProductDto;
 import com.pimpmypc.api.products.*;
-import com.pimpmypc.api.products.dto.BaseDto;
-import com.pimpmypc.api.products.mappers.ProductsMapper;
 import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.Set;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
     private final LaptopRepository laptopRepository;
@@ -36,210 +38,145 @@ public class ProductServiceImpl implements ProductService {
     private final SmartphoneRepository smartphoneRepository;
     private final CategoryRepository categoryRepository;
     private final FiltersRepository filterTypeRepository;
-    private final ProductRepository<Product> productRepository;
-    private final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
-    private final ProductsMapper productsMapper;
+    private final ProductRepository productRepository;
+
+    private ProductsResponse createResponse(Page<ProductDto> productsPage, String categoryName) {
+
+        long categoryId = categoryRepository.findByName(categoryName)
+                .orElseThrow(() -> new CategoryNotFoundException("Category with given name not found")).getId();
+
+        Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(categoryId);
+
+        ProductsResponse laptopsResponse = new ProductsResponse();
+        laptopsResponse.setProducts(productsPage);
+        laptopsResponse.setFilters(filters);
+
+        return laptopsResponse;
+    }
 
     @Override
-    public ProductsDto2<ProductDto> getAllProcessors(Predicate predicate, Pageable pageable) {
+    public ProductsResponse getAllProcessors(Predicate predicate, Pageable pageable) {
         Page<ProductDto> processors = processorRepository.findAllProcessors(predicate, pageable)
-                .map(proc -> ProductDto.builder().id(proc.getId()).price(proc.getPrice()).title(proc.getTitle()).imageUrl(proc.getImageUrl()).build());
-        long x = categoryRepository.findByName("Processors").getId();
+                .map(this::mapToDto);
 
-        // Page<ProcessorDto> l = processors.map(productsMapper::processorToProcessorDto);
-
-
-        return smth3(processors, x);
+        return createResponse(processors, "Processors");
     }
 
-    private ProductsDto2 smth3(Page<ProductDto> listt, long x) {
-
-        Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(x);
-
-        ProductsDto2<ProductDto> laptopsResponse = new ProductsDto2<>();
-        laptopsResponse.setProducts(listt);
-        laptopsResponse.setFilters(filters);
-
-        return laptopsResponse;
+    private ProductDto mapToDto(Product product) {
+        return ProductDto.builder().id(product.getId()).price(product.getPrice())
+                .title(product.getTitle()).imageUrl(product.getImageUrl()).build();
     }
 
     @Override
-    public ProductsDto<Motherboard> getAllMotherboards(Predicate predicate, Pageable pageable) {
-        Page<Motherboard> motherboards = motherboardRepository.findAllMotherboards(predicate, pageable);
-        long x = categoryRepository.findByName("Motherboards").getId();
+    public ProductsResponse getAllMotherboards(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> motherboards = motherboardRepository.findAllMotherboards(predicate, pageable).map(this::mapToDto);
 
-        return smth(motherboards, x);
+
+        return createResponse(motherboards, "Motherboards");
     }
 
     @Override
-    public ProductsDto<Case> getAllCases(Predicate predicate, Pageable pageable) {
-        Page<Case> cases = caseRepository.findAllCases(predicate, pageable);
-        long x = categoryRepository.findByName("Cases").getId();
+    public ProductsResponse getAllCases(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> cases = caseRepository.findAllCases(predicate, pageable).map(this::mapToDto);
 
-        return smth(cases, x);
+        return createResponse(cases, "Cases");
     }
 
     @Override
-    public ProductsDto<Ram> getAllRamMemory(Predicate predicate, Pageable pageable) {
-        Page<Ram> rams = ramRepository.findAllRams(predicate, pageable);
-        long x = categoryRepository.findByName("Memory RAM").getId();
+    public ProductsResponse getAllRamMemory(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> rams = ramRepository.findAllRams(predicate, pageable).map(this::mapToDto);
 
-        return smth(rams, x);
+        return createResponse(rams, "Memory RAM");
     }
 
     @Override
-    public ProductsDto<Mouse> getAllMouses(Predicate predicate, Pageable pageable) {
-        Page<Mouse> mice = mouseRepository.findAllMouses(predicate, pageable);
-        long x = categoryRepository.findByName("Computer mouses").getId();
+    public ProductsResponse getAllMouses(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> mice = mouseRepository.findAllMouses(predicate, pageable).map(this::mapToDto);
 
-        return smth(mice, x);
+        return createResponse(mice, "Computer mouses");
     }
 
     @Override
-    public ProductsDto<Keyboard> getAllKeyboards(Predicate predicate, Pageable pageable) {
-        Page<Keyboard> keyboards = keyboardRepository.findAllKeyboards(predicate, pageable);
-        long x = categoryRepository.findByName("Computer keyboards").getId();
+    public ProductsResponse getAllKeyboards(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> keyboards = keyboardRepository.findAllKeyboards(predicate, pageable).map(this::mapToDto);
 
-        return smth(keyboards, x);
+        return createResponse(keyboards, "Computer keyboards");
     }
 
     @Override
-    public ProductsDto<Monitor> getAllMonitors(Predicate predicate, Pageable pageable) {
-        Page<Monitor> monitors = monitorRepository.findAllMonitors(predicate, pageable);
-        long x = categoryRepository.findByName("Monitors").getId();
+    public ProductsResponse getAllMonitors(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> monitors = monitorRepository.findAllMonitors(predicate, pageable).map(this::mapToDto);
 
-        return smth(monitors, x);
+        return createResponse(monitors, "Monitors");
     }
 
     @Override
-    public ProductsDto<HardDrive> getAllHardDiscs(Predicate predicate, Pageable pageable) {
-        Page<HardDrive> hardDiscs = hardDriveRepository.findAllHardDiscs(predicate, pageable);
-        long x = categoryRepository.findByName("Hard discs").getId();
+    public ProductsResponse getAllHardDiscs(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> hardDiscs = hardDriveRepository.findAllHardDiscs(predicate, pageable).map(this::mapToDto);
 
-        return smth(hardDiscs, x);
+        return createResponse(hardDiscs, "Hard discs");
     }
 
     @Override
-    public ProductsDto<GraphicCard> getAllGraphicCards(Predicate predicate, Pageable pageable) {
-        Page<GraphicCard> graphicCards = graphicCardRepository.findAllGraphicCards(predicate, pageable);
-        long x = categoryRepository.findByName("Graphic cards").getId();
+    public ProductsResponse getAllGraphicCards(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> graphicCards = graphicCardRepository.findAllGraphicCards(predicate, pageable).map(this::mapToDto);
 
-        return smth(graphicCards, x);
+        return createResponse(graphicCards, "Graphic cards");
     }
 
     @Override
-    public ProductsDto<PowerSupply> getAllPowerSupplies(Predicate predicate, Pageable pageable) {
-        Page<PowerSupply> powerSupplies = powerSupplyRepository.findAllPowerSupplies(predicate, pageable);
-        long x = categoryRepository.findByName("Power supply").getId();
+    public ProductsResponse getAllPowerSupplies(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> powerSupplies = powerSupplyRepository.findAllPowerSupplies(predicate, pageable).map(this::mapToDto);
 
-        return smth(powerSupplies, x);
+        return createResponse(powerSupplies, "Power supply");
     }
 
     @Override
-    public ProductsDto<Smartphone> getAllSmartphones(Predicate predicate, Pageable pageable) {
-        Page<Smartphone> smartphones = smartphoneRepository.findAllSmartphones(predicate, pageable);
-        long x = categoryRepository.findByName("Smartphones").getId();
+    public ProductsResponse getAllSmartphones(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> smartphones = smartphoneRepository.findAllSmartphones(predicate, pageable).map(this::mapToDto);
 
-        return smth(smartphones, x);
-    }
-
-    private <T extends Product> ProductsDto<T> smth(Page<T> listt, long x) {
-
-        Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(x);
-
-        ProductsDto<T> laptopsResponse = new ProductsDto<>();
-        laptopsResponse.setProducts(listt);
-        laptopsResponse.setFilters(filters);
-
-        return laptopsResponse;
-    }
-
-    private <T extends BaseDto> ProductsDto2<T> smth2(Page<T> listt, long x) {
-
-        Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(x);
-
-        ProductsDto2<T> laptopsResponse = new ProductsDto2<>();
-        laptopsResponse.setProducts(listt);
-        laptopsResponse.setFilters(filters);
-
-        return laptopsResponse;
+        return createResponse(smartphones, "Smartphones");
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        //return productRepository.findAll();
-        return null;
+    public ProductsResponse getAllLaptops(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> laptops = laptopRepository.findAllLaptops(predicate, pageable).map(this::mapToDto);
+
+        return createResponse(laptops, "Laptops");
     }
 
     @Override
-    public Product getProductById(long id) {
-//        return productRepository.findById(id).orElseThrow(() -> {
-//            logger.warn("Product with id " + id + " not found.");
-//            throw new ProductException("Product with id " + id + " not found.");
-//        });
-        return null;
-    }
+    public ProductsResponse getAllComputers(Predicate predicate, Pageable pageable) {
+        Page<ProductDto> computers = computerRepository.findAllComputers(predicate, pageable).map(this::mapToDto);
 
-    @Override
-    public ProductsDto<Laptop> getAllLaptops(Predicate predicate, Pageable pageable) {
-
-        Page<Laptop> laptops = laptopRepository.findAllLaptops(predicate, pageable);
-        long x = categoryRepository.findByName("Laptops").getId();
-//
-//
-//        Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(x);
-//
-//        ProductsDto<Laptop> laptopsResponse = new ProductsDto<>();
-//        laptopsResponse.setProducts(laptops);
-//        laptopsResponse.setFilters(filters);
-
-        return smth(laptops, x);
-    }
-
-    @Override
-    public ProductsDto<Computer> getAllComputers(Predicate predicate, Pageable pageable) {
-
-        Page<Computer> computers = computerRepository.findAllComputers(predicate, pageable);
-        long x = categoryRepository.findByName("Computers").getId();
-
-
-        Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(x);
-
-        ProductsDto<Computer> computersResponse = new ProductsDto<>();
-        computersResponse.setProducts(computers);
-        computersResponse.setFilters(filters);
-
-        return computersResponse;
+        return createResponse(computers, "Computers");
     }
 
 
     @Override
-    public Page<Product> findProductByName(String productName, Pageable pageable) {
-        return productRepository.findProductsByName(productName, pageable);
+    public Page<ProductDto> findProductsByName(String productName, Pageable pageable) {
+        List<ProductDto> productsDtos = productRepository.findProductsByName(productName, pageable)
+                .stream().map(this::mapToDto).toList();
+        return new PageImpl<>(productsDtos);
     }
 
     @Override
-    public Page<Product> findProductsByNameAndCategory(String productName, String productCategory, Pageable pageable) {
-//        List<Tuple> lst = productRepository.findProductsByNameAndCategory(productName, productCategory);
-//
-//        return lst.stream().map(product ->
-//                new SearchProductDto(
-//                        product.get(0, Long.class),
-//                        product.get(1, String.class),
-//                        product.get(2, String.class),
-//                        product.get(3, BigDecimal.class)
-//                )).toList();
-        return productRepository.findProductsByNameAndCategory(productName, productCategory, pageable);
+    public Page<ProductDto> findProductsByNameAndCategory(String productName, String productCategory, Pageable pageable) {
+        List<ProductDto> productsDtos = productRepository
+                .findProductsByNameAndCategory(productName, productCategory, pageable)
+                .stream().map(this::mapToDto).toList();
+
+        return new PageImpl<>(productsDtos);
     }
 
     @Override
-    public List<Product> getOurChoiceProducts() {
-        return productRepository.findOurChoice();
+    public List<ProductDto> getOurChoiceProducts() {
+        return productRepository.findOurChoice().stream().map(this::mapToDto).toList();
     }
 
     @Override
-    public List<Product> getBestsellers() {
-        return productRepository.findBestsellers();
+    public List<ProductDto> getBestsellers() {
+        return productRepository.findBestsellers().stream().map(this::mapToDto).toList();
     }
 
     @Override
@@ -249,9 +186,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findProductById(Long id) {
-        // TODO: Check product quantity if q < 0 throw error
-
-
         return productRepository.findProductById(id);
     }
 }

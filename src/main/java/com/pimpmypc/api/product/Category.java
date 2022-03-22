@@ -2,10 +2,12 @@ package com.pimpmypc.api.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.pimpmypc.api.filters.FilterType;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity(name = "categories")
@@ -45,14 +47,12 @@ public class Category {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Category)) return false;
-
-        Category category = (Category) o;
+        if (!(o instanceof Category category)) return false;
 
         if (!id.equals(category.id)) return false;
-        if (parentId != null ? !parentId.equals(category.parentId) : category.parentId != null) return false;
+        if (!Objects.equals(parentId, category.parentId)) return false;
         if (!title.equals(category.title)) return false;
-        return iconName != null ? iconName.equals(category.iconName) : category.iconName == null;
+        return Objects.equals(iconName, category.iconName);
     }
 
     @Override

@@ -1,5 +1,6 @@
-package com.pimpmypc.api.order;
+package com.pimpmypc.api.order.dto;
 
+import com.pimpmypc.api.order.OrderStatus;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-public class OrderDto {
+public class OrderResponse {
 
     private Long id;
     private OrderStatus status;

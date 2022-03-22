@@ -1,7 +1,6 @@
 package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.product.dto.ProductDto;
-import com.pimpmypc.api.products.*;
 import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,45 +10,41 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<Product> getAllProducts();
+    ProductsResponse getAllProcessors(Predicate predicate, Pageable pageable);
 
-    Product getProductById(long id);
+    ProductsResponse getAllMotherboards(Predicate predicate, Pageable pageable);
 
-    ProductsDto2<ProductDto> getAllProcessors(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllCases(Predicate predicate, Pageable pageable);
 
-    ProductsDto<Motherboard> getAllMotherboards(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllRamMemory(Predicate predicate, Pageable pageable);
 
-    ProductsDto<Case> getAllCases(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllMouses(Predicate predicate, Pageable pageable);
 
-    ProductsDto<Ram> getAllRamMemory(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllKeyboards(Predicate predicate, Pageable pageable);
 
-    ProductsDto<Mouse> getAllMouses(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllMonitors(Predicate predicate, Pageable pageable);
 
-    ProductsDto<Keyboard> getAllKeyboards(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllHardDiscs(Predicate predicate, Pageable pageable);
 
-    ProductsDto<Monitor> getAllMonitors(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllPowerSupplies(Predicate predicate, Pageable pageable);
 
-    ProductsDto<HardDrive> getAllHardDiscs(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllGraphicCards(Predicate predicate, Pageable pageable);
 
-    ProductsDto<PowerSupply> getAllPowerSupplies(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllLaptops(Predicate predicate, Pageable pageable);
 
-    ProductsDto<GraphicCard> getAllGraphicCards(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllSmartphones(Predicate predicate, Pageable pageable);
 
-    ProductsDto<Laptop> getAllLaptops(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllComputers(Predicate predicate, Pageable pageable);
 
-    ProductsDto<Smartphone> getAllSmartphones(Predicate predicate, Pageable pageable);
+    List<ProductDto> getBestsellers();
 
-    ProductsDto<Computer> getAllComputers(Predicate predicate, Pageable pageable);
-
-    List<Product> getBestsellers();
-
-    List<Product> getOurChoiceProducts();
+    List<ProductDto> getOurChoiceProducts();
 
     Product getNewestProduct();
 
     Product findProductById(Long id);
 
-    Page<Product> findProductByName(String productName, Pageable pageable);
+    Page<ProductDto> findProductsByName(String productName, Pageable pageable);
 
-    Page<Product> findProductsByNameAndCategory(String productName, String productCategory, Pageable pageable);
+    Page<ProductDto> findProductsByNameAndCategory(String productName, String productCategory, Pageable pageable);
 }

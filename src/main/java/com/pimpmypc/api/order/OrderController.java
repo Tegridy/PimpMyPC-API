@@ -1,6 +1,7 @@
 package com.pimpmypc.api.order;
 
-import com.pimpmypc.api.product.SingleOrderDto;
+import com.pimpmypc.api.order.dto.OrderDto;
+import com.pimpmypc.api.order.dto.OrderResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,18 +17,18 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("")
-    public ResponseEntity<OrderDto> saveOrder(@RequestBody Order order) {
-        OrderDto orderDto = orderService.saveOrder(order);
-        return ResponseEntity.ok(orderDto);
+    public ResponseEntity<OrderResponse> saveOrder(@RequestBody Order order) {
+        OrderResponse orderResponse = orderService.saveOrder(order);
+        return ResponseEntity.ok(orderResponse);
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<OrderDto>> getUserOrdersDetails(Pageable pageable) {
-        return ResponseEntity.ok(orderService.getUserOrdersDetails(pageable));
+    public ResponseEntity<Page<OrderResponse>> getUserOrders(Pageable pageable) {
+        return ResponseEntity.ok(orderService.getUserOrders(pageable));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SingleOrderDto> getUserOrdersProducts(@PathVariable Long id) {
-        return ResponseEntity.ok(orderService.getUserOrdersProducts(id));
+    public ResponseEntity<OrderDto> getUserOrderDetails(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.getUserOrderDetails(id));
     }
 }

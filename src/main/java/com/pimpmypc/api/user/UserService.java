@@ -5,16 +5,15 @@ import com.pimpmypc.api.user.dto.UserAuthDto;
 import com.pimpmypc.api.user.dto.UserPersonalDataDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
     User getUserById(Long id);
 
-    User saveUser(final User user);
+    void saveUser(User user);
 
-    boolean userAlreadyExist(final String username);
+    boolean userAlreadyExist(String username);
 
-    Optional<User> findByUsername(final String username);
+    User findByUsername(String username);
 
     List<User> getAllUsers();
 

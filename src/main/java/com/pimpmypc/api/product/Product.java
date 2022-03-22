@@ -24,16 +24,24 @@ import java.util.Set;
 public class Product extends BaseEntity {
 
     private String title;
+
     @Column(columnDefinition = "TEXT")
     private String description;
+
     private BigDecimal price;
+
     private int quantity;
+
     private String brand;
+
     private String model;
+
     @Column(name = "image_url")
     private String imageUrl;
+
     @Column(name = "number_of_sold")
     private int numberOfItemsSold;
+
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))

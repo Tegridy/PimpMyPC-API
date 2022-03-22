@@ -1,7 +1,8 @@
-package com.pimpmypc.api.user;
+package com.pimpmypc.api.user.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pimpmypc.api.order.Order;
+import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.utils.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
