@@ -13,15 +13,13 @@ import javax.persistence.Entity;
 public class PowerSupply extends Product {
 
     @Column(name = "adapter_power")
-    private Integer adapterPower;
+    private int adapterPower;
+
     private String standard;
+
     private String certificate;
 
     public String getAdapterPower() {
-        if (adapterPower != null) {
-            return adapterPower + " W";
-        }
-
-        return null;
+        return adapterPower + " W";
     }
 }

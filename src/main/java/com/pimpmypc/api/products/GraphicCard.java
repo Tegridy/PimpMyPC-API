@@ -16,51 +16,36 @@ public class GraphicCard extends Product {
     private String chipset;
     @Column(name = "v_ram")
 
-    private Integer vRam;
+    private int vRam;
     @Column(name = "core_clock")
 
-    private Integer coreClock;
+    private int coreClock;
     @Column(name = "boost_clock")
 
-    private Integer boostClock;
+    private int boostClock;
     @Column(name = "graphic_card_length")
 
-    private Integer length;
+    private int length;
 
-    private Integer tdp;
+    private int tdp;
 
     public String getvRam() {
-        if (vRam != null) {
-            return vRam + " GB";
-        }
-        return null;
+        return vRam + " GB";
     }
 
     public String getCoreClock() {
-        if (coreClock != null) {
-            return coreClock + " GHz";
-        }
-        return null;
+        return coreClock + " GHz";
     }
 
     public String getBoostClock() {
-        if (boostClock != null) {
-            return boostClock + " GHz";
-        }
-        return null;
+        return boostClock + " GHz";
     }
 
     public String getLength() {
-        if (length != null) {
-            return length + " mm";
-        }
-        return null;
+        return length + " mm";
     }
 
     public String getTdp() {
-        if (tdp != null) {
-            return tdp + " W";
-        }
-        return null;
+        return tdp + " W";
     }
 }

@@ -13,27 +13,27 @@ import javax.persistence.Entity;
 public class Smartphone extends Product {
 
     private Integer memory;
+
     @Column(name = "display_size")
-
     private String displaySize;
+
     private String resolution;
+
     private String processor;
+
     @Column(name = "cpu_speed")
-
     private String cpuSpeed;
+
     private Integer ram;
+
     @Column(name = "operating_system")
-
     private String operatingSystem;
-    @Column(name = "battery_capacity")
 
+    @Column(name = "battery_capacity")
     private Integer batteryCapacity;
 
     public String getMemory() {
-        if (memory != null) {
-            return memory + " GB";
-        }
-        return null;
+        return memory + " GB";
     }
 
     public String getDisplaySize() {

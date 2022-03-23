@@ -2,6 +2,7 @@ package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.category.CategoryRepository;
 import com.pimpmypc.api.exception.CategoryNotFoundException;
+import com.pimpmypc.api.exception.ProductNotFoundException;
 import com.pimpmypc.api.filters.FilterType;
 import com.pimpmypc.api.filters.FiltersRepository;
 import com.pimpmypc.api.product.dto.ProductDto;
@@ -186,6 +187,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findProductById(Long id) {
-        return productRepository.findProductById(id);
+        return productRepository.findProductById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product with id: " + id + " not found"));
     }
 }

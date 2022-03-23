@@ -118,11 +118,6 @@ public class ProductController {
         return ResponseEntity.ok(productService.findProductsByNameAndCategory(productName, productCategory, pageable));
     }
 
-    @GetMapping(value = "/categories", produces = "application/json")
-    public ResponseEntity<List<Category>> getCategories() {
-        return ResponseEntity.ok(categoryService.getAllCategories());
-    }
-
     @GetMapping(value = "/top", produces = "application/json")
     public ResponseEntity<List<ProductDto>> getTopSellingItems() {
         return ResponseEntity.ok(productService.getBestsellers());

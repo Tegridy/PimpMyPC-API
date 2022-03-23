@@ -41,7 +41,7 @@ public class AuthController {
             return ResponseEntity.ok(loginJson);
         } catch (AuthenticationException ex) {
             logger.error("Authentication problem ", ex);
-            throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
         } catch (JsonProcessingException ex) {
             logger.error("Login response processing error ", ex);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while creating login response object.");

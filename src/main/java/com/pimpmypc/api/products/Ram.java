@@ -13,38 +13,30 @@ import javax.persistence.Entity;
 public class Ram extends Product {
     @Column(name = "module_type")
     private String moduleType;
+
     private Long speed;
+
     @Column(name = "number_of_modules")
-
     private Integer numberOfModules;
+
     @Column(name = "module_size")
-
     private Long moduleSize;
+
     @Column(name = "first_word_latency")
-
     private Integer firstWordLatency;
-    @Column(name = "cas_timing")
 
+    @Column(name = "cas_timing")
     private Integer casTiming;
 
     public String getSpeed() {
-        if (speed != null) {
-            return speed + " Hz";
-        }
-        return null;
+        return speed + " Hz";
     }
 
     public String getFirstWordLatency() {
-        if (firstWordLatency != null) {
-            return firstWordLatency + " ms";
-        }
-        return null;
+        return firstWordLatency + " ms";
     }
 
     public String getCasTiming() {
-        if (casTiming != null) {
-            return casTiming + " ms";
-        }
-        return null;
+        return casTiming + " ms";
     }
 }

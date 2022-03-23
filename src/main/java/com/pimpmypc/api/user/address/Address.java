@@ -23,14 +23,19 @@ public class Address extends BaseEntity {
     private String city;
     private String state;
     private String zip;
-
     @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
     @JsonIgnore
     private User user;
-
     @OneToMany(mappedBy = "deliveryAddress")
     @JsonIgnore
     private Set<Order> order = new HashSet<>();
+
+    public Address(String street, String city, String state, String zip) {
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+    }
 
     @Override
     public boolean equals(Object o) {

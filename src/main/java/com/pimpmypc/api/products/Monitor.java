@@ -15,41 +15,32 @@ import javax.persistence.Enumerated;
 public class Monitor extends Product {
 
     @Column(name = "screen_size")
+    private float screenSize;
 
-    private Float screenSize;
     private String resolution;
+
     @Column(name = "refresh_rate")
+    private int refreshRate;
 
-    private Integer refreshRate;
     @Column(name = "response_time")
+    private int responseTime;
 
-    private Integer responseTime;
     @Enumerated(EnumType.STRING)
     @Column(name = "panel_type")
-
     private MonitorPanelType monitorPanelType;
-    @Column(name = "aspect_ratio")
 
+    @Column(name = "aspect_ratio")
     private String aspectRatio;
 
     public String getScreenSize() {
-        if (screenSize != null) {
-            return screenSize + " inches";
-        }
-        return null;
+        return screenSize + " inches";
     }
 
     public String getRefreshRate() {
-        if (refreshRate != null) {
-            return refreshRate + " Hz";
-        }
-        return null;
+        return refreshRate + " Hz";
     }
 
     public String getResponseTime() {
-        if (responseTime != null) {
-            return responseTime + " ms";
-        }
-        return null;
+        return responseTime + " ms";
     }
 }

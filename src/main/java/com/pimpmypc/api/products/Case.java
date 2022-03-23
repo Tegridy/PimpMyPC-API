@@ -13,14 +13,14 @@ import java.util.Set;
 public class Case extends Product {
 
 
-    private Integer height;
+    private int height;
 
-    private Integer width;
+    private int width;
+
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "motherboard_formats", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "format")
-
     private Set<MotherboardFormat> motherboardFormats;
 
     public void setMotherboardFormats(Set<MotherboardFormat> motherboardFormats) {
@@ -28,17 +28,11 @@ public class Case extends Product {
     }
 
     public String getHeight() {
-        if (height != null) {
-            return height + " mm";
-        }
-        return null;
+        return height + " mm";
     }
 
     public String getWidth() {
-        if (width != null) {
-            return width + " mm";
-        }
-        return null;
+        return width + " mm";
     }
 }
 

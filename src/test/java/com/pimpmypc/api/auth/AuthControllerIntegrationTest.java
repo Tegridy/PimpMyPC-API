@@ -7,6 +7,7 @@ import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
 import com.pimpmypc.api.user.UserService;
+import com.pimpmypc.api.user.address.Address;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,6 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -42,6 +42,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AuthControllerIntegrationTest {
 
     User user;
+    Address address;
 
     @Autowired
     private MockMvc mvc;
@@ -56,6 +57,9 @@ public class AuthControllerIntegrationTest {
 
     @BeforeEach
     public void initUsers() throws JsonProcessingException {
+        address = new Address("street1", "city1", "state1", "11-111");
+        address.setCreatedAt(LocalDateTime.now());
+
         user = new User();
         user.setUsername("JD12");
         user.setFirstName("John");
@@ -64,6 +68,7 @@ public class AuthControllerIntegrationTest {
         user.setPassword("qwerty321321");
         user.setEmail("john@doe.com");
         user.setRoles(List.of(Role.ROLE_USER));
+        user.setAddress(address);
         user.setCreatedAt(LocalDateTime.now());
         user.setModifiedAt(LocalDateTime.now());
 
@@ -78,7 +83,7 @@ public class AuthControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON).content(userJson))
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.token").value(notNullValue()));
+                .andExpect(jsonPath("$.username").value(user.getUsername()));
     }
 
     @Test
@@ -90,7 +95,7 @@ public class AuthControllerIntegrationTest {
         mvc.perform(post("/api/v1/auth/register")
                         .contentType(MediaType.APPLICATION_JSON).content(userJson))
                 .andExpect(status().isConflict())
-                .andExpect(status().reason("User " + user.getUsername() + " already exist in database."));
+                .andExpect(jsonPath("$.message").value("User " + user.getUsername() + " already exist in database."));
     }
 
     @Test
@@ -202,13 +207,14 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
+    @Transactional
     public void shouldThrowErrorWhenUsernameIsNotFound() throws Exception {
         mvc.perform(post("/api/v1/auth/login").contentType(MediaType.APPLICATION_JSON)
                         .content("{\"username\": \"test3\", \"password\": \"qwerty\"}")
                 )
                 .andDo(print())
-                .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$").value("User test3 not found."));
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.message").value("User test3 not found."));
     }
 
     @Test
@@ -221,6 +227,6 @@ public class AuthControllerIntegrationTest {
                 )
                 .andDo(print())
                 .andExpect(status().isForbidden())
-                .andExpect(jsonPath("$").value("Bad credentials"));
+                .andExpect(jsonPath("$.message").value("Bad credentials"));
     }
 }

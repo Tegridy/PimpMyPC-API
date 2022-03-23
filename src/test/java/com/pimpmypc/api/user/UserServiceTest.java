@@ -72,8 +72,8 @@ public class UserServiceTest {
 
     @Test
     public void shouldFindUserByUsername() {
-        Mockito.when(userService.findByUsername(user.getUsername()))
-                .thenReturn(user);
+        Mockito.when(userRepository.findByUsername(user.getUsername()))
+                .thenReturn(Optional.ofNullable(user));
 
         String username = user.getUsername();
 
@@ -115,7 +115,7 @@ public class UserServiceTest {
 
     @Test
     public void shouldReturnUserByGivenId() {
-        Mockito.when(userRepository.getById(1L)).thenReturn(user);
+        Mockito.when(userRepository.findUserById(1L)).thenReturn(Optional.ofNullable(user));
         assertEquals(userService.getUserById(user.getId()), user);
     }
 

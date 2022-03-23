@@ -8,6 +8,7 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>, QuerydslPredicateExecutor<Product> {
@@ -30,5 +31,5 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Queryds
     @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY id DESC LIMIT 1", nativeQuery = true)
     Product findNewestProduct();
 
-    Product findProductById(Long id);
+    Optional<Product> findProductById(Long id);
 }

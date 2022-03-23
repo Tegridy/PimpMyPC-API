@@ -17,24 +17,25 @@ import javax.persistence.Enumerated;
 public class Laptop extends Product {
 
     @Column(name = "display_size")
-
     private String displaySize;
+
     private String processor;
     @Column(name = "cpu_speed")
 
-    private Float cpuSpeed;
+    private float cpuSpeed;
 
-    private Integer ram;
+    private int ram;
+
     @Column(name = "ram_type")
-
     private String ramType;
+
     @Column(name = "hard_disc_type")
     @Enumerated(EnumType.STRING)
 
     private StorageType hardDiscType;
     @Column(name = "hard_disc_capacity")
 
-    private Integer hardDiscCapacity;
+    private int hardDiscCapacity;
     @Enumerated(EnumType.STRING)
     @Column(name = "panel_type")
 
@@ -47,7 +48,8 @@ public class Laptop extends Product {
     private String graphicCard;
     @Column(name = "graphic_card_memory")
 
-    private Integer graphicCardMemory;
+    private int graphicCardMemory;
+
     private Float weight;
     @Column(name = "operating_system")
 
@@ -55,45 +57,26 @@ public class Laptop extends Product {
 
 
     public String getDisplaySize() {
-        if (displaySize != null) {
-            return displaySize + " inches";
-        }
-        return null;
+        return displaySize + " inches";
     }
 
     public String getCpuSpeed() {
-        if (cpuSpeed != null) {
-            return cpuSpeed + " GHz";
-        }
-        return null;
+        return cpuSpeed + " GHz";
     }
 
     public String getRam() {
-        if (ram != null) {
-            return ram + " GB";
-        }
-        return null;
+        return ram + " GB";
     }
 
     public String getHardDiscCapacity() {
-        if (hardDiscCapacity != null) {
-            return hardDiscCapacity + " GB";
-        }
-        return null;
+        return hardDiscCapacity + " GB";
     }
 
     public String getGraphicCardMemory() {
-        if (graphicCardMemory != null) {
-            return graphicCardMemory + " GB";
-        }
-
-        return null;
+        return graphicCardMemory + " GB";
     }
 
     public String getWeight() {
-        if (weight != null) {
-            return weight + " kg";
-        }
-        return null;
+        return weight + " kg";
     }
 }
