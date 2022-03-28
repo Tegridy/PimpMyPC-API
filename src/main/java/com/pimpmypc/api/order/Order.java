@@ -25,29 +25,35 @@ public class Order extends BaseEntity {
     private String customerFirstName;
     @Column(name = "last_name")
     private String customerLastName;
-
     @Column(name = "order_status")
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
-
     @Column(name = "customer_email")
     private String customerEmail;
     @Column(name = "customer_phone")
     private String customerPhone;
-
     @Column(name = "total_price")
     private BigDecimal totalPrice;
-
     @ManyToMany
     @JoinTable(name = "orders_products", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Address deliveryAddress;
-
     @ManyToOne
     @JsonIgnore
     private User user;
+
+    public Order(String customerFirstName, String customerLastName, OrderStatus orderStatus, String customerEmail,
+                 String customerPhone, BigDecimal totalPrice, List<Product> products, Address deliveryAddress) {
+        this.customerFirstName = customerFirstName;
+        this.customerLastName = customerLastName;
+        this.orderStatus = orderStatus;
+        this.customerEmail = customerEmail;
+        this.customerPhone = customerPhone;
+        this.totalPrice = totalPrice;
+        this.products = products;
+        this.deliveryAddress = deliveryAddress;
+    }
 
     @Override
     public String toString() {

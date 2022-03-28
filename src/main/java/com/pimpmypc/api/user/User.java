@@ -1,6 +1,7 @@
 package com.pimpmypc.api.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pimpmypc.api.order.Order;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.address.Address;
@@ -21,6 +22,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "users")
+@JsonIgnoreProperties(value = {"createdAt", "modifiedAt", "roles", "addressId"})
 public class User extends BaseEntity {
 
 
@@ -52,14 +54,13 @@ public class User extends BaseEntity {
     @NotEmpty(message = "E-mail is required.")
     private String email;
 
-    @JsonIgnore
     private Long addressId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "id")
     private Address address;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Order> userOrders;
 
     public List<Role> getRoles() {
@@ -73,7 +74,16 @@ public class User extends BaseEntity {
     @Override
     public String toString() {
         return "User{" +
-                "userOrders=" + userOrders +
+                "roles=" + roles +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", addressId=" + addressId +
+                ", address=" + address +
+                ", userOrders=" + userOrders +
                 '}';
     }
 }

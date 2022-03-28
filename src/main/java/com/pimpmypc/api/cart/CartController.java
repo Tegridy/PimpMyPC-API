@@ -16,7 +16,7 @@ public class CartController {
     private final CartService cartService;
 
     @PutMapping()
-    ResponseEntity<BigDecimal> updateCartAndGetTotalPrice(@RequestBody List<Long> productList) {
-        return ResponseEntity.ok(cartService.updateCartAndGetTotalPrice(productList));
+    ResponseEntity<BigDecimal> updateCartAndGetTotalPrice(@RequestBody List<Long> productListIds) {
+        return ResponseEntity.ok(cartService.updateCartAndGetTotalPrice(productListIds));
     }
 }

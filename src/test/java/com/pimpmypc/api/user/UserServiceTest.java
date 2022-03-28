@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
+@Transactional
 public class UserServiceTest {
 
     @Autowired
@@ -83,7 +84,6 @@ public class UserServiceTest {
     }
 
     @Test
-    @Transactional
     public void shouldSaveUser() {
 
         Mockito.when(userRepository.save(any(User.class))).thenReturn(user);

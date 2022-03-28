@@ -1,5 +1,6 @@
 package com.pimpmypc.api.user;
 
+import com.pimpmypc.api.exception.AddressException;
 import com.pimpmypc.api.exception.UserNotFoundException;
 import com.pimpmypc.api.exception.UserRoleNotFoundException;
 import com.pimpmypc.api.user.address.Address;
@@ -65,7 +66,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(newUserPersonalData.getEmail());
 
         user.setModifiedAt(LocalDateTime.now());
-        this.userRepository.save(user);
+        this.saveUser(user);
         log.info(String.format("User with id: %d - account personal details updated successfully", id));
 
         return UserPersonalDataDto.builder().firstName(user.getFirstName()).lastName(user.getLastName())
@@ -76,6 +77,11 @@ public class UserServiceImpl implements UserService {
     public UserAddressDto updateUserAddressDetails(Long id, UserAddressDto newUserAddress) {
         User user = this.userRepository.findUserById(id).orElseThrow(
                 () -> new UserNotFoundException("User with given id do not exist"));
+
+        if (user.getAddress() == null) {
+            log.warn("User id: " + user.getId() + " address is null");
+            throw new AddressException("User id: " + user.getId() + " address is null");
+        }
         Address address = user.getAddress();
 
         address.setStreet(newUserAddress.getStreet());
@@ -86,7 +92,7 @@ public class UserServiceImpl implements UserService {
 
         user.setAddress(address);
         user.setModifiedAt(LocalDateTime.now());
-        this.userRepository.save(user);
+        this.saveUser(user);
         log.info(String.format("User with id: %d - address data updated successfully", id));
 
         return UserAddressDto.builder().street(address.getStreet()).city(address.getCity()).state(address.getState())
@@ -97,10 +103,10 @@ public class UserServiceImpl implements UserService {
     public UserAuthDto updateUserAuthDetails(Long id, String newPassword) {
         User user = this.userRepository.findUserById(id).orElseThrow(
                 () -> new UserNotFoundException("User with given id do not exist"));
-
+        
         user.setPassword(new BCryptPasswordEncoder(12).encode(newPassword));
         user.setModifiedAt(LocalDateTime.now());
-        userRepository.save(user);
+        this.saveUser(user);
         log.info(String.format("User with id: %d - password changed", id));
 
         return new UserAuthDto(user.getUsername());

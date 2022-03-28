@@ -27,16 +27,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
 
-    private final int PAGE_SIZE = 9;
-
     @Mock
     private ProductServiceImpl productService;
-
-    @Mock
-    private ProductRepository productRepository;
-
-    private Predicate predicate;
-
+    
     private ProductsResponse productsResponse;
 
     private Processor product1;

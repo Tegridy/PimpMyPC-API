@@ -3,6 +3,7 @@ package com.pimpmypc.api.cart;
 import com.pimpmypc.api.product.Product;
 import com.pimpmypc.api.product.ProductService;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Service
 @Getter
+@Setter
 public class CartServiceImpl implements CartService {
 
     private final ProductService productService;

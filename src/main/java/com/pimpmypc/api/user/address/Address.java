@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pimpmypc.api.order.Order;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.utils.BaseEntity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
@@ -16,6 +18,8 @@ import java.util.Set;
 @Entity(name = "addresses")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Address extends BaseEntity {
 
     @Column(unique = true)

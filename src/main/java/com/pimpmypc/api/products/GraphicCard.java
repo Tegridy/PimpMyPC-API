@@ -1,5 +1,6 @@
 package com.pimpmypc.api.products;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pimpmypc.api.product.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,40 +13,55 @@ import javax.persistence.Entity;
 @Setter
 public class GraphicCard extends Product {
 
-
+    @JsonProperty("Chipset")
     private String chipset;
     @Column(name = "v_ram")
-
-    private int vRam;
+    @JsonProperty("VRAM")
+    private Integer vRam;
     @Column(name = "core_clock")
-
-    private int coreClock;
+    @JsonProperty("Core clock")
+    private Integer coreClock;
     @Column(name = "boost_clock")
-
-    private int boostClock;
+    @JsonProperty("Boost clock")
+    private Integer boostClock;
     @Column(name = "graphic_card_length")
-
-    private int length;
-
-    private int tdp;
+    @JsonProperty("Length")
+    private Integer length;
+    @JsonProperty("TDP")
+    private Integer tdp;
 
     public String getvRam() {
-        return vRam + " GB";
+        if (vRam != null) {
+            return vRam + " GB";
+        }
+        return null;
     }
 
     public String getCoreClock() {
-        return coreClock + " GHz";
+        if (coreClock != null) {
+            return coreClock + " GHz";
+        }
+        return null;
     }
 
     public String getBoostClock() {
-        return boostClock + " GHz";
+        if (boostClock != null) {
+            return boostClock + " GHz";
+        }
+        return null;
     }
 
     public String getLength() {
-        return length + " mm";
+        if (length != null) {
+            return length + " mm";
+        }
+        return null;
     }
 
     public String getTdp() {
-        return tdp + " W";
+        if (tdp != null) {
+            return tdp + " W";
+        }
+        return null;
     }
 }

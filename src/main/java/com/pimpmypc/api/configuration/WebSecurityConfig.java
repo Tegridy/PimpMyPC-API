@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,7 +36,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/auth/login", "/api/v1/auth/register").permitAll()
                 .antMatchers("/api/v1/products/**").permitAll()
                 .antMatchers("/api/v1/cart/**").permitAll()
-                .antMatchers("/api/v1/order/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/orders").permitAll()
                 .anyRequest().authenticated();
 
 
