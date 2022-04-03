@@ -8,6 +8,7 @@ public class PimpMyPcApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(PimpMyPcApplication.class, args);
+
     }
 
 }

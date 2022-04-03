@@ -39,7 +39,6 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/v1/orders").permitAll()
                 .anyRequest().authenticated();
 
-
         http.exceptionHandling().accessDeniedPage("/api/v1/auth/login");
 
         http.apply(new JwtTokenFilterConfigure(jwtTokenProvider));
@@ -55,11 +54,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/configuration/**")//
                 .antMatchers("/actuator/**")
                 .antMatchers("/webjars/**")//
-                .antMatchers("/public")
-                // Un-secure H2 Database (for testing purposes, H2 console shouldn't be unprotected in production)
-                .and()
-                .ignoring()
-                .antMatchers("/h2-console/**/**");
+                .antMatchers("/public");
         log.info("WebSecurity configured");
     }
 
