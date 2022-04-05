@@ -20,9 +20,13 @@ RUN mvn clean compile package
 
 
 FROM openjdk:17-slim as runtime
-EXPOSE 8080
 
 ENV APP_HOME /app
+
+ENV MYSQL_PASSWORD=${DB_PASSWORD}
+ENV DB_HOST=${DB_HOST}
+ENV DB_PORT=${DB_PORT}
+ENV JWT_SECRET=${JWT_SECRET}
 
 RUN mkdir $APP_HOME
 
