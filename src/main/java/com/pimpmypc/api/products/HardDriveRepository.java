@@ -19,7 +19,7 @@ public interface HardDriveRepository extends JpaRepository<HardDrive, Long>, Que
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
     }
 
-    default Page<HardDrive> findAllHardDiscs(Predicate predicate, Pageable pageable) {
+    default Page<HardDrive> findAllHardDrives(Predicate predicate, Pageable pageable) {
         return this.findAll(predicate, pageable);
     }
 }

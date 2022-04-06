@@ -24,7 +24,7 @@ public interface ProductService {
 
     ProductsResponse getAllMonitors(Predicate predicate, Pageable pageable);
 
-    ProductsResponse getAllHardDiscs(Predicate predicate, Pageable pageable);
+    ProductsResponse getAllHardDrives(Predicate predicate, Pageable pageable);
 
     ProductsResponse getAllPowerSupplies(Predicate predicate, Pageable pageable);
 

@@ -67,7 +67,7 @@ public class ProductController {
     @GetMapping(value = "/drives", produces = "application/json")
     public ResponseEntity<ProductsResponse> getAllHardDiscs(Pageable pageable,
                                                             @QuerydslPredicate(root = HardDrive.class) Predicate predicate) {
-        return ResponseEntity.ok(productService.getAllHardDiscs(predicate, pageable));
+        return ResponseEntity.ok(productService.getAllHardDrives(predicate, pageable));
     }
 
     @GetMapping(value = "/power-supplies", produces = "application/json")

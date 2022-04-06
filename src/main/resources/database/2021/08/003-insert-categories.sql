@@ -55,7 +55,7 @@ INSERT INTO categories(title,parent_id)
 VALUES('Motherboards',5);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Hard discs',5);
+VALUES('Hard drives',5);
 
 INSERT INTO categories(title,parent_id)
 VALUES('HDD',17);

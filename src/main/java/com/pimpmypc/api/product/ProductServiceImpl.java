@@ -57,8 +57,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductsResponse getAllProcessors(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> processors = new PageImpl<ProductDto>(processorRepository.findAllProcessors(predicate, pageable)
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<Processor> processorPage = processorRepository.findAllProcessors(predicate, pageable);
+
+        Page<ProductDto> processors = new PageImpl<ProductDto>(processorPage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, processorPage.getTotalElements());
 
         return createResponse(processors, "Processors");
     }
@@ -70,98 +73,134 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductsResponse getAllMotherboards(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> motherboards = new PageImpl<ProductDto>(motherboardRepository.findAllMotherboards(predicate, pageable)
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<Motherboard> motherboardPage = motherboardRepository.findAllMotherboards(predicate, pageable);
+
+        Page<ProductDto> motherboards = new PageImpl<ProductDto>(motherboardPage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, motherboardPage.getTotalElements());
 
         return createResponse(motherboards, "Motherboards");
     }
 
     @Override
     public ProductsResponse getAllCases(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> cases = new PageImpl<ProductDto>(caseRepository.findAllCases(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<Case> casePage = caseRepository.findAllCases(predicate, pageable);
+
+        Page<ProductDto> cases = new PageImpl<ProductDto>(casePage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, casePage.getTotalElements());
 
         return createResponse(cases, "Cases");
     }
 
     @Override
     public ProductsResponse getAllRamMemory(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> rams = new PageImpl<ProductDto>(ramRepository.findAllRams(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<Ram> ramPage = ramRepository.findAllRams(predicate, pageable);
+
+        Page<ProductDto> rams = new PageImpl<ProductDto>(ramPage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, ramPage.getTotalElements());
 
         return createResponse(rams, "Memory RAM");
     }
 
     @Override
     public ProductsResponse getAllMouses(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> mice = new PageImpl<ProductDto>(mouseRepository.findAllMouses(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<Mouse> mousePage = mouseRepository.findAllMouses(predicate, pageable);
+
+        Page<ProductDto> mice = new PageImpl<ProductDto>(mousePage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, mousePage.getTotalElements());
 
         return createResponse(mice, "Computer mouses");
     }
 
     @Override
     public ProductsResponse getAllKeyboards(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> keyboards = new PageImpl<ProductDto>(keyboardRepository.findAllKeyboards(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<Keyboard> keyboardPage = keyboardRepository.findAllKeyboards(predicate, pageable);
+
+        Page<ProductDto> keyboards = new PageImpl<ProductDto>(keyboardPage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, keyboardPage.getTotalElements());
 
         return createResponse(keyboards, "Computer keyboards");
     }
 
     @Override
     public ProductsResponse getAllMonitors(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> monitors = new PageImpl<ProductDto>(monitorRepository.findAllMonitors(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<Monitor> monitorPage = monitorRepository.findAllMonitors(predicate, pageable);
+
+        Page<ProductDto> monitors = new PageImpl<ProductDto>(monitorPage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, monitorPage.getTotalElements());
 
         return createResponse(monitors, "Monitors");
     }
 
     @Override
-    public ProductsResponse getAllHardDiscs(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> hardDiscs = new PageImpl<ProductDto>(hardDriveRepository.findAllHardDiscs(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+    public ProductsResponse getAllHardDrives(Predicate predicate, Pageable pageable) {
+        Page<HardDrive> drivePage = hardDriveRepository.findAllHardDrives(predicate, pageable);
 
-        return createResponse(hardDiscs, "Hard discs");
+        Page<ProductDto> hardDiscs = new PageImpl<ProductDto>(drivePage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, drivePage.getTotalElements());
+
+        return createResponse(hardDiscs, "Hard drives");
     }
 
     @Override
     public ProductsResponse getAllGraphicCards(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> graphicCards = new PageImpl<ProductDto>(graphicCardRepository.findAllGraphicCards(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<GraphicCard> graphicCardPage = graphicCardRepository.findAllGraphicCards(predicate, pageable);
+
+        Page<ProductDto> graphicCards = new PageImpl<ProductDto>(graphicCardPage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, graphicCardPage.getTotalElements());
 
         return createResponse(graphicCards, "Graphic cards");
     }
 
     @Override
     public ProductsResponse getAllPowerSupplies(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> powerSupplies = new PageImpl<ProductDto>(powerSupplyRepository.findAllPowerSupplies(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<PowerSupply> powerSupplyPage = powerSupplyRepository.findAllPowerSupplies(predicate, pageable);
+
+        Page<ProductDto> powerSupplies = new PageImpl<ProductDto>(powerSupplyPage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, powerSupplyPage.getTotalElements());
 
         return createResponse(powerSupplies, "Power supply");
     }
 
     @Override
     public ProductsResponse getAllSmartphones(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> smartphones = new PageImpl<ProductDto>(smartphoneRepository.findAllSmartphones(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<Smartphone> smartphonePage = smartphoneRepository.findAllSmartphones(predicate, pageable);
+
+        Page<ProductDto> smartphones = new PageImpl<ProductDto>(smartphonePage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, smartphonePage.getTotalElements());
 
         return createResponse(smartphones, "Smartphones");
     }
 
     @Override
     public ProductsResponse getAllLaptops(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> laptops = new PageImpl<ProductDto>(laptopRepository.findAllLaptops(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<Laptop> laptopsPage = laptopRepository.findAllLaptops(predicate, pageable);
+
+        Page<ProductDto> laptops = new PageImpl<ProductDto>(laptopsPage
+                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, laptopsPage.getTotalElements());
 
         return createResponse(laptops, "Laptops");
     }
 
     @Override
     public ProductsResponse getAllComputers(Predicate predicate, Pageable pageable) {
-        Page<ProductDto> computers = new PageImpl<ProductDto>(computerRepository.findAllComputers(predicate, pageable).getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0).map(this::mapToDto).toList());
+        Page<Computer> computersPage = computerRepository.findAllComputers(predicate, pageable);
 
-        return createResponse(computers, "Computers");
+        Page<ProductDto> productDtoPage = new PageImpl<ProductDto>(computersPage.getContent()
+                .stream().takeWhile(product -> product.getQuantity() > 0)
+                .map(this::mapToDto).toList(), pageable, computersPage.getTotalElements());
+
+        return createResponse(productDtoPage, "Computers");
     }
 
 
