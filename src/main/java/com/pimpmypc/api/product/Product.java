@@ -43,12 +43,12 @@ public class Product extends BaseEntity {
     private int numberOfItemsSold;
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "color")
     private Set<Color> colors;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
