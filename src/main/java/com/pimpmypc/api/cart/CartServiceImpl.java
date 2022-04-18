@@ -23,20 +23,22 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public BigDecimal updateCartAndGetTotalPrice(List<Long> productsIds) {
+    public Cart updateCartAndGetTotalPrice(List<Long> productsIds) {
         List<Product> products = productsIds.stream().map(productService::findProductById).toList();
-        customerCart.setProductsInCart(products);
+        customerCart.setProducts(products);
 
-        return calculateCartTotalPrice();
+        customerCart.setTotalPrice(calculateCartTotalPrice());
+
+        return customerCart;
     }
 
     @Override
     public List<Product> getCustomerProductsInCart() {
-        return this.customerCart.getProductsInCart();
+        return this.customerCart.getProducts();
     }
 
     public BigDecimal calculateCartTotalPrice() {
-        return this.customerCart.getProductsInCart().stream().map(Product::getPrice)
+        return this.customerCart.getProducts().stream().map(Product::getPrice)
                 .reduce(new BigDecimal(0), BigDecimal::add);
     }
 

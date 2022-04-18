@@ -35,6 +35,7 @@ public class CartServiceTest {
     @BeforeEach
     void setUp() {
         product1 = new Processor();
+        product1.setId(12L);
         product1.setTitle("Intel Processor");
         product1.setBrand("Intel");
         product1.setModel("i5");
@@ -52,6 +53,7 @@ public class CartServiceTest {
         product1.setMotherboardSocket(MotherboardSocket.LGA1151);
 
         product2 = new Processor();
+        product2.setId(24L);
         product2.setTitle("AMD Processor");
         product2.setBrand("AMD");
         product2.setModel("FX");
@@ -75,17 +77,20 @@ public class CartServiceTest {
         productList.add(product1);
         productList.add(product2);
 
-        Cart cart = new Cart();
-        cart.setProductsInCart(productList);
-
-        cartService.setCustomerCart(cart);
+        List<Long> productListIds = List.of(product1.getId(), product2.getId());
 
         BigDecimal totalPrice = product1.getPrice().add(product2.getPrice());
 
-        Mockito.doReturn(product1).when(productService).findProductById(55L);
-        Mockito.doReturn(product2).when(productService).findProductById(66L);
+        Cart cart = new Cart();
+        cart.setProducts(productList);
+        cart.setTotalPrice(totalPrice);
 
-        assertEquals(totalPrice, cartService.updateCartAndGetTotalPrice(List.of(55L, 66L)));
+        cartService.setCustomerCart(cart);
+
+        Mockito.doReturn(product1).when(productService).findProductById(12L);
+        Mockito.doReturn(product2).when(productService).findProductById(24L);
+
+        assertEquals(cartService.updateCartAndGetTotalPrice(productListIds).getTotalPrice(), totalPrice);
     }
 
     @Test
@@ -95,7 +100,7 @@ public class CartServiceTest {
         productList.add(product2);
 
         Cart cart = new Cart();
-        cart.setProductsInCart(productList);
+        cart.setProducts(productList);
 
         cartService.setCustomerCart(cart);
 
@@ -109,7 +114,7 @@ public class CartServiceTest {
         productList.add(product2);
 
         Cart cart = new Cart();
-        cart.setProductsInCart(productList);
+        cart.setProducts(productList);
 
         cartService.setCustomerCart(cart);
 
@@ -125,15 +130,15 @@ public class CartServiceTest {
         productList.add(product2);
 
         Cart cart = new Cart();
-        cart.setProductsInCart(productList);
+        cart.setProducts(productList);
 
         cartService.setCustomerCart(cart);
 
-        assertEquals(productList, cartService.getCustomerCart().getProductsInCart());
+        assertEquals(productList, cartService.getCustomerCart().getProducts());
 
         cartService.clearCart();
 
-        assertEquals(0, cartService.getCustomerCart().getProductsInCart().size());
+        assertEquals(0, cartService.getCustomerCart().getProducts().size());
     }
 
     @Test
@@ -143,7 +148,7 @@ public class CartServiceTest {
         productList.add(product2);
 
         Cart cart = new Cart();
-        cart.setProductsInCart(productList);
+        cart.setProducts(productList);
 
         cartService.setCustomerCart(cart);
 

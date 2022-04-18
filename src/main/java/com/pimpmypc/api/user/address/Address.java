@@ -11,6 +11,8 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -22,15 +24,22 @@ import java.util.Set;
 @AllArgsConstructor
 public class Address extends BaseEntity {
 
-    @Column(unique = true)
+    @NotEmpty(message = "Street is required.")
+    @Size(min = 4, max = 50, message = "Street length must have 4 to 50 characters.")
     private String street;
+    @NotEmpty(message = "City is required.")
+    @Size(min = 4, max = 50, message = "City length must have 4 to 50 characters.")
     private String city;
+    @NotEmpty(message = "State is required.")
+    @Size(min = 4, max = 50, message = "State length must have 4 to 50 characters.")
     private String state;
+    @NotEmpty(message = "Zip is required.")
+    @Size(min = 3, max = 15, message = "Zip code length must have 3 to 15 characters.")
     private String zip;
-    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "address", cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JsonIgnore
     private User user;
-    @OneToMany(mappedBy = "deliveryAddress")
+    @OneToMany(mappedBy = "deliveryAddress", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Order> order = new HashSet<>();
 

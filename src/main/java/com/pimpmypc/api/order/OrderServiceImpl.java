@@ -9,6 +9,7 @@ import com.pimpmypc.api.order.dto.CustomerPersonalDataDto;
 import com.pimpmypc.api.order.dto.OrderDto;
 import com.pimpmypc.api.order.dto.OrderResponse;
 import com.pimpmypc.api.product.Product;
+import com.pimpmypc.api.product.ProductRepository;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
 import com.pimpmypc.api.user.address.AddressRepository;
@@ -33,6 +34,7 @@ public class OrderServiceImpl implements OrderService {
 
     private final CartService cartService;
     private final OrderRepository orderRepository;
+    private final ProductRepository productRepository;
     private final AddressRepository addressRepository;
     private final UserRepository userRepository;
     private final AuthService authService;
@@ -45,7 +47,12 @@ public class OrderServiceImpl implements OrderService {
         cartService.getCustomerProductsInCart().forEach(product -> {
             product.setQuantity(product.getQuantity() - 1);
             product.setNumberOfItemsSold(product.getNumberOfItemsSold() + 1);
+
+            productRepository.save(product);
         });
+
+        customerData.getDeliveryAddress().setCreatedAt(LocalDateTime.now());
+        addressRepository.save(customerData.getDeliveryAddress());
 
         Order order = new Order();
         order.setCustomerFirstName(customerData.getCustomerFirstName());
@@ -55,8 +62,8 @@ public class OrderServiceImpl implements OrderService {
         order.setCustomerPhone(customerData.getCustomerPhone());
         order.setTotalPrice(cartService.calculateCartTotalPrice());
         order.setProducts(cartService.getCustomerProductsInCart());
+        order.setDeliveryAddress(customerData.getDeliveryAddress());
 
-        customerData.getDeliveryAddress().setCreatedAt(LocalDateTime.now());
         order.setCreatedAt(LocalDateTime.now());
         order.setModifiedAt(LocalDateTime.now());
 
@@ -66,6 +73,7 @@ public class OrderServiceImpl implements OrderService {
                 order.setUser(user);
             });
         }
+
 
         Order savedOrder = orderRepository.save(order);
         log.info("Saving order: " + savedOrder.getId());

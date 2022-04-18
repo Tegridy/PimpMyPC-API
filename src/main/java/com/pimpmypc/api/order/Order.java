@@ -37,7 +37,7 @@ public class Order extends BaseEntity {
     @ManyToMany
     @JoinTable(name = "orders_products", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Address deliveryAddress;
     @ManyToOne
     @JsonIgnore
@@ -60,6 +60,11 @@ public class Order extends BaseEntity {
         return "Order{" +
                 "customerFirstName='" + customerFirstName + '\'' +
                 ", customerLastName='" + customerLastName + '\'' +
+                ", orderStatus=" + orderStatus +
+                ", customerEmail='" + customerEmail + '\'' +
+                ", customerPhone='" + customerPhone + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", products=" + products +
                 '}';
     }
 }

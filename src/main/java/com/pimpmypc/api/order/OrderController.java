@@ -27,13 +27,11 @@ public class OrderController {
 
     @GetMapping("")
     public ResponseEntity<Page<OrderResponse>> getUserOrders(Pageable pageable) {
-        System.out.println("x");
         return ResponseEntity.ok(orderService.getUserOrders(pageable));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderDto> getUserOrderDetails(@PathVariable Long id) throws AuthenticationException {
-        System.out.println("XX");
         return ResponseEntity.ok(orderService.getUserOrderDetails(id));
     }
 }
