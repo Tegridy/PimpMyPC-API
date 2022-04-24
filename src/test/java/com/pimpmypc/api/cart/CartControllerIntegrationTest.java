@@ -2,6 +2,7 @@ package com.pimpmypc.api.cart;
 
 import com.pimpmypc.api.PimpMyPcApplication;
 import com.pimpmypc.api.product.ProductRepository;
+import com.pimpmypc.api.product.ProductService;
 import com.pimpmypc.api.products.MotherboardSocket;
 import com.pimpmypc.api.products.Processor;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,10 +19,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = PimpMyPcApplication.class)
@@ -36,6 +36,10 @@ class CartControllerIntegrationTest {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CartService cartService;
+    @Autowired
+    private ProductService productService;
 
     private Processor product1;
     private Processor product2;
@@ -96,24 +100,6 @@ class CartControllerIntegrationTest {
         product3.setCreatedAt(LocalDateTime.now());
         product3.setModifiedAt(LocalDateTime.now());
         product3.setMotherboardSocket(MotherboardSocket.AM4);
-    }
-
-    @Test
-    void shouldUpdateCartAndGetTotalPrice() throws Exception {
-
-        BigDecimal totalPrice = product1.getPrice().add(product2.getPrice()).add(product3.getPrice());
-
-        long id1 = productRepository.save(product1).getId();
-        long id2 = productRepository.save(product2).getId();
-        long id3 = productRepository.save(product3).getId();
-
-        List<Long> productListIds = List.of(id1, id2, id3);
-
-        mvc.perform(put("/api/v1/cart")
-                        .contentType(MediaType.APPLICATION_JSON).content(String.valueOf(productListIds)))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$").value(totalPrice));
     }
 
     @Test

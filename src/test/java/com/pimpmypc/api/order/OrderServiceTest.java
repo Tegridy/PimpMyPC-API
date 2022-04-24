@@ -1,6 +1,8 @@
 package com.pimpmypc.api.order;
 
+import com.pimpmypc.api.exception.AuthenticationException;
 import com.pimpmypc.api.exception.OrderNotFoundException;
+import com.pimpmypc.api.order.dto.CustomerPersonalDataDto;
 import com.pimpmypc.api.order.dto.OrderDto;
 import com.pimpmypc.api.order.dto.OrderResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,8 +43,7 @@ public class OrderServiceTest {
     @Test
     void shouldSaveOrder() {
 
-        Order order = new Order("John", "Doe", OrderStatus.IN_PROGRESS, "mail@mail.com", "123456789",
-                BigDecimal.valueOf(125), null, null);
+        CustomerPersonalDataDto order = new CustomerPersonalDataDto();
 
         Mockito.doReturn(orderResponse).when(orderService).saveOrder(order);
 
@@ -79,7 +80,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    void shouldReturnUserOrderDetails() {
+    void shouldReturnUserOrderDetails() throws AuthenticationException {
         OrderDto orderDto = new OrderDto(99L, "Order: 99", BigDecimal.valueOf(125), "/", null,
                 null, null);
 
@@ -89,7 +90,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    void shouldThrowOrderNotFound() {
+    void shouldThrowOrderNotFound() throws AuthenticationException {
         OrderDto orderDto = new OrderDto(99L, "Order: 99", BigDecimal.valueOf(125), "/", null,
                 null, null);
 

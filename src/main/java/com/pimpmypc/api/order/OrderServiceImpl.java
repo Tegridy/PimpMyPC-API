@@ -2,11 +2,14 @@ package com.pimpmypc.api.order;
 
 import com.pimpmypc.api.auth.AuthService;
 import com.pimpmypc.api.cart.CartService;
+import com.pimpmypc.api.exception.AuthenticationException;
 import com.pimpmypc.api.exception.OrderNotFoundException;
 import com.pimpmypc.api.exception.UserNotFoundException;
+import com.pimpmypc.api.order.dto.CustomerPersonalDataDto;
 import com.pimpmypc.api.order.dto.OrderDto;
 import com.pimpmypc.api.order.dto.OrderResponse;
 import com.pimpmypc.api.product.Product;
+import com.pimpmypc.api.product.ProductRepository;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
 import com.pimpmypc.api.user.address.AddressRepository;
@@ -31,27 +34,38 @@ public class OrderServiceImpl implements OrderService {
 
     private final CartService cartService;
     private final OrderRepository orderRepository;
+    private final ProductRepository productRepository;
     private final AddressRepository addressRepository;
     private final UserRepository userRepository;
     private final AuthService authService;
 
 
     @Override
-    public OrderResponse saveOrder(Order order) {
+    public OrderResponse saveOrder(CustomerPersonalDataDto customerData) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        order.getProducts().forEach(product -> {
+        cartService.getCustomerProductsInCart().forEach(product -> {
             product.setQuantity(product.getQuantity() - 1);
             product.setNumberOfItemsSold(product.getNumberOfItemsSold() + 1);
+
+            productRepository.save(product);
         });
 
-        order.getDeliveryAddress().setCreatedAt(LocalDateTime.now());
+        customerData.getDeliveryAddress().setCreatedAt(LocalDateTime.now());
+        addressRepository.save(customerData.getDeliveryAddress());
+
+        Order order = new Order();
+        order.setCustomerFirstName(customerData.getCustomerFirstName());
+        order.setCustomerLastName(customerData.getCustomerLastName());
         order.setOrderStatus(OrderStatus.IN_PROGRESS);
+        order.setCustomerEmail(customerData.getCustomerEmail());
+        order.setCustomerPhone(customerData.getCustomerPhone());
+        order.setTotalPrice(cartService.calculateCartTotalPrice());
+        order.setProducts(cartService.getCustomerProductsInCart());
+        order.setDeliveryAddress(customerData.getDeliveryAddress());
+
         order.setCreatedAt(LocalDateTime.now());
         order.setModifiedAt(LocalDateTime.now());
-        order.setProducts(cartService.getCustomerProductsInCart());
-        order.setTotalPrice(cartService.calculateCartTotalPrice());
-
 
         if (authentication.isAuthenticated()) {
             userRepository.findByUsername(authentication.getName()).ifPresent((user) -> {
@@ -61,8 +75,8 @@ public class OrderServiceImpl implements OrderService {
         }
 
 
-        log.info("Saving order: " + order.getId());
         Order savedOrder = orderRepository.save(order);
+        log.info("Saving order: " + savedOrder.getId());
         cartService.clearCart();
 
         return OrderResponse.builder().id(savedOrder.getId()).status(savedOrder.getOrderStatus()).build();
@@ -82,20 +96,28 @@ public class OrderServiceImpl implements OrderService {
             userOrders = user.getUserOrders().stream().map(order -> OrderResponse.builder().status(order.getOrderStatus())
                     .id(order.getId()).price(order.getTotalPrice()).orderDate(order.getCreatedAt().toLocalDate())
                     .build()).toList();
+        } else {
+            log.warn("User is not logged in. Can't load orders");
         }
 
         return new PageImpl<OrderResponse>(userOrders, pageable, 9);
     }
 
     @Override
-    public OrderDto getUserOrderDetails(Long id) {
-        Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new OrderNotFoundException("Order with id: " + id + " not found."));
-        List<Product> orderProducts = order.getProducts();
+    public OrderDto getUserOrderDetails(Long id) throws AuthenticationException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            Order order = orderRepository.findById(id)
+                    .orElseThrow(() -> new OrderNotFoundException("Order with id: " + id + " not found."));
+            List<Product> orderProducts = order.getProducts();
 
-        return OrderDto.builder().id(order.getId()).title("Order: " + order.getId())
-                .imageUrl(orderProducts.get(0).getImageUrl()).products(orderProducts).address(order.getDeliveryAddress())
-                .price(orderProducts.stream().map(Product::getPrice).reduce(new BigDecimal(0), BigDecimal::add))
-                .build();
+            return OrderDto.builder().id(order.getId()).title("Order: " + order.getId())
+                    .imageUrl(orderProducts.get(0).getImageUrl()).products(orderProducts).address(order.getDeliveryAddress())
+                    .price(orderProducts.stream().map(Product::getPrice).reduce(new BigDecimal(0), BigDecimal::add))
+                    .build();
+        } else {
+            log.warn("User don't have access to see this order");
+            throw new AuthenticationException("User don't have access to see this order");
+        }
     }
 }

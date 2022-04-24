@@ -25,7 +25,6 @@ import java.util.List;
 @JsonIgnoreProperties(value = {"createdAt", "modifiedAt", "roles", "addressId"})
 public class User extends BaseEntity {
 
-
     @ElementCollection(fetch = FetchType.EAGER)
     @JsonIgnore
     List<Role> roles;
@@ -56,7 +55,7 @@ public class User extends BaseEntity {
 
     private Long addressId;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "id")
     private Address address;
 

@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserService {
     public UserAuthDto updateUserAuthDetails(Long id, String newPassword) {
         User user = this.userRepository.findUserById(id).orElseThrow(
                 () -> new UserNotFoundException("User with given id do not exist"));
-        
+
         user.setPassword(new BCryptPasswordEncoder(12).encode(newPassword));
         user.setModifiedAt(LocalDateTime.now());
         this.saveUser(user);
