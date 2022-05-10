@@ -5,10 +5,7 @@ import com.pimpmypc.api.product.Product;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.address.Address;
 import com.pimpmypc.api.utils.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -19,6 +16,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Order extends BaseEntity {
 
     @Column(name = "first_name")

@@ -25,13 +25,13 @@ import java.util.Set;
 public class Address extends BaseEntity {
 
     @NotEmpty(message = "Street is required.")
-    @Size(min = 4, max = 50, message = "Street length must have 4 to 50 characters.")
+    @Size(min = 3, max = 50, message = "Street length must have 4 to 50 characters.")
     private String street;
     @NotEmpty(message = "City is required.")
-    @Size(min = 4, max = 50, message = "City length must have 4 to 50 characters.")
+    @Size(min = 3, max = 50, message = "City length must have 4 to 50 characters.")
     private String city;
     @NotEmpty(message = "State is required.")
-    @Size(min = 4, max = 50, message = "State length must have 4 to 50 characters.")
+    @Size(min = 3, max = 50, message = "State length must have 4 to 50 characters.")
     private String state;
     @NotEmpty(message = "Zip is required.")
     @Size(min = 3, max = 15, message = "Zip code length must have 3 to 15 characters.")

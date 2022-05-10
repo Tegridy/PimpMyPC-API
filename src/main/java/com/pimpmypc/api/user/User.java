@@ -6,10 +6,7 @@ import com.pimpmypc.api.order.Order;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.address.Address;
 import com.pimpmypc.api.utils.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -23,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity(name = "users")
 @JsonIgnoreProperties(value = {"createdAt", "modifiedAt", "roles", "addressId"})
+@Builder
 public class User extends BaseEntity {
 
     @ElementCollection(fetch = FetchType.EAGER)

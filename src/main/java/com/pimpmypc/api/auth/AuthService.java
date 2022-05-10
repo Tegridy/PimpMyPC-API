@@ -48,15 +48,12 @@ public class AuthService {
             userAddress.setCreatedAt(LocalDateTime.now());
             userAddress.setModifiedAt(LocalDateTime.now());
 
-            User user = new User();
-            user.setUsername(newUser.getUsername());
-            user.setPassword(passwordEncoder.encode(newUser.getPassword()));
-            user.setFirstName(newUser.getFirstName());
-            user.setAddress(userAddress);
-            user.setLastName(newUser.getLastName());
-            user.setPhone(newUser.getPhone());
-            user.setRoles(List.of(Role.ROLE_USER));
-            user.setEmail(newUser.getEmail());
+            User user = User.builder().username(newUser.getUsername())
+                    .password(passwordEncoder.encode(newUser.getPassword()))
+                    .firstName(newUser.getFirstName()).lastName(newUser.getLastName())
+                    .address(userAddress).phone(newUser.getPhone()).roles(List.of(Role.ROLE_USER))
+                    .email(newUser.getEmail()).build();
+ 
             user.setCreatedAt(LocalDateTime.now());
             user.setModifiedAt(LocalDateTime.now());
 

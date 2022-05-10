@@ -1,6 +1,5 @@
 package com.pimpmypc.api.order;
 
-import com.pimpmypc.api.auth.AuthService;
 import com.pimpmypc.api.cart.CartService;
 import com.pimpmypc.api.exception.AuthenticationException;
 import com.pimpmypc.api.exception.OrderNotFoundException;
@@ -37,8 +36,6 @@ public class OrderServiceImpl implements OrderService {
     private final ProductRepository productRepository;
     private final AddressRepository addressRepository;
     private final UserRepository userRepository;
-    private final AuthService authService;
-
 
     @Override
     public OrderResponse saveOrder(CustomerPersonalDataDto customerData) {
@@ -54,15 +51,11 @@ public class OrderServiceImpl implements OrderService {
         customerData.getDeliveryAddress().setCreatedAt(LocalDateTime.now());
         addressRepository.save(customerData.getDeliveryAddress());
 
-        Order order = new Order();
-        order.setCustomerFirstName(customerData.getCustomerFirstName());
-        order.setCustomerLastName(customerData.getCustomerLastName());
-        order.setOrderStatus(OrderStatus.IN_PROGRESS);
-        order.setCustomerEmail(customerData.getCustomerEmail());
-        order.setCustomerPhone(customerData.getCustomerPhone());
-        order.setTotalPrice(cartService.calculateCartTotalPrice());
-        order.setProducts(cartService.getCustomerProductsInCart());
-        order.setDeliveryAddress(customerData.getDeliveryAddress());
+        Order order = Order.builder().customerFirstName(customerData.getCustomerFirstName())
+                .customerLastName(customerData.getCustomerLastName()).orderStatus(OrderStatus.IN_PROGRESS)
+                .customerEmail(customerData.getCustomerEmail()).customerPhone(customerData.getCustomerPhone())
+                .totalPrice(cartService.calculateCartTotalPrice()).products(cartService.getCustomerProductsInCart())
+                .deliveryAddress(customerData.getDeliveryAddress()).build();
 
         order.setCreatedAt(LocalDateTime.now());
         order.setModifiedAt(LocalDateTime.now());
