@@ -51,9 +51,12 @@ public class OrderServiceImpl implements OrderService {
         addressRepository.save(customerData.getDeliveryAddress());
 
         Order order = Order.builder().customerFirstName(customerData.getCustomerFirstName())
-                .customerLastName(customerData.getCustomerLastName()).orderStatus(OrderStatus.IN_PROGRESS)
-                .customerEmail(customerData.getCustomerEmail()).customerPhone(customerData.getCustomerPhone())
-                .totalPrice(cartService.calculateCartTotalPrice()).products(cartService.getCustomerProductsInCart())
+                .customerLastName(customerData.getCustomerLastName())
+                .orderStatus(OrderStatus.IN_PROGRESS)
+                .customerEmail(customerData.getCustomerEmail())
+                .customerPhone(customerData.getCustomerPhone())
+                .totalPrice(cartService.calculateCartTotalPrice())
+                .products(cartService.getCustomerProductsInCart())
                 .deliveryAddress(customerData.getDeliveryAddress()).build();
 
         order.setCreatedAt(LocalDateTime.now());
@@ -89,10 +92,10 @@ public class OrderServiceImpl implements OrderService {
                     .id(order.getId()).price(order.getTotalPrice()).orderDate(order.getCreatedAt().toLocalDate())
                     .build()).toList();
         } else {
-            log.warn("User is not logged in. Can't load orders");
+            log.warn("User is not logged in. Can't load orders.");
         }
 
-        return new PageImpl<OrderResponse>(userOrders, pageable, 9);
+        return new PageImpl<>(userOrders, pageable, 9);
     }
 
     @Override
@@ -104,12 +107,14 @@ public class OrderServiceImpl implements OrderService {
             List<Product> orderProducts = order.getProducts();
 
             return OrderDto.builder().id(order.getId()).title("Order: " + order.getId())
-                    .imageUrl(orderProducts.get(0).getImageUrl()).products(orderProducts).address(order.getDeliveryAddress())
-                    .price(orderProducts.stream().map(Product::getPrice).reduce(new BigDecimal(0), BigDecimal::add))
-                    .build();
+                    .imageUrl(orderProducts.get(0).getImageUrl())
+                    .products(orderProducts)
+                    .address(order.getDeliveryAddress())
+                    .price(orderProducts.stream().map(Product::getPrice)
+                            .reduce(new BigDecimal(0), BigDecimal::add)).build();
         } else {
-            log.warn("User don't have access to see this order");
-            throw new AuthenticationException("User don't have access to see this order");
+            log.warn("User don't have access to see this order.");
+            throw new AuthenticationException("User don't have access to see this order.");
         }
     }
 }

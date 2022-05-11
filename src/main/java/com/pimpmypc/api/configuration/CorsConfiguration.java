@@ -1,7 +1,7 @@
 package com.pimpmypc.api.configuration;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -9,10 +9,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @Configuration
+@AllArgsConstructor
 @Slf4j
 class CorsConfiguration implements WebMvcConfigurer {
 
-    @Autowired
     private Environment environment;
 
     @Override

@@ -14,18 +14,25 @@ import javax.persistence.Entity;
 public class Smartphone extends Product {
 
     private Integer memory;
+
     @Column(name = "display_size")
     @JsonProperty("Screen size")
     private String displaySize;
+
     private String resolution;
+
     private String processor;
+
     @Column(name = "cpu_speed")
     @JsonProperty("Processor speed")
     private String cpuSpeed;
+
     private Integer ram;
+
     @Column(name = "operating_system")
     @JsonProperty("Operating system")
     private String operatingSystem;
+
     @Column(name = "battery_capacity")
     @JsonProperty("Battery capacity")
     private Integer batteryCapacity;

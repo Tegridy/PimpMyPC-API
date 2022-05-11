@@ -18,17 +18,22 @@ public class Monitor extends Product {
     @Column(name = "screen_size")
     @JsonProperty("Screen size")
     private Float screenSize;
+
     private String resolution;
+
     @Column(name = "refresh_rate")
     @JsonProperty("Refresh rate")
     private Integer refreshRate;
+
     @Column(name = "response_time")
     @JsonProperty("Response time")
     private Integer responseTime;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "panel_type")
     @JsonProperty("Screen type")
     private MonitorPanelType monitorPanelType;
+
     @Column(name = "aspect_ratio")
     @JsonProperty("Aspect ratio")
     private String aspectRatio;

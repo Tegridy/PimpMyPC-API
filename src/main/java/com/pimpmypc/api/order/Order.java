@@ -21,22 +21,30 @@ public class Order extends BaseEntity {
 
     @Column(name = "first_name")
     private String customerFirstName;
+
     @Column(name = "last_name")
     private String customerLastName;
+
     @Column(name = "order_status")
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
+
     @Column(name = "customer_email")
     private String customerEmail;
+
     @Column(name = "customer_phone")
     private String customerPhone;
+
     @Column(name = "total_price")
     private BigDecimal totalPrice;
+
     @ManyToMany
     @JoinTable(name = "orders_products", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     private Address deliveryAddress;
+
     @ManyToOne
     @JsonIgnore
     private User user;
@@ -51,18 +59,5 @@ public class Order extends BaseEntity {
         this.totalPrice = totalPrice;
         this.products = products;
         this.deliveryAddress = deliveryAddress;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "customerFirstName='" + customerFirstName + '\'' +
-                ", customerLastName='" + customerLastName + '\'' +
-                ", orderStatus=" + orderStatus +
-                ", customerEmail='" + customerEmail + '\'' +
-                ", customerPhone='" + customerPhone + '\'' +
-                ", totalPrice=" + totalPrice +
-                ", products=" + products +
-                '}';
     }
 }

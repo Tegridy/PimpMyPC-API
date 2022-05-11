@@ -15,8 +15,10 @@ public class Case extends Product {
 
     @JsonProperty("Height")
     private Integer height;
+
     @JsonProperty("Width")
     private Integer width;
+
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "motherboard_formats", joinColumns = @JoinColumn(name = "id"))

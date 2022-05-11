@@ -16,7 +16,9 @@ public class PowerSupply extends Product {
     @Column(name = "adapter_power")
     @JsonProperty("Adapter power")
     private Integer adapterPower;
+
     private String standard;
+
     private String certificate;
 
     public String getAdapterPower() {

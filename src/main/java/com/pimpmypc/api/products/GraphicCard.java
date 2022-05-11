@@ -15,18 +15,23 @@ public class GraphicCard extends Product {
 
     @JsonProperty("Chipset")
     private String chipset;
+
     @Column(name = "v_ram")
     @JsonProperty("VRAM")
     private Integer vRam;
+
     @Column(name = "core_clock")
     @JsonProperty("Core clock")
     private Integer coreClock;
+
     @Column(name = "boost_clock")
     @JsonProperty("Boost clock")
     private Integer boostClock;
+
     @Column(name = "graphic_card_length")
     @JsonProperty("Length")
     private Integer length;
+
     @JsonProperty("TDP")
     private Integer tdp;
 

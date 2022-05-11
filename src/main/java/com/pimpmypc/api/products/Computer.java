@@ -15,19 +15,25 @@ public class Computer extends Product {
 
     @JsonProperty("Processor")
     private String processor;
+
     @JsonProperty("RAM")
     private String ram;
+
     @JsonProperty("Motherboard")
     private String motherboard;
+
     @Column(name = "hard_disc")
     @JsonProperty("Hard drive")
     private String hardDisc;
+
     @Column(name = "power_supply")
     @JsonProperty("Power supply")
     private String powerSupply;
+
     @Column(name = "computer_case")
     @JsonProperty("Case")
     private String computerCase;
+
     @Column(name = "graphic_card")
     @JsonProperty("Graphic card")
     private String graphicCard;
