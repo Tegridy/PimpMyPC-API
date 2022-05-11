@@ -22,6 +22,7 @@ public class FilterType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "filter_type")
     private String name;
 

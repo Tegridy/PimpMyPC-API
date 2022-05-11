@@ -1,6 +1,8 @@
 package com.pimpmypc.api.order.dto;
 
+import com.pimpmypc.api.cart.Cart;
 import com.pimpmypc.api.user.address.Address;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,7 +13,8 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @ToString
-public class CustomerPersonalDataDto {
+@Builder
+public class CustomerOrderDataDto {
     @Size(min = 3, max = 55)
     private String customerFirstName;
 
@@ -25,4 +28,6 @@ public class CustomerPersonalDataDto {
     private String customerEmail;
 
     private Address deliveryAddress;
+
+    private Cart cart;
 }

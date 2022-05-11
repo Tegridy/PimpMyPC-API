@@ -86,4 +86,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
         return ResponseEntity.status(ex.getHttpStatus()).body(errorResponse);
     }
+
+    @ExceptionHandler(CartException.class)
+    protected ResponseEntity<ErrorResponse> handleCartException(CartException ex,
+                                                                WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
+        return ResponseEntity.status(ex.getHttpStatus()).body(errorResponse);
+    }
 }

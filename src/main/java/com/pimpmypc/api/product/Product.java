@@ -21,6 +21,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @JsonIgnoreProperties(value = {"numberOfItemsSold", "createdAt", "modifiedAt", "orders", "quantity"})
+
 public class Product extends BaseEntity {
 
     private String title;
@@ -61,4 +62,5 @@ public class Product extends BaseEntity {
         }
         return colors;
     }
+
 }

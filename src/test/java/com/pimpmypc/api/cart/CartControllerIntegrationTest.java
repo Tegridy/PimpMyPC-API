@@ -37,8 +37,6 @@ class CartControllerIntegrationTest {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
-    private CartService cartService;
-    @Autowired
     private ProductService productService;
 
     private Processor product1;

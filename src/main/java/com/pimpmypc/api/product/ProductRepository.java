@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -22,14 +21,9 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Queryds
             "AND p.title LIKE CONCAT('%',:productName,'%')")
     Page<Product> findProductsByNameAndCategory(String productName, String category, Pageable pageable);
 
-    @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY number_of_sold DESC LIMIT 6", nativeQuery = true)
-    List<Product> findOurChoice();
+    Page<Product> findProductsByOrderByNumberOfItemsSoldDesc(Pageable pageable);
 
-    @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY number_of_sold DESC LIMIT 18", nativeQuery = true)
-    List<Product> findBestsellers();
-
-    @Query(value = "SELECT *, 0 AS clazz_ FROM products ORDER BY id DESC LIMIT 1", nativeQuery = true)
-    Product findNewestProduct();
+    Page<Product> findProductByOrderByIdDesc(Pageable pageable);
 
     Optional<Product> findProductById(Long id);
 }

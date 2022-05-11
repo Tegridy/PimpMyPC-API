@@ -11,8 +11,6 @@ import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/v1/products")
 @AllArgsConstructor
@@ -118,17 +116,17 @@ public class ProductController {
     }
 
     @GetMapping(value = "/top", produces = "application/json")
-    public ResponseEntity<List<ProductDto>> getTopSellingItems() {
+    public ResponseEntity<Page<ProductDto>> getTopSellingItems() {
         return ResponseEntity.ok(productService.getBestsellers());
     }
 
     @GetMapping(value = "/our-choice", produces = "application/json")
-    public ResponseEntity<List<ProductDto>> getOurChoice() {
+    public ResponseEntity<Page<ProductDto>> getOurChoice() {
         return ResponseEntity.ok(productService.getOurChoiceProducts());
     }
 
     @GetMapping(value = "/newest", produces = "application/json")
-    public ResponseEntity<Product> getNewestProduct() {
+    public ResponseEntity<Page<ProductDto>> getNewestProduct() {
         return ResponseEntity.ok(productService.getNewestProduct());
     }
 }

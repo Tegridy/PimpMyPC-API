@@ -42,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
 
     private ProductsResponse createResponse(Page<ProductDto> productsPage, String categoryName) {
 
-        long categoryId = categoryRepository.findByName(categoryName)
+        long categoryId = categoryRepository.findCategoryByTitle(categoryName)
                 .orElseThrow(() -> new EntityNotFoundException("Category with given name not found")).getId();
 
         Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(categoryId);
@@ -220,18 +220,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> getOurChoiceProducts() {
-        return productRepository.findOurChoice().stream().map(this::mapToDto).toList();
+    public Page<ProductDto> getOurChoiceProducts() {
+        List<ProductDto> ourChoice = productRepository.findProductsByOrderByNumberOfItemsSoldDesc(Pageable.ofSize(6)).stream().map(this::mapToDto).toList();
+
+        return new PageImpl<>(ourChoice);
     }
 
     @Override
-    public List<ProductDto> getBestsellers() {
-        return productRepository.findBestsellers().stream().map(this::mapToDto).toList();
+    public Page<ProductDto> getBestsellers() {
+        List<ProductDto> bestsellers = productRepository.findProductsByOrderByNumberOfItemsSoldDesc(Pageable.ofSize(18)).stream().map(this::mapToDto).toList();
+
+        return new PageImpl<>(bestsellers);
     }
 
     @Override
-    public Product getNewestProduct() {
-        return productRepository.findNewestProduct();
+    public Page<ProductDto> getNewestProduct() {
+        List<ProductDto> newestProduct = productRepository.findProductByOrderByIdDesc(Pageable.ofSize(1)).stream().map(this::mapToDto).toList();
+
+        return new PageImpl<>(newestProduct);
     }
 
     @Override

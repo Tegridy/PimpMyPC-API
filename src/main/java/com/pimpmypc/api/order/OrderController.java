@@ -1,7 +1,7 @@
 package com.pimpmypc.api.order;
 
 import com.pimpmypc.api.exception.AuthenticationException;
-import com.pimpmypc.api.order.dto.CustomerPersonalDataDto;
+import com.pimpmypc.api.order.dto.CustomerOrderDataDto;
 import com.pimpmypc.api.order.dto.OrderDto;
 import com.pimpmypc.api.order.dto.OrderResponse;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("")
-    public ResponseEntity<OrderResponse> saveOrder(@Valid @RequestBody CustomerPersonalDataDto order) {
+    public ResponseEntity<OrderResponse> saveOrder(@Valid @RequestBody CustomerOrderDataDto order) {
         OrderResponse orderResponse = orderService.saveOrder(order);
         return ResponseEntity.ok(orderResponse);
     }

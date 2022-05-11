@@ -1,46 +1,63 @@
 package com.pimpmypc.api.order;
 
-import com.pimpmypc.api.cart.CartService;
+import com.pimpmypc.api.cart.Cart;
 import com.pimpmypc.api.exception.AuthenticationException;
+import com.pimpmypc.api.exception.CartException;
 import com.pimpmypc.api.exception.EntityNotFoundException;
-import com.pimpmypc.api.order.dto.CustomerPersonalDataDto;
+import com.pimpmypc.api.order.dto.CustomerOrderDataDto;
 import com.pimpmypc.api.order.dto.OrderDto;
 import com.pimpmypc.api.order.dto.OrderResponse;
 import com.pimpmypc.api.product.Product;
 import com.pimpmypc.api.product.ProductRepository;
+import com.pimpmypc.api.product.ProductService;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
 import com.pimpmypc.api.user.address.AddressRepository;
-import lombok.AllArgsConstructor;
+import com.pimpmypc.api.utils.BaseEntity;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-    private final CartService cartService;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
     private final AddressRepository addressRepository;
     private final UserRepository userRepository;
+    private final ProductService productService;
+
+    private BigDecimal cartTotalPrice;
+    private List<Product> cartProducts;
 
     @Override
-    public OrderResponse saveOrder(CustomerPersonalDataDto customerData) {
+    public OrderResponse saveOrder(CustomerOrderDataDto customerData) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        cartService.getCustomerProductsInCart().forEach(product -> {
+        if (!isCartValid(customerData.getCart())) {
+            log.warn("Cart validation failed.");
+            throw new CartException("Cart validation failed.", HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        cartProducts.forEach(p -> {
+            Product product = productRepository.findProductById(p.getId()).orElseThrow(() ->
+                    new EntityNotFoundException("Product with id: " + p.getId() + " not found."));
+
+
             product.setQuantity(product.getQuantity() - 1);
             product.setNumberOfItemsSold(product.getNumberOfItemsSold() + 1);
 
@@ -55,8 +72,8 @@ public class OrderServiceImpl implements OrderService {
                 .orderStatus(OrderStatus.IN_PROGRESS)
                 .customerEmail(customerData.getCustomerEmail())
                 .customerPhone(customerData.getCustomerPhone())
-                .totalPrice(cartService.calculateCartTotalPrice())
-                .products(cartService.getCustomerProductsInCart())
+                .totalPrice(cartTotalPrice)
+                .products(cartProducts)
                 .deliveryAddress(customerData.getDeliveryAddress()).build();
 
         order.setCreatedAt(LocalDateTime.now());
@@ -72,7 +89,7 @@ public class OrderServiceImpl implements OrderService {
 
         Order savedOrder = orderRepository.save(order);
         log.info("Saving order: " + savedOrder.getId());
-        cartService.clearCart();
+
 
         return OrderResponse.builder().id(savedOrder.getId()).status(savedOrder.getOrderStatus()).build();
     }
@@ -115,6 +132,23 @@ public class OrderServiceImpl implements OrderService {
         } else {
             log.warn("User don't have access to see this order.");
             throw new AuthenticationException("User don't have access to see this order.");
+        }
+    }
+
+    private boolean isCartValid(Cart cart) {
+        List<Long> productsIds = cart.getProducts().stream().map(BaseEntity::getId).toList();
+        List<Product> products = productsIds.stream().map(productService::findProductById).toList();
+
+        BigDecimal totalPrice = products.stream().map(Product::getPrice)
+                .reduce(new BigDecimal(0), BigDecimal::add).setScale(2, RoundingMode.CEILING);
+
+
+        if (cart.getTotalPrice().setScale(2, RoundingMode.CEILING).equals(totalPrice)) {
+            this.cartTotalPrice = totalPrice;
+            this.cartProducts = cart.getProducts();
+            return true;
+        } else {
+            return false;
         }
     }
 }

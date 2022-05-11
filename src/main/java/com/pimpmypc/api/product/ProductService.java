@@ -5,8 +5,6 @@ import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 
 public interface ProductService {
 
@@ -36,11 +34,11 @@ public interface ProductService {
 
     ProductsResponse getAllComputers(Predicate predicate, Pageable pageable);
 
-    List<ProductDto> getBestsellers();
+    Page<ProductDto> getBestsellers();
 
-    List<ProductDto> getOurChoiceProducts();
+    Page<ProductDto> getOurChoiceProducts();
 
-    Product getNewestProduct();
+    Page<ProductDto> getNewestProduct();
 
     Product findProductById(Long id);
 

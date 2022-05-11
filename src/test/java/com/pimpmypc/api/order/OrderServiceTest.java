@@ -1,15 +1,14 @@
 package com.pimpmypc.api.order;
 
 import com.pimpmypc.api.exception.AuthenticationException;
-import com.pimpmypc.api.exception.EntityNotFoundException;
-import com.pimpmypc.api.order.dto.CustomerPersonalDataDto;
+import com.pimpmypc.api.order.dto.CustomerOrderDataDto;
 import com.pimpmypc.api.order.dto.OrderDto;
 import com.pimpmypc.api.order.dto.OrderResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.function.Executable;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -19,14 +18,23 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class OrderServiceTest {
 
+    @InjectMocks
+    private OrderServiceImpl orderService;
+    
     @Mock
-    private OrderService orderService;
+    private OrderRepository orderRepository;
+
+    @Captor
+    private ArgumentCaptor<Order> orderArgumentCaptor;
+
 
     private OrderResponse orderResponse;
     private OrderResponse orderResponse2;
@@ -42,12 +50,21 @@ public class OrderServiceTest {
 
     @Test
     void shouldSaveOrder() {
+        // given
+        CustomerOrderDataDto order = CustomerOrderDataDto.builder()
+                .customerFirstName("John")
+                .customerLastName("Doe")
+                .customerEmail("test@test.com")
+                .customerPhone("12345678").build();
 
-        CustomerPersonalDataDto order = new CustomerPersonalDataDto();
+        // when
+        OrderResponse result = orderService.saveOrder(order);
 
-        Mockito.doReturn(orderResponse).when(orderService).saveOrder(order);
+        //then
+        verify(orderRepository).save(orderArgumentCaptor.capture());
+        Order orderResult = orderArgumentCaptor.getValue();
 
-        assertEquals(orderResponse, orderService.saveOrder(order));
+        assertThat(orderResult.getCustomerFirstName()).isEqualTo(order.getCustomerFirstName());
     }
 
     @Test
@@ -90,13 +107,16 @@ public class OrderServiceTest {
     }
 
     @Test
-    void shouldThrowOrderNotFound() throws AuthenticationException {
-        OrderDto orderDto = new OrderDto(99L, "Order: 99", BigDecimal.valueOf(125), "/", null,
-                null, null);
+    void shouldThrowAuthenticationExceptionIfUserIsNotLoggedIn() {
+        // given
+        Long orderId = 99L;
 
-        Mockito.doThrow(EntityNotFoundException.class).when(orderService).getUserOrderDetails(99L);
+        // when
+        Executable executable = () -> orderService.getUserOrderDetails(orderId);
 
-        assertThrows(EntityNotFoundException.class, () -> orderService.getUserOrderDetails(99L));
+        // then
+
+        assertThrows(AuthenticationException.class, executable);
     }
 
 }
