@@ -1,7 +1,7 @@
 package com.pimpmypc.api.user;
 
-import com.pimpmypc.api.exception.UserNotFoundException;
-import com.pimpmypc.api.exception.UserRoleNotFoundException;
+import com.pimpmypc.api.exception.EntityNotFoundException;
+import com.pimpmypc.api.exception.UserException;
 import com.pimpmypc.api.security.Role;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -142,16 +142,16 @@ public class UserServiceTest {
 
         String usernameThatNotExist = "NoUser";
 
-        Mockito.doThrow(new UserNotFoundException("User " + usernameThatNotExist + " not found."))
+        Mockito.doThrow(new EntityNotFoundException("User " + usernameThatNotExist + " not found."))
                 .when(userRepository).findByUsername(usernameThatNotExist);
 
-        assertThrows(UserNotFoundException.class, () -> userService.userAlreadyExist(usernameThatNotExist));
+        assertThrows(EntityNotFoundException.class, () -> userService.userAlreadyExist(usernameThatNotExist));
     }
 
     @Test
     void shouldThrowUserRoleNotFound() {
         user.setRoles(null);
 
-        assertThrows(UserRoleNotFoundException.class, () -> userService.saveUser(user));
+        assertThrows(UserException.class, () -> userService.saveUser(user));
     }
 }

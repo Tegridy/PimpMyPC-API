@@ -1,6 +1,6 @@
 package com.pimpmypc.api.user;
 
-import com.pimpmypc.api.exception.UserNotFoundException;
+import com.pimpmypc.api.exception.UserException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ public class PmpUserDetailsService implements UserDetailsService {
     public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username) {
 
         final User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException("User " + username + " not found."));
+                .orElseThrow(() -> new UserException("User " + username + " not found."));
 
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getUsername())

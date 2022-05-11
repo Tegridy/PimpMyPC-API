@@ -1,14 +1,15 @@
 package com.pimpmypc.api.user;
 
 import com.pimpmypc.api.exception.AddressException;
-import com.pimpmypc.api.exception.UserNotFoundException;
-import com.pimpmypc.api.exception.UserRoleNotFoundException;
+import com.pimpmypc.api.exception.EntityNotFoundException;
+import com.pimpmypc.api.exception.UserException;
 import com.pimpmypc.api.user.address.Address;
 import com.pimpmypc.api.user.dto.UserAddressDto;
 import com.pimpmypc.api.user.dto.UserAuthDto;
 import com.pimpmypc.api.user.dto.UserPersonalDataDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
 
     @Override
@@ -29,14 +31,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Long id) {
         return userRepository.findUserById(id)
-                .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " not found"));
     }
 
     @Override
     public void saveUser(User user) {
         if (user.getRoles() == null || user.getRoles().isEmpty()) {
             log.error("User must have at least a role set!");
-            throw new UserRoleNotFoundException("User must have at least a role set!");
+            throw new UserException("User must have at least a role set!", HttpStatus.NOT_FOUND);
         }
 
         userRepository.save(user);
@@ -52,13 +54,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserAccountDetails(Long id) {
         return userRepository.findUserById(id)
-                .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " do not exist"));
+                .orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " do not exist"));
     }
 
     @Override
     public UserPersonalDataDto updateUserPersonalDetails(Long id, UserPersonalDataDto newUserPersonalData) {
         User user = this.userRepository.findUserById(id).orElseThrow(
-                () -> new UserNotFoundException("User with given id do not exist"));
+                () -> new EntityNotFoundException("User with given id do not exist"));
 
         user.setFirstName(newUserPersonalData.getFirstName());
         user.setLastName(newUserPersonalData.getLastName());
@@ -76,11 +78,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserAddressDto updateUserAddressDetails(Long id, UserAddressDto newUserAddress) {
         User user = this.userRepository.findUserById(id).orElseThrow(
-                () -> new UserNotFoundException("User with given id do not exist"));
+                () -> new EntityNotFoundException("User with given id do not exist"));
 
         if (user.getAddress() == null) {
             log.warn("User id: " + user.getId() + " address is null");
-            throw new AddressException("User id: " + user.getId() + " address is null");
+            throw new AddressException("User id: " + user.getId() + " address is null", HttpStatus.NOT_FOUND);
         }
         Address address = user.getAddress();
 
@@ -102,7 +104,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserAuthDto updateUserAuthDetails(Long id, String newPassword) {
         User user = this.userRepository.findUserById(id).orElseThrow(
-                () -> new UserNotFoundException("User with given id do not exist"));
+                () -> new EntityNotFoundException("User with given id do not exist"));
 
         user.setPassword(new BCryptPasswordEncoder(12).encode(newPassword));
         user.setModifiedAt(LocalDateTime.now());
@@ -115,6 +117,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException(String.format("User %s not found", username)));
+                .orElseThrow(() -> new EntityNotFoundException(String.format("User %s not found", username)));
     }
 }

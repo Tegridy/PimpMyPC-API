@@ -4,17 +4,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.pimpmypc.api.exception.AuthenticationException;
-import com.pimpmypc.api.exception.UserAlreadyExistException;
+import com.pimpmypc.api.exception.UserException;
 import com.pimpmypc.api.security.JwtTokenProvider;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserService;
 import com.pimpmypc.api.user.address.Address;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -40,7 +42,7 @@ public class AuthService {
     public String signUp(User newUser) throws JsonProcessingException {
         if (userService.userAlreadyExist(newUser.getUsername())) {
             log.error("User " + newUser.getUsername() + " already exist in database.");
-            throw new UserAlreadyExistException("User " + newUser.getUsername() + " already exist in database.");
+            throw new UserException("User " + newUser.getUsername() + " already exist in database.", HttpStatus.CONFLICT);
         } else if (newUser.getAddress() == null) {
             throw new RuntimeException("User must have an address.");
         } else {
@@ -53,7 +55,7 @@ public class AuthService {
                     .firstName(newUser.getFirstName()).lastName(newUser.getLastName())
                     .address(userAddress).phone(newUser.getPhone()).roles(List.of(Role.ROLE_USER))
                     .email(newUser.getEmail()).build();
- 
+
             user.setCreatedAt(LocalDateTime.now());
             user.setModifiedAt(LocalDateTime.now());
 
@@ -68,7 +70,7 @@ public class AuthService {
         }
     }
 
-    public String signIn(String username, String password) throws AuthenticationException, JsonProcessingException {
+    public String signIn(String username, String password) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
         User user = userService.findByUsername(username);
@@ -82,6 +84,14 @@ public class AuthService {
         userNode.put("userId", user.getId());
         userNode.put("token", token);
 
-        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userNode);
+        try {
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userNode);
+        } catch (AuthenticationException ex) {
+            log.error("Authentication problem ", ex);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        } catch (JsonProcessingException ex) {
+            log.error("Login response processing error ", ex);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while creating login response object.");
+        }
     }
 }

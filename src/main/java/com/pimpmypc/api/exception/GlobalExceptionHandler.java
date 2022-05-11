@@ -52,14 +52,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 
-    @ExceptionHandler(UserRoleNotFoundException.class)
-    protected ResponseEntity<ErrorResponse> handleUserRoleNotFoundException(UserRoleNotFoundException ex,
-                                                                            HttpHeaders headers,
-                                                                            HttpStatus status, WebRequest request) {
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-    }
-
     @ExceptionHandler(ProductException.class)
     protected ResponseEntity<ErrorResponse> handleProductException(ProductException ex,
                                                                    WebRequest request) {
@@ -67,37 +59,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    protected ResponseEntity<ErrorResponse> handleProductNotFoundException(ProductNotFoundException ex,
-                                                                           WebRequest request) {
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
-    }
-
-    @ExceptionHandler(UserAlreadyExistException.class)
-    protected ResponseEntity<ErrorResponse> handleUserAlreadyExistException(UserAlreadyExistException ex,
-                                                                            WebRequest request) {
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
-    }
-
-    @ExceptionHandler(UserNotFoundException.class)
-    protected ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException ex,
-                                                                        WebRequest request) {
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
-    }
-
-    @ExceptionHandler(OrderNotFoundException.class)
-    protected ResponseEntity<ErrorResponse> handleOrderNotFoundException(OrderNotFoundException ex,
+    @ExceptionHandler(EntityNotFoundException.class)
+    protected ResponseEntity<ErrorResponse> handleOrderNotFoundException(EntityNotFoundException ex,
                                                                          WebRequest request) {
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
-    }
-
-    @ExceptionHandler(CategoryNotFoundException.class)
-    protected ResponseEntity<ErrorResponse> handleCategoryNotFoundException(CategoryNotFoundException ex,
-                                                                            WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
@@ -107,5 +71,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                                                                            WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    protected ResponseEntity<ErrorResponse> handleAuthenticationException(AuthenticationException ex,
+                                                                          WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(UserException.class)
+    protected ResponseEntity<ErrorResponse> handleUserException(UserException ex,
+                                                                WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), List.of(ex.getMessage()));
+        return ResponseEntity.status(ex.getHttpStatus()).body(errorResponse);
     }
 }

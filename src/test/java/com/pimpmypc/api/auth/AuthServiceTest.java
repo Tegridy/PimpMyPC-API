@@ -2,8 +2,7 @@ package com.pimpmypc.api.auth;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pimpmypc.api.exception.AuthenticationException;
-import com.pimpmypc.api.exception.UserAlreadyExistException;
-import com.pimpmypc.api.exception.UserNotFoundException;
+import com.pimpmypc.api.exception.UserException;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.User;
 import org.junit.jupiter.api.AfterEach;
@@ -58,9 +57,9 @@ public class AuthServiceTest {
 
     @Test
     void shouldThrowUserAlreadyExist() throws JsonProcessingException {
-        Mockito.doThrow(new UserAlreadyExistException("")).when(authService).signUp(user);
+        Mockito.doThrow(new UserException("User already exists.")).when(authService).signUp(user);
 
-        assertThrows(UserAlreadyExistException.class, () -> authService.signUp(user));
+        assertThrows(UserException.class, () -> authService.signUp(user));
     }
 
     @Test
@@ -72,10 +71,10 @@ public class AuthServiceTest {
 
     @Test
     void shouldThrowUserNotFound() throws AuthenticationException, JsonProcessingException {
-        Mockito.doThrow(new UserNotFoundException("User Not an user not found.")).when(authService)
+        Mockito.doThrow(new UserException("User Not an user not found.")).when(authService)
                 .signIn("Not an user", "Not a real password");
 
-        assertThrows(UserNotFoundException.class, () -> authService.signIn("Not an user", "Not a real password"));
+        assertThrows(UserException.class, () -> authService.signIn("Not an user", "Not a real password"));
     }
 
     @Test

@@ -1,8 +1,7 @@
 package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.category.CategoryRepository;
-import com.pimpmypc.api.exception.CategoryNotFoundException;
-import com.pimpmypc.api.exception.ProductNotFoundException;
+import com.pimpmypc.api.exception.EntityNotFoundException;
 import com.pimpmypc.api.filters.FilterType;
 import com.pimpmypc.api.filters.FiltersRepository;
 import com.pimpmypc.api.product.dto.ProductDto;
@@ -44,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductsResponse createResponse(Page<ProductDto> productsPage, String categoryName) {
 
         long categoryId = categoryRepository.findByName(categoryName)
-                .orElseThrow(() -> new CategoryNotFoundException("Category with given name not found")).getId();
+                .orElseThrow(() -> new EntityNotFoundException("Category with given name not found")).getId();
 
         Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(categoryId);
 
@@ -238,6 +237,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findProductById(Long id) {
         return productRepository.findProductById(id)
-                .orElseThrow(() -> new ProductNotFoundException("Product with id: " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Product with id: " + id + " not found"));
     }
 }

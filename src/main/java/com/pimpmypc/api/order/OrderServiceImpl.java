@@ -2,8 +2,7 @@ package com.pimpmypc.api.order;
 
 import com.pimpmypc.api.cart.CartService;
 import com.pimpmypc.api.exception.AuthenticationException;
-import com.pimpmypc.api.exception.OrderNotFoundException;
-import com.pimpmypc.api.exception.UserNotFoundException;
+import com.pimpmypc.api.exception.EntityNotFoundException;
 import com.pimpmypc.api.order.dto.CustomerPersonalDataDto;
 import com.pimpmypc.api.order.dto.OrderDto;
 import com.pimpmypc.api.order.dto.OrderResponse;
@@ -83,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
         if (authentication != null) {
             log.info(authentication.getName() + " is logged in. Returning user orders.");
             User user = userRepository.findByUsername(authentication.getName())
-                    .orElseThrow(() -> new UserNotFoundException("User with given name not found."));
+                    .orElseThrow(() -> new EntityNotFoundException("User with given name not found."));
 
 
             userOrders = user.getUserOrders().stream().map(order -> OrderResponse.builder().status(order.getOrderStatus())
@@ -101,7 +100,7 @@ public class OrderServiceImpl implements OrderService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             Order order = orderRepository.findById(id)
-                    .orElseThrow(() -> new OrderNotFoundException("Order with id: " + id + " not found."));
+                    .orElseThrow(() -> new EntityNotFoundException("Order with id: " + id + " not found."));
             List<Product> orderProducts = order.getProducts();
 
             return OrderDto.builder().id(order.getId()).title("Order: " + order.getId())

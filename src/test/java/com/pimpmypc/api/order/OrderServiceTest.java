@@ -1,7 +1,7 @@
 package com.pimpmypc.api.order;
 
 import com.pimpmypc.api.exception.AuthenticationException;
-import com.pimpmypc.api.exception.OrderNotFoundException;
+import com.pimpmypc.api.exception.EntityNotFoundException;
 import com.pimpmypc.api.order.dto.CustomerPersonalDataDto;
 import com.pimpmypc.api.order.dto.OrderDto;
 import com.pimpmypc.api.order.dto.OrderResponse;
@@ -94,9 +94,9 @@ public class OrderServiceTest {
         OrderDto orderDto = new OrderDto(99L, "Order: 99", BigDecimal.valueOf(125), "/", null,
                 null, null);
 
-        Mockito.doThrow(OrderNotFoundException.class).when(orderService).getUserOrderDetails(99L);
+        Mockito.doThrow(EntityNotFoundException.class).when(orderService).getUserOrderDetails(99L);
 
-        assertThrows(OrderNotFoundException.class, () -> orderService.getUserOrderDetails(99L));
+        assertThrows(EntityNotFoundException.class, () -> orderService.getUserOrderDetails(99L));
     }
 
 }
