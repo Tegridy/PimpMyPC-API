@@ -15,6 +15,7 @@ import com.pimpmypc.api.user.UserRepository;
 import com.pimpmypc.api.user.address.AddressRepository;
 import com.pimpmypc.api.utils.BaseEntity;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -33,6 +34,7 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Setter
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
@@ -48,7 +50,8 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponse saveOrder(CustomerOrderDataDto customerData) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (!isCartValid(customerData.getCart())) {
+        if (customerData.getCart().getProducts().size() < 1 || customerData.getCart().getTotalPrice() == null
+                || !isCartValid(customerData.getCart())) {
             log.warn("Cart validation failed.");
             throw new CartException("Cart validation failed.", HttpStatus.NOT_ACCEPTABLE);
         }
@@ -56,7 +59,6 @@ public class OrderServiceImpl implements OrderService {
         cartProducts.forEach(p -> {
             Product product = productRepository.findProductById(p.getId()).orElseThrow(() ->
                     new EntityNotFoundException("Product with id: " + p.getId() + " not found."));
-
 
             product.setQuantity(product.getQuantity() - 1);
             product.setNumberOfItemsSold(product.getNumberOfItemsSold() + 1);
@@ -86,10 +88,8 @@ public class OrderServiceImpl implements OrderService {
             });
         }
 
-
         Order savedOrder = orderRepository.save(order);
         log.info("Saving order: " + savedOrder.getId());
-
 
         return OrderResponse.builder().id(savedOrder.getId()).status(savedOrder.getOrderStatus()).build();
     }
@@ -101,6 +101,7 @@ public class OrderServiceImpl implements OrderService {
 
         if (authentication != null) {
             log.info(authentication.getName() + " is logged in. Returning user orders.");
+
             User user = userRepository.findByUsername(authentication.getName())
                     .orElseThrow(() -> new EntityNotFoundException("User with given name not found."));
 
@@ -123,7 +124,9 @@ public class OrderServiceImpl implements OrderService {
                     .orElseThrow(() -> new EntityNotFoundException("Order with id: " + id + " not found."));
             List<Product> orderProducts = order.getProducts();
 
-            return OrderDto.builder().id(order.getId()).title("Order: " + order.getId())
+            return OrderDto.builder()
+                    .id(order.getId())
+                    .title("Order: " + order.getId())
                     .imageUrl(orderProducts.get(0).getImageUrl())
                     .products(orderProducts)
                     .address(order.getDeliveryAddress())
@@ -139,9 +142,9 @@ public class OrderServiceImpl implements OrderService {
         List<Long> productsIds = cart.getProducts().stream().map(BaseEntity::getId).toList();
         List<Product> products = productsIds.stream().map(productService::findProductById).toList();
 
+
         BigDecimal totalPrice = products.stream().map(Product::getPrice)
                 .reduce(new BigDecimal(0), BigDecimal::add).setScale(2, RoundingMode.CEILING);
-
 
         if (cart.getTotalPrice().setScale(2, RoundingMode.CEILING).equals(totalPrice)) {
             this.cartTotalPrice = totalPrice;

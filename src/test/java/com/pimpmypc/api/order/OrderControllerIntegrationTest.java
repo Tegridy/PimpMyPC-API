@@ -2,6 +2,8 @@ package com.pimpmypc.api.order;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pimpmypc.api.PimpMyPcApplication;
+import com.pimpmypc.api.cart.Cart;
+import com.pimpmypc.api.order.dto.CustomerOrderDataDto;
 import com.pimpmypc.api.product.Product;
 import com.pimpmypc.api.product.ProductRepository;
 import com.pimpmypc.api.products.Color;
@@ -65,6 +67,7 @@ class OrderControllerIntegrationTest {
     @BeforeEach
     void setUp() {
         product1 = new Processor();
+        product1.setId(2L);
         product1.setTitle("Intel Processor");
         product1.setBrand("Intel");
         product1.setModel("i5");
@@ -84,6 +87,7 @@ class OrderControllerIntegrationTest {
         product1.setCreatedAt(LocalDateTime.now());
 
         product2 = new Processor();
+        product2.setId(8L);
         product2.setTitle("AMD Processor");
         product2.setBrand("AMD");
         product2.setModel("FX");
@@ -121,16 +125,26 @@ class OrderControllerIntegrationTest {
     @Test
     void shouldSaveOrder() throws Exception {
 
+        Product p = productRepository.save(product1);
+        Product p2 = productRepository.save(product2);
+
         List<Product> productList = new ArrayList<>();
-        productList.add(product1);
-        productList.add(product2);
+        productList.add(p);
+        productList.add(p2);
 
 
         Address address = new Address("street1", "city1", "state1", "11-111");
 
+        Cart cart = new Cart();
+        cart.setProducts(productList);
+        cart.setTotalPrice(p.getPrice().add(p2.getPrice()));
 
-        Order order = new Order("John", "Doe", OrderStatus.IN_PROGRESS, "mail@mail.com", "123456789",
-                BigDecimal.valueOf(125), productList, address);
+
+        CustomerOrderDataDto order = CustomerOrderDataDto.builder()
+                .customerFirstName("John").customerLastName("Doe")
+                .customerEmail("mail@mail.com").customerPhone("123456789")
+                .deliveryAddress(address)
+                .cart(cart).build();
 
 
         mvc.perform(post("/api/v1/orders").content(asJsonString(order))
@@ -156,6 +170,7 @@ class OrderControllerIntegrationTest {
 
         Order order = new Order("John", "Doe", OrderStatus.IN_PROGRESS, "mail@mail.com", "123456789",
                 BigDecimal.valueOf(125), productList, address);
+
         order.setCreatedAt(LocalDateTime.now());
 
         Order order2 = new Order("John", "Doe", OrderStatus.IN_PROGRESS, "mail@mail.com", "123456789",
