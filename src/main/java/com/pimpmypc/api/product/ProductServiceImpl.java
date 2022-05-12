@@ -59,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
         Page<Processor> processorPage = processorRepository.findAllProcessors(predicate, pageable);
 
         Page<ProductDto> processors = new PageImpl<ProductDto>(processorPage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, processorPage.getTotalElements());
 
         return createResponse(processors, "Processors");
@@ -75,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
         Page<Motherboard> motherboardPage = motherboardRepository.findAllMotherboards(predicate, pageable);
 
         Page<ProductDto> motherboards = new PageImpl<ProductDto>(motherboardPage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, motherboardPage.getTotalElements());
 
         return createResponse(motherboards, "Motherboards");
@@ -86,7 +86,7 @@ public class ProductServiceImpl implements ProductService {
         Page<Case> casePage = caseRepository.findAllCases(predicate, pageable);
 
         Page<ProductDto> cases = new PageImpl<ProductDto>(casePage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, casePage.getTotalElements());
 
         return createResponse(cases, "Cases");
@@ -97,7 +97,7 @@ public class ProductServiceImpl implements ProductService {
         Page<Ram> ramPage = ramRepository.findAllRams(predicate, pageable);
 
         Page<ProductDto> rams = new PageImpl<ProductDto>(ramPage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, ramPage.getTotalElements());
 
         return createResponse(rams, "Memory RAM");
@@ -108,7 +108,7 @@ public class ProductServiceImpl implements ProductService {
         Page<Mouse> mousePage = mouseRepository.findAllMouses(predicate, pageable);
 
         Page<ProductDto> mice = new PageImpl<ProductDto>(mousePage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, mousePage.getTotalElements());
 
         return createResponse(mice, "Computer mouses");
@@ -119,7 +119,7 @@ public class ProductServiceImpl implements ProductService {
         Page<Keyboard> keyboardPage = keyboardRepository.findAllKeyboards(predicate, pageable);
 
         Page<ProductDto> keyboards = new PageImpl<ProductDto>(keyboardPage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, keyboardPage.getTotalElements());
 
         return createResponse(keyboards, "Computer keyboards");
@@ -130,7 +130,7 @@ public class ProductServiceImpl implements ProductService {
         Page<Monitor> monitorPage = monitorRepository.findAllMonitors(predicate, pageable);
 
         Page<ProductDto> monitors = new PageImpl<ProductDto>(monitorPage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, monitorPage.getTotalElements());
 
         return createResponse(monitors, "Monitors");
@@ -141,7 +141,7 @@ public class ProductServiceImpl implements ProductService {
         Page<HardDrive> drivePage = hardDriveRepository.findAllHardDrives(predicate, pageable);
 
         Page<ProductDto> hardDiscs = new PageImpl<ProductDto>(drivePage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, drivePage.getTotalElements());
 
         return createResponse(hardDiscs, "Hard drives");
@@ -152,7 +152,7 @@ public class ProductServiceImpl implements ProductService {
         Page<GraphicCard> graphicCardPage = graphicCardRepository.findAllGraphicCards(predicate, pageable);
 
         Page<ProductDto> graphicCards = new PageImpl<ProductDto>(graphicCardPage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, graphicCardPage.getTotalElements());
 
         return createResponse(graphicCards, "Graphic cards");
@@ -163,7 +163,7 @@ public class ProductServiceImpl implements ProductService {
         Page<PowerSupply> powerSupplyPage = powerSupplyRepository.findAllPowerSupplies(predicate, pageable);
 
         Page<ProductDto> powerSupplies = new PageImpl<ProductDto>(powerSupplyPage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, powerSupplyPage.getTotalElements());
 
         return createResponse(powerSupplies, "Power supply");
@@ -174,7 +174,7 @@ public class ProductServiceImpl implements ProductService {
         Page<Smartphone> smartphonePage = smartphoneRepository.findAllSmartphones(predicate, pageable);
 
         Page<ProductDto> smartphones = new PageImpl<ProductDto>(smartphonePage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, smartphonePage.getTotalElements());
 
         return createResponse(smartphones, "Smartphones");
@@ -185,7 +185,7 @@ public class ProductServiceImpl implements ProductService {
         Page<Laptop> laptopsPage = laptopRepository.findAllLaptops(predicate, pageable);
 
         Page<ProductDto> laptops = new PageImpl<ProductDto>(laptopsPage
-                .getContent().stream().takeWhile(product -> product.getQuantity() > 0)
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, laptopsPage.getTotalElements());
 
         return createResponse(laptops, "Laptops");
@@ -195,8 +195,8 @@ public class ProductServiceImpl implements ProductService {
     public ProductsResponse getAllComputers(Predicate predicate, Pageable pageable) {
         Page<Computer> computersPage = computerRepository.findAllComputers(predicate, pageable);
 
-        Page<ProductDto> productDtoPage = new PageImpl<ProductDto>(computersPage.getContent()
-                .stream().takeWhile(product -> product.getQuantity() > 0)
+        Page<ProductDto> productDtoPage = new PageImpl<ProductDto>(computersPage
+                .getContent().stream()
                 .map(this::mapToDto).toList(), pageable, computersPage.getTotalElements());
 
         return createResponse(productDtoPage, "Computers");

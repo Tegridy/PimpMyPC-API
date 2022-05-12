@@ -111,6 +111,7 @@ public class OrderServiceImpl implements OrderService {
                     .build()).toList();
         } else {
             log.warn("User is not logged in. Can't load orders.");
+            throw new AuthenticationException("User is not logged in. Can't load orders.");
         }
 
         return new PageImpl<>(userOrders, pageable, 9);

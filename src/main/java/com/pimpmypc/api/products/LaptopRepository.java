@@ -19,6 +19,7 @@ import java.util.Optional;
 @Repository
 public interface LaptopRepository extends JpaRepository<Laptop, Long>, QuerydslPredicateExecutor<Laptop>
         , QuerydslBinderCustomizer<QLaptop> {
+
     @Override
     default void customize(@NonNull QuerydslBindings bindings, @NonNull QLaptop entity) {
         bindings.bind(entity.displaySize).all((path, value) -> {
@@ -26,10 +27,14 @@ public interface LaptopRepository extends JpaRepository<Laptop, Long>, QuerydslP
             value.forEach(o -> predicate.or(path.containsIgnoreCase(o)));
             return Optional.of(predicate);
         });
+
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
     }
 
     default Page<Laptop> findAllLaptops(Predicate predicate, Pageable pageable) {
-        return this.findAll(predicate, pageable);
+        BooleanBuilder builder = new BooleanBuilder(predicate);
+        builder.and(QLaptop.laptop.quantity.gt(1));
+
+        return this.findAll(builder, pageable);
     }
 }

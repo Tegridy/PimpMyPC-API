@@ -1,5 +1,6 @@
 package com.pimpmypc.api.products;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringPath;
@@ -20,6 +21,9 @@ public interface CaseRepository extends JpaRepository<Case, Long>, QuerydslPredi
     }
 
     default Page<Case> findAllCases(Predicate predicate, Pageable pageable) {
-        return this.findAll(predicate, pageable);
+        BooleanBuilder builder = new BooleanBuilder(predicate);
+        builder.and(QCase.case$.quantity.gt(1));
+
+        return this.findAll(builder, pageable);
     }
 }

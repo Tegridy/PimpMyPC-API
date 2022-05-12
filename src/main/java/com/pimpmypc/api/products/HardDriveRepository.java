@@ -1,5 +1,6 @@
 package com.pimpmypc.api.products;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringPath;
@@ -20,6 +21,9 @@ public interface HardDriveRepository extends JpaRepository<HardDrive, Long>, Que
     }
 
     default Page<HardDrive> findAllHardDrives(Predicate predicate, Pageable pageable) {
-        return this.findAll(predicate, pageable);
+        BooleanBuilder builder = new BooleanBuilder(predicate);
+        builder.and(QHardDrive.hardDrive.quantity.gt(1));
+
+        return this.findAll(builder, pageable);
     }
 }
