@@ -71,9 +71,9 @@ public class AuthService {
     }
 
     public String signIn(String username, String password) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-
         User user = userService.findByUsername(username);
+
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
         log.info(String.format("Authentication successful for user %s.", username));
 

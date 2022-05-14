@@ -2,7 +2,7 @@ package com.pimpmypc.api.auth;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pimpmypc.api.PimpMyPcApplication;
+import com.pimpmypc.api.BaseIntegrationTest;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
@@ -11,19 +11,12 @@ import com.pimpmypc.api.user.address.Address;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,14 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = PimpMyPcApplication.class)
-@AutoConfigureMockMvc
-@TestPropertySource(
-        locations = "classpath:application-test.properties")
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-
-public class AuthControllerIntegrationTest {
+public class AuthControllerIntegrationTest extends BaseIntegrationTest {
 
     User user;
     Address address;
@@ -73,10 +59,11 @@ public class AuthControllerIntegrationTest {
         user.setModifiedAt(LocalDateTime.now());
 
         userJson = mapper.writeValueAsString(user);
+
+        userRepository.deleteAll();
     }
 
     @Test
-    @Transactional
     public void shouldRegisterUser() throws Exception {
 
         mvc.perform(post("/api/v1/auth/register")
@@ -87,7 +74,6 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
-    @Transactional
     public void shouldThrowUserAlreadyExist() throws Exception {
 
         userRepository.save(user);
@@ -99,7 +85,6 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
-    @Transactional
     public void shouldCheckFirstNameAndLastNameAreRequired() throws Exception {
         user.setLastName(null);
         user.setFirstName(null);
@@ -115,7 +100,6 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
-    @Transactional
     public void shouldCheckUsernameAndEmailAreRequired() throws Exception {
         user.setUsername(null);
         user.setEmail(null);
@@ -131,7 +115,6 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
-    @Transactional
     public void shouldCheckFirstNameAndLastNameLength() throws Exception {
         user.setFirstName("b");
         user.setLastName("t");
@@ -148,7 +131,6 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
-    @Transactional
     public void shouldCheckUsernameLength() throws Exception {
         user.setUsername("tom");
 
@@ -162,7 +144,6 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
-    @Transactional
     public void shouldCheckPasswordLength() throws Exception {
         user.setPassword("qwerty");
 
@@ -176,7 +157,6 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
-    @Transactional
     void shouldLoginAndGetContent() throws Exception {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(15);
         String pass = bCryptPasswordEncoder.encode(user.getPassword());
@@ -207,18 +187,16 @@ public class AuthControllerIntegrationTest {
     }
 
     @Test
-    @Transactional
     public void shouldThrowErrorWhenUsernameIsNotFound() throws Exception {
         mvc.perform(post("/api/v1/auth/login").contentType(MediaType.APPLICATION_JSON)
                         .content("{\"username\": \"test3\", \"password\": \"qwerty\"}")
                 )
                 .andDo(print())
-                .andExpect(status().isForbidden())
+                .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.message").value("User test3 not found."));
     }
 
     @Test
-    @Transactional
     public void shouldThrowErrorWhenPasswordIsWrong() throws Exception {
         userRepository.save(user);
 

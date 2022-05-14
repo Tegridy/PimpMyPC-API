@@ -1,7 +1,7 @@
 package com.pimpmypc.api.order;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pimpmypc.api.PimpMyPcApplication;
+import com.pimpmypc.api.BaseIntegrationTest;
 import com.pimpmypc.api.cart.Cart;
 import com.pimpmypc.api.order.dto.CustomerOrderDataDto;
 import com.pimpmypc.api.product.Product;
@@ -17,18 +17,12 @@ import com.pimpmypc.api.user.address.Address;
 import com.pimpmypc.api.user.address.AddressRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -39,13 +33,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = PimpMyPcApplication.class)
-@AutoConfigureMockMvc
-@TestPropertySource(
-        locations = "classpath:application-test.properties")
-@Transactional
-class OrderControllerIntegrationTest {
+class OrderControllerIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
     private MockMvc mvc;
@@ -120,6 +108,11 @@ class OrderControllerIntegrationTest {
         user.setAddress(address);
         user.setCreatedAt(LocalDateTime.now());
         user.setModifiedAt(LocalDateTime.now());
+
+        productRepository.deleteAll();
+        orderRepository.deleteAll();
+        addressRepository.deleteAll();
+        userRepository.deleteAll();
     }
 
     @Test
@@ -157,11 +150,12 @@ class OrderControllerIntegrationTest {
     @Test
     void shouldReturnUserOrders() throws Exception {
         List<Product> productList = new ArrayList<>();
-        productList.add(product1);
-        productList.add(product2);
 
-        productRepository.save(product1);
-        productRepository.save(product2);
+        Product p1 = productRepository.save(product1);
+        Product p2 = productRepository.save(product2);
+
+        productList.add(p1);
+        productList.add(p2);
 
         Address address = new Address("street1", "city1", "state1", "11-111");
         address.setCreatedAt(LocalDateTime.now());
@@ -177,16 +171,20 @@ class OrderControllerIntegrationTest {
                 BigDecimal.valueOf(125), productList, address);
         order2.setCreatedAt(LocalDateTime.now());
 
-        orderRepository.save(order);
-        orderRepository.save(order2);
-
         List<Order> orderList = new ArrayList<>();
         orderList.add(order);
         orderList.add(order2);
 
-        user.setUserOrders(orderList);
         user.setCreatedAt(LocalDateTime.now());
         userRepository.save(user);
+
+        orderRepository.save(order);
+        orderRepository.save(order2);
+
+        user.setUserOrders(orderList);
+
+        User u = userRepository.save(user);
+
 
         String token = "Bearer " + performLoginAndReturnToken();
 
@@ -201,22 +199,20 @@ class OrderControllerIntegrationTest {
     @Test
     void shouldReturnOrderDetails() throws Exception {
         List<Product> productList = new ArrayList<>();
-        productList.add(product1);
-        productList.add(product2);
 
-        productRepository.save(product1);
-        productRepository.save(product2);
+        Product p1 = productRepository.save(product1);
+        Product p2 = productRepository.save(product2);
+
+        productList.add(p1);
+        productList.add(p2);
 
         Address address = new Address("street1", "city1", "state1", "11-111");
         address.setCreatedAt(LocalDateTime.now());
-
         addressRepository.save(address);
 
         Order order = new Order("John", "Doe", OrderStatus.IN_PROGRESS, "mail@mail.com", "123456789",
                 BigDecimal.valueOf(125), productList, address);
         order.setCreatedAt(LocalDateTime.now());
-
-        long id = orderRepository.save(order).getId();
 
         List<Order> orderList = new ArrayList<>();
         orderList.add(order);
@@ -224,6 +220,8 @@ class OrderControllerIntegrationTest {
         user.setUserOrders(orderList);
         user.setCreatedAt(LocalDateTime.now());
         userRepository.save(user);
+
+        long id = orderRepository.save(order).getId();
 
         String token = "Bearer " + performLoginAndReturnToken();
 

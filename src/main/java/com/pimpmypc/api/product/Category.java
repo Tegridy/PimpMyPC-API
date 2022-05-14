@@ -3,8 +3,7 @@ package com.pimpmypc.api.product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pimpmypc.api.filters.FilterType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -14,6 +13,9 @@ import java.util.Set;
 @Getter
 @Setter
 @JsonIgnoreProperties(value = {"products"})
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Category {
 
     @Id

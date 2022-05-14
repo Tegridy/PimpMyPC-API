@@ -1,12 +1,17 @@
 package com.pimpmypc.api.product;
 
-import com.pimpmypc.api.exception.ProductException;
+import com.pimpmypc.api.category.CategoryRepository;
+import com.pimpmypc.api.exception.EntityNotFoundException;
+import com.pimpmypc.api.filters.FilterType;
+import com.pimpmypc.api.filters.FiltersRepository;
 import com.pimpmypc.api.product.dto.ProductDto;
 import com.pimpmypc.api.products.*;
 import com.querydsl.core.types.Predicate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -16,24 +21,36 @@ import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
 
-    @Mock
+    @InjectMocks
     private ProductServiceImpl productService;
+    @Mock
+    private CaseRepository caseRepository;
+    @Mock
+    private CategoryRepository categoryRepository;
+    @Mock
+    private FiltersRepository filtersRepository;
+    @Mock
+    private ProductRepository productRepository;
 
     private ProductsResponse productsResponse;
 
     private Processor product1;
     private Motherboard product2;
+    private Case product3;
+    private Case product4;
 
     @BeforeEach
     public void setUp() {
@@ -67,48 +84,101 @@ public class ProductServiceTest {
         product2.setModifiedAt(LocalDateTime.now());
         product2.setMotherboardFormat(MotherboardFormat.Micro_ATX);
         product2.setColors(Set.of(Color.GREEN, Color.BLACK));
+
+        product3 = new Case();
+        product3.setTitle("CASE1");
+        product3.setBrand("Brand");
+        product3.setModel("Model");
+        product3.setPrice(new BigDecimal("33.38"));
+        product3.setQuantity(2);
+        product3.setDescription("This is a product3");
+        product3.setCreatedAt(LocalDateTime.now());
+        product3.setModifiedAt(LocalDateTime.now());
+        product3.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
+        product3.setColors(Set.of(Color.GREEN, Color.BLACK));
+
+        product4 = new Case();
+        product4.setTitle("CASE2");
+        product4.setBrand("Brand2");
+        product4.setModel("Model2");
+        product4.setPrice(new BigDecimal("33.38"));
+        product4.setQuantity(2);
+        product4.setDescription("This is a product4");
+        product4.setCreatedAt(LocalDateTime.now());
+        product4.setModifiedAt(LocalDateTime.now());
+        product4.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
+        product4.setColors(Set.of(Color.GREEN, Color.BLACK));
     }
 
     @Test
-    void shouldReturnEmptyProductsList() {
-        productsResponse = new ProductsResponse();
-        productsResponse.setProducts(new PageImpl<>(new ArrayList<>()));
+    void shouldReturnResponseWithProducts() {
 
-        Pageable pageable = Mockito.mock(Pageable.class);
+        // given
+        Pageable pageable = Pageable.ofSize(9);
         Predicate predicate = Mockito.mock(Predicate.class);
 
-        Mockito.doReturn(productsResponse).when(productService).getAllCases(predicate, pageable);
+        ProductDto productDto = new ProductDto(12L, "Product 1", BigDecimal.valueOf(291), "/");
+        ProductDto productDto2 = new ProductDto(22L, "Product 1", BigDecimal.valueOf(291), "/");
 
-        assertEquals(0, productService.getAllCases(predicate, pageable).getProducts().getSize());
+        productsResponse = new ProductsResponse();
+
+        Page<ProductDto> page = new PageImpl<>(List.of(productDto, productDto2));
+        productsResponse.setProducts(page);
+
+        Page<Case> casePage = new PageImpl<>(List.of(product3, product4));
+
+        Category category = Category.builder().id(55L).title("Case").filterTypes(Set.of()).iconName("").parentId(34L)
+                .products(Set.of()).build();
+
+        when(caseRepository.findAllCases(predicate, pageable)).thenReturn(casePage);
+        when(categoryRepository.findCategoryByTitle("Cases")).thenReturn(Optional.of(category));
+        Set<FilterType> set = new HashSet<>();
+        when(filtersRepository.findFiltersCategoriesById(category.getId())).thenReturn(set);
+
+        // when
+
+        ProductsResponse productsResponseResult = productService.getAllCases(predicate, pageable);
+
+        // then
+
+        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getProducts().getContent().size());
     }
 
     @Test
-    void shouldReturnPageWithProducts() {
-        productsResponse = new ProductsResponse();
-        ProductDto productDto1 = ProductDto.builder().id(product1.getId())
-                .title(product1.getTitle()).price(product1.getPrice()).imageUrl("/").build();
+    void shouldReturnResponseWithoutProducts() {
 
-        ProductDto productDto2 = ProductDto.builder().id(product2.getId())
-                .title(product2.getTitle()).price(product2.getPrice()).imageUrl("/").build();
-
-        List<ProductDto> productList = new ArrayList<>();
-        productList.add(productDto1);
-        productList.add(productDto2);
-
-        productsResponse.setProducts(new PageImpl<>(productList));
-
-        Pageable pageable = Mockito.mock(Pageable.class);
+        // given
+        Pageable pageable = Pageable.ofSize(9);
         Predicate predicate = Mockito.mock(Predicate.class);
 
-        Mockito.doReturn(productsResponse).when(productService).getAllCases(predicate, pageable);
+        productsResponse = new ProductsResponse();
 
-        System.out.println(productService.getAllCases(predicate, pageable).getProducts().getTotalElements());
-        assertEquals(2, productService.getAllCases(predicate, pageable).getProducts().getSize());
+        Page<ProductDto> page = new PageImpl<>(List.of());
+        productsResponse.setProducts(page);
+
+        Page<Case> casePage = new PageImpl<>(List.of());
+
+        Category category = Category.builder().id(55L).title("Case").filterTypes(Set.of()).iconName("").parentId(34L)
+                .products(Set.of()).build();
+
+        when(caseRepository.findAllCases(predicate, pageable)).thenReturn(casePage);
+        when(categoryRepository.findCategoryByTitle("Cases")).thenReturn(Optional.of(category));
+        Set<FilterType> set = new HashSet<>();
+        when(filtersRepository.findFiltersCategoriesById(category.getId())).thenReturn(set);
+
+        // when
+
+        ProductsResponse productsResponseResult = productService.getAllCases(predicate, pageable);
+
+        // then
+
+        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getProducts().getContent().size());
     }
 
     @Test
     void shouldReturnProductById() {
 
+        //given
         Case product = new Case();
 
         product.setId(5L);
@@ -123,158 +193,138 @@ public class ProductServiceTest {
         product.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
         product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
-        Mockito.doReturn(product).when(productService).findProductById(product.getId());
+        when(productRepository.findProductById(5L)).thenReturn(Optional.of(product));
 
-        assertEquals(product, productService.findProductById(5L));
+        // when
+
+        Product result = productService.findProductById(5L);
+
+        // then
+
+        assertThat(product.getTitle()).isEqualTo(result.getTitle());
     }
 
     @Test
     void shouldThrowErrorWhenProductWithGivenIdIsNotFound() {
 
-        Case product = new Case();
+        //given
+        Long productId = 192L;
+        when(productRepository.findProductById(productId)).thenReturn(Optional.empty());
 
-        product.setId(5L);
-        product.setTitle("CASE1");
-        product.setBrand("Brand");
-        product.setModel("Model");
-        product.setPrice(new BigDecimal("33.38"));
-        product.setQuantity(2);
-        product.setDescription("This is a product");
-        product.setCreatedAt(LocalDateTime.now());
-        product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
-        product.setColors(Set.of(Color.GREEN, Color.BLACK));
+        // when
+        Executable executable = () -> productService.findProductById(productId);
 
-        Mockito.doThrow(new ProductException("Product with id " + product.getId() + " not found."))
-                .when(productService).findProductById(product.getId());
+        // then
 
-        assertThrows(ProductException.class, () ->
-                productService.findProductById(5L)
-        );
+        assertThrows(EntityNotFoundException.class, executable);
     }
 
     @Test
     void shouldReturnProduct() {
 
-        Monitor product = new Monitor();
-        product.setTitle("Monitor1");
-        product.setBrand("Brand");
-        product.setModel("Model");
-        product.setPrice(new BigDecimal("33.38"));
-        product.setQuantity(2);
-        product.setDescription("This is a product");
-        product.setAspectRatio("16:9");
-        product.setRefreshRate(60);
-        product.setCreatedAt(LocalDateTime.now());
-        product.setModifiedAt(LocalDateTime.now());
+        //given
+        when(productRepository.findProductById(product1.getId())).thenReturn(Optional.of(product1));
 
-        productsResponse = new ProductsResponse();
+        // when
+        Product result = productService.findProductById(product1.getId());
 
-        ProductDto productDto1 = ProductDto.builder().id(product1.getId())
-                .title(product1.getTitle()).price(product1.getPrice()).imageUrl("/").build();
+        // then
 
-        ProductDto productDto2 = ProductDto.builder().id(product2.getId())
-                .title(product2.getTitle()).price(product2.getPrice()).imageUrl("/").build();
-
-        List<ProductDto> productList = new ArrayList<>();
-        productList.add(productDto1);
-        productList.add(productDto2);
-
-        productsResponse.setProducts(new PageImpl<>(productList));
-
-
-        Pageable pageable = Mockito.mock(Pageable.class);
-        Predicate predicate = Mockito.mock(Predicate.class);
-        Mockito.doReturn(productsResponse).when(productService).getAllMonitors(predicate, pageable);
-
-        assertEquals(productsResponse, productService.getAllMonitors(predicate, pageable));
+        assertThat(product1.getId()).isEqualTo(result.getId());
+        assertThat(product1.getTitle()).isEqualTo(result.getTitle());
     }
 
     @Test
     void shouldFindProductsByName() {
-        productsResponse = new ProductsResponse();
 
+        //given
         product1.setTitle("Processor Intel");
-        ProductDto productDto1 = ProductDto.builder().id(product1.getId())
-                .title(product1.getTitle()).price(product1.getPrice()).imageUrl("/").build();
-
         product2.setTitle("Processor AMD");
-        ProductDto productDto2 = ProductDto.builder().id(product2.getId())
-                .title(product2.getTitle()).price(product2.getPrice()).imageUrl("/").build();
-
-        List<ProductDto> productDtoList = new ArrayList<>();
-        productDtoList.add(productDto1);
-        productDtoList.add(productDto2);
-
-        Page<ProductDto> page = new PageImpl<>(productDtoList);
 
         Pageable pageable = Mockito.mock(Pageable.class);
-        Mockito.doReturn(page).when(productService).findProductsByName("Processor", pageable);
 
-        assertEquals(page, productService.findProductsByName("Processor", pageable));
+        Page<Product> page = new PageImpl<>(List.of(product1, product2));
+
+        when(productRepository.findProductsByName("Processor", pageable)).thenReturn(page);
+
+        // when
+        Page<ProductDto> result = productService.findProductsByName("Processor", pageable);
+
+        // then
+
+        assertThat(page.getContent().size()).isEqualTo(result.getContent().size());
     }
 
     @Test
     void shouldReturnEmptyPageWhenProductsByNameAreNotFound() {
-        productsResponse = new ProductsResponse();
 
-        List<ProductDto> productDtoList = new ArrayList<>();
-
-        Page<ProductDto> page = new PageImpl<>(productDtoList);
-
+        //given
         Pageable pageable = Mockito.mock(Pageable.class);
-        Mockito.doReturn(page).when(productService).findProductsByName("", pageable);
 
-        assertEquals(page, productService.findProductsByName("", pageable));
+        Page<Product> page = new PageImpl<>(List.of());
+
+        when(productRepository.findProductsByName("Processor", pageable)).thenReturn(page);
+
+        // when
+        Page<ProductDto> result = productService.findProductsByName("Processor", pageable);
+
+        // then
+
+        assertThat(page.getContent().size()).isEqualTo(result.getContent().size());
     }
 
     @Test
     void shouldReturnOurChoiceProducts() {
-//        productsResponse = new ProductsResponse();
-//
-//        ProductDto productDto1 = ProductDto.builder().id(product1.getId())
-//                .title(product1.getTitle()).price(product1.getPrice()).imageUrl("/").build();
-//
-//        ProductDto productDto2 = ProductDto.builder().id(product2.getId())
-//                .title(product2.getTitle()).price(product2.getPrice()).imageUrl("/").build();
-//
-//        List<ProductDto> productDtoList = new ArrayList<>();
-//        productDtoList.add(productDto1);
-//        productDtoList.add(productDto2);
-//
-//        Mockito.doReturn(productDtoList).when(productService)
-//                .getOurChoiceProducts();
-//
-//        assertEquals(productDtoList, productService.getOurChoiceProducts());
+
+        // given
+        Pageable pageable = Pageable.ofSize(6);
+
+        Page<Product> page = new PageImpl<>(List.of(product1, product2, product3));
+
+        when(productRepository.findProductsByOrderByNumberOfItemsSoldDesc(pageable)).thenReturn(page);
+
+        // when
+
+        Page<ProductDto> productsResponseResult = productService.getOurChoiceProducts();
+
+        // then
+
+        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getContent().size());
     }
 
     @Test
     void shouldReturnNewestProducts() {
-//        Mockito.doReturn(product1).when(productService)
-//                .getNewestProduct();
-//
-//        assertEquals(product1, productService.getNewestProduct());
+        // given
+        Pageable pageable = Pageable.ofSize(1);
+
+        Page<Product> page = new PageImpl<>(List.of(product1));
+
+        when(productRepository.findProductByOrderByIdDesc(pageable)).thenReturn(page);
+
+        // when
+
+        Page<ProductDto> productsResponseResult = productService.getNewestProduct();
+
+        // then
+
+        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getContent().size());
     }
 
     @Test
     void shouldReturnBestsellersProducts() {
-//        productsResponse = new ProductsResponse();
-//
-//        ProductDto productDto1 = ProductDto.builder().id(product1.getId())
-//                .title(product1.getTitle()).price(product1.getPrice()).imageUrl("/").build();
-//
-//        ProductDto productDto2 = ProductDto.builder().id(product2.getId())
-//                .title(product2.getTitle()).price(product2.getPrice()).imageUrl("/").build();
-//
-//        List<ProductDto> productDtoList = new ArrayList<>();
-//        productDtoList.add(productDto1);
-//        productDtoList.add(productDto2);
+        // given
+        Pageable pageable = Pageable.ofSize(18);
 
+        Page<Product> page = new PageImpl<>(List.of(product1, product2, product3));
 
-//        Pageable pageable = Mockito.mock(Pageable.class);
-//        Mockito.doReturn(productDtoList).when(productService)
-//                .getBestsellers();
-//
-//        assertEquals(productDtoList, productService.getBestsellers());
+        when(productRepository.findProductsByOrderByNumberOfItemsSoldDesc(pageable)).thenReturn(page);
+
+        // when
+
+        Page<ProductDto> productsResponseResult = productService.getBestsellers();
+
+        // then
+
+        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getContent().size());
     }
 }

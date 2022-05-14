@@ -2,21 +2,15 @@ package com.pimpmypc.api.product;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pimpmypc.api.PimpMyPcApplication;
+import com.pimpmypc.api.BaseIntegrationTest;
 import com.pimpmypc.api.products.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,13 +20,7 @@ import java.util.Set;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = PimpMyPcApplication.class)
-@AutoConfigureMockMvc
-@TestPropertySource(
-        locations = "classpath:application-test.properties")
-@Transactional
-public class ProductControllerIntegrationTest {
+public class ProductControllerIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
     private MockMvc mvc;
@@ -88,6 +76,8 @@ public class ProductControllerIntegrationTest {
         processorList = new ArrayList<>();
         processorList.add(product1);
         processorList.add(product2);
+
+        productRepository.deleteAll();
     }
 
     @AfterEach
@@ -171,7 +161,6 @@ public class ProductControllerIntegrationTest {
     void shouldReturnAllCases() throws Exception {
 
         Case product = new Case();
-
         product.setTitle("CASE1");
         product.setBrand("Brand");
         product.setModel("Model");
