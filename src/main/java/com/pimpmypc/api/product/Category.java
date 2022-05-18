@@ -6,6 +6,8 @@ import com.pimpmypc.api.filters.FilterType;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,9 +24,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "parent_id")
-    private Long parentId;
-
     private String title;
 
     @Column(name = "icon_name")
@@ -36,6 +35,14 @@ public class Category {
     @OneToMany(mappedBy = "category")
     @JsonIgnore
     private Set<FilterType> filterTypes;
+
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    @JsonIgnore
+    private Category parentId;
+    @OneToMany(mappedBy = "parentId")
+    private List<Category> subCategories = new ArrayList<>();
+
 
     @Override
     public String toString() {

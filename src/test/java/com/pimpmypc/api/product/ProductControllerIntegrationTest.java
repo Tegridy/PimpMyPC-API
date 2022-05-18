@@ -3,7 +3,6 @@ package com.pimpmypc.api.product;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pimpmypc.api.BaseIntegrationTest;
-import com.pimpmypc.api.products.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -31,47 +29,33 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Autowired
     private ObjectMapper mapper;
 
-    private Processor product1;
-    private Processor product2;
+    private Product product1;
+    private Product product2;
     private Product product3;
-    private List<Processor> processorList;
+    private List<Product> processorList;
     private List<Product> productList;
 
     @BeforeEach
     void setUp() {
-        product1 = new Processor();
+        product1 = new Product();
         product1.setTitle("Intel Processor");
         product1.setBrand("Intel");
         product1.setModel("i5");
         product1.setPrice(new BigDecimal("225.38"));
         product1.setQuantity(8);
         product1.setDescription("This is a processor");
-        product1.setCores(4);
-        product1.setBaseClock("4444444");
-        product1.setBoostClock("555555");
-        product1.setTdp(120);
-        product1.setIntegratedGraphic("UHD630");
-        product1.setMultithreading(true);
         product1.setCreatedAt(LocalDateTime.now());
         product1.setModifiedAt(LocalDateTime.now());
-        product1.setMotherboardSocket(MotherboardSocket.LGA1151);
 
-        product2 = new Processor();
+        product2 = new Product();
         product2.setTitle("AMD Processor");
         product2.setBrand("AMD");
         product2.setModel("FX");
         product2.setPrice(new BigDecimal("325.38"));
         product2.setQuantity(12);
         product2.setDescription("This is an AMD processor");
-        product2.setCores(8);
-        product2.setBaseClock("3444444");
-        product2.setBoostClock("5555555");
-        product2.setTdp(220);
-        product2.setIntegratedGraphic("Radeon");
-        product2.setMultithreading(true);
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardSocket(MotherboardSocket.AM4);
 
         processorList = new ArrayList<>();
         processorList.add(product1);
@@ -111,8 +95,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void shouldReturnAllMotherboards() throws Exception {
 
-        Motherboard product = new Motherboard();
-        product.setMotherboardSocket(MotherboardSocket.LGA1200);
+        Product product = new Product();
         product.setTitle("MOBO1");
         product.setBrand("Brand");
         product.setModel("Model");
@@ -121,11 +104,9 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormat(MotherboardFormat.Micro_ATX);
-        product.setColors(Set.of(Color.GREEN, Color.BLACK));
+        // product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
-        Motherboard product2 = new Motherboard();
-        product2.setMotherboardSocket(MotherboardSocket.LGA1200);
+        Product product2 = new Product();
         product2.setTitle("MOBO2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
@@ -134,8 +115,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardFormat(MotherboardFormat.Micro_ATX);
-        product2.setColors(Set.of(Color.GREEN, Color.BLACK));
+        //product2.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         productRepository.save(product);
         productRepository.save(product2);
@@ -160,7 +140,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void shouldReturnAllCases() throws Exception {
 
-        Case product = new Case();
+        Product product = new Product();
         product.setTitle("CASE1");
         product.setBrand("Brand");
         product.setModel("Model");
@@ -169,10 +149,9 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
-        product.setColors(Set.of(Color.GREEN, Color.BLACK));
+        // product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
-        Case product2 = new Case();
+        Product product2 = new Product();
         product2.setTitle("CASE2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
@@ -181,8 +160,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
-        product2.setColors(Set.of(Color.GREEN, Color.BLACK));
+        // product2.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         productRepository.save(product);
         productRepository.save(product2);
@@ -207,7 +185,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void shouldReturnAllRamMemory() throws Exception {
 
-        Ram product = new Ram();
+        Product product = new Product();
         product.setTitle("MEM1");
         product.setBrand("Brand");
         product.setModel("Model");
@@ -217,7 +195,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
 
-        Ram product2 = new Ram();
+        Product product2 = new Product();
         product2.setTitle("MEM2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
@@ -250,14 +228,13 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
 
     @Test
     void shouldFindProductById() throws Exception {
-        Keyboard product = new Keyboard();
+        Product product = new Product();
         product.setTitle("Keyboard1");
         product.setBrand("Brand");
         product.setModel("Model");
         product.setPrice(new BigDecimal("33.38"));
         product.setQuantity(2);
         product.setDescription("This is a product");
-        product.setConnection("Wired");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
 

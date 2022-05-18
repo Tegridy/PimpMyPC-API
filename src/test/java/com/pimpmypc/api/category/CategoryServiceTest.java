@@ -26,9 +26,9 @@ public class CategoryServiceTest {
     void shouldReturnCategories() {
 
         // given
-        Category category = Category.builder().id(55L).title("Case").filterTypes(Set.of()).iconName("").parentId(34L)
+        Category category = Category.builder().id(55L).title("Case").filterTypes(Set.of()).iconName("")
                 .products(Set.of()).build();
-        Category category2 = Category.builder().id(65L).title("Processor").filterTypes(Set.of()).iconName("").parentId(14L)
+        Category category2 = Category.builder().id(65L).title("Processor").filterTypes(Set.of()).iconName("")
                 .products(Set.of()).build();
 
         List<Category> categoryList = List.of(category, category2);
@@ -48,7 +48,7 @@ public class CategoryServiceTest {
     @Test
     void shouldReturnCategoryByName() {
         // given
-        Category category = Category.builder().id(55L).title("Motherboards").filterTypes(Set.of()).iconName("").parentId(34L)
+        Category category = Category.builder().id(55L).title("Motherboards").filterTypes(Set.of()).iconName("")
                 .products(Set.of()).build();
 
         when(categoryRepository.findCategoryByTitle("Motherboards")).thenReturn(Optional.of(category));

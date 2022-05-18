@@ -2,7 +2,6 @@ package com.pimpmypc.api.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pimpmypc.api.order.Order;
-import com.pimpmypc.api.products.Color;
 import com.pimpmypc.api.utils.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,11 +42,11 @@ public class Product extends BaseEntity {
     @Column(name = "number_of_sold")
     private int numberOfItemsSold;
 
-    @Enumerated(EnumType.STRING)
-    @ElementCollection
-    @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "color")
-    private Set<Color> colors;
+//    @Enumerated(EnumType.STRING)
+//    @ElementCollection
+//    @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
+//    @Column(name = "color")
+//    private Set<Color> colors;
 
     @ManyToMany
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
@@ -56,11 +55,20 @@ public class Product extends BaseEntity {
     @ManyToMany(mappedBy = "products")
     private Set<Order> orders;
 
-    public Set<Color> getColors() {
-        if (colors.isEmpty()) {
-            return null;
-        }
-        return colors;
-    }
+    @OneToMany(mappedBy = "product")
+    private List<ProductAttributes> attributes;
 
+//    public Set<Color> getColors() {
+//        if (colors.isEmpty()) {
+//            return null;
+//        }
+//        return colors;
+//    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "title='" + title + '\'' +
+                '}';
+    }
 }

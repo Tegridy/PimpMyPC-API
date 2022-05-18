@@ -2,11 +2,8 @@ package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.category.CategoryRepository;
 import com.pimpmypc.api.exception.EntityNotFoundException;
-import com.pimpmypc.api.filters.FilterType;
 import com.pimpmypc.api.filters.FiltersRepository;
 import com.pimpmypc.api.product.dto.ProductDto;
-import com.pimpmypc.api.products.*;
-import com.querydsl.core.types.Predicate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,10 +18,8 @@ import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -36,8 +31,7 @@ public class ProductServiceTest {
 
     @InjectMocks
     private ProductServiceImpl productService;
-    @Mock
-    private CaseRepository caseRepository;
+
     @Mock
     private CategoryRepository categoryRepository;
     @Mock
@@ -47,14 +41,14 @@ public class ProductServiceTest {
 
     private ProductsResponse productsResponse;
 
-    private Processor product1;
-    private Motherboard product2;
-    private Case product3;
-    private Case product4;
+    private Product product1;
+    private Product product2;
+    private Product product3;
+    private Product product4;
 
     @BeforeEach
     public void setUp() {
-        product1 = new Processor();
+        product1 = new Product();
         product1.setId(1L);
         product1.setTitle("Intel Processor");
         product1.setBrand("Intel");
@@ -62,18 +56,11 @@ public class ProductServiceTest {
         product1.setPrice(new BigDecimal("225.38"));
         product1.setQuantity(8);
         product1.setDescription("This is a processor");
-        product1.setCores(4);
-        product1.setBaseClock("4444444");
-        product1.setBoostClock("555555");
-        product1.setTdp(120);
-        product1.setIntegratedGraphic("UHD630");
-        product1.setMultithreading(true);
         product1.setCreatedAt(LocalDateTime.now());
         product1.setModifiedAt(LocalDateTime.now());
 
-        product2 = new Motherboard();
+        product2 = new Product();
         product2.setId(2L);
-        product2.setMotherboardSocket(MotherboardSocket.LGA1200);
         product2.setTitle("MOBO2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
@@ -82,10 +69,9 @@ public class ProductServiceTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardFormat(MotherboardFormat.Micro_ATX);
-        product2.setColors(Set.of(Color.GREEN, Color.BLACK));
+        // product2.setColors(Set.of(Color.GREEN, Color.BLACK));
 
-        product3 = new Case();
+        product3 = new Product();
         product3.setTitle("CASE1");
         product3.setBrand("Brand");
         product3.setModel("Model");
@@ -94,10 +80,9 @@ public class ProductServiceTest {
         product3.setDescription("This is a product3");
         product3.setCreatedAt(LocalDateTime.now());
         product3.setModifiedAt(LocalDateTime.now());
-        product3.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
-        product3.setColors(Set.of(Color.GREEN, Color.BLACK));
+        // product3.setColors(Set.of(Color.GREEN, Color.BLACK));
 
-        product4 = new Case();
+        product4 = new Product();
         product4.setTitle("CASE2");
         product4.setBrand("Brand2");
         product4.setModel("Model2");
@@ -106,80 +91,81 @@ public class ProductServiceTest {
         product4.setDescription("This is a product4");
         product4.setCreatedAt(LocalDateTime.now());
         product4.setModifiedAt(LocalDateTime.now());
-        product4.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
-        product4.setColors(Set.of(Color.GREEN, Color.BLACK));
+        // product4.setColors(Set.of(Color.GREEN, Color.BLACK));
     }
 
-    @Test
-    void shouldReturnResponseWithProducts() {
+//    @Test
+//    void shouldReturnResponseWithProducts() {
+//
+//        // given
+//        Pageable pageable = Pageable.ofSize(9);
+//        Predicate predicate = Mockito.mock(Predicate.class);
+//
+//        ProductDto productDto = new ProductDto(12L, "Product 1", BigDecimal.valueOf(291)
+//                , List.of(new ProductAttributes()), "/");
+//        ProductDto productDto2 = new ProductDto(22L, "Product 1", BigDecimal.valueOf(291)
+//                , List.of(new ProductAttributes()), "/");
+//
+//        productsResponse = new ProductsResponse();
+//
+//        Page<ProductDto> page = new PageImpl<>(List.of(productDto, productDto2));
+//        productsResponse.setProducts(page);
+//
+//        Page<Case> casePage = new PageImpl<>(List.of(product3, product4));
+//
+//        Category category = Category.builder().id(55L).title("Case").filterTypes(Set.of()).iconName("").parentId(new Category())
+//                .products(Set.of()).build();
+//
+//        when(caseRepository.findAllCases(predicate, pageable)).thenReturn(casePage);
+//        when(categoryRepository.findCategoryByTitle("Cases")).thenReturn(Optional.of(category));
+//        Set<FilterType> set = new HashSet<>();
+//        when(filtersRepository.findFiltersCategoriesById(category.getId())).thenReturn(set);
+//
+//        // when
+//
+//        ProductsResponse productsResponseResult = productService.getAllCases(predicate, pageable);
+//
+//        // then
+//
+//        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getProducts().getContent().size());
+//    }
 
-        // given
-        Pageable pageable = Pageable.ofSize(9);
-        Predicate predicate = Mockito.mock(Predicate.class);
-
-        ProductDto productDto = new ProductDto(12L, "Product 1", BigDecimal.valueOf(291), "/");
-        ProductDto productDto2 = new ProductDto(22L, "Product 1", BigDecimal.valueOf(291), "/");
-
-        productsResponse = new ProductsResponse();
-
-        Page<ProductDto> page = new PageImpl<>(List.of(productDto, productDto2));
-        productsResponse.setProducts(page);
-
-        Page<Case> casePage = new PageImpl<>(List.of(product3, product4));
-
-        Category category = Category.builder().id(55L).title("Case").filterTypes(Set.of()).iconName("").parentId(34L)
-                .products(Set.of()).build();
-
-        when(caseRepository.findAllCases(predicate, pageable)).thenReturn(casePage);
-        when(categoryRepository.findCategoryByTitle("Cases")).thenReturn(Optional.of(category));
-        Set<FilterType> set = new HashSet<>();
-        when(filtersRepository.findFiltersCategoriesById(category.getId())).thenReturn(set);
-
-        // when
-
-        ProductsResponse productsResponseResult = productService.getAllCases(predicate, pageable);
-
-        // then
-
-        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getProducts().getContent().size());
-    }
-
-    @Test
-    void shouldReturnResponseWithoutProducts() {
-
-        // given
-        Pageable pageable = Pageable.ofSize(9);
-        Predicate predicate = Mockito.mock(Predicate.class);
-
-        productsResponse = new ProductsResponse();
-
-        Page<ProductDto> page = new PageImpl<>(List.of());
-        productsResponse.setProducts(page);
-
-        Page<Case> casePage = new PageImpl<>(List.of());
-
-        Category category = Category.builder().id(55L).title("Case").filterTypes(Set.of()).iconName("").parentId(34L)
-                .products(Set.of()).build();
-
-        when(caseRepository.findAllCases(predicate, pageable)).thenReturn(casePage);
-        when(categoryRepository.findCategoryByTitle("Cases")).thenReturn(Optional.of(category));
-        Set<FilterType> set = new HashSet<>();
-        when(filtersRepository.findFiltersCategoriesById(category.getId())).thenReturn(set);
-
-        // when
-
-        ProductsResponse productsResponseResult = productService.getAllCases(predicate, pageable);
-
-        // then
-
-        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getProducts().getContent().size());
-    }
+//    @Test
+//    void shouldReturnResponseWithoutProducts() {
+//
+//        // given
+//        Pageable pageable = Pageable.ofSize(9);
+//        Predicate predicate = Mockito.mock(Predicate.class);
+//
+//        productsResponse = new ProductsResponse();
+//
+//        Page<ProductDto> page = new PageImpl<>(List.of());
+//        productsResponse.setProducts(page);
+//
+//        Page<Case> casePage = new PageImpl<>(List.of());
+//
+//        Category category = Category.builder().id(55L).title("Case").filterTypes(Set.of()).iconName("").parentId(new Category())
+//                .products(Set.of()).build();
+//
+//        when(caseRepository.findAllCases(predicate, pageable)).thenReturn(casePage);
+//        when(categoryRepository.findCategoryByTitle("Cases")).thenReturn(Optional.of(category));
+//        Set<FilterType> set = new HashSet<>();
+//        when(filtersRepository.findFiltersCategoriesById(category.getId())).thenReturn(set);
+//
+//        // when
+//
+//        ProductsResponse productsResponseResult = productService.getAllCases(predicate, pageable);
+//
+//        // then
+//
+//        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getProducts().getContent().size());
+//    }
 
     @Test
     void shouldReturnProductById() {
 
         //given
-        Case product = new Case();
+        Product product = new Product();
 
         product.setId(5L);
         product.setTitle("CASE1");
@@ -190,8 +176,7 @@ public class ProductServiceTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setMotherboardFormats(Set.of(MotherboardFormat.Micro_ATX));
-        product.setColors(Set.of(Color.GREEN, Color.BLACK));
+        // product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         when(productRepository.findProductById(5L)).thenReturn(Optional.of(product));
 

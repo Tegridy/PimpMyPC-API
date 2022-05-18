@@ -6,9 +6,6 @@ import com.pimpmypc.api.cart.Cart;
 import com.pimpmypc.api.order.dto.CustomerOrderDataDto;
 import com.pimpmypc.api.product.Product;
 import com.pimpmypc.api.product.ProductRepository;
-import com.pimpmypc.api.products.Color;
-import com.pimpmypc.api.products.MotherboardSocket;
-import com.pimpmypc.api.products.Processor;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
@@ -27,7 +24,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -48,13 +44,13 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
     @Autowired
     private UserService userService;
 
-    private Processor product1;
-    private Processor product2;
+    private Product product1;
+    private Product product2;
     private User user;
 
     @BeforeEach
     void setUp() {
-        product1 = new Processor();
+        product1 = new Product();
         product1.setId(2L);
         product1.setTitle("Intel Processor");
         product1.setBrand("Intel");
@@ -62,19 +58,12 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
         product1.setPrice(new BigDecimal("225.38"));
         product1.setQuantity(8);
         product1.setDescription("This is a processor");
-        product1.setCores(4);
-        product1.setBaseClock("4444444");
-        product1.setBoostClock("555555");
-        product1.setTdp(120);
-        product1.setIntegratedGraphic("UHD630");
-        product1.setMultithreading(true);
         product1.setCreatedAt(LocalDateTime.now());
         product1.setModifiedAt(LocalDateTime.now());
-        product1.setMotherboardSocket(MotherboardSocket.LGA1151);
-        product1.setColors(Set.of(Color.RED));
+        // product1.setColors(Set.of(Color.RED));
         product1.setCreatedAt(LocalDateTime.now());
 
-        product2 = new Processor();
+        product2 = new Product();
         product2.setId(8L);
         product2.setTitle("AMD Processor");
         product2.setBrand("AMD");
@@ -82,16 +71,9 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
         product2.setPrice(new BigDecimal("325.38"));
         product2.setQuantity(12);
         product2.setDescription("This is an AMD processor");
-        product2.setCores(8);
-        product2.setBaseClock("3444444");
-        product2.setBoostClock("5555555");
-        product2.setTdp(220);
-        product2.setIntegratedGraphic("Radeon");
-        product2.setMultithreading(true);
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardSocket(MotherboardSocket.AM4);
-        product2.setColors(Set.of(Color.BLACK));
+        //.setColors(Set.of(Color.BLACK));
         product2.setCreatedAt(LocalDateTime.now());
 
         Address address = new Address("street1", "city1", "state1", "11-111");

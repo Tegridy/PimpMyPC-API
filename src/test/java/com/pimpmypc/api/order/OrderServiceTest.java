@@ -8,7 +8,6 @@ import com.pimpmypc.api.order.dto.OrderResponse;
 import com.pimpmypc.api.product.Product;
 import com.pimpmypc.api.product.ProductRepository;
 import com.pimpmypc.api.product.ProductService;
-import com.pimpmypc.api.products.*;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
@@ -33,7 +32,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -61,15 +59,15 @@ public class OrderServiceTest {
     private ArgumentCaptor<Order> orderArgumentCaptor;
 
 
-    private Processor product1;
-    private Motherboard product2;
+    private Product product1;
+    private Product product2;
     private Order orderx;
     private User user;
 
     @BeforeEach
     void setUp() {
 
-        product1 = new Processor();
+        product1 = new Product();
         product1.setId(1L);
         product1.setTitle("Intel Processor");
         product1.setBrand("Intel");
@@ -77,18 +75,11 @@ public class OrderServiceTest {
         product1.setPrice(new BigDecimal("225.38"));
         product1.setQuantity(8);
         product1.setDescription("This is a processor");
-        product1.setCores(4);
-        product1.setBaseClock("4444444");
-        product1.setBoostClock("555555");
-        product1.setTdp(120);
-        product1.setIntegratedGraphic("UHD630");
-        product1.setMultithreading(true);
         product1.setCreatedAt(LocalDateTime.now());
         product1.setModifiedAt(LocalDateTime.now());
 
-        product2 = new Motherboard();
+        product2 = new Product();
         product2.setId(2L);
-        product2.setMotherboardSocket(MotherboardSocket.LGA1200);
         product2.setTitle("MOBO2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
@@ -97,8 +88,7 @@ public class OrderServiceTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setMotherboardFormat(MotherboardFormat.Micro_ATX);
-        product2.setColors(Set.of(Color.GREEN, Color.BLACK));
+        // product2.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         List<Product> productList = new ArrayList<>();
         productList.add(product1);
