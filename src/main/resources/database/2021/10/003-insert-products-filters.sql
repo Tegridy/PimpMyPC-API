@@ -6,7 +6,7 @@
 
 
 INSERT INTO filters_types VALUES (
-1, 1, "Laptops producers", "title"
+1, 1, "Laptops producers", "brand"
 );
 
 INSERT INTO filters VALUES(

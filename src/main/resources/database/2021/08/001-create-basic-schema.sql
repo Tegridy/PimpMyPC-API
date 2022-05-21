@@ -56,4 +56,11 @@ CREATE TABLE categories (
     ON UPDATE CASCADE
 );
 
+CREATE TABLE colors (
+  id BIGINT NOT NULL,
+  color VARCHAR(20) NOT NULL,
+  KEY (id),
+  CONSTRAINT colors_products_id_fk FOREIGN KEY (id) REFERENCES products (id)
+);
+
 

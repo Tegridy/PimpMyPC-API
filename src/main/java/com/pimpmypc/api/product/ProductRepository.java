@@ -1,6 +1,7 @@
 package com.pimpmypc.api.product;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringPath;
@@ -16,7 +17,9 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.querydsl.binding.SingleValueBinding;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.MultiValueMap;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -27,12 +30,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Queryds
     @Override
     default void customize(@NonNull QuerydslBindings bindings, @NonNull QProduct entity) {
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
-
-//        bindings.bind(entity.attributes).all((path, value) -> {
-//            BooleanBuilder predicate = new BooleanBuilder();
-//            value.forEach(o -> predicate.and(value.contains(o)));
-//            return Optional.of(predicate);
-//        });
     }
 
     @Query(value = "SELECT p FROM products p WHERE p.title LIKE CONCAT('%',:productName,'%')")
@@ -51,23 +48,46 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Queryds
     Optional<Product> findProductById(Long id);
 
 
-    default Page<Product> findProductsByCategoryId(Map<String, String> searchParams, Pageable pageable, Category category) {
+    default Page<Product> findProductsByCategoryId(MultiValueMap<String, String> searchParams, Predicate predicate, Pageable pageable, Category category) {
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
+        
 
-        for (Map.Entry<String, String> entry : searchParams.entrySet()) {
-            JPAQuery<Product> subQuery = new JPAQuery<Product>();
-            subQuery.from(QProductAttributes.productAttributes)
-                    .where(QProductAttributes.productAttributes.product.eq(QProduct.product),
-                            QProductAttributes.productAttributes.attributeName.eq(entry.getKey()),
-                            QProductAttributes.productAttributes.attributeValue.like("%" + entry.getValue() + "%"));
+        for (Map.Entry<String, List<String>> entry : searchParams.entrySet()) {
 
-            booleanBuilder.and(subQuery.exists());
+            if (entry.getValue().size() > 1) {
+
+                for (String s : entry.getValue()) {
+
+
+                    JPAQuery<Product> subQuery = new JPAQuery<Product>();
+                    subQuery.from(QProductAttributes.productAttributes)
+                            .where(QProductAttributes.productAttributes.product.eq(QProduct.product),
+                                    QProductAttributes.productAttributes.attributeName.eq(entry.getKey()),
+                                    QProductAttributes.productAttributes.attributeValue.like(s + "%"));
+
+                    booleanBuilder.or(subQuery.exists());
+                }
+            } else {
+
+
+                JPAQuery<Product> subQuery = new JPAQuery<Product>();
+                subQuery.from(QProductAttributes.productAttributes)
+                        .where(QProductAttributes.productAttributes.product.eq(QProduct.product),
+                                QProductAttributes.productAttributes.attributeName.eq(entry.getKey()),
+                                QProductAttributes.productAttributes.attributeValue.like(entry.getValue().get(0) + "%"));
+
+
+                booleanBuilder.and(subQuery.exists());
+            }
         }
+
+        System.out.println(predicate.toString());
 
         BooleanExpression booleanExpression = JPAExpressions.selectOne().from(QProductAttributes.productAttributes)
                 .where(
                         booleanBuilder,
+                        predicate,
                         QProduct.product.quantity.gt(1),
                         QProduct.product.categories.contains(category)
                 ).exists();
@@ -75,4 +95,5 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Queryds
 
         return this.findAll(booleanExpression, pageable);
     }
+
 }

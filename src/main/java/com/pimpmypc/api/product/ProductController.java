@@ -7,9 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -20,10 +19,11 @@ public class ProductController {
     private final ProductRepository productRepository;
 
     @GetMapping(value = "", produces = "application/json")
-    public ResponseEntity<Page<ProductDto>> getAllProducts(Pageable pageable,
+    public ResponseEntity<ProductsResponse> getAllProducts(Pageable pageable,
                                                            @QuerydslPredicate(root = Product.class) Predicate predicate, @RequestParam Long categoryId,
-                                                           @RequestParam Map<String, String> requestParams) {
-        return ResponseEntity.ok(productService.getAllProducts(requestParams, pageable, categoryId));
+                                                           @RequestParam MultiValueMap<String, String> requestParams) {
+
+        return ResponseEntity.ok(productService.getAllProducts(requestParams, predicate, pageable, categoryId));
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")

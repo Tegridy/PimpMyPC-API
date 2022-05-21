@@ -1,15 +1,15 @@
 package com.pimpmypc.api.product;
 
 import com.pimpmypc.api.product.dto.ProductDto;
+import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.Map;
+import org.springframework.util.MultiValueMap;
 
 
 public interface ProductService {
 
-    Page<ProductDto> getAllProducts(Map<String, String> searchParams, Pageable pageable, Long categoryId);
+    ProductsResponse getAllProducts(MultiValueMap<String, String> searchParams, Predicate predicate, Pageable pageable, Long categoryId);
 
     Page<ProductDto> getBestsellers();
 
