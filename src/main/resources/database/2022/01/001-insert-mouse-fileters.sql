@@ -2,7 +2,7 @@
 --changeset tegridy:1
 
 INSERT INTO filters_types VALUES (
-36, 22, "Mouse producers", "title"
+36, 24, "Mouse producers", "title"
 );
 
 INSERT INTO filters VALUES(

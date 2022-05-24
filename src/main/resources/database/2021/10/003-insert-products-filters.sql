@@ -6,7 +6,7 @@
 
 
 INSERT INTO filters_types VALUES (
-1, 1, "Laptops producers", "brand"
+1, 1, "Laptops producers", "title"
 );
 
 INSERT INTO filters VALUES(
@@ -250,7 +250,7 @@ INSERT INTO filters VALUES (
 
 
 INSERT INTO filters_types VALUES (
-16, 13, "Processor producer", "title"
+16, 11, "Processor producer", "title"
 );
 
 INSERT INTO filters VALUES(
@@ -262,7 +262,7 @@ INSERT INTO filters VALUES(
 );
 
 INSERT INTO filters_types VALUES (
-19, 13, "Socket", "motherboardSocket"
+19, 11, "Socket", "motherboardSocket"
 );
 
 INSERT INTO filters VALUES (
@@ -270,7 +270,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters VALUES (
-48, 19, "LGA1200" , "LGA1200"
+48, 19, "LGA1200" , "1200"
 );
 
 INSERT INTO filters VALUES (
@@ -278,7 +278,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters_types VALUES (
-17, 13, "Number of cores", "cores"
+17, 11, "Number of cores", "cores"
 );
 
 INSERT INTO filters VALUES (
@@ -437,7 +437,7 @@ INSERT INTO filters VALUES (
 ------------------------------------------------------------------------
 
 INSERT INTO filters_types VALUES (
-24, 16, "Motherboard producer", "title");
+24, 18, "Motherboard producer", "title");
 
 INSERT INTO filters VALUES (
 81, 24, "Asus" , "asus"
@@ -452,42 +452,36 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters_types VALUES (
-25, 16, "Format", "motherboardFormat");
+25, 18, "Format", "motherboardFormat");
 
 INSERT INTO filters VALUES (
-84, 24, "ATX" , "ATX"
+84, 25, "ATX" , "ATX"
 );
 
 INSERT INTO filters VALUES (
-85, 24, "Extended ATX" , "Extended_ATX"
+85, 25, "Extended ATX" , "Extended_ATX"
 );
 
 INSERT INTO filters VALUES (
-86, 24, "Micro ATX" , "Micro_ATX"
+86, 25, "Micro ATX" , "Micro_ATX"
 );
 
 INSERT INTO filters VALUES (
-87, 24, "Mini ITX" , "Mini_ITX"
+87, 25, "Mini ITX" , "Mini_ITX"
 );
 
 INSERT INTO filters_types VALUES (
-26, 16, "Socket", "motherboardSocket");
+26, 18, "Socket", "motherboardSocket");
 
 INSERT INTO filters VALUES (
 88, 26, "AM4" , "AM4"
 );
 
-INSERT INTO filters VALUES (
-89, 26, "LGA1151" , "LGA1151"
-);
 
 INSERT INTO filters VALUES (
-90, 26, "LGA1200" , "LGA1200"
+90, 26, "LGA1200" , "1200"
 );
 
-INSERT INTO filters VALUES (
-91, 26, "LGA2066" , "LGA2066"
-);
 
 
 ------------------------------------------------------------------------
@@ -495,7 +489,7 @@ INSERT INTO filters VALUES (
 ------------------------------------------------------------------------
 
 INSERT INTO filters_types VALUES (
-27, 17, "Hard drive producer", "title");
+27, 19, "Hard drive producer", "title");
 
 INSERT INTO filters VALUES (
 92, 27, "Origin" , "origin"
@@ -514,7 +508,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters_types VALUES (
-28, 17, "Type", "storageType");
+28, 19, "Type", "storageType");
 
 INSERT INTO filters VALUES (
 96, 28, "HDD" , "HDD"
@@ -529,7 +523,7 @@ INSERT INTO filters VALUES (
 ------------------------------------------------------------------------
 
 INSERT INTO filters_types VALUES (
-29, 20, "Power supply producer", "title");
+29, 22, "Power supply producer", "title");
 
 INSERT INTO filters VALUES (
 98, 29, "Corsair" , "corsair"
@@ -544,7 +538,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters_types VALUES (
-30, 20, "Certificate", "certificate");
+30, 22, "Certificate", "certificate");
 
 INSERT INTO filters VALUES (
 101, 30, "80 PLUS" , "80 plus"
@@ -568,7 +562,7 @@ INSERT INTO filters VALUES (
 ------------------------------------------------------------------------
 
 INSERT INTO filters_types VALUES (
-31, 21, "Case producer", "title");
+31, 23, "Case producer", "title");
 
 INSERT INTO filters VALUES (
 105, 31, "Corsair" , "corsair"
@@ -587,7 +581,7 @@ INSERT INTO filters VALUES (
 ------------------------------------------------------------------------
 
 INSERT INTO filters_types VALUES (
-32, 24, "Monitor producer", "title");
+32, 26, "Monitor producer", "title");
 
 INSERT INTO filters VALUES (
 108, 32, "Asus" , "asus"
@@ -602,7 +596,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters_types VALUES (
-33, 24, "Resolution", "resolution");
+33, 26, "Resolution", "resolution");
 
 INSERT INTO filters VALUES (
 111, 33, "1920 x 1080 px" , "1920 x 1080"
@@ -613,7 +607,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters_types VALUES (
-34, 24, "Panel type", "panelType");
+34, 26, "Panel type", "panelType");
 
 INSERT INTO filters VALUES (
 113, 34, "IPS" , "IPS"
@@ -628,7 +622,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters_types VALUES (
-35, 24, "Refresh rate", "refreshRate");
+35, 26, "Refresh rate", "refreshRate");
 
 INSERT INTO filters VALUES (
 116, 35, "60 Hz" , "60"

@@ -1,4 +1,4 @@
-package com.pimpmypc.api.products;
+package com.pimpmypc.api.product;
 
 public enum Color {
     GREEN,

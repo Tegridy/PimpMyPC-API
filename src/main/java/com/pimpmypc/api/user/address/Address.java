@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
@@ -36,7 +39,7 @@ public class Address extends BaseEntity {
     @NotEmpty(message = "Zip is required.")
     @Size(min = 3, max = 15, message = "Zip code length must have 3 to 15 characters.")
     private String zip;
-    @OneToOne(mappedBy = "address", cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "address", fetch = FetchType.EAGER)
     @JsonIgnore
     private User user;
     @OneToMany(mappedBy = "deliveryAddress", fetch = FetchType.LAZY)
@@ -61,5 +64,15 @@ public class Address extends BaseEntity {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                '}';
     }
 }

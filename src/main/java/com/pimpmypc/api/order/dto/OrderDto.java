@@ -1,7 +1,7 @@
 package com.pimpmypc.api.order.dto;
 
+import com.pimpmypc.api.product.Color;
 import com.pimpmypc.api.product.Product;
-import com.pimpmypc.api.products.Color;
 import com.pimpmypc.api.user.address.Address;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

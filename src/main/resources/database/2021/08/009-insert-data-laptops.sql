@@ -20,6 +20,7 @@ INSERT INTO products_attributes VALUES (977, "os", "Windows 10 64-bit", 176, NOW
 INSERT INTO products_attributes VALUES (978, "hddType", "SSD", 176, NOW(), NOW());
 INSERT INTO products_attributes VALUES (979, "capacity", 512, 176, NOW(), NOW());
 INSERT INTO product_category VALUES (176, 1);
+INSERT INTO product_category VALUES (176, 7);
 INSERT INTO product_category VALUES (176, 10);
 
 INSERT INTO colors VALUES (176, "BLACK");
@@ -43,6 +44,7 @@ INSERT INTO products_attributes VALUES (989, "os", "Windows 10 64-bit", 177, NOW
 INSERT INTO products_attributes VALUES (990, "hddType", "SSD", 177, NOW(), NOW());
 INSERT INTO products_attributes VALUES (991, "capacity", 512, 177, NOW(), NOW());
 INSERT INTO product_category VALUES (177, 1);
+INSERT INTO product_category VALUES (177, 7);
 INSERT INTO product_category VALUES (177, 10);
 
 INSERT INTO colors VALUES (177, "BLACK");
@@ -66,6 +68,7 @@ INSERT INTO products_attributes VALUES (1001, "os", "Windows 10 64-bit", 178, NO
 INSERT INTO products_attributes VALUES (1002, "hddType", "SSD", 178, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1003, "capacity", 512, 178, NOW(), NOW());
 INSERT INTO product_category VALUES (178, 1);
+INSERT INTO product_category VALUES (178, 7);
 INSERT INTO product_category VALUES (178, 8);
 
 INSERT INTO colors VALUES (178, "BLACK");
@@ -89,6 +92,7 @@ INSERT INTO products_attributes VALUES (1013, "os", "Windows 10 64-bit", 179, NO
 INSERT INTO products_attributes VALUES (1014, "hddType", "SSD", 179, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1015, "capacity", 512, 179, NOW(), NOW());
 INSERT INTO product_category VALUES (179, 1);
+INSERT INTO product_category VALUES (179, 7);
 INSERT INTO product_category VALUES (179, 9);
 
 INSERT INTO colors VALUES (179, "BLACK");
@@ -101,7 +105,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "Lenovo IdeaPad Gaming 3 15ACH6", "https://a.allegroimg.com/original/115630/161a23924422b5f7aabef5b79c86", 1466.98, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1016, "displaySize", 15.6, 180, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1017, "resolution: ", "1920 x 1080", 180, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1018, "monitorPanelType", "IPS", 180, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1018, "monitorPanelType", "TN", 180, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1019, "processor", "AMD Ryzen 5", 180, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1020, "cpuSpeed", 0.0, 180, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1021, "ram", 8, 180, NOW(), NOW());
@@ -112,6 +116,7 @@ INSERT INTO products_attributes VALUES (1025, "os", "Windows 10 64-bit", 180, NO
 INSERT INTO products_attributes VALUES (1026, "hddType", "SSD", 180, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1027, "capacity", 512, 180, NOW(), NOW());
 INSERT INTO product_category VALUES (180, 1);
+INSERT INTO product_category VALUES (180, 7);
 INSERT INTO product_category VALUES (180, 8);
 
 INSERT INTO colors VALUES (180, "BLACK");
@@ -136,6 +141,7 @@ INSERT INTO products_attributes VALUES (1038, "os", "Windows 10 64-bit", 181, NO
 INSERT INTO products_attributes VALUES (1039, "hddType", "SSD", 181, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1040, "capacity", 512, 181, NOW(), NOW());
 INSERT INTO product_category VALUES (181, 1);
+INSERT INTO product_category VALUES (181, 7);
 INSERT INTO product_category VALUES (181, 8);
 
 INSERT INTO colors VALUES (181, "BLACK");
@@ -148,7 +154,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "IdeaPad Gaming 3 15ACH6", "https://a.allegroimg.com/original/11b0c6/7dd402d14db8bd758d40e2db266a", 1220.06, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1041, "displaySize", "15.6", 182, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1042, "resolution: ", "1920 x 1080", 182, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1043, "monitorPanelType", "IPS", 182, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1043, "monitorPanelType", "VA", 182, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1044, "processor", "AMD Ryzen 5", 182, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1045, "cpuSpeed", 0.0, 182, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1046, "ram", 16, 182, NOW(), NOW());
@@ -159,6 +165,7 @@ INSERT INTO products_attributes VALUES (1050, "os", "Windows 10 64-bit", 182, NO
 INSERT INTO products_attributes VALUES (1051, "hddType", "SSD", 182, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1052, "capacity", 512, 182, NOW(), NOW());
 INSERT INTO product_category VALUES (182, 1);
+INSERT INTO product_category VALUES (182, 7);
 INSERT INTO product_category VALUES (182, 8);
 
 INSERT INTO colors VALUES (182, "BLACK");
@@ -182,6 +189,7 @@ INSERT INTO products_attributes VALUES (1062, "os", "Windows 10 64-bit", 183, NO
 INSERT INTO products_attributes VALUES (1063, "hddType", "SSD", 183, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1064, "capacity", 512, 183, NOW(), NOW());
 INSERT INTO product_category VALUES (183, 1);
+INSERT INTO product_category VALUES (183, 7);
 INSERT INTO product_category VALUES (183, 8);
 
 INSERT INTO colors VALUES (183, "BLACK");
@@ -194,7 +202,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "IdeaPad Gaming 3", "https://a.allegroimg.com/original/111770/81bed27d4ec4a4323336353b5f4a", 816.99, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1065, "displaySize", "15.6", 184, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1066, "resolution: ", "1920 x 1080", 184, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1067, "monitorPanelType", "IPS", 184, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1067, "monitorPanelType", "TN", 184, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1068, "processor", "Intel Core i5", 184, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1069, "cpuSpeed", 0.0, 184, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1070, "ram", 16, 184, NOW(), NOW());
@@ -205,6 +213,7 @@ INSERT INTO products_attributes VALUES (1074, "os", "Windows 10 64-bit", 184, NO
 INSERT INTO products_attributes VALUES (1075, "hddType", "SSD", 184, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1076, "capacity", 512, 184, NOW(), NOW());
 INSERT INTO product_category VALUES (184, 1);
+INSERT INTO product_category VALUES (184, 7);
 INSERT INTO product_category VALUES (184, 8);
 
 INSERT INTO colors VALUES (184, "BLACK");
@@ -217,7 +226,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "Lenovo IdeaPad Gaming 3 15ACH6", "https://a.allegroimg.com/original/115630/161a23924422b5f7aabef5b79c86", 1466.98, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1077, "displaySize", "15.6", 185, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1078, "resolution: ", "1920 x 1080", 185, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1079, "monitorPanelType", "IPS", 185, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1079, "monitorPanelType", "VA", 185, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1080, "processor", "AMD Ryzen 5", 185, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1081, "cpuSpeed", 0.0, 185, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1082, "ram", 8, 185, NOW(), NOW());
@@ -228,6 +237,7 @@ INSERT INTO products_attributes VALUES (1086, "os", "Windows 10 64-bit", 185, NO
 INSERT INTO products_attributes VALUES (1087, "hddType", "SSD", 185, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1088, "capacity", 512, 185, NOW(), NOW());
 INSERT INTO product_category VALUES (185, 1);
+INSERT INTO product_category VALUES (185, 7);
 INSERT INTO product_category VALUES (185, 8);
 
 INSERT INTO colors VALUES (185, "BLACK");

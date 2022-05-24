@@ -9,7 +9,6 @@ import com.pimpmypc.api.product.ProductRepository;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
-import com.pimpmypc.api.user.UserService;
 import com.pimpmypc.api.user.address.Address;
 import com.pimpmypc.api.user.address.AddressRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,8 +40,7 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
     private ProductRepository productRepository;
     @Autowired
     private AddressRepository addressRepository;
-    @Autowired
-    private UserService userService;
+
 
     private Product product1;
     private Product product2;
@@ -60,7 +58,6 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
         product1.setDescription("This is a processor");
         product1.setCreatedAt(LocalDateTime.now());
         product1.setModifiedAt(LocalDateTime.now());
-        // product1.setColors(Set.of(Color.RED));
         product1.setCreatedAt(LocalDateTime.now());
 
         product2 = new Product();
@@ -73,11 +70,11 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
         product2.setDescription("This is an AMD processor");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        //.setColors(Set.of(Color.BLACK));
         product2.setCreatedAt(LocalDateTime.now());
 
-        Address address = new Address("street1", "city1", "state1", "11-111");
-        address.setCreatedAt(LocalDateTime.now());
+
+        List<Role> roles = new ArrayList<>();
+        roles.add(Role.ROLE_USER);
 
         user = new User();
         user.setUsername("JD12");
@@ -86,8 +83,7 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
         user.setPhone("111-222-333");
         user.setPassword(new BCryptPasswordEncoder(12).encode("qwerty321321"));
         user.setEmail("john@doe.com");
-        user.setRoles(List.of(Role.ROLE_USER));
-        user.setAddress(address);
+        user.setRoles(roles);
         user.setCreatedAt(LocalDateTime.now());
         user.setModifiedAt(LocalDateTime.now());
 
@@ -131,42 +127,31 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
 
     @Test
     void shouldReturnUserOrders() throws Exception {
-        List<Product> productList = new ArrayList<>();
 
-        Product p1 = productRepository.save(product1);
-        Product p2 = productRepository.save(product2);
-
-        productList.add(p1);
-        productList.add(p2);
+        Product savedProduct1 = productRepository.save(product1);
+        Product savedProduct2 = productRepository.save(product2);
 
         Address address = new Address("street1", "city1", "state1", "11-111");
         address.setCreatedAt(LocalDateTime.now());
 
-        addressRepository.save(address);
-
-        Order order = new Order("John", "Doe", OrderStatus.IN_PROGRESS, "mail@mail.com", "123456789",
-                BigDecimal.valueOf(125), productList, address);
+        Order order = new Order("John", "Doe", OrderStatus.IN_PROGRESS,
+                "mail@mail.com", "123456789",
+                savedProduct1.getPrice().add(savedProduct2.getPrice()), List.of(savedProduct1, savedProduct2), address);
+        Order order2 = new Order("John", "Doe", OrderStatus.IN_PROGRESS,
+                "mail@mail.com", "123456789",
+                savedProduct1.getPrice().add(savedProduct2.getPrice()), List.of(savedProduct1, savedProduct2), address);
 
         order.setCreatedAt(LocalDateTime.now());
-
-        Order order2 = new Order("John", "Doe", OrderStatus.IN_PROGRESS, "mail@mail.com", "123456789",
-                BigDecimal.valueOf(125), productList, address);
         order2.setCreatedAt(LocalDateTime.now());
 
-        List<Order> orderList = new ArrayList<>();
-        orderList.add(order);
-        orderList.add(order2);
+        user.addUserOrder(order);
+        order.setUser(user);
+        user.addUserOrder(order2);
+        order2.setUser(user);
 
-        user.setCreatedAt(LocalDateTime.now());
+        user.setAddress(address);
+
         userRepository.save(user);
-
-        orderRepository.save(order);
-        orderRepository.save(order2);
-
-        user.setUserOrders(orderList);
-
-        User u = userRepository.save(user);
-
 
         String token = "Bearer " + performLoginAndReturnToken();
 
@@ -175,7 +160,8 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.content.length()").value(2))
-                .andExpect(jsonPath("$.content[0].status").value("IN_PROGRESS"));
+                .andExpect(jsonPath("$.content[0].status").value("IN_PROGRESS"))
+                .andExpect(jsonPath("$.content[1].status").value("IN_PROGRESS"));
     }
 
     @Test
@@ -190,17 +176,15 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
 
         Address address = new Address("street1", "city1", "state1", "11-111");
         address.setCreatedAt(LocalDateTime.now());
-        addressRepository.save(address);
 
         Order order = new Order("John", "Doe", OrderStatus.IN_PROGRESS, "mail@mail.com", "123456789",
                 BigDecimal.valueOf(125), productList, address);
         order.setCreatedAt(LocalDateTime.now());
 
-        List<Order> orderList = new ArrayList<>();
-        orderList.add(order);
 
-        user.setUserOrders(orderList);
-        user.setCreatedAt(LocalDateTime.now());
+        user.addUserOrder(order);
+        order.setUser(user);
+
         userRepository.save(user);
 
         long id = orderRepository.save(order).getId();

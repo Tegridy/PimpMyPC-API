@@ -68,21 +68,24 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductDto> getOurChoiceProducts() {
-        List<ProductDto> ourChoice = productRepository.findProductsByOrderByNumberOfItemsSoldDesc(Pageable.ofSize(6)).stream().map(this::mapToDto).toList();
+        List<ProductDto> ourChoice = productRepository.findProductsByOrderByNumberOfItemsSoldDesc(Pageable.ofSize(6))
+                .stream().map(this::mapToDto).toList();
 
         return new PageImpl<>(ourChoice);
     }
 
     @Override
     public Page<ProductDto> getBestsellers() {
-        List<ProductDto> bestsellers = productRepository.findProductsByOrderByNumberOfItemsSoldDesc(Pageable.ofSize(18)).stream().map(this::mapToDto).toList();
+        List<ProductDto> bestsellers = productRepository.findProductsByOrderByNumberOfItemsSoldDesc(Pageable.ofSize(18))
+                .stream().map(this::mapToDto).toList();
 
         return new PageImpl<>(bestsellers);
     }
 
     @Override
     public Page<ProductDto> getNewestProduct() {
-        List<ProductDto> newestProduct = productRepository.findProductByOrderByIdDesc(Pageable.ofSize(1)).stream().map(this::mapToDto).toList();
+        List<ProductDto> newestProduct = productRepository.findProductByOrderByIdDesc(Pageable.ofSize(1)).stream()
+                .map(this::mapToDto).toList();
 
         return new PageImpl<>(newestProduct);
     }
@@ -93,35 +96,27 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new EntityNotFoundException("Product with id: " + id + " not found"));
     }
 
-
-//
-//    }
-
     @Override
     public ProductsResponse getAllProducts(MultiValueMap<String, String> searchParams, Predicate predicate, Pageable pageable, Long categoryId) {
 
         removeUnnecessarySearchParams(searchParams);
 
-        searchParams.remove("page");
-        searchParams.remove("size");
-        searchParams.remove("categoryId");
-        searchParams.remove("title");
-        searchParams.remove("brand");
-        searchParams.remove("model");
+        productRepository.findAll().forEach(p -> System.out.println(p.toString()));
+
 
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new EntityNotFoundException("Category with id: " + categoryId + " not found."));
 
-//        System.out.println("X");
-//        System.out.println(productRepository.findProductsByCategoryId(searchParams, pageable, category).getContent().size());
+        Page<Product> productPage = productRepository.findProductsByCategoryId(searchParams, predicate, pageable, category);
 
-        List<ProductDto> productDtos = productRepository.findProductsByCategoryId(searchParams, predicate, pageable, category)
+        List<ProductDto> productDtos = productPage
                 .getContent().stream().map(this::mapToDto).toList();
 
 
         Set<FilterType> filters = filterTypeRepository.findFiltersCategoriesById(category.getId());
 
-        ProductsResponse productsResponse = new ProductsResponse(new PageImpl<>(productDtos), filters);
+        ProductsResponse productsResponse = new ProductsResponse(new PageImpl<>(productDtos, pageable,
+                productPage.getTotalElements()), filters);
 
         return productsResponse;
     }
@@ -133,5 +128,7 @@ public class ProductServiceImpl implements ProductService {
         searchParams.remove("title");
         searchParams.remove("brand");
         searchParams.remove("model");
+        searchParams.remove("config");
+        searchParams.remove("sort");
     }
 }

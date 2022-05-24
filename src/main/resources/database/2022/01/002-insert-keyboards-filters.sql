@@ -2,7 +2,7 @@
 --changeset tegridy:1
 
 INSERT INTO filters_types VALUES (
-37, 23, "Keyboard producers", "title"
+37, 25, "Keyboard producers", "title"
 );
 
 INSERT INTO filters VALUES(

@@ -9,7 +9,7 @@ CREATE TABLE users (
         phone VARCHAR(15),
 		password VARCHAR(155) NOT NULL,
         email VARCHAR(50) NOT NULL,
-         address_id BIGINT,
+        address_id BIGINT,
         created_at DATETIME NOT NULL,
         modified_at DATETIME NULL DEFAULT NULL
 );
@@ -54,6 +54,13 @@ CREATE TABLE categories (
     REFERENCES categories (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
+);
+
+CREATE TABLE colors (
+  id BIGINT NOT NULL,
+  color VARCHAR(20) NOT NULL,
+  KEY (id),
+  CONSTRAINT colors_products_id_fk FOREIGN KEY (id) REFERENCES products (id)
 );
 
 

@@ -26,13 +26,13 @@ INSERT INTO categories(title,parent_id)
 VALUES('Laptops/Notebooks/Ultrabooks',1);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Laptops 15"',1);
+VALUES('Laptops 15"',7);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Laptops 16"',1);
+VALUES('Laptops 16"',7);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Laptops 17"',1);
+VALUES('Laptops 17"',7);
 
 -- -----------------------------------------------------
 

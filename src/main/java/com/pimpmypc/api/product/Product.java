@@ -42,28 +42,22 @@ public class Product extends BaseEntity {
     @Column(name = "number_of_sold")
     private int numberOfItemsSold;
 
-//    @Enumerated(EnumType.STRING)
-//    @ElementCollection
-//    @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
-//    @Column(name = "color")
-//    private Set<Color> colors;
+    @Enumerated(EnumType.STRING)
+    @ElementCollection
+    @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "color")
+    private Set<Color> colors;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
     @ManyToMany(mappedBy = "products")
     private Set<Order> orders;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<ProductAttributes> attributes;
 
-//    public Set<Color> getColors() {
-//        if (colors.isEmpty()) {
-//            return null;
-//        }
-//        return colors;
-//    }
 
     @Override
     public String toString() {

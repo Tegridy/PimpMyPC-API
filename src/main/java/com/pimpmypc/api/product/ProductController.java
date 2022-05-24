@@ -22,12 +22,11 @@ public class ProductController {
     public ResponseEntity<ProductsResponse> getAllProducts(Pageable pageable,
                                                            @QuerydslPredicate(root = Product.class) Predicate predicate, @RequestParam Long categoryId,
                                                            @RequestParam MultiValueMap<String, String> requestParams) {
-
         return ResponseEntity.ok(productService.getAllProducts(requestParams, predicate, pageable, categoryId));
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.findProductById(id));
     }
 

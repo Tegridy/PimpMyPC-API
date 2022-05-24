@@ -7,7 +7,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "be quiet!", "Pure Base 500 Black ATX Midi", "https://a.allegroimg.com/original/118e3a/392c003d428bb49b5540fa752c0c", 261.01, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2051, "width", 53, 350, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2052, "height", 55, 350, NOW(), NOW());INSERT INTO products_attributes VALUES (2053,"motherboardFormat", "Micro_ATX", 350, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2052, "height", 55, 350, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2054,"motherboardFormat", "ATX", 350, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (350, 5);
@@ -21,7 +21,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "be quiet!", "BG022", "https://a.allegroimg.com/original/1108fb/db6072d24422a768ba218949f7e9", 282.51, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2055, "width", 57, 351, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2056, "height", 50, 351, NOW(), NOW());INSERT INTO products_attributes VALUES (2057,"motherboardFormat", "Micro_ATX", 351, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2056, "height", 50, 351, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2058,"motherboardFormat", "ATX", 351, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (351, 5);
@@ -35,7 +35,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "be quiet!", "PURE BASE 600", "https://a.allegroimg.com/original/116397/fd632cdb4022a2331c4c064a301f", 279.32, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2059, "width", 57, 352, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2060, "height", 56, 352, NOW(), NOW());INSERT INTO products_attributes VALUES (2061,"motherboardFormat", "Micro_ATX", 352, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2060, "height", 56, 352, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2062,"motherboardFormat", "ATX", 352, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (352, 5);
@@ -49,7 +49,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "be quiet!", "BGW020", "https://a.allegroimg.com/original/053a3c/c37f838b492b9000129bc8f274a5", 257.32, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2063, "width", 55, 353, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2064, "height", 52, 353, NOW(), NOW());INSERT INTO products_attributes VALUES (2065,"motherboardFormat", "Micro_ATX", 353, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2064, "height", 52, 353, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2066,"motherboardFormat", "ATX", 353, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (353, 5);
@@ -63,7 +63,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "be quiet!", "Pure Base 600 Window Black", "https://a.allegroimg.com/original/11faae/8d3f1e7643eeb5036e5c390444d9", 297.94, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2067, "width", 58, 354, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2068, "height", 55, 354, NOW(), NOW());INSERT INTO products_attributes VALUES (2069,"motherboardFormat", "Mini-ITX", 354, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2068, "height", 55, 354, NOW(), NOW());;
 
 INSERT INTO product_category VALUES (354, 5);
 INSERT INTO product_category VALUES (354, 23);
@@ -76,7 +76,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "be quiet!", "Pure Base 500", "https://a.allegroimg.com/original/055e8e/f80c6f0042c495017e971ac7327a", 255.84, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2070, "width", 53, 355, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2071, "height", 52, 355, NOW(), NOW());INSERT INTO products_attributes VALUES (2072,"motherboardFormat", "Micro_ATX", 355, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2071, "height", 52, 355, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2073,"motherboardFormat", "ATX", 355, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (355, 5);
@@ -90,7 +90,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "be quiet!", "Dark Base 900 Silver BG012", "https://a.allegroimg.com/original/117a5c/64e15c764abe8a3b8b71ae2ba7ca", 281.84, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2074, "width", 59, 356, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2075, "height", 59, 356, NOW(), NOW());INSERT INTO products_attributes VALUES (2076,"motherboardFormat", "Micro_ATX", 356, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2075, "height", 59, 356, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2077,"motherboardFormat", "ATX", 356, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (356, 5);
@@ -104,7 +104,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "be quiet!", "Pure Base 500 Metallic Gray", "https://a.allegroimg.com/original/114d55/4f605e8242a7bc0148250915a78d", 277.05, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2078, "width", 50, 357, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2079, "height", 54, 357, NOW(), NOW());INSERT INTO products_attributes VALUES (2080,"motherboardFormat", "Micro_ATX", 357, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2079, "height", 54, 357, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2081,"motherboardFormat", "ATX", 357, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (357, 5);
@@ -118,7 +118,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "be quiet!", "SILENT BASE 600 Silver BG007", "https://a.allegroimg.com/original/05511e/6561fae6487cb2b44877d0543b79", 284.60, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2082, "width", 53, 358, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2083, "height", 55, 358, NOW(), NOW());INSERT INTO products_attributes VALUES (2084,"motherboardFormat", "Micro_ATX", 358, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2083, "height", 55, 358, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2085,"motherboardFormat", "ATX", 358, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (358, 5);
@@ -134,7 +134,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "SilentiumPC", "Armis AR1", "https://a.allegroimg.com/original/113d1b/68e8527143f5a54e835ceff7a4e6", 261.01, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2091, "width", 59, 360, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2092, "height", 57, 360, NOW(), NOW());INSERT INTO products_attributes VALUES (2093,"motherboardFormat", "Micro_ATX", 360, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2092, "height", 57, 360, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2094,"motherboardFormat", "Micro ATX", 360, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (360, 5);
@@ -148,7 +148,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "SilentiumPC", "Ventum VT4V TG", "https://a.allegroimg.com/original/11146f/ec4e969b49888385e874efeb3b5a", 282.51, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2095, "width", 56, 361, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2096, "height", 55, 361, NOW(), NOW());INSERT INTO products_attributes VALUES (2097,"motherboardFormat", "Micro_ATX", 361, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2096, "height", 55, 361, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2098,"motherboardFormat", "Tower ATX", 361, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (361, 5);
@@ -162,7 +162,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "SilentiumPC", "SPC291", "https://a.allegroimg.com/original/111d58/567bb00d49b990dabc2bba6215ba", 279.32, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2099, "width", 53, 362, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2100, "height", 54, 362, NOW(), NOW());INSERT INTO products_attributes VALUES (2101,"motherboardFormat", "Micro_ATX", 362, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2100, "height", 54, 362, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2102,"motherboardFormat", "Mini ATX", 362, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (362, 5);
@@ -176,7 +176,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "SilentiumPC", "Armis AR6", "https://a.allegroimg.com/original/058d4a/c438276040af9e6fef7e8186b082", 257.32, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2103, "width", 54, 363, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2104, "height", 55, 363, NOW(), NOW());INSERT INTO products_attributes VALUES (2105,"motherboardFormat", "Micro_ATX", 363, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2104, "height", 55, 363, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2106,"motherboardFormat", "Micro ATX", 363, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (363, 5);
@@ -190,7 +190,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "SilentiumPC", "SG1Q EVO TG ARGB", "https://a.allegroimg.com/original/110159/70bb0f4a4777891cf0fb80b4b31f", 297.94, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2107, "width", 59, 364, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2108, "height", 58, 364, NOW(), NOW());INSERT INTO products_attributes VALUES (2109,"motherboardFormat", "Micro_ATX", 364, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2108, "height", 58, 364, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2110,"motherboardFormat", "ATX", 364, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (364, 5);
@@ -204,7 +204,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "SilentiumPC", "Signum SG7V TG", "https://a.allegroimg.com/original/035b63/3d433db34269a33726d92df73f87", 255.84, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2111, "width", 56, 365, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2112, "height", 56, 365, NOW(), NOW());INSERT INTO products_attributes VALUES (2113,"motherboardFormat", "Micro_ATX", 365, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2112, "height", 56, 365, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2114,"motherboardFormat", "Extended ATX", 365, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (365, 5);
@@ -218,7 +218,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "SilentiumPC", "Signum SG1X EVO", "https://a.allegroimg.com/original/11b2bf/4a193f9b48c49db8b6f44eda381e", 281.84, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2115, "width", 55, 366, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2116, "height", 54, 366, NOW(), NOW());INSERT INTO products_attributes VALUES (2117,"motherboardFormat", "Micro_ATX", 366, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2116, "height", 54, 366, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2118,"motherboardFormat", "Extended ATX", 366, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (366, 5);
@@ -232,7 +232,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "SilentiumPC", "Armis AR6 TG", "https://a.allegroimg.com/original/00d534/b7777ffa42dfa24140fa76be00fa", 277.05, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2119, "width", 55, 367, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2120, "height", 53, 367, NOW(), NOW());INSERT INTO products_attributes VALUES (2121,"motherboardFormat", "Micro_ATX", 367, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2120, "height", 53, 367, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2122,"motherboardFormat", "ATX", 367, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (367, 5);
@@ -248,7 +248,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "Carbide 270R ATX WIindowed ATX Mid-Tower", "https://a.allegroimg.com/original/05c78b/188024c94526b11bd53c1a859ad5", 279.32, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2130, "width", 51, 370, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2131, "height", 58, 370, NOW(), NOW());INSERT INTO products_attributes VALUES (2132,"motherboardFormat", "Micro_ATX", 370, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2131, "height", 58, 370, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2133,"motherboardFormat", "Micro ATX", 370, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (370, 5);
@@ -262,7 +262,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "Crystal Series 280X RGB TG Micro ATX", "https://a.allegroimg.com/original/05ff02/3fc10320413880a70496e195ddc1", 257.32, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2134, "width", 52, 371, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2135, "height", 59, 371, NOW(), NOW());INSERT INTO products_attributes VALUES (2136,"motherboardFormat", "Micro_ATX", 371, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2135, "height", 59, 371, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2137,"motherboardFormat", "Micro ATX", 371, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (371, 5);
@@ -276,7 +276,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "680X RGB", "https://a.allegroimg.com/original/05a4d9/2f32741a4cc6ae76663becf79b52", 297.94, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2138, "width", 58, 372, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2139, "height", 59, 372, NOW(), NOW());INSERT INTO products_attributes VALUES (2140,"motherboardFormat", "Micro_ATX", 372, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2139, "height", 59, 372, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2141,"motherboardFormat", "ATX", 372, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (372, 5);
@@ -290,7 +290,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "CC-9011204-WW", "https://a.allegroimg.com/original/11f83c/dbb5e60a470ba3fc431240b19ae3", 255.84, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2142, "width", 50, 373, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2143, "height", 54, 373, NOW(), NOW());INSERT INTO products_attributes VALUES (2144,"motherboardFormat", "Micro_ATX", 373, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2143, "height", 54, 373, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2145,"motherboardFormat", "ATX", 373, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (373, 5);
@@ -304,7 +304,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "Obsidian Series 500D RGB SE Premium Mid", "https://a.allegroimg.com/original/05e37a/7859c8ab4ec0b372c895362cbecf", 281.84, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2146, "width", 53, 374, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2147, "height", 53, 374, NOW(), NOW());INSERT INTO products_attributes VALUES (2148,"motherboardFormat", "Micro_ATX", 374, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2147, "height", 53, 374, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2149,"motherboardFormat", "Mini ATX", 374, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (374, 5);
@@ -318,7 +318,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "4000D", "https://a.allegroimg.com/original/1179b6/6aff3e6d4fb08be69fd23d3cecdf", 277.05, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2150, "width", 56, 375, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2151, "height", 51, 375, NOW(), NOW());INSERT INTO products_attributes VALUES (2152,"motherboardFormat", "Micro_ATX", 375, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2151, "height", 51, 375, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2153,"motherboardFormat", "Extended ATX", 375, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (375, 5);
@@ -332,7 +332,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "Crystal Series 280X RGB", "https://a.allegroimg.com/original/002438/709a4cce41878d15d47cff6a29e4", 284.60, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2154, "width", 57, 376, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2155, "height", 55, 376, NOW(), NOW());INSERT INTO products_attributes VALUES (2156,"motherboardFormat", "Micro_ATX", 376, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2155, "height", 55, 376, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2157,"motherboardFormat", "ATX", 376, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (376, 5);
@@ -346,7 +346,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "iCUE 220T RGB", "https://a.allegroimg.com/original/1193e4/5c7eeb32423f869a9d59388ad768", 255.69, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2158, "width", 51, 377, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2159, "height", 56, 377, NOW(), NOW());INSERT INTO products_attributes VALUES (2160,"motherboardFormat", "Micro_ATX", 377, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2159, "height", 56, 377, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2161,"motherboardFormat", "Micro ATX", 377, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (377, 5);
@@ -360,7 +360,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "Crystal Series 570X", "https://a.allegroimg.com/original/0558f7/186318d24fa3bb6cc51b4278bf15", 287.94, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2162, "width", 50, 378, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2163, "height", 58, 378, NOW(), NOW());INSERT INTO products_attributes VALUES (2164,"motherboardFormat", "Micro_ATX", 378, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2163, "height", 58, 378, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2165,"motherboardFormat", "Mini ATX", 378, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (378, 5);
@@ -374,7 +374,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "Crystal 280X", "https://a.allegroimg.com/original/05ba66/5c93dc574aaf9cbf429f998d93d0", 256.41, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2166, "width", 50, 379, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2167, "height", 52, 379, NOW(), NOW());INSERT INTO products_attributes VALUES (2168,"motherboardFormat", "Micro_ATX", 379, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2167, "height", 52, 379, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2169,"motherboardFormat", "ATX", 379, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (379, 5);
@@ -388,7 +388,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "Carbide SPEC-05", "https://a.allegroimg.com/original/00b18f/8238683e4358baf33a6c906c9730", 271.09, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2170, "width", 57, 380, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2171, "height", 50, 380, NOW(), NOW());INSERT INTO products_attributes VALUES (2172,"motherboardFormat", "Micro_ATX", 380, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2171, "height", 50, 380, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2173,"motherboardFormat", "ATX", 380, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (380, 5);
@@ -402,7 +402,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "Carbide Series 275R ATX Mid-Tower TG Biała", "https://a.allegroimg.com/original/05f744/057235f0425aabad8d9711783540", 287.66, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2174, "width", 54, 381, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2175, "height", 52, 381, NOW(), NOW());INSERT INTO products_attributes VALUES (2176,"motherboardFormat", "Micro_ATX", 381, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2175, "height", 52, 381, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2177,"motherboardFormat", "Extended ATX", 381, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (381, 5);
@@ -416,7 +416,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "678C L", "https://a.allegroimg.com/original/11690f/73aba7864510a279cac60392af92", 283.21, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2178, "width", 59, 382, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2179, "height", 55, 382, NOW(), NOW());INSERT INTO products_attributes VALUES (2180,"motherboardFormat", "Micro_ATX", 382, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2179, "height", 55, 382, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2181,"motherboardFormat", "ATX", 382, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (382, 5);
@@ -430,7 +430,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "1000D Super-Tower", "https://a.allegroimg.com/original/1139ee/231156a243319d847a0278dd9386", 274.70, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2182, "width", 52, 383, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2183, "height", 54, 383, NOW(), NOW());INSERT INTO products_attributes VALUES (2184,"motherboardFormat", "Micro_ATX", 383, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2183, "height", 54, 383, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2185,"motherboardFormat", "Micro ATX", 383, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (383, 5);
@@ -444,7 +444,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Corsair", "CC-9011183-WW", "https://a.allegroimg.com/original/056827/1dfd35a24ca085a3842e5b557577", 271.59, 99, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2186, "width", 57, 384, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2187, "height", 56, 384, NOW(), NOW());INSERT INTO products_attributes VALUES (2188,"motherboardFormat", "Micro_ATX", 384, NOW() ,NOW());
+INSERT INTO products_attributes VALUES (2187, "height", 56, 384, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2189,"motherboardFormat", "Mini ATX", 384, NOW() ,NOW());
 
 INSERT INTO product_category VALUES (384, 5);

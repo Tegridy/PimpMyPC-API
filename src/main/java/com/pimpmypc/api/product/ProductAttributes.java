@@ -30,6 +30,11 @@ public class ProductAttributes extends BaseEntity {
     @JsonIgnore
     private Product product;
 
+    public ProductAttributes(String attributeName, String attributeValue) {
+        this.attributeName = attributeName;
+        this.attributeValue = attributeValue;
+    }
+
     @Override
     public String toString() {
         return attributeName + " " + attributeValue;

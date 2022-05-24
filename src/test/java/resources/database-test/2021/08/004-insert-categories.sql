@@ -19,14 +19,6 @@ VALUES('Computer assets', 'hardware-chip-outline', NULL);
 INSERT INTO categories(title, icon_name, parent_id)
 VALUES('Peripherals', 'print-outline', NULL);
 
--- ----------------------------------------------------------------------
-
-INSERT INTO categories(title,parent_id)
-VALUES('Office computers',2);
-
-INSERT INTO categories(title,parent_id)
-VALUES('Gaming computers',2);
-
 -- -----------------------------------------------------
 
 
@@ -34,16 +26,24 @@ INSERT INTO categories(title,parent_id)
 VALUES('Laptops/Notebooks/Ultrabooks',1);
 
 INSERT INTO categories(title,parent_id)
-VALUES('Laptops 15"',9);
+VALUES('Laptops 15"',7);
+
 INSERT INTO categories(title,parent_id)
-VALUES('Laptops 16"',9);
+VALUES('Laptops 16"',7);
+
 INSERT INTO categories(title,parent_id)
-VALUES('Laptops 17"',9);
+VALUES('Laptops 17"',7);
 
 -- -----------------------------------------------------
 
 INSERT INTO categories(title,parent_id)
 VALUES('Processors',5);
+
+INSERT INTO categories(title,parent_id)
+VALUES('Intel',11);
+
+INSERT INTO categories(title,parent_id)
+VALUES('AMD',11);
 
 INSERT INTO categories(title,parent_id)
 VALUES('Memory RAM',5);
@@ -52,16 +52,22 @@ INSERT INTO categories(title,parent_id)
 VALUES('Graphic cards',5);
 
 INSERT INTO categories(title,parent_id)
+VALUES('NVIDIA',15);
+
+INSERT INTO categories(title,parent_id)
+VALUES('AMD',15);
+
+INSERT INTO categories(title,parent_id)
 VALUES('Motherboards',5);
 
 INSERT INTO categories(title,parent_id)
 VALUES('Hard drives',5);
 
 INSERT INTO categories(title,parent_id)
-VALUES('HDD',17);
+VALUES('HDD',19);
 
 INSERT INTO categories(title,parent_id)
-VALUES('SSD',17);
+VALUES('SSD',19);
 
 INSERT INTO categories(title,parent_id)
 VALUES('Power supply',5);

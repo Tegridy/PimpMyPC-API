@@ -51,7 +51,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Queryds
     default Page<Product> findProductsByCategoryId(MultiValueMap<String, String> searchParams, Predicate predicate, Pageable pageable, Category category) {
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
-        
+
 
         for (Map.Entry<String, List<String>> entry : searchParams.entrySet()) {
 
@@ -81,8 +81,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Queryds
                 booleanBuilder.and(subQuery.exists());
             }
         }
-
-        System.out.println(predicate.toString());
 
         BooleanExpression booleanExpression = JPAExpressions.selectOne().from(QProductAttributes.productAttributes)
                 .where(

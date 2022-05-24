@@ -38,14 +38,15 @@ public class Order extends BaseEntity {
     @Column(name = "total_price")
     private BigDecimal totalPrice;
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(name = "orders_products", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private Address deliveryAddress;
 
     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
 
@@ -59,5 +60,13 @@ public class Order extends BaseEntity {
         this.totalPrice = totalPrice;
         this.products = products;
         this.deliveryAddress = deliveryAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "customerFirstName='" + customerFirstName + '\'' +
+                ", totalPrice=" + totalPrice +
+                '}';
     }
 }

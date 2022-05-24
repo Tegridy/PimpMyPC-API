@@ -12,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -51,14 +52,12 @@ public class User extends BaseEntity {
     @NotEmpty(message = "E-mail is required.")
     private String email;
 
-    private Long addressId;
-
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private List<Order> userOrders;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    private List<Order> userOrders = new ArrayList<>();
 
     public List<Role> getRoles() {
         return roles;
@@ -74,11 +73,7 @@ public class User extends BaseEntity {
                 "roles=" + roles +
                 ", username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", addressId=" + addressId +
                 ", address=" + address +
                 ", userOrders=" + userOrders +
                 '}';

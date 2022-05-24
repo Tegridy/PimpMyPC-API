@@ -3,6 +3,7 @@ package com.pimpmypc.api.product;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pimpmypc.api.BaseIntegrationTest;
+import com.pimpmypc.api.category.CategoryRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,8 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     private ProductRepository productRepository;
     @Autowired
     private ObjectMapper mapper;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     private Product product1;
     private Product product2;
@@ -61,21 +64,36 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         processorList.add(product1);
         processorList.add(product2);
 
-        productRepository.deleteAll();
+
     }
 
     @AfterEach
     void tearDown() {
         product1 = null;
         product2 = null;
+        productRepository.deleteAll();
     }
 
     @Test
     void shouldReturnAllProcessors() throws Exception {
+        Category category = categoryRepository.getById(11L);
+        product1.setCategories(List.of(category));
+        ProductAttributes productAttributes = new ProductAttributes("attr1", "va1");
+        productAttributes.setCreatedAt(LocalDateTime.now());
+        ProductAttributes productAttributes2 = new ProductAttributes("attr2", "va2");
+        productAttributes2.setCreatedAt(LocalDateTime.now());
+
+        ProductAttributes productAttributes11 = new ProductAttributes("attr1", "va1");
+        productAttributes11.setCreatedAt(LocalDateTime.now());
+        ProductAttributes productAttributes22 = new ProductAttributes("attr2", "va2");
+        productAttributes22.setCreatedAt(LocalDateTime.now());
+        product1.setAttributes(List.of(productAttributes, productAttributes));
+        product2.setAttributes(List.of(productAttributes11, productAttributes22));
+        product2.setCategories(List.of(category));
         productRepository.save(product1);
         productRepository.save(product2);
 
-        mvc.perform(get("/api/v1/products/processors")
+        mvc.perform(get("/api/v1/products?categoryId=11")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -85,7 +103,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void shouldReturnEmptyProcessorsArray() throws Exception {
 
-        mvc.perform(get("/api/v1/products/processors")
+        mvc.perform(get("/api/v1/products?categoryId=11")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -94,6 +112,8 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
 
     @Test
     void shouldReturnAllMotherboards() throws Exception {
+
+        Category category = categoryRepository.getById(18L);
 
         Product product = new Product();
         product.setTitle("MOBO1");
@@ -104,7 +124,12 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        // product.setColors(Set.of(Color.GREEN, Color.BLACK));
+        product.setCategories(List.of(category));
+        ProductAttributes productAttributes = new ProductAttributes("attr1", "va1");
+        productAttributes.setCreatedAt(LocalDateTime.now());
+        ProductAttributes productAttributes2 = new ProductAttributes("attr2", "va2");
+        productAttributes2.setCreatedAt(LocalDateTime.now());
+        product.setAttributes(List.of(productAttributes, productAttributes2));
 
         Product product2 = new Product();
         product2.setTitle("MOBO2");
@@ -115,12 +140,17 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        //product2.setColors(Set.of(Color.GREEN, Color.BLACK));
+        product2.setCategories(List.of(category));
+        ProductAttributes productAttributes11 = new ProductAttributes("attr1", "va1");
+        productAttributes11.setCreatedAt(LocalDateTime.now());
+        ProductAttributes productAttributes22 = new ProductAttributes("attr2", "va2");
+        productAttributes22.setCreatedAt(LocalDateTime.now());
+        product2.setAttributes(List.of(productAttributes11, productAttributes22));
 
         productRepository.save(product);
         productRepository.save(product2);
 
-        mvc.perform(get("/api/v1/products/motherboards")
+        mvc.perform(get("/api/v1/products?categoryId=18")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -130,7 +160,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void shouldReturnEmptyMotherboardsArray() throws Exception {
 
-        mvc.perform(get("/api/v1/products/motherboards")
+        mvc.perform(get("/api/v1/products?categoryId=18")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -139,6 +169,8 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
 
     @Test
     void shouldReturnAllCases() throws Exception {
+
+        Category category = categoryRepository.getById(23L);
 
         Product product = new Product();
         product.setTitle("CASE1");
@@ -149,7 +181,12 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        // product.setColors(Set.of(Color.GREEN, Color.BLACK));
+        product.setCategories(List.of(category));
+        ProductAttributes productAttributes = new ProductAttributes("attr1", "va1");
+        productAttributes.setCreatedAt(LocalDateTime.now());
+        ProductAttributes productAttributes2 = new ProductAttributes("attr2", "va2");
+        productAttributes2.setCreatedAt(LocalDateTime.now());
+        product.setAttributes(List.of(productAttributes, productAttributes2));
 
         Product product2 = new Product();
         product2.setTitle("CASE2");
@@ -160,22 +197,29 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        // product2.setColors(Set.of(Color.GREEN, Color.BLACK));
+        product2.setCategories(List.of(category));
+        ProductAttributes productAttributes11 = new ProductAttributes("attr1", "va1");
+        productAttributes11.setCreatedAt(LocalDateTime.now());
+        ProductAttributes productAttributes22 = new ProductAttributes("attr2", "va2");
+        productAttributes22.setCreatedAt(LocalDateTime.now());
+        product2.setAttributes(List.of(productAttributes11, productAttributes22));
 
         productRepository.save(product);
         productRepository.save(product2);
 
-        mvc.perform(get("/api/v1/products/cases")
+        mvc.perform(get("/api/v1/products?categoryId=23")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.products.content.length()").value(2));
+                .andExpect(jsonPath("$.products.content.length()").value(2))
+                .andExpect(jsonPath("$.products.content[0].title").value(product.getTitle()))
+                .andExpect(jsonPath("$.products.content[1].title").value(product2.getTitle()));
     }
 
     @Test
     void shouldReturnEmptyCasesArray() throws Exception {
 
-        mvc.perform(get("/api/v1/products/cases")
+        mvc.perform(get("/api/v1/products?categoryId=23")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -185,40 +229,58 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void shouldReturnAllRamMemory() throws Exception {
 
+        Category category = categoryRepository.getById(14L);
+
         Product product = new Product();
         product.setTitle("MEM1");
         product.setBrand("Brand");
         product.setModel("Model");
         product.setPrice(new BigDecimal("33.38"));
-        product.setQuantity(2);
+        product.setQuantity(32);
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
+        product.setCategories(List.of(category));
+        product.setNumberOfItemsSold(99);
+        ProductAttributes productAttributes11 = new ProductAttributes("attr1", "va1");
+        productAttributes11.setCreatedAt(LocalDateTime.now());
+        ProductAttributes productAttributes22 = new ProductAttributes("attr2", "va2");
+        productAttributes22.setCreatedAt(LocalDateTime.now());
+        product.setAttributes(List.of(productAttributes11, productAttributes22));
 
         Product product2 = new Product();
         product2.setTitle("MEM2");
         product2.setBrand("Brand2");
         product2.setModel("Model2");
         product2.setPrice(new BigDecimal("33.38"));
-        product2.setQuantity(2);
+        product2.setQuantity(22);
         product2.setDescription("This is a product2");
+        product2.setCategories(List.of(category));
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
+        product2.setNumberOfItemsSold(99);
+        ProductAttributes productAttributes = new ProductAttributes("attr1", "va1");
+        productAttributes.setCreatedAt(LocalDateTime.now());
+        ProductAttributes productAttributes2 = new ProductAttributes("attr2", "va2");
+        productAttributes2.setCreatedAt(LocalDateTime.now());
+        product2.setAttributes(List.of(productAttributes, productAttributes2));
 
         productRepository.save(product);
         productRepository.save(product2);
 
-        mvc.perform(get("/api/v1/products/rams")
+        mvc.perform(get("/api/v1/products?page=0&size=9&categoryId=14")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.products.content.length()").value(2));
+                .andExpect(jsonPath("$.products.content.length()").value(2))
+                .andExpect(jsonPath("$.products.content[0].title").value(product.getTitle()))
+                .andExpect(jsonPath("$.products.content[1].title").value(product2.getTitle()));
     }
 
     @Test
     void shouldReturnEmptyRamArray() throws Exception {
 
-        mvc.perform(get("/api/v1/products/rams")
+        mvc.perform(get("/api/v1/products?categoryId=14")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -266,7 +328,9 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.content.length()").value(2));
+                .andExpect(jsonPath("$.content.length()").value(2))
+                .andExpect(jsonPath("$.content[0].title").value(product1.getTitle()))
+                .andExpect(jsonPath("$.content[1].title").value(product2.getTitle()));
     }
 
     @Test
@@ -282,8 +346,8 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.content.length()").value(2))
-                .andExpect(jsonPath("$.content[0].title").value("Intel Processor"))
-                .andExpect(jsonPath("$.content[1].title").value("AMD Processor"));
+                .andExpect(jsonPath("$.content[0].title").value(product1.getTitle()))
+                .andExpect(jsonPath("$.content[1].title").value(product2.getTitle()));
     }
 
     @Test
@@ -296,7 +360,9 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.content.length()").value(2));
+                .andExpect(jsonPath("$.content.length()").value(2))
+                .andExpect(jsonPath("$.content[0].title").value(product1.getTitle()))
+                .andExpect(jsonPath("$.content[1].title").value(product2.getTitle()));
     }
 
     @Test
@@ -309,7 +375,9 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.content.length()").value(2));
+                .andExpect(jsonPath("$.content.length()").value(2))
+                .andExpect(jsonPath("$.content[0].title").value(product1.getTitle()))
+                .andExpect(jsonPath("$.content[1].title").value(product2.getTitle()));
     }
 
     @Test
@@ -320,6 +388,6 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         mvc.perform(get("/api/v1/products/newest")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.content[0].title").value("Intel Processor"));
+                .andExpect(jsonPath("$.content[0].title").value(product1.getTitle()));
     }
 }

@@ -26,9 +26,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,13 +41,14 @@ public class OrderServiceImpl implements OrderService {
     private final AddressRepository addressRepository;
     private final UserRepository userRepository;
     private final ProductService productService;
+    private Authentication authentication;
 
     private BigDecimal cartTotalPrice;
     private List<Product> cartProducts;
 
     @Override
     public OrderResponse saveOrder(CustomerOrderDataDto customerData) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (customerData.getCart().getProducts().size() < 1 || customerData.getCart().getTotalPrice() == null
                 || !isCartValid(customerData.getCart())) {
@@ -67,7 +67,6 @@ public class OrderServiceImpl implements OrderService {
         });
 
         customerData.getDeliveryAddress().setCreatedAt(LocalDateTime.now());
-        addressRepository.save(customerData.getDeliveryAddress());
 
         Order order = Order.builder().customerFirstName(customerData.getCustomerFirstName())
                 .customerLastName(customerData.getCustomerLastName())
@@ -81,7 +80,8 @@ public class OrderServiceImpl implements OrderService {
         order.setCreatedAt(LocalDateTime.now());
         order.setModifiedAt(LocalDateTime.now());
 
-        if (authentication.isAuthenticated()) {
+        if (authentication != null && authentication.isAuthenticated()) {
+
             userRepository.findByUsername(authentication.getName()).ifPresent((user) -> {
                 user.addUserOrder(order);
                 order.setUser(user);
@@ -96,10 +96,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<OrderResponse> getUserOrders(Pageable pageable) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        List<OrderResponse> userOrders = new ArrayList<>();
+        authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication != null) {
+
+            List<OrderResponse> userOrders;
+
             log.info(authentication.getName() + " is logged in. Returning user orders.");
 
             User user = userRepository.findByUsername(authentication.getName())
@@ -109,17 +111,18 @@ public class OrderServiceImpl implements OrderService {
             userOrders = user.getUserOrders().stream().map(order -> OrderResponse.builder().status(order.getOrderStatus())
                     .id(order.getId()).price(order.getTotalPrice()).orderDate(order.getCreatedAt().toLocalDate())
                     .build()).toList();
+
+            return new PageImpl<>(userOrders, pageable, 9);
         } else {
             log.warn("User is not logged in. Can't load orders.");
             throw new AuthenticationException("User is not logged in. Can't load orders.");
         }
-
-        return new PageImpl<>(userOrders, pageable, 9);
     }
 
     @Override
     public OrderDto getUserOrderDetails(Long id) throws AuthenticationException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if (authentication != null) {
             Order order = orderRepository.findById(id)
                     .orElseThrow(() -> new EntityNotFoundException("Order with id: " + id + " not found."));
@@ -145,9 +148,9 @@ public class OrderServiceImpl implements OrderService {
 
 
         BigDecimal totalPrice = products.stream().map(Product::getPrice)
-                .reduce(new BigDecimal(0), BigDecimal::add).setScale(2, RoundingMode.CEILING);
+                .reduce(new BigDecimal(0), BigDecimal::add).round(new MathContext(2));
 
-        if (cart.getTotalPrice().setScale(2, RoundingMode.CEILING).equals(totalPrice)) {
+        if (cart.getTotalPrice().round(new MathContext(2)).equals(totalPrice)) {
             this.cartTotalPrice = totalPrice;
             this.cartProducts = cart.getProducts();
             return true;

@@ -10,6 +10,7 @@ CREATE TABLE users (
 		password VARCHAR(155) NOT NULL,
         email VARCHAR(50) NOT NULL,
         address_id BIGINT,
+        order_id BIGINT,
         created_at DATETIME NOT NULL,
         modified_at DATETIME NULL DEFAULT NULL
 );

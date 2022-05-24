@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pimpmypc.api.PimpMyPcApplication;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.address.Address;
+import com.pimpmypc.api.user.address.AddressRepository;
 import com.pimpmypc.api.user.dto.UserAddressDto;
 import com.pimpmypc.api.user.dto.UserPersonalDataDto;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +20,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @TestPropertySource(
         locations = "classpath:application-test.properties")
-@Transactional
 public class UserControllerIntegrationTest {
 
     @Autowired
@@ -42,11 +41,16 @@ public class UserControllerIntegrationTest {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private AddressRepository addressRepository;
 
     private User user;
 
     @BeforeEach
     void beforeEach() {
+        addressRepository.deleteAll();
+        userRepository.deleteAll();
+
         user = new User();
         user.setUsername("JD12");
         user.setFirstName("John");
@@ -62,11 +66,12 @@ public class UserControllerIntegrationTest {
 
         Address address = new Address("street1", "city1", "state1", "11-111");
         address.setCreatedAt(LocalDateTime.now());
+        
+
         user.setAddress(address);
         user.setPassword(new BCryptPasswordEncoder(12).encode("qwerty321321"));
 
-        User u = userRepository.save(user);
-        user.setId(u.getId());
+        userRepository.save(user);
     }
 
     @Test
@@ -80,6 +85,7 @@ public class UserControllerIntegrationTest {
     @Test
     void shouldReturnUserAccountDetails() throws Exception {
 
+
         String token = performLoginAndReturnToken();
 
         mvc.perform(get("/api/v1/user/" + user.getId())
@@ -91,6 +97,8 @@ public class UserControllerIntegrationTest {
 
     @Test
     void shouldUpdateUserPersonalDetails() throws Exception {
+
+
         String token = performLoginAndReturnToken();
 
         assertEquals(user.getFirstName(), "John");
@@ -124,6 +132,8 @@ public class UserControllerIntegrationTest {
 
     @Test
     void shouldUpdateUserAddressDetails() throws Exception {
+
+
         String token = performLoginAndReturnToken();
 
         assertEquals(user.getAddress().getCity(), "city1");
@@ -156,6 +166,8 @@ public class UserControllerIntegrationTest {
 
     @Test
     void shouldUpdateUserAuthDetails() throws Exception {
+
+
         String token = performLoginAndReturnToken();
 
 
