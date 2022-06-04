@@ -139,8 +139,8 @@ public class OrderServiceTest {
 
         when(productService.findProductById(product1.getId())).thenReturn(product1);
         when(productService.findProductById(product2.getId())).thenReturn(product2);
-        when(productRepository.findProductById(product1.getId())).thenReturn(Optional.of(product1));
-        when(productRepository.findProductById(product2.getId())).thenReturn(Optional.of(product2));
+        when(productRepository.findDistinctById(product1.getId())).thenReturn(Optional.of(product1));
+        when(productRepository.findDistinctById(product2.getId())).thenReturn(Optional.of(product2));
 
         Authentication authentication = Mockito.mock(Authentication.class);
         SecurityContext securityContext = Mockito.mock(SecurityContext.class);
@@ -185,7 +185,7 @@ public class OrderServiceTest {
 
         // when
 
-        Page<OrderResponse> orderResponsePage = orderService.getUserOrders(pageable);
+        Page<OrderResponse> orderResponsePage = orderService.getUserOrders(1L, pageable);
 
 
         // then
@@ -215,7 +215,7 @@ public class OrderServiceTest {
 
         // when
 
-        Page<OrderResponse> orderResponsePage = orderService.getUserOrders(pageable);
+        Page<OrderResponse> orderResponsePage = orderService.getUserOrders(1L, pageable);
 
         // then
 

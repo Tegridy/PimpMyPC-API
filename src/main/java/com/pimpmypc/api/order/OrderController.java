@@ -25,9 +25,9 @@ public class OrderController {
         return ResponseEntity.ok(orderResponse);
     }
 
-    @GetMapping("")
-    public ResponseEntity<Page<OrderResponse>> getUserOrders(Pageable pageable) {
-        return ResponseEntity.ok(orderService.getUserOrders(pageable));
+    @GetMapping
+    public ResponseEntity<Page<OrderResponse>> getUserOrders(@RequestParam Long userId, Pageable pageable) {
+        return ResponseEntity.ok(orderService.getUserOrders(userId, pageable));
     }
 
     @GetMapping("/{id}")

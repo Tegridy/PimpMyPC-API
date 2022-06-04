@@ -10,10 +10,12 @@ import com.pimpmypc.api.order.dto.OrderResponse;
 import com.pimpmypc.api.product.Product;
 import com.pimpmypc.api.product.ProductRepository;
 import com.pimpmypc.api.product.ProductService;
+import com.pimpmypc.api.product.dto.ProductDto;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.UserRepository;
 import com.pimpmypc.api.user.address.AddressRepository;
 import com.pimpmypc.api.utils.BaseEntity;
+import com.pimpmypc.api.utils.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         cartProducts.forEach(p -> {
-            Product product = productRepository.findProductById(p.getId()).orElseThrow(() ->
+            Product product = productRepository.findDistinctById(p.getId()).orElseThrow(() ->
                     new EntityNotFoundException("Product with id: " + p.getId() + " not found."));
 
             product.setQuantity(product.getQuantity() - 1);
@@ -82,7 +84,7 @@ public class OrderServiceImpl implements OrderService {
 
         if (authentication != null && authentication.isAuthenticated()) {
 
-            userRepository.findByUsername(authentication.getName()).ifPresent((user) -> {
+            userRepository.getByUsername(authentication.getName()).ifPresent((user) -> {
                 user.addUserOrder(order);
                 order.setUser(user);
             });
@@ -95,7 +97,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Page<OrderResponse> getUserOrders(Pageable pageable) {
+    public Page<OrderResponse> getUserOrders(Long id, Pageable pageable) {
         authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication != null) {
@@ -104,8 +106,8 @@ public class OrderServiceImpl implements OrderService {
 
             log.info(authentication.getName() + " is logged in. Returning user orders.");
 
-            User user = userRepository.findByUsername(authentication.getName())
-                    .orElseThrow(() -> new EntityNotFoundException("User with given name not found."));
+            User user = userRepository.getUserById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("User with given id not found."));
 
 
             userOrders = user.getUserOrders().stream().map(order -> OrderResponse.builder().status(order.getOrderStatus())
@@ -124,9 +126,9 @@ public class OrderServiceImpl implements OrderService {
         authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication != null) {
-            Order order = orderRepository.findById(id)
+            Order order = orderRepository.findOrderById(id)
                     .orElseThrow(() -> new EntityNotFoundException("Order with id: " + id + " not found."));
-            List<Product> orderProducts = order.getProducts();
+            List<ProductDto> orderProducts = order.getProducts().stream().map(ProductMapper::mapToDto).toList();
 
             return OrderDto.builder()
                     .id(order.getId())
@@ -134,7 +136,7 @@ public class OrderServiceImpl implements OrderService {
                     .imageUrl(orderProducts.get(0).getImageUrl())
                     .products(orderProducts)
                     .address(order.getDeliveryAddress())
-                    .price(orderProducts.stream().map(Product::getPrice)
+                    .price(orderProducts.stream().map(ProductDto::getPrice)
                             .reduce(new BigDecimal(0), BigDecimal::add)).build();
         } else {
             log.warn("User don't have access to see this order.");
@@ -143,6 +145,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private boolean isCartValid(Cart cart) {
+        // TODO: check if product q > 0
+
+
         List<Long> productsIds = cart.getProducts().stream().map(BaseEntity::getId).toList();
         List<Product> products = productsIds.stream().map(productService::findProductById).toList();
 

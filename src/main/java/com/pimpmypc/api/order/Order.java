@@ -1,11 +1,16 @@
 package com.pimpmypc.api.order;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pimpmypc.api.product.Product;
 import com.pimpmypc.api.user.User;
 import com.pimpmypc.api.user.address.Address;
 import com.pimpmypc.api.utils.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -16,7 +21,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
+@JsonIgnoreProperties({"createdAt", "modifiedAt", "deliveryAddress", "user"})
 public class Order extends BaseEntity {
 
     @Column(name = "first_name")
@@ -38,16 +44,17 @@ public class Order extends BaseEntity {
     @Column(name = "total_price")
     private BigDecimal totalPrice;
 
-    @ManyToMany()
-    @JoinTable(name = "orders_products", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "orders_products", joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @JsonIgnore
     private List<Product> products;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private Address deliveryAddress;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Order(String customerFirstName, String customerLastName, OrderStatus orderStatus, String customerEmail,

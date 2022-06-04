@@ -6,7 +6,11 @@ import com.pimpmypc.api.order.Order;
 import com.pimpmypc.api.security.Role;
 import com.pimpmypc.api.user.address.Address;
 import com.pimpmypc.api.utils.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -20,11 +24,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "users")
-@JsonIgnoreProperties(value = {"createdAt", "modifiedAt", "roles", "addressId"})
-@Builder
+@JsonIgnoreProperties(value = {"createdAt", "modifiedAt", "roles", "addressId", "password"}, allowSetters = true)
+@SuperBuilder
 public class User extends BaseEntity {
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     @JsonIgnore
     List<Role> roles;
 
@@ -52,7 +56,7 @@ public class User extends BaseEntity {
     @NotEmpty(message = "E-mail is required.")
     private String email;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
@@ -72,6 +76,7 @@ public class User extends BaseEntity {
         return "User{" +
                 "roles=" + roles +
                 ", username='" + username + '\'' +
+                ", pass='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", email='" + email + '\'' +
                 ", address=" + address +

@@ -178,7 +178,7 @@ public class ProductServiceTest {
         product.setModifiedAt(LocalDateTime.now());
         // product.setColors(Set.of(Color.GREEN, Color.BLACK));
 
-        when(productRepository.findProductById(5L)).thenReturn(Optional.of(product));
+        when(productRepository.findDistinctById(5L)).thenReturn(Optional.of(product));
 
         // when
 
@@ -194,7 +194,7 @@ public class ProductServiceTest {
 
         //given
         Long productId = 192L;
-        when(productRepository.findProductById(productId)).thenReturn(Optional.empty());
+        when(productRepository.findDistinctById(productId)).thenReturn(Optional.empty());
 
         // when
         Executable executable = () -> productService.findProductById(productId);
@@ -208,7 +208,7 @@ public class ProductServiceTest {
     void shouldReturnProduct() {
 
         //given
-        when(productRepository.findProductById(product1.getId())).thenReturn(Optional.of(product1));
+        when(productRepository.findDistinctById(product1.getId())).thenReturn(Optional.of(product1));
 
         // when
         Product result = productService.findProductById(product1.getId());

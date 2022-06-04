@@ -1,6 +1,5 @@
 package com.pimpmypc.api.category;
 
-import com.pimpmypc.api.product.Category;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping(value = "", produces = "application/json")
-    public ResponseEntity<List<Category>> returnProcessors() {
+    public ResponseEntity<List<Category>> getCategories() {
 
         return ResponseEntity.ok(categoryService.getAllCategories());
     }

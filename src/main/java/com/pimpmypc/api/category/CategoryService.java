@@ -1,6 +1,5 @@
 package com.pimpmypc.api.category;
 
-import com.pimpmypc.api.product.Category;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

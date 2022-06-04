@@ -21,7 +21,7 @@ public class Filter implements Comparable<Filter> {
     @Column(name = "filter_name")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "filter_type_id")
     @JsonBackReference
     private FilterType filterType;

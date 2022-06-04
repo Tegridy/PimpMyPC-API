@@ -11,7 +11,7 @@ public interface OrderService {
 
     OrderResponse saveOrder(CustomerOrderDataDto customerData);
 
-    Page<OrderResponse> getUserOrders(Pageable pageable);
+    Page<OrderResponse> getUserOrders(Long id, Pageable pageable);
 
     OrderDto getUserOrderDetails(Long id) throws AuthenticationException;
 }

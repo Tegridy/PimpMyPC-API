@@ -20,7 +20,8 @@ public class ProductController {
 
     @GetMapping(value = "", produces = "application/json")
     public ResponseEntity<ProductsResponse> getAllProducts(Pageable pageable,
-                                                           @QuerydslPredicate(root = Product.class) Predicate predicate, @RequestParam Long categoryId,
+                                                           @QuerydslPredicate(root = Product.class) Predicate predicate,
+                                                           @RequestParam Long categoryId,
                                                            @RequestParam MultiValueMap<String, String> requestParams) {
         return ResponseEntity.ok(productService.getAllProducts(requestParams, predicate, pageable, categoryId));
     }
@@ -35,11 +36,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.findProductsByName(productName, pageable));
     }
 
-    @GetMapping(value = "/search", params = {"productName", "productCategory"}, produces = "application/json")
+    @GetMapping(value = "/search", params = {"productName", "categoryId"}, produces = "application/json")
     public ResponseEntity<Page<ProductDto>> getProductsByNameAndCategory(@RequestParam String productName,
-                                                                         @RequestParam String productCategory,
+                                                                         @RequestParam Long categoryId,
                                                                          Pageable pageable) {
-        return ResponseEntity.ok(productService.findProductsByNameAndCategory(productName, productCategory, pageable));
+        return ResponseEntity.ok(productService.findProductsByNameAndCategory(productName, categoryId, pageable));
     }
 
     @GetMapping(value = "/top", produces = "application/json")

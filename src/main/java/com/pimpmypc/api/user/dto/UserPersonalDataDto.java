@@ -1,5 +1,6 @@
 package com.pimpmypc.api.user.dto;
 
+import com.pimpmypc.api.user.address.Address;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,4 +15,5 @@ public class UserPersonalDataDto {
     private String lastName;
     private String email;
     private String phone;
+    private Address address;
 }

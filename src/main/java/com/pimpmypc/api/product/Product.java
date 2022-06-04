@@ -1,27 +1,30 @@
 package com.pimpmypc.api.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.pimpmypc.api.category.Category;
 import com.pimpmypc.api.order.Order;
 import com.pimpmypc.api.utils.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.SortNatural;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
 
 @Entity(name = "products")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
+@NoArgsConstructor
+@SuperBuilder
 @JsonIgnoreProperties(value = {"numberOfItemsSold", "createdAt", "modifiedAt", "orders", "quantity"})
-
 public class Product extends BaseEntity {
+
 
     private String title;
 
@@ -43,20 +46,22 @@ public class Product extends BaseEntity {
     private int numberOfItemsSold;
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "colors", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "color")
     private Set<Color> colors;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> categories;
+    @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private Set<Order> orders;
 
     @OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    private List<ProductAttributes> attributes;
+    @SortNatural
+    private SortedSet<ProductAttributes> attributes;
 
 
     @Override

@@ -1,7 +1,7 @@
 package com.pimpmypc.api.order.dto;
 
 import com.pimpmypc.api.product.Color;
-import com.pimpmypc.api.product.Product;
+import com.pimpmypc.api.product.dto.ProductDto;
 import com.pimpmypc.api.user.address.Address;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,5 +22,5 @@ public class OrderDto {
     private String imageUrl;
     private Set<Color> colors;
     private Address address;
-    private List<Product> products;
+    private List<ProductDto> products;
 }

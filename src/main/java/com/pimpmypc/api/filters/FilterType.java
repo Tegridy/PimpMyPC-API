@@ -2,7 +2,7 @@ package com.pimpmypc.api.filters;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.pimpmypc.api.product.Category;
+import com.pimpmypc.api.category.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,13 +29,13 @@ public class FilterType {
     @Column(name = "filter_property")
     private String filterProperty;
 
-    @OneToMany(mappedBy = "filterType")
+    @OneToMany(mappedBy = "filterType", fetch = FetchType.LAZY)
     @JsonManagedReference
     @OrderBy("filter_name DESC")
     @SortNatural
     private SortedSet<Filter> values;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Category category;
 

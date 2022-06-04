@@ -1,7 +1,9 @@
 package com.pimpmypc.api.utils;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -11,6 +13,8 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @Setter
 @Getter
+@NoArgsConstructor
+@SuperBuilder
 public class BaseEntity {
 
     @Id

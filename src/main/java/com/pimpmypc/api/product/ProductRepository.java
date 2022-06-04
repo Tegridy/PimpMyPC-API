@@ -1,5 +1,6 @@
 package com.pimpmypc.api.product;
 
+import com.pimpmypc.api.category.Category;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -9,6 +10,7 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -32,23 +34,32 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Queryds
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
     }
 
-    @Query(value = "SELECT p FROM products p WHERE p.title LIKE CONCAT('%',:productName,'%')")
+    @Query(value = "SELECT p FROM products p WHERE p.title LIKE CONCAT('%', :productName, '%')")
     Page<Product> findProductsByName(String productName, Pageable pageable);
 
     @Query(value = "SELECT p FROM products p " +
-            "JOIN p.categories c " +
-            "WHERE c.title LIKE CONCAT('%',:category,'%') " +
-            "AND p.title LIKE CONCAT('%',:productName,'%')")
-    Page<Product> findProductsByNameAndCategory(String productName, String category, Pageable pageable);
+            "LEFT JOIN p.categories c " +
+            "WHERE c.id = :categoryId " +
+            "AND p.title LIKE CONCAT('%', :productName, '%')")
+    Page<Product> findProductsByNameAndByCategoryId(String productName, Long categoryId, Pageable pageable);
 
     Page<Product> findProductsByOrderByNumberOfItemsSoldDesc(Pageable pageable);
 
     Page<Product> findProductByOrderByIdDesc(Pageable pageable);
 
-    Optional<Product> findProductById(Long id);
+    @EntityGraph(
+            type = EntityGraph.EntityGraphType.FETCH,
+            attributePaths = {
+                    "colors",
+                    "categories",
+                    "attributes"
+            }
+    )
+    Optional<Product> findDistinctById(Long id);
 
 
-    default Page<Product> findProductsByCategoryId(MultiValueMap<String, String> searchParams, Predicate predicate, Pageable pageable, Category category) {
+    default Page<Product> findProductsByCategoryId(MultiValueMap<String, String> searchParams, Predicate predicate,
+                                                   Pageable pageable, Category category) {
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
 

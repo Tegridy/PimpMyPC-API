@@ -21,5 +21,5 @@ public interface ProductService {
 
     Page<ProductDto> findProductsByName(String productName, Pageable pageable);
 
-    Page<ProductDto> findProductsByNameAndCategory(String productName, String productCategory, Pageable pageable);
+    Page<ProductDto> findProductsByNameAndCategory(String productName, Long categoryId, Pageable pageable);
 }

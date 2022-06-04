@@ -4,6 +4,7 @@ import com.pimpmypc.api.exception.AddressException;
 import com.pimpmypc.api.exception.EntityNotFoundException;
 import com.pimpmypc.api.exception.UserException;
 import com.pimpmypc.api.user.address.Address;
+import com.pimpmypc.api.user.address.AddressRepository;
 import com.pimpmypc.api.user.dto.UserAddressDto;
 import com.pimpmypc.api.user.dto.UserAuthDto;
 import com.pimpmypc.api.user.dto.UserPersonalDataDto;
@@ -22,6 +23,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final AddressRepository addressRepository;
 
     @Override
     public List<User> getAllUsers() {
@@ -53,8 +55,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserAccountDetails(Long id) {
-        return userRepository.findUserById(id)
+
+        User user = userRepository.findUserById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " do not exist"));
+        return User.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .address(user.getAddress())
+                .build();
     }
 
     @Override
@@ -92,7 +103,7 @@ public class UserServiceImpl implements UserService {
         address.setZip(newUserAddress.getZip());
         address.setModifiedAt(LocalDateTime.now());
 
-        user.setAddress(address);
+        address.setUser(user);
         user.setModifiedAt(LocalDateTime.now());
         this.saveUser(user);
         log.info(String.format("User with id: %d - address data updated successfully", id));

@@ -3,6 +3,7 @@ package com.pimpmypc.api.product;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pimpmypc.api.BaseIntegrationTest;
+import com.pimpmypc.api.category.Category;
 import com.pimpmypc.api.category.CategoryRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -77,7 +80,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void shouldReturnAllProcessors() throws Exception {
         Category category = categoryRepository.getById(11L);
-        product1.setCategories(List.of(category));
+        product1.setCategories(Set.of(category));
         ProductAttributes productAttributes = new ProductAttributes("attr1", "va1");
         productAttributes.setCreatedAt(LocalDateTime.now());
         ProductAttributes productAttributes2 = new ProductAttributes("attr2", "va2");
@@ -87,9 +90,19 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         productAttributes11.setCreatedAt(LocalDateTime.now());
         ProductAttributes productAttributes22 = new ProductAttributes("attr2", "va2");
         productAttributes22.setCreatedAt(LocalDateTime.now());
-        product1.setAttributes(List.of(productAttributes, productAttributes));
-        product2.setAttributes(List.of(productAttributes11, productAttributes22));
-        product2.setCategories(List.of(category));
+
+        TreeSet<ProductAttributes> ts = new TreeSet<>();
+        ts.add(productAttributes);
+        ts.add(productAttributes2);
+
+        TreeSet<ProductAttributes> ts2 = new TreeSet<>();
+        ts.add(productAttributes11);
+        ts.add(productAttributes22);
+
+
+        product1.setAttributes(ts);
+        product2.setAttributes(ts2);
+        product2.setCategories(Set.of(category));
         productRepository.save(product1);
         productRepository.save(product2);
 
@@ -124,12 +137,18 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setCategories(List.of(category));
+        product.setCategories(Set.of(category));
         ProductAttributes productAttributes = new ProductAttributes("attr1", "va1");
         productAttributes.setCreatedAt(LocalDateTime.now());
         ProductAttributes productAttributes2 = new ProductAttributes("attr2", "va2");
         productAttributes2.setCreatedAt(LocalDateTime.now());
-        product.setAttributes(List.of(productAttributes, productAttributes2));
+
+        TreeSet<ProductAttributes> ts = new TreeSet<>();
+        ts.add(productAttributes);
+        ts.add(productAttributes2);
+
+
+        product.setAttributes(ts);
 
         Product product2 = new Product();
         product2.setTitle("MOBO2");
@@ -140,12 +159,17 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setCategories(List.of(category));
+        product2.setCategories(Set.of(category));
         ProductAttributes productAttributes11 = new ProductAttributes("attr1", "va1");
         productAttributes11.setCreatedAt(LocalDateTime.now());
         ProductAttributes productAttributes22 = new ProductAttributes("attr2", "va2");
         productAttributes22.setCreatedAt(LocalDateTime.now());
-        product2.setAttributes(List.of(productAttributes11, productAttributes22));
+
+        TreeSet<ProductAttributes> ts2 = new TreeSet<>();
+        ts.add(productAttributes11);
+        ts.add(productAttributes22);
+
+        product2.setAttributes(ts2);
 
         productRepository.save(product);
         productRepository.save(product2);
@@ -181,12 +205,18 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setCategories(List.of(category));
+        product.setCategories(Set.of(category));
         ProductAttributes productAttributes = new ProductAttributes("attr1", "va1");
         productAttributes.setCreatedAt(LocalDateTime.now());
         ProductAttributes productAttributes2 = new ProductAttributes("attr2", "va2");
         productAttributes2.setCreatedAt(LocalDateTime.now());
-        product.setAttributes(List.of(productAttributes, productAttributes2));
+
+        TreeSet<ProductAttributes> ts = new TreeSet<>();
+        ts.add(productAttributes);
+        ts.add(productAttributes2);
+
+        product1.setAttributes(ts);
+
 
         Product product2 = new Product();
         product2.setTitle("CASE2");
@@ -197,12 +227,17 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        product2.setCategories(List.of(category));
+        product2.setCategories(Set.of(category));
         ProductAttributes productAttributes11 = new ProductAttributes("attr1", "va1");
         productAttributes11.setCreatedAt(LocalDateTime.now());
         ProductAttributes productAttributes22 = new ProductAttributes("attr2", "va2");
         productAttributes22.setCreatedAt(LocalDateTime.now());
-        product2.setAttributes(List.of(productAttributes11, productAttributes22));
+
+        TreeSet<ProductAttributes> ts2 = new TreeSet<>();
+        ts.add(productAttributes11);
+        ts.add(productAttributes22);
+
+        product2.setAttributes(ts2);
 
         productRepository.save(product);
         productRepository.save(product2);
@@ -240,13 +275,18 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        product.setCategories(List.of(category));
+        product.setCategories(Set.of(category));
         product.setNumberOfItemsSold(99);
         ProductAttributes productAttributes11 = new ProductAttributes("attr1", "va1");
         productAttributes11.setCreatedAt(LocalDateTime.now());
         ProductAttributes productAttributes22 = new ProductAttributes("attr2", "va2");
         productAttributes22.setCreatedAt(LocalDateTime.now());
-        product.setAttributes(List.of(productAttributes11, productAttributes22));
+
+        TreeSet<ProductAttributes> ts = new TreeSet<>();
+        ts.add(productAttributes11);
+        ts.add(productAttributes22);
+
+        product.setAttributes(ts);
 
         Product product2 = new Product();
         product2.setTitle("MEM2");
@@ -255,7 +295,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product2.setPrice(new BigDecimal("33.38"));
         product2.setQuantity(22);
         product2.setDescription("This is a product2");
-        product2.setCategories(List.of(category));
+        product2.setCategories(Set.of(category));
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
         product2.setNumberOfItemsSold(99);
@@ -263,7 +303,12 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         productAttributes.setCreatedAt(LocalDateTime.now());
         ProductAttributes productAttributes2 = new ProductAttributes("attr2", "va2");
         productAttributes2.setCreatedAt(LocalDateTime.now());
-        product2.setAttributes(List.of(productAttributes, productAttributes2));
+
+        TreeSet<ProductAttributes> ts2 = new TreeSet<>();
+        ts.add(productAttributes);
+        ts.add(productAttributes2);
+
+        product2.setAttributes(ts2);
 
         productRepository.save(product);
         productRepository.save(product2);

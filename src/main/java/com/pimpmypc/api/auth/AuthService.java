@@ -53,7 +53,8 @@ public class AuthService {
             User user = User.builder().username(newUser.getUsername())
                     .password(passwordEncoder.encode(newUser.getPassword()))
                     .firstName(newUser.getFirstName()).lastName(newUser.getLastName())
-                    .address(userAddress).phone(newUser.getPhone()).roles(List.of(Role.ROLE_USER))
+                    .address(userAddress)
+                    .phone(newUser.getPhone()).roles(List.of(Role.ROLE_USER))
                     .email(newUser.getEmail()).build();
 
             user.setCreatedAt(LocalDateTime.now());
