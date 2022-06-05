@@ -26,7 +26,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
@@ -66,7 +65,7 @@ public class UserControllerIntegrationTest {
 
         Address address = new Address("street1", "city1", "state1", "11-111");
         address.setCreatedAt(LocalDateTime.now());
-        
+
 
         user.setAddress(address);
         user.setPassword(new BCryptPasswordEncoder(12).encode("qwerty321321"));
@@ -77,7 +76,7 @@ public class UserControllerIntegrationTest {
     @Test
     void shouldForbidAccessToUserAccountDetails() throws Exception {
 
-        mvc.perform(get("/api/v1/user/" + 12)
+        mvc.perform(get("/api/v1/users/" + 12)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isForbidden());
     }
@@ -88,7 +87,7 @@ public class UserControllerIntegrationTest {
 
         String token = performLoginAndReturnToken();
 
-        mvc.perform(get("/api/v1/user/" + user.getId())
+        mvc.perform(get("/api/v1/users/" + user.getId())
                         .contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + token))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(user.getId()))
@@ -107,9 +106,8 @@ public class UserControllerIntegrationTest {
                 lastName(user.getLastName()).phone(user.getPhone()).email(user.getEmail()).build();
 
 
-        mvc.perform(patch("/api/v1/user/" + user.getId() + "/personal").content(asJsonString(personalDataDto))
+        mvc.perform(patch("/api/v1/users/" + user.getId() + "/personal").content(asJsonString(personalDataDto))
                         .contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + token))
-                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName").value("Mike"));
     }
@@ -124,7 +122,7 @@ public class UserControllerIntegrationTest {
         UserPersonalDataDto personalDataDto = UserPersonalDataDto.builder().firstName("Mike").
                 lastName(user.getLastName()).phone(user.getPhone()).email(user.getEmail()).build();
 
-        mvc.perform(patch("/api/v1/user/920129310/personal").content(asJsonString(personalDataDto))
+        mvc.perform(patch("/api/v1/users/920129310/personal").content(asJsonString(personalDataDto))
                         .contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + token))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.message").value("User with given id do not exist"));
@@ -141,7 +139,7 @@ public class UserControllerIntegrationTest {
         UserAddressDto addressDto = UserAddressDto.builder().state("state1").
                 city("Dallas").street(user.getAddress().getStreet()).zip(user.getAddress().getZip()).build();
 
-        mvc.perform(patch("/api/v1/user/" + user.getId() + "/address").content(asJsonString(addressDto))
+        mvc.perform(patch("/api/v1/users/" + user.getId() + "/address").content(asJsonString(addressDto))
                         .contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + token))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.city").value("Dallas"));
@@ -152,14 +150,14 @@ public class UserControllerIntegrationTest {
         UserAddressDto addressDto = UserAddressDto.builder().state("state1").
                 city("Dallas").street("str1").zip("22-222").build();
 
-        mvc.perform(patch("/api/v1/user/" + user.getId() + "/address").content(asJsonString(addressDto))
+        mvc.perform(patch("/api/v1/users/" + user.getId() + "/address").content(asJsonString(addressDto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isForbidden());
     }
 
     @Test
     void shouldForbidAccessToUpdateUserAuthDetails() throws Exception {
-        mvc.perform(patch("/api/v1/user/" + user.getId() + "/auth")
+        mvc.perform(patch("/api/v1/users/" + user.getId() + "/auth")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isForbidden());
     }
@@ -171,7 +169,7 @@ public class UserControllerIntegrationTest {
         String token = performLoginAndReturnToken();
 
 
-        mvc.perform(patch("/api/v1/user/" + user.getId() + "/auth").content("newSecretPass")
+        mvc.perform(patch("/api/v1/users/" + user.getId() + "/auth").content("newSecretPass")
                         .contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + token))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.username").value(user.getUsername()));

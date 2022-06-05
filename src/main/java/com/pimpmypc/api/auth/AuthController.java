@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 @AllArgsConstructor
@@ -19,7 +21,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping(value = "/register", produces = "application/json")
-    public ResponseEntity<String> register(@RequestBody User user) throws JsonProcessingException {
+    public ResponseEntity<String> register(@RequestBody @Valid User user) throws JsonProcessingException {
         String username = authService.signUp(user);
         log.info(String.format("User %s account successfully created.", user.getUsername()));
 

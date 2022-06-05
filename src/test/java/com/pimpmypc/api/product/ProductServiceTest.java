@@ -1,8 +1,7 @@
 package com.pimpmypc.api.product;
 
-import com.pimpmypc.api.category.CategoryRepository;
+import com.pimpmypc.api.category.Category;
 import com.pimpmypc.api.exception.EntityNotFoundException;
-import com.pimpmypc.api.filters.FiltersRepository;
 import com.pimpmypc.api.product.dto.ProductDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +19,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -33,13 +33,8 @@ public class ProductServiceTest {
     private ProductServiceImpl productService;
 
     @Mock
-    private CategoryRepository categoryRepository;
-    @Mock
-    private FiltersRepository filtersRepository;
-    @Mock
     private ProductRepository productRepository;
 
-    private ProductsResponse productsResponse;
 
     private Product product1;
     private Product product2;
@@ -56,6 +51,7 @@ public class ProductServiceTest {
         product1.setPrice(new BigDecimal("225.38"));
         product1.setQuantity(8);
         product1.setDescription("This is a processor");
+        product1.setCategories(Set.of(new Category()));
         product1.setCreatedAt(LocalDateTime.now());
         product1.setModifiedAt(LocalDateTime.now());
 
@@ -69,7 +65,7 @@ public class ProductServiceTest {
         product2.setDescription("This is a product2");
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
-        // product2.setColors(Set.of(Color.GREEN, Color.BLACK));
+        product2.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         product3 = new Product();
         product3.setTitle("CASE1");
@@ -80,7 +76,7 @@ public class ProductServiceTest {
         product3.setDescription("This is a product3");
         product3.setCreatedAt(LocalDateTime.now());
         product3.setModifiedAt(LocalDateTime.now());
-        // product3.setColors(Set.of(Color.GREEN, Color.BLACK));
+        product3.setColors(Set.of(Color.GREEN, Color.BLACK));
 
         product4 = new Product();
         product4.setTitle("CASE2");
@@ -91,75 +87,9 @@ public class ProductServiceTest {
         product4.setDescription("This is a product4");
         product4.setCreatedAt(LocalDateTime.now());
         product4.setModifiedAt(LocalDateTime.now());
-        // product4.setColors(Set.of(Color.GREEN, Color.BLACK));
+        product4.setColors(Set.of(Color.GREEN, Color.BLACK));
     }
 
-//    @Test
-//    void shouldReturnResponseWithProducts() {
-//
-//        // given
-//        Pageable pageable = Pageable.ofSize(9);
-//        Predicate predicate = Mockito.mock(Predicate.class);
-//
-//        ProductDto productDto = new ProductDto(12L, "Product 1", BigDecimal.valueOf(291)
-//                , List.of(new ProductAttributes()), "/");
-//        ProductDto productDto2 = new ProductDto(22L, "Product 1", BigDecimal.valueOf(291)
-//                , List.of(new ProductAttributes()), "/");
-//
-//        productsResponse = new ProductsResponse();
-//
-//        Page<ProductDto> page = new PageImpl<>(List.of(productDto, productDto2));
-//        productsResponse.setProducts(page);
-//
-//        Page<Case> casePage = new PageImpl<>(List.of(product3, product4));
-//
-//        Category category = Category.builder().id(55L).title("Case").filterTypes(Set.of()).iconName("").parentId(new Category())
-//                .products(Set.of()).build();
-//
-//        when(caseRepository.findAllCases(predicate, pageable)).thenReturn(casePage);
-//        when(categoryRepository.findCategoryByTitle("Cases")).thenReturn(Optional.of(category));
-//        Set<FilterType> set = new HashSet<>();
-//        when(filtersRepository.findFiltersCategoriesById(category.getId())).thenReturn(set);
-//
-//        // when
-//
-//        ProductsResponse productsResponseResult = productService.getAllCases(predicate, pageable);
-//
-//        // then
-//
-//        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getProducts().getContent().size());
-//    }
-
-//    @Test
-//    void shouldReturnResponseWithoutProducts() {
-//
-//        // given
-//        Pageable pageable = Pageable.ofSize(9);
-//        Predicate predicate = Mockito.mock(Predicate.class);
-//
-//        productsResponse = new ProductsResponse();
-//
-//        Page<ProductDto> page = new PageImpl<>(List.of());
-//        productsResponse.setProducts(page);
-//
-//        Page<Case> casePage = new PageImpl<>(List.of());
-//
-//        Category category = Category.builder().id(55L).title("Case").filterTypes(Set.of()).iconName("").parentId(new Category())
-//                .products(Set.of()).build();
-//
-//        when(caseRepository.findAllCases(predicate, pageable)).thenReturn(casePage);
-//        when(categoryRepository.findCategoryByTitle("Cases")).thenReturn(Optional.of(category));
-//        Set<FilterType> set = new HashSet<>();
-//        when(filtersRepository.findFiltersCategoriesById(category.getId())).thenReturn(set);
-//
-//        // when
-//
-//        ProductsResponse productsResponseResult = productService.getAllCases(predicate, pageable);
-//
-//        // then
-//
-//        assertThat(page.getContent().size()).isEqualTo(productsResponseResult.getProducts().getContent().size());
-//    }
 
     @Test
     void shouldReturnProductById() {
@@ -176,7 +106,8 @@ public class ProductServiceTest {
         product.setDescription("This is a product");
         product.setCreatedAt(LocalDateTime.now());
         product.setModifiedAt(LocalDateTime.now());
-        // product.setColors(Set.of(Color.GREEN, Color.BLACK));
+        product.setColors(Set.of(Color.GREEN, Color.BLACK));
+        product.setCategories(Set.of(new Category()));
 
         when(productRepository.findDistinctById(5L)).thenReturn(Optional.of(product));
 

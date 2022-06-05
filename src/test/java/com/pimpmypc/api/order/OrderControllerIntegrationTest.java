@@ -155,7 +155,7 @@ class OrderControllerIntegrationTest extends BaseIntegrationTest {
 
         String token = "Bearer " + performLoginAndReturnToken();
 
-        mvc.perform(get("/api/v1/orders")
+        mvc.perform(get("/api/v1/orders").param("userId", String.valueOf(user.getId()))
                         .contentType(MediaType.APPLICATION_JSON).header("Authorization", token))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))

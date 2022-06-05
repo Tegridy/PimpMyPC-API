@@ -30,12 +30,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @EntityGraph(
             type = EntityGraph.EntityGraphType.FETCH,
             attributePaths = {
-                    "address"
+                    "address",
+                    "roles"
             }
     )
     Optional<User> findUserById(Long id);
 
-    // @Query("SELECT DISTINCT u FROM users u JOIN FETCH u.userOrders WHERE u.id = :id")
     @EntityGraph(
             type = EntityGraph.EntityGraphType.FETCH,
             attributePaths = {
