@@ -11,7 +11,7 @@ INSERT INTO products_attributes VALUES (2512, "refreshRate", 75, 510, NOW(), NOW
 INSERT INTO products_attributes VALUES (2513, "screenSize", 0.0, 510, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2514, "responseTime", 1, 510, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2515, "aspect", "16:9", 510, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2516, "monitorPanelType", "IPS / PLS", 510, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2516, "panelType", "IPS / PLS", 510, NOW(), NOW());
 INSERT INTO product_category VALUES (510, 6);
 INSERT INTO product_category VALUES (510, 26);
 
@@ -26,7 +26,7 @@ INSERT INTO products_attributes VALUES (2518, "refreshRate", 165, 511, NOW(), NO
 INSERT INTO products_attributes VALUES (2519, "screenSize", 0.0, 511, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2520, "responseTime", 1, 511, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2521, "aspect", "16:9", 511, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2522, "monitorPanelType", "IPS / PLS", 511, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2522, "panelType", "IPS / PLS", 511, NOW(), NOW());
 INSERT INTO product_category VALUES (511, 6);
 INSERT INTO product_category VALUES (511, 26);
 
@@ -41,7 +41,7 @@ INSERT INTO products_attributes VALUES (2524, "refreshRate", 240, 512, NOW(), NO
 INSERT INTO products_attributes VALUES (2525, "screenSize", 0.0, 512, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2526, "responseTime", 0, 512, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2527, "aspect", "16:9", 512, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2528, "monitorPanelType", "IPS / PLS", 512, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2528, "panelType", "IPS / PLS", 512, NOW(), NOW());
 INSERT INTO product_category VALUES (512, 6);
 INSERT INTO product_category VALUES (512, 26);
 
@@ -56,7 +56,7 @@ INSERT INTO products_attributes VALUES (2530, "refreshRate", 165, 513, NOW(), NO
 INSERT INTO products_attributes VALUES (2531, "screenSize", 0.0, 513, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2532, "responseTime", 1, 513, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2533, "aspect", "16:9", 513, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2534, "monitorPanelType", "IPS / PLS", 513, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2534, "panelType", "IPS / PLS", 513, NOW(), NOW());
 INSERT INTO product_category VALUES (513, 6);
 INSERT INTO product_category VALUES (513, 26);
 
@@ -74,7 +74,7 @@ INSERT INTO products_attributes VALUES (2602, "refreshRate", 60, 520, NOW(), NOW
 INSERT INTO products_attributes VALUES (2603, "screenSize", 0.0, 520, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2604, "responseTime", 1, 520, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2605, "aspect", "16:9", 520, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2606, "monitorPanelType", "IPS / PLS", 520, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2606, "panelType", "IPS / PLS", 520, NOW(), NOW());
 INSERT INTO product_category VALUES (520, 6);
 INSERT INTO product_category VALUES (520, 26);
 
@@ -89,7 +89,7 @@ INSERT INTO products_attributes VALUES (2608, "refreshRate", 165, 521, NOW(), NO
 INSERT INTO products_attributes VALUES (2609, "screenSize", 0.0, 521, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2610, "responseTime", 1, 521, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2611, "aspect", "16:9", 521, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2612, "monitorPanelType", "IPS / PLS", 521, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2612, "panelType", "IPS / PLS", 521, NOW(), NOW());
 INSERT INTO product_category VALUES (521, 6);
 INSERT INTO product_category VALUES (521, 26);
 
@@ -104,7 +104,7 @@ INSERT INTO products_attributes VALUES (2614, "refreshRate", 165, 522, NOW(), NO
 INSERT INTO products_attributes VALUES (2615, "screenSize", 0.0, 522, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2616, "responseTime", 1, 522, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2617, "aspect", "16:9", 522, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2618, "monitorPanelType", "IPS / PLS", 522, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2618, "panelType", "IPS / PLS", 522, NOW(), NOW());
 INSERT INTO product_category VALUES (522, 6);
 INSERT INTO product_category VALUES (522, 26);
 
@@ -119,7 +119,7 @@ INSERT INTO products_attributes VALUES (2620, "refreshRate", 0, 523, NOW(), NOW(
 INSERT INTO products_attributes VALUES (2621, "screenSize", 0.0, 523, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2622, "responseTime", 1, 523, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2623, "aspect", "16:9", 523, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2624, "monitorPanelType", "VA", 523, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2624, "panelType", "VA", 523, NOW(), NOW());
 INSERT INTO product_category VALUES (523, 6);
 INSERT INTO product_category VALUES (523, 26);
 
@@ -134,7 +134,7 @@ INSERT INTO products_attributes VALUES (2626, "refreshRate", 165, 524, NOW(), NO
 INSERT INTO products_attributes VALUES (2627, "screenSize", 0.0, 524, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2628, "responseTime", 1, 524, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2629, "aspect", "16:9", 524, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2630, "monitorPanelType", "IPS / PLS", 524, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2630, "panelType", "IPS / PLS", 524, NOW(), NOW());
 INSERT INTO product_category VALUES (524, 6);
 INSERT INTO product_category VALUES (524, 26);
 
@@ -149,7 +149,7 @@ INSERT INTO products_attributes VALUES (2632, "refreshRate", 165, 525, NOW(), NO
 INSERT INTO products_attributes VALUES (2633, "screenSize", 0.0, 525, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2634, "responseTime", 1, 525, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2635, "aspect", "16:9", 525, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2636, "monitorPanelType", "VA", 525, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2636, "panelType", "VA", 525, NOW(), NOW());
 INSERT INTO product_category VALUES (525, 6);
 INSERT INTO product_category VALUES (525, 26);
 
@@ -164,7 +164,7 @@ INSERT INTO products_attributes VALUES (2638, "refreshRate", 165, 526, NOW(), NO
 INSERT INTO products_attributes VALUES (2639, "screenSize", 0.0, 526, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2640, "responseTime", 0, 526, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2641, "aspect", "16:9", 526, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2642, "monitorPanelType", "TN", 526, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2642, "panelType", "TN", 526, NOW(), NOW());
 INSERT INTO product_category VALUES (526, 6);
 INSERT INTO product_category VALUES (526, 26);
 
@@ -179,7 +179,7 @@ INSERT INTO products_attributes VALUES (2644, "refreshRate", 165, 527, NOW(), NO
 INSERT INTO products_attributes VALUES (2645, "screenSize", 0.0, 527, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2646, "responseTime", 1, 527, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2647, "aspect", "16:9", 527, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2648, "monitorPanelType", "IPS / PLS", 527, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2648, "panelType", "IPS / PLS", 527, NOW(), NOW());
 INSERT INTO product_category VALUES (527, 6);
 INSERT INTO product_category VALUES (527, 26);
 
@@ -194,7 +194,7 @@ INSERT INTO products_attributes VALUES (2650, "refreshRate", 144, 528, NOW(), NO
 INSERT INTO products_attributes VALUES (2651, "screenSize", 0.0, 528, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2652, "responseTime", 1, 528, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2653, "aspect", "16:9", 528, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2654, "monitorPanelType", "IPS / PLS", 528, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2654, "panelType", "IPS / PLS", 528, NOW(), NOW());
 INSERT INTO product_category VALUES (528, 6);
 INSERT INTO product_category VALUES (528, 26);
 
@@ -209,7 +209,7 @@ INSERT INTO products_attributes VALUES (2656, "refreshRate", 0, 529, NOW(), NOW(
 INSERT INTO products_attributes VALUES (2657, "screenSize", 0.0, 529, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2658, "responseTime", 0, 529, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2659, "aspect", null, 529, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2660, "monitorPanelType", "IPS / PLS", 529, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2660, "panelType", "IPS / PLS", 529, NOW(), NOW());
 INSERT INTO product_category VALUES (529, 6);
 INSERT INTO product_category VALUES (529, 26);
 
@@ -224,7 +224,7 @@ INSERT INTO products_attributes VALUES (2662, "refreshRate", 144, 530, NOW(), NO
 INSERT INTO products_attributes VALUES (2663, "screenSize", 0.0, 530, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2664, "responseTime", 1, 530, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2665, "aspect", "21:9", 530, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2666, "monitorPanelType", "VA", 530, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2666, "panelType", "VA", 530, NOW(), NOW());
 INSERT INTO product_category VALUES (530, 6);
 INSERT INTO product_category VALUES (530, 26);
 
@@ -239,7 +239,7 @@ INSERT INTO products_attributes VALUES (2668, "refreshRate", 75, 531, NOW(), NOW
 INSERT INTO products_attributes VALUES (2669, "screenSize", 0.0, 531, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2670, "responseTime", 0, 531, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2671, "aspect", null, 531, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2672, "monitorPanelType", "IPS / PLS", 531, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2672, "panelType", "IPS / PLS", 531, NOW(), NOW());
 INSERT INTO product_category VALUES (531, 6);
 INSERT INTO product_category VALUES (531, 26);
 
@@ -254,7 +254,7 @@ INSERT INTO products_attributes VALUES (2674, "refreshRate", 144, 532, NOW(), NO
 INSERT INTO products_attributes VALUES (2675, "screenSize", 0.0, 532, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2676, "responseTime", 3, 532, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2677, "aspect", "16:9", 532, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2678, "monitorPanelType", "IPS / PLS", 532, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2678, "panelType", "IPS / PLS", 532, NOW(), NOW());
 INSERT INTO product_category VALUES (532, 6);
 INSERT INTO product_category VALUES (532, 26);
 
@@ -269,7 +269,7 @@ INSERT INTO products_attributes VALUES (2680, "refreshRate", 165, 533, NOW(), NO
 INSERT INTO products_attributes VALUES (2681, "screenSize", 0.0, 533, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2682, "responseTime", 1, 533, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2683, "aspect", "16:9", 533, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2684, "monitorPanelType", "VA", 533, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2684, "panelType", "VA", 533, NOW(), NOW());
 INSERT INTO product_category VALUES (533, 6);
 INSERT INTO product_category VALUES (533, 26);
 
@@ -284,7 +284,7 @@ INSERT INTO products_attributes VALUES (2686, "refreshRate", 240, 534, NOW(), NO
 INSERT INTO products_attributes VALUES (2687, "screenSize", 0.0, 534, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2688, "responseTime", 1, 534, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2689, "aspect", "16:9", 534, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2690, "monitorPanelType", "IPS / PLS", 534, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2690, "panelType", "IPS / PLS", 534, NOW(), NOW());
 INSERT INTO product_category VALUES (534, 6);
 INSERT INTO product_category VALUES (534, 26);
 
@@ -299,7 +299,7 @@ INSERT INTO products_attributes VALUES (2692, "refreshRate", 144, 535, NOW(), NO
 INSERT INTO products_attributes VALUES (2693, "screenSize", 0.0, 535, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2694, "responseTime", 1, 535, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2695, "aspect", "16:9", 535, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2696, "monitorPanelType", "IPS / PLS", 535, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2696, "panelType", "IPS / PLS", 535, NOW(), NOW());
 INSERT INTO product_category VALUES (535, 6);
 INSERT INTO product_category VALUES (535, 26);
 
@@ -314,7 +314,7 @@ INSERT INTO products_attributes VALUES (2698, "refreshRate", 60, 536, NOW(), NOW
 INSERT INTO products_attributes VALUES (2699, "screenSize", 0.0, 536, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2700, "responseTime", 5, 536, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2701, "aspect", "16:9", 536, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2702, "monitorPanelType", "IPS / PLS", 536, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2702, "panelType", "IPS / PLS", 536, NOW(), NOW());
 INSERT INTO product_category VALUES (536, 6);
 INSERT INTO product_category VALUES (536, 26);
 
@@ -329,7 +329,7 @@ INSERT INTO products_attributes VALUES (2704, "refreshRate", 75, 537, NOW(), NOW
 INSERT INTO products_attributes VALUES (2705, "screenSize", 0.0, 537, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2706, "responseTime", 1, 537, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2707, "aspect", "16:9", 537, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2708, "monitorPanelType", "IPS / PLS", 537, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2708, "panelType", "IPS / PLS", 537, NOW(), NOW());
 INSERT INTO product_category VALUES (537, 6);
 INSERT INTO product_category VALUES (537, 26);
 
@@ -346,7 +346,7 @@ INSERT INTO products_attributes VALUES (2802, "refreshRate", 75, 540, NOW(), NOW
 INSERT INTO products_attributes VALUES (2803, "screenSize", 0.0, 540, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2804, "responseTime", 4, 540, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2805, "aspect", "16:9", 540, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2806, "monitorPanelType", "IPS / PLS", 540, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2806, "panelType", "IPS / PLS", 540, NOW(), NOW());
 INSERT INTO product_category VALUES (540, 6);
 INSERT INTO product_category VALUES (540, 26);
 
@@ -361,7 +361,7 @@ INSERT INTO products_attributes VALUES (2808, "refreshRate", 165, 541, NOW(), NO
 INSERT INTO products_attributes VALUES (2809, "screenSize", 0.0, 541, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2810, "responseTime", 5, 541, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2811, "aspect", "16:9", 541, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2812, "monitorPanelType", "VA", 541, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2812, "panelType", "VA", 541, NOW(), NOW());
 INSERT INTO product_category VALUES (541, 6);
 INSERT INTO product_category VALUES (541, 26);
 
@@ -376,7 +376,7 @@ INSERT INTO products_attributes VALUES (2814, "refreshRate", 170, 542, NOW(), NO
 INSERT INTO products_attributes VALUES (2815, "screenSize", 0.0, 542, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2816, "responseTime", 1, 542, NOW(), NOW());
 INSERT INTO products_attributes VALUES (2817, "aspect", "16:9", 542, NOW(), NOW());
-INSERT INTO products_attributes VALUES (2818, "monitorPanelType", "IPS / PLS", 542, NOW(), NOW());
+INSERT INTO products_attributes VALUES (2818, "panelType", "IPS / PLS", 542, NOW(), NOW());
 INSERT INTO product_category VALUES (542, 6);
 INSERT INTO product_category VALUES (542, 26);
 

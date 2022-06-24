@@ -8,7 +8,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "IdeaPad Gaming 3 15IHU6", "https://a.allegroimg.com/original/11d273/2a8cb3b642b6ab5d303057360c36", 876.14, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (968, "displaySize", 17, 176, NOW(), NOW());
-INSERT INTO products_attributes VALUES (969, "resolution: ", "1920 x 1080", 176, NOW(), NOW());
+INSERT INTO products_attributes VALUES (969, "resolution", "1920 x 1080", 176, NOW(), NOW());
 INSERT INTO products_attributes VALUES (970, "monitorPanelType", "IPS", 176, NOW(), NOW());
 INSERT INTO products_attributes VALUES (971, "processor", "Intel Core i5", 176, NOW(), NOW());
 INSERT INTO products_attributes VALUES (972, "cpuSpeed", 0.0, 176, NOW(), NOW());
@@ -32,7 +32,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "IdeaPad Gaming 3 15ACH6", "https://a.allegroimg.com/original/11b0c6/7dd402d14db8bd758d40e2db266a", 1220.06, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (980, "displaySize", "16.0", 177, NOW(), NOW());
-INSERT INTO products_attributes VALUES (981, "resolution: ", "1920 x 1080", 177, NOW(), NOW());
+INSERT INTO products_attributes VALUES (981, "resolution", "1920 x 1080", 177, NOW(), NOW());
 INSERT INTO products_attributes VALUES (982, "monitorPanelType", "IPS", 177, NOW(), NOW());
 INSERT INTO products_attributes VALUES (983, "processor", "AMD Ryzen 5", 177, NOW(), NOW());
 INSERT INTO products_attributes VALUES (984, "cpuSpeed", 0.0, 177, NOW(), NOW());
@@ -56,7 +56,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "IdeaPad Gaming 3-15", "https://a.allegroimg.com/original/11e94c/8deba03f4c479fee10d63f8f4612", 1169.02, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (992, "displaySize", 15.6, 178, NOW(), NOW());
-INSERT INTO products_attributes VALUES (993, "resolution: ", "1920 x 1080", 178, NOW(), NOW());
+INSERT INTO products_attributes VALUES (993, "resolution", "1920 x 1080", 178, NOW(), NOW());
 INSERT INTO products_attributes VALUES (994, "monitorPanelType", "IPS", 178, NOW(), NOW());
 INSERT INTO products_attributes VALUES (995, "processor", "Intel Core i5", 178, NOW(), NOW());
 INSERT INTO products_attributes VALUES (996, "cpuSpeed", 0.0, 178, NOW(), NOW());
@@ -80,7 +80,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "IdeaPad Gaming 3", "https://a.allegroimg.com/original/111770/81bed27d4ec4a4323336353b5f4a", 816.99, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1004, "displaySize", "16.0", 179, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1005, "resolution: ", "1920 x 1080", 179, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1005, "resolution", "1920 x 1080", 179, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1006, "monitorPanelType", "IPS", 179, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1007, "processor", "Intel Core i5", 179, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1008, "cpuSpeed", 0.0, 179, NOW(), NOW());
@@ -104,7 +104,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "Lenovo IdeaPad Gaming 3 15ACH6", "https://a.allegroimg.com/original/115630/161a23924422b5f7aabef5b79c86", 1466.98, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1016, "displaySize", 15.6, 180, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1017, "resolution: ", "1920 x 1080", 180, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1017, "resolution", "1920 x 1080", 180, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1018, "monitorPanelType", "TN", 180, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1019, "processor", "AMD Ryzen 5", 180, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1020, "cpuSpeed", 0.0, 180, NOW(), NOW());
@@ -129,7 +129,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "IdeaPad Gaming 3 15IHU6", "https://a.allegroimg.com/original/11d273/2a8cb3b642b6ab5d303057360c36", 876.14, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1029, "displaySize", 15.6, 181, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1030, "resolution: ", "1920 x 1080", 181, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1030, "resolution", "1920 x 1080", 181, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1031, "monitorPanelType", "IPS", 181, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1032, "processor", "Intel Core i5", 181, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1033, "cpuSpeed", 0.0, 181, NOW(), NOW());
@@ -153,7 +153,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "IdeaPad Gaming 3 15ACH6", "https://a.allegroimg.com/original/11b0c6/7dd402d14db8bd758d40e2db266a", 1220.06, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1041, "displaySize", "15.6", 182, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1042, "resolution: ", "1920 x 1080", 182, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1042, "resolution", "1920 x 1080", 182, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1043, "monitorPanelType", "VA", 182, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1044, "processor", "AMD Ryzen 5", 182, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1045, "cpuSpeed", 0.0, 182, NOW(), NOW());
@@ -177,7 +177,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "IdeaPad Gaming 3-15", "https://a.allegroimg.com/original/11e94c/8deba03f4c479fee10d63f8f4612", 1169.02, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1053, "displaySize", "15.6", 183, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1054, "resolution: ", "1920 x 1080", 183, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1054, "resolution", "1920 x 1080", 183, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1055, "monitorPanelType", "IPS", 183, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1056, "processor", "Intel Core i5", 183, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1057, "cpuSpeed", 0.0, 183, NOW(), NOW());
@@ -201,7 +201,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "IdeaPad Gaming 3", "https://a.allegroimg.com/original/111770/81bed27d4ec4a4323336353b5f4a", 816.99, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1065, "displaySize", "15.6", 184, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1066, "resolution: ", "1920 x 1080", 184, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1066, "resolution", "1920 x 1080", 184, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1067, "monitorPanelType", "TN", 184, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1068, "processor", "Intel Core i5", 184, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1069, "cpuSpeed", 0.0, 184, NOW(), NOW());
@@ -225,7 +225,7 @@ Sed orci lorem, venenatis in lacus non, interdum facilisis augue. Praesent dapib
 
 Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, nec dictum ipsum viverra nec. Cras imperdiet lectus dictum nisi malesuada facilisis. Fusce non nisi fermentum, congue odio at, semper ante. Donec volutpat felis mi, quis fringilla orci ullamcorper eu. Aliquam vitae fermentum risus. Integerr velit dolor, feugiat eu felis consequat, elementum convallis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae", "Lenovo", "Lenovo IdeaPad Gaming 3 15ACH6", "https://a.allegroimg.com/original/115630/161a23924422b5f7aabef5b79c86", 1466.98, 9999, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1077, "displaySize", "15.6", 185, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1078, "resolution: ", "1920 x 1080", 185, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1078, "resolution", "1920 x 1080", 185, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1079, "monitorPanelType", "VA", 185, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1080, "processor", "AMD Ryzen 5", 185, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1081, "cpuSpeed", 0.0, 185, NOW(), NOW());

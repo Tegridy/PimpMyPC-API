@@ -171,7 +171,7 @@ INSERT INTO products_attributes VALUES (1161, "ram", "16 GB", 196, NOW(), NOW())
 INSERT INTO products_attributes VALUES (1162, "motherboard", "ASUS", 196, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1163, "hardDisc", "SSD" "512 GB", 196, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1164, "powerSupply", "700 W", 196, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1165, "computerCase", null, 196, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1165, "computerCase", "Mini Tower", 196, NOW(), NOW());
 INSERT INTO product_category VALUES (196, 2);
 
 INSERT INTO colors VALUES (196, "BLACK");
@@ -237,7 +237,7 @@ INSERT INTO products_attributes VALUES (1189, "ram", "4 GB", 200, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1190, "motherboard", "Dell", 200, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1191, "hardDisc", "SSD" "120 GB", 200, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1192, "powerSupply", "300W", 200, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1193, "computerCase", "other", 200, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1193, "computerCase", "Midi Tower", 200, NOW(), NOW());
 INSERT INTO product_category VALUES (200, 2);
 
 INSERT INTO colors VALUES (200, "BLACK");
@@ -252,8 +252,8 @@ INSERT INTO products_attributes VALUES (1195, "processor", "Intel Core i5 3,1 GH
 INSERT INTO products_attributes VALUES (1196, "ram", "8 GB", 201, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1197, "motherboard", "Dell", 201, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1198, "hardDisc", "SSD" "256 GB", 201, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1199, "powerSupply", null, 201, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1200, "computerCase", "other", 201, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1199, "powerSupply", "500 W", 201, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1200, "computerCase", "Mini Tower", 201, NOW(), NOW());
 INSERT INTO product_category VALUES (201, 2);
 
 INSERT INTO colors VALUES (201, "BLACK");
@@ -285,7 +285,7 @@ INSERT INTO products_attributes VALUES (1210, "ram", "4 GB", 203, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1211, "motherboard", "Dell", 203, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1212, "hardDisc", "HDD" "250 GB", 203, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1213, "powerSupply", "450 W", 203, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1214, "computerCase", "other", 203, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1214, "computerCase", "Midi Tower", 203, NOW(), NOW());
 INSERT INTO product_category VALUES (203, 2);
 
 INSERT INTO colors VALUES (203, "null");
@@ -301,7 +301,7 @@ INSERT INTO products_attributes VALUES (1217, "ram", "16 GB", 204, NOW(), NOW())
 INSERT INTO products_attributes VALUES (1218, "motherboard", "Dell", 204, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1219, "hardDisc", "SSD" "256 GB", 204, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1220, "powerSupply", "500 W", 204, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1221, "computerCase", "other", 204, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1221, "computerCase", "Big Tower", 204, NOW(), NOW());
 INSERT INTO product_category VALUES (204, 2);
 
 INSERT INTO colors VALUES (204, "BLACK");
@@ -365,7 +365,7 @@ INSERT INTO products_attributes VALUES (1245, "ram", "8 GB", 208, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1246, "motherboard", "Dell", 208, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1247, "hardDisc", "SSD" "120 GB", 208, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1248, "powerSupply", "400 W", 208, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1249, "computerCase", "other", 208, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1249, "computerCase", "Big Tower", 208, NOW(), NOW());
 INSERT INTO product_category VALUES (208, 2);
 
 INSERT INTO colors VALUES (208, "BLACK");
@@ -412,8 +412,8 @@ INSERT INTO products_attributes VALUES (1265, "processor", "AMD Embedded G-Serie
 INSERT INTO products_attributes VALUES (1266, "ram", "4 GB", 211, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1267, "motherboard", "Dell", 211, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1268, "hardDisc", "SSD" "16 GB", 211, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1269, "powerSupply", null, 211, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1270, "computerCase", "Mini PC", 211, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1269, "powerSupply", "600 W", 211, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1270, "computerCase", "Midi Tower", 211, NOW(), NOW());
 INSERT INTO product_category VALUES (211, 2);
 
 INSERT INTO colors VALUES (211, "BLACK");
@@ -429,7 +429,7 @@ INSERT INTO products_attributes VALUES (1273, "ram", "4 GB", 212, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1274, "motherboard", "Dell", 212, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1275, "hardDisc", "HDD" "500 GB", 212, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1276, "powerSupply", "450 W", 212, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1277, "computerCase", "Tower Slim", 212, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1277, "computerCase", "Micro Tower", 212, NOW(), NOW());
 INSERT INTO product_category VALUES (212, 2);
 
 INSERT INTO colors VALUES (212, "BLACK");
@@ -444,7 +444,7 @@ INSERT INTO products_attributes VALUES (1286, "processor", "Intel Core i7 3,4 GH
 INSERT INTO products_attributes VALUES (1287, "ram", "16 GB", 214, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1288, "motherboard", "Dell", 214, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1289, "hardDisc", "Disk missing" "0 GB", 214, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1290, "powerSupply", null, 214, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1290, "powerSupply", "400 W", 214, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1291, "computerCase", "Mini Tower", 214, NOW(), NOW());
 INSERT INTO product_category VALUES (214, 2);
 
@@ -461,7 +461,7 @@ INSERT INTO products_attributes VALUES (1315, "ram", "16 GB", 218, NOW(), NOW())
 INSERT INTO products_attributes VALUES (1316, "motherboard", "Dell", 218, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1317, "hardDisc", "SSD" "512 GB", 218, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1318, "powerSupply", "350 W", 218, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1319, "computerCase", "other", 218, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1319, "computerCase", "Midi Tower", 218, NOW(), NOW());
 INSERT INTO product_category VALUES (218, 2);
 
 INSERT INTO colors VALUES (218, "BLACK");
@@ -543,7 +543,7 @@ INSERT INTO products_attributes VALUES (1364, "ram", "8 GB", 225, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1365, "motherboard", "Dell", 225, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1366, "hardDisc", "HDD" "250 GB", 225, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1367, "powerSupply", "240 W", 225, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1368, "computerCase", "other", 225, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1368, "computerCase", "Micro Tower", 225, NOW(), NOW());
 INSERT INTO product_category VALUES (225, 2);
 
 INSERT INTO colors VALUES (225, "BLACK");
@@ -575,7 +575,7 @@ INSERT INTO products_attributes VALUES (1378, "ram", "4 GB", 227, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1379, "motherboard", "Dell", 227, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1380, "hardDisc", "HDD" "500 GB", 227, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1381, "powerSupply", "250 W", 227, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1382, "computerCase", "Tower", 227, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1382, "computerCase", "Big Tower", 227, NOW(), NOW());
 INSERT INTO product_category VALUES (227, 2);
 
 INSERT INTO colors VALUES (227, "BLACK");
@@ -590,7 +590,7 @@ INSERT INTO products_attributes VALUES (1384, "processor", "Intel Core i5 3,2 GH
 INSERT INTO products_attributes VALUES (1385, "ram", "8 GB", 228, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1386, "motherboard", "Dell", 228, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1387, "hardDisc", "HDD" "500 GB", 228, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1388, "powerSupply", null, 228, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1388, "powerSupply", "500 W", 228, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1389, "computerCase", "Tower Slim", 228, NOW(), NOW());
 INSERT INTO product_category VALUES (228, 2);
 
@@ -624,7 +624,7 @@ INSERT INTO products_attributes VALUES (1399, "ram", "16 GB", 230, NOW(), NOW())
 INSERT INTO products_attributes VALUES (1400, "motherboard", "HP", 230, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1401, "hardDisc", "SSD (M.2)" "1024 GB", 230, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1402, "powerSupply", "500 W", 230, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1403, "computerCase", "other", 230, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1403, "computerCase", "Micro Tower", 230, NOW(), NOW());
 INSERT INTO product_category VALUES (230, 2);
 
 INSERT INTO colors VALUES (230, "BLACK");
@@ -640,7 +640,7 @@ INSERT INTO products_attributes VALUES (1406, "ram", "16 GB", 231, NOW(), NOW())
 INSERT INTO products_attributes VALUES (1407, "motherboard", "HP", 231, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1408, "hardDisc", "HDD" "2000 GB", 231, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1409, "powerSupply", "400 W", 231, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1410, "computerCase", "other", 231, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1410, "computerCase", "Micro Tower", 231, NOW(), NOW());
 INSERT INTO product_category VALUES (231, 2);
 
 INSERT INTO colors VALUES (231, "BLACK");
@@ -688,7 +688,7 @@ INSERT INTO products_attributes VALUES (1427, "ram", "8 GB", 234, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1428, "motherboard", "HP", 234, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1429, "hardDisc", "SSD (M.2)" "512 GB", 234, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1430, "powerSupply", "400 W", 234, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1431, "computerCase", "other", 234, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1431, "computerCase", "Mini Tower", 234, NOW(), NOW());
 INSERT INTO product_category VALUES (234, 2);
 
 INSERT INTO colors VALUES (234, "BLACK");
@@ -720,7 +720,7 @@ INSERT INTO products_attributes VALUES (1441, "ram", "8 GB", 236, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1442, "motherboard", "HP", 236, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1443, "hardDisc", "HDD + SSD (M.2)" "1128 GB", 236, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1444, "powerSupply", "400 W", 236, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1445, "computerCase", "other", 236, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1445, "computerCase", "Midi Tower", 236, NOW(), NOW());
 INSERT INTO product_category VALUES (236, 2);
 
 INSERT INTO colors VALUES (236, "BLACK");
@@ -896,7 +896,7 @@ INSERT INTO products_attributes VALUES (1518, "ram", "8 GB", 247, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1519, "motherboard", "HP", 247, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1520, "hardDisc", "HDD + SSD (M.2)" "1128 GB", 247, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1521, "powerSupply", "400 W", 247, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1522, "computerCase", "other", 247, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1522, "computerCase", "Big Tower", 247, NOW(), NOW());
 INSERT INTO product_category VALUES (247, 2);
 
 INSERT INTO colors VALUES (247, "BLACK");
@@ -912,7 +912,7 @@ INSERT INTO products_attributes VALUES (1525, "ram", "16 GB", 248, NOW(), NOW())
 INSERT INTO products_attributes VALUES (1526, "motherboard", "HP", 248, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1527, "hardDisc", "SSD" "1024 GB", 248, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1528, "powerSupply", "500 W", 248, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1529, "computerCase", "Tower", 248, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1529, "computerCase", "Big Tower", 248, NOW(), NOW());
 INSERT INTO product_category VALUES (248, 2);
 
 INSERT INTO colors VALUES (248, "BLACK");
@@ -928,7 +928,7 @@ INSERT INTO products_attributes VALUES (1532, "ram", "16 GB", 249, NOW(), NOW())
 INSERT INTO products_attributes VALUES (1533, "motherboard", "HP", 249, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1534, "hardDisc", "HDD + SSD" "1512 GB", 249, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1535, "powerSupply", "500 W", 249, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1536, "computerCase", "Tower", 249, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1536, "computerCase", "Mini Tower", 249, NOW(), NOW());
 INSERT INTO product_category VALUES (249, 2);
 
 INSERT INTO colors VALUES (249, "BLACK");
@@ -960,7 +960,7 @@ INSERT INTO products_attributes VALUES (1546, "ram", "16 GB", 251, NOW(), NOW())
 INSERT INTO products_attributes VALUES (1547, "motherboard", "HP", 251, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1548, "hardDisc", "HDD + SSD (M.2)" "1256 GB", 251, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1549, "powerSupply", "310 W", 251, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1550, "computerCase", null, 251, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1550, "computerCase", "Mini Tower", 251, NOW(), NOW());
 INSERT INTO product_category VALUES (251, 2);
 
 INSERT INTO colors VALUES (251, "BLACK");
