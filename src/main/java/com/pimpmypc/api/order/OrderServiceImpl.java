@@ -4,6 +4,7 @@ import com.pimpmypc.api.cart.Cart;
 import com.pimpmypc.api.exception.AuthenticationException;
 import com.pimpmypc.api.exception.CartException;
 import com.pimpmypc.api.exception.EntityNotFoundException;
+import com.pimpmypc.api.exception.ProductException;
 import com.pimpmypc.api.order.dto.CustomerOrderDataDto;
 import com.pimpmypc.api.order.dto.OrderDto;
 import com.pimpmypc.api.order.dto.OrderResponse;
@@ -58,15 +59,8 @@ public class OrderServiceImpl implements OrderService {
             throw new CartException("Cart validation failed.", HttpStatus.NOT_ACCEPTABLE);
         }
 
-        cartProducts.forEach(p -> {
-            Product product = productRepository.findDistinctById(p.getId()).orElseThrow(() ->
-                    new EntityNotFoundException("Product with id: " + p.getId() + " not found."));
+        updateProductsQuantity(customerData.getCart());
 
-            product.setQuantity(product.getQuantity() - 1);
-            product.setNumberOfItemsSold(product.getNumberOfItemsSold() + 1);
-
-            productRepository.save(product);
-        });
 
         customerData.getDeliveryAddress().setCreatedAt(LocalDateTime.now());
 
@@ -94,6 +88,24 @@ public class OrderServiceImpl implements OrderService {
         log.info("Saving order: " + savedOrder.getId());
 
         return OrderResponse.builder().id(savedOrder.getId()).status(savedOrder.getOrderStatus()).build();
+    }
+
+    private void updateProductsQuantity(Cart cart) {
+
+        cart.getProducts().forEach(p -> {
+            Product product = productRepository.findDistinctById(p.getId()).orElseThrow(() ->
+                    new EntityNotFoundException("Product with id: " + p.getId() + " not found."));
+
+            if (product.getQuantity() < 1) {
+                throw new ProductException("Product with id: " + product.getId() + " is currently not available.");
+            }
+
+            product.setQuantity(product.getQuantity() - 1);
+            product.setNumberOfItemsSold(product.getNumberOfItemsSold() + 1);
+
+            productRepository.save(product);
+        });
+
     }
 
     @Override
@@ -145,8 +157,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private boolean isCartValid(Cart cart) {
-        // TODO: check if product q > 0
-
 
         List<Long> productsIds = cart.getProducts().stream().map(BaseEntity::getId).toList();
         List<Product> products = productsIds.stream().map(productService::findProductById).toList();
