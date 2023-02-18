@@ -1,11 +1,9 @@
 package com.pimpmypc.api.product;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pimpmypc.api.BaseIntegrationTest;
 import com.pimpmypc.api.category.Category;
 import com.pimpmypc.api.category.CategoryRepository;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -27,19 +23,12 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Autowired
     private MockMvc mvc;
     @Autowired
-    private ProductService productService;
-    @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private ObjectMapper mapper;
     @Autowired
     private CategoryRepository categoryRepository;
 
     private Product product1;
     private Product product2;
-    private Product product3;
-    private List<Product> processorList;
-    private List<Product> productList;
 
     @BeforeEach
     void setUp() {
@@ -63,23 +52,13 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         product2.setCreatedAt(LocalDateTime.now());
         product2.setModifiedAt(LocalDateTime.now());
 
-        processorList = new ArrayList<>();
-        processorList.add(product1);
-        processorList.add(product2);
-
-
-    }
-
-    @AfterEach
-    void tearDown() {
-        product1 = null;
-        product2 = null;
         productRepository.deleteAll();
     }
 
     @Test
     void shouldReturnAllProcessors() throws Exception {
-        Category category = categoryRepository.getById(11L);
+        Category category = categoryRepository.findById(11L).get();
+
         product1.setCategories(Set.of(category));
         ProductAttributes productAttributes = new ProductAttributes("attr1", "va1");
         productAttributes.setCreatedAt(LocalDateTime.now());
@@ -126,7 +105,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void shouldReturnAllMotherboards() throws Exception {
 
-        Category category = categoryRepository.getById(18L);
+        Category category = categoryRepository.findById(18L).get();
 
         Product product = new Product();
         product.setTitle("MOBO1");
@@ -194,7 +173,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void shouldReturnAllCases() throws Exception {
 
-        Category category = categoryRepository.getById(23L);
+        Category category = categoryRepository.findById(23L).get();
 
         Product product = new Product();
         product.setTitle("CASE1");
@@ -215,7 +194,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
         ts.add(productAttributes);
         ts.add(productAttributes2);
 
-        product1.setAttributes(ts);
+        product.setAttributes(ts);
 
 
         Product product2 = new Product();
@@ -264,7 +243,7 @@ public class ProductControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void shouldReturnAllRamMemory() throws Exception {
 
-        Category category = categoryRepository.getById(14L);
+        Category category = categoryRepository.findById(14L).get();
 
         Product product = new Product();
         product.setTitle("MEM1");

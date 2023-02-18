@@ -24,7 +24,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "users")
-@JsonIgnoreProperties(value = {"createdAt", "modifiedAt", "roles", "addressId", "password"}, allowSetters = true)
+@JsonIgnoreProperties(value = {"createdAt", "modifiedAt", "roles", "addressId"}, allowSetters = true)
 @SuperBuilder
 public class User extends BaseEntity {
 
@@ -76,7 +76,6 @@ public class User extends BaseEntity {
         return "User{" +
                 "roles=" + roles +
                 ", username='" + username + '\'' +
-                ", pass='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", email='" + email + '\'' +
                 ", address=" + address +

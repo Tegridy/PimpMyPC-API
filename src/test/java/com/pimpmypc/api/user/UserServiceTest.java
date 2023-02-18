@@ -1,30 +1,30 @@
 package com.pimpmypc.api.user;
 
-import com.pimpmypc.api.exception.EntityNotFoundException;
 import com.pimpmypc.api.exception.UserException;
 import com.pimpmypc.api.security.Role;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@Transactional
 public class UserServiceTest {
 
     @Autowired
@@ -73,20 +73,32 @@ public class UserServiceTest {
 
     @Test
     public void shouldFindUserByUsername() {
-        Mockito.when(userRepository.findByUsername(user.getUsername()))
+        when(userRepository.findByUsername(user.getUsername()))
                 .thenReturn(Optional.ofNullable(user));
 
         String username = user.getUsername();
 
-        User user = userService.findByUsername(username);
-        Assertions.assertNotNull(user);
-        assertEquals(username, user.getUsername());
+        // when
+
+        when(userRepository.findByUsername(user.getUsername())).thenReturn(Optional.of(user));
+
+        // then
+
+        User userResult = userService.findByUsername(username);
+
+        assertThat(username).isEqualTo(userResult.getUsername());
     }
 
     @Test
     public void shouldSaveUser() {
 
-        Mockito.when(userRepository.save(any(User.class))).thenReturn(user);
+        // given
+
+        // when
+
+        when(userRepository.save(any(User.class))).thenReturn(user);
+
+        // then
 
         userService.saveUser(user);
 
@@ -95,63 +107,106 @@ public class UserServiceTest {
 
     @Test
     public void shouldReturnAllUsers() {
+
+        // given
+
         List<User> users = new ArrayList<>();
         users.add(user);
         users.add(user2);
 
-        Mockito.when(userRepository.findAll()).thenReturn(users);
+        when(userRepository.findAll()).thenReturn(users);
 
         userRepository.save(user);
         userRepository.save(user2);
+
+        // when
+
+        when(userRepository.findAll()).thenReturn(users);
+
+        // then
 
         List<User> returnedUsers = userService.getAllUsers();
 
         assertEquals(returnedUsers, users);
 
-        Mockito.verify(userRepository, Mockito.times(1)).save(user);
-        Mockito.verify(userRepository, Mockito.times(1)).save(user2);
+        Mockito.verify(userRepository, Mockito.times(2)).save(any(User.class));
         Mockito.verify(userRepository, Mockito.times(1)).findAll();
+        assertThat(returnedUsers.size()).isEqualTo(users.size());
     }
 
     @Test
     public void shouldReturnUserByGivenId() {
-        Mockito.when(userRepository.findUserById(1L)).thenReturn(Optional.ofNullable(user));
-        assertEquals(userService.getUserById(user.getId()), user);
+
+        // given
+
+        // when
+
+        when(userRepository.findUserById(1L)).thenReturn(Optional.ofNullable(user));
+
+        // then
+
+        assertThat(userService.getUserById(user.getId()).getUsername()).isEqualTo(user.getUsername());
+        assertThat(userService.getUserById(user.getId()).getEmail()).isEqualTo(user.getEmail());
     }
 
     @Test
     void shouldReturnTrueIfUserAlreadyExist() {
 
-        Mockito.doReturn(Optional.of(user)).when(userRepository).findByUsername(user.getUsername());
+        // given
 
-        assertTrue(userService.userAlreadyExist(user.getUsername()));
+        // when
+
+        when(userRepository.findByUsername(user.getUsername())).thenReturn(Optional.of(user));
+
+        // then
+
+        assertThat(userService.userAlreadyExist(user.getUsername())).isTrue();
     }
 
     @Test
     void shouldReturnFalseIfUserNotExist() {
 
+        // given
+
         String username = "Mike";
 
-        Mockito.doReturn(Optional.empty()).when(userRepository).findByUsername(username);
+        // when
 
-        assertFalse(userService.userAlreadyExist(username));
+        when(userRepository.findByUsername(user.getUsername())).thenReturn(Optional.empty());
+
+        assertThat(userService.userAlreadyExist(user.getUsername())).isFalse();
     }
 
     @Test
     void shouldThrowErrorIfUsernameIsNotFound() {
 
+        // given
         String usernameThatNotExist = "NoUser";
 
-        Mockito.doThrow(new EntityNotFoundException("User " + usernameThatNotExist + " not found."))
-                .when(userRepository).findByUsername(usernameThatNotExist);
+        // when
 
-        assertThrows(EntityNotFoundException.class, () -> userService.userAlreadyExist(usernameThatNotExist));
+        when(userRepository.findByUsername(usernameThatNotExist)).thenThrow(new UserException(""));
+
+        Executable executable = () -> userService.userAlreadyExist(usernameThatNotExist);
+
+        // then
+
+        assertThrows(UserException.class, executable);
     }
 
     @Test
     void shouldThrowUserRoleNotFound() {
+
+        // given
+
         user.setRoles(null);
 
-        assertThrows(UserException.class, () -> userService.saveUser(user));
+        // when
+
+        Executable executable = () -> userService.saveUser(user);
+
+        // then
+
+        assertThrows(UserException.class, executable);
     }
 }

@@ -181,11 +181,11 @@ public class OrderServiceTest {
 
         Page<OrderResponse> page = new PageImpl<>(List.of(orderResponse));
 
-        when(userRepository.findByUsername(any(String.class))).thenReturn(Optional.of(user));
+        when(userRepository.getUserById(user.getId())).thenReturn(Optional.of(user));
 
         // when
 
-        Page<OrderResponse> orderResponsePage = orderService.getUserOrders(1L, pageable);
+        Page<OrderResponse> orderResponsePage = orderService.getUserOrders(user.getId(), pageable);
 
 
         // then
@@ -211,11 +211,11 @@ public class OrderServiceTest {
 
         Page<OrderResponse> page = new PageImpl<>(List.of());
 
-        when(userRepository.findByUsername(any(String.class))).thenReturn(Optional.of(user));
+        when(userRepository.getUserById(user.getId())).thenReturn(Optional.of(user));
 
         // when
 
-        Page<OrderResponse> orderResponsePage = orderService.getUserOrders(1L, pageable);
+        Page<OrderResponse> orderResponsePage = orderService.getUserOrders(user.getId(), pageable);
 
         // then
 
@@ -231,11 +231,11 @@ public class OrderServiceTest {
 
         Page<OrderResponse> page = new PageImpl<>(List.of());
 
-        when(orderRepository.findById(1L)).thenReturn(Optional.ofNullable(orderx));
+        when(orderRepository.findOrderById(1L)).thenReturn(Optional.ofNullable(orderx));
 
         // when
 
-        OrderDto orderDto = orderService.getUserOrderDetails(1L);
+        OrderDto orderDto = orderService.getUserOrderDetails(user.getId());
 
         // then
 

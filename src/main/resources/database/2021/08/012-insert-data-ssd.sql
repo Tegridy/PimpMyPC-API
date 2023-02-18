@@ -10,7 +10,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1751, "capacity", 2000, 277, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1752, "platterRpm", 0, 277, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1753, "interface", "(USB 3.1/USB 3.1 gen 2/USB 3.2 gen 2)", 277, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1754, "storegeType", "SSD", 277, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1754, "storageType", "SSD", 277, NOW(), NOW());
 INSERT INTO product_category VALUES (277, 5);
 INSERT INTO product_category VALUES (277, 19);
 INSERT INTO product_category VALUES (277, 21);
@@ -24,7 +24,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1755, "capacity", 500, 278, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1756, "platterRpm", 0, 278, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1757, "interface", "SATA III", 278, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1758, "storegeType", "SSD", 278, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1758, "storageType", "SSD", 278, NOW(), NOW());
 INSERT INTO product_category VALUES (278, 5);
 INSERT INTO product_category VALUES (278, 19);
 INSERT INTO product_category VALUES (278, 21);
@@ -38,7 +38,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1759, "capacity", 1000, 279, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1760, "platterRpm", 0, 279, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1761, "interface", "M.2 PCIe", 279, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1762, "storegeType", "SSD", 279, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1762, "storageType", "SSD", 279, NOW(), NOW());
 INSERT INTO product_category VALUES (279, 5);
 INSERT INTO product_category VALUES (279, 19);
 INSERT INTO product_category VALUES (279, 21);
@@ -52,7 +52,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1763, "capacity", 256, 280, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1764, "platterRpm", 0, 280, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1765, "interface", "PCIe", 280, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1766, "storegeType", null, 280, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1766, "storageType", null, 280, NOW(), NOW());
 INSERT INTO product_category VALUES (280, 5);
 INSERT INTO product_category VALUES (280, 19);
 INSERT INTO product_category VALUES (280, 21);
@@ -66,7 +66,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1767, "capacity", 2000, 281, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1768, "platterRpm", 0, 281, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1769, "interface", "SATA III", 281, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1770, "storegeType", "SSD", 281, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1770, "storageType", "SSD", 281, NOW(), NOW());
 INSERT INTO product_category VALUES (281, 5);
 INSERT INTO product_category VALUES (281, 19);
 INSERT INTO product_category VALUES (281, 21);
@@ -80,7 +80,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1771, "capacity", 64, 282, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1772, "platterRpm", 0, 282, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1773, "interface", "SATA II", 282, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1774, "storegeType", "SSD", 282, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1774, "storageType", "SSD", 282, NOW(), NOW());
 INSERT INTO product_category VALUES (282, 5);
 INSERT INTO product_category VALUES (282, 19);
 INSERT INTO product_category VALUES (282, 21);
@@ -94,7 +94,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1775, "capacity", 500, 283, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1776, "platterRpm", 0, 283, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1777, "interface", "PCIe", 283, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1778, "storegeType", "SSD", 283, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1778, "storageType", "SSD", 283, NOW(), NOW());
 INSERT INTO product_category VALUES (283, 5);
 INSERT INTO product_category VALUES (283, 19);
 INSERT INTO product_category VALUES (283, 21);
@@ -108,7 +108,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1779, "capacity", 250, 284, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1780, "platterRpm", 0, 284, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1781, "interface", "M.2 PCIe", 284, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1782, "storegeType", "SSD", 284, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1782, "storageType", "SSD", 284, NOW(), NOW());
 INSERT INTO product_category VALUES (284, 5);
 INSERT INTO product_category VALUES (284, 19);
 INSERT INTO product_category VALUES (284, 21);
@@ -122,7 +122,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1783, "capacity", 4000, 285, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1784, "platterRpm", 0, 285, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1785, "interface", "SATA III", 285, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1786, "storegeType", "SSD", 285, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1786, "storageType", "SSD", 285, NOW(), NOW());
 INSERT INTO product_category VALUES (285, 5);
 INSERT INTO product_category VALUES (285, 19);
 INSERT INTO product_category VALUES (285, 21);
@@ -136,7 +136,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1787, "capacity", 128, 286, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1788, "platterRpm", 0, 286, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1789, "interface", "SATA III", 286, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1790, "storegeType", "SSD", 286, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1790, "storageType", "SSD", 286, NOW(), NOW());
 INSERT INTO product_category VALUES (286, 5);
 INSERT INTO product_category VALUES (286, 19);
 INSERT INTO product_category VALUES (286, 21);
@@ -150,7 +150,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1791, "capacity", 120, 287, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1792, "platterRpm", 0, 287, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1793, "interface", "SATA III", 287, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1794, "storegeType", "SSD", 287, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1794, "storageType", "SSD", 287, NOW(), NOW());
 INSERT INTO product_category VALUES (287, 5);
 INSERT INTO product_category VALUES (287, 19);
 INSERT INTO product_category VALUES (287, 21);
@@ -164,7 +164,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1795, "capacity", 250, 288, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1796, "platterRpm", 0, 288, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1797, "interface", "SATA III", 288, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1798, "storegeType", "SSD", 288, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1798, "storageType", "SSD", 288, NOW(), NOW());
 INSERT INTO product_category VALUES (288, 5);
 INSERT INTO product_category VALUES (288, 19);
 INSERT INTO product_category VALUES (288, 21);
@@ -178,7 +178,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1799, "capacity", 500, 289, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1800, "platterRpm", 0, 289, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1801, "interface", "SATA III", 289, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1802, "storegeType", "SSD", 289, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1802, "storageType", "SSD", 289, NOW(), NOW());
 INSERT INTO product_category VALUES (289, 5);
 INSERT INTO product_category VALUES (289, 19);
 INSERT INTO product_category VALUES (289, 21);
@@ -192,7 +192,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1803, "capacity", 1000, 290, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1804, "platterRpm", 0, 290, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1805, "interface", "SATA III", 290, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1806, "storegeType", "SSD", 290, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1806, "storageType", "SSD", 290, NOW(), NOW());
 INSERT INTO product_category VALUES (290, 5);
 INSERT INTO product_category VALUES (290, 19);
 INSERT INTO product_category VALUES (290, 21);
@@ -206,7 +206,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1807, "capacity", 0, 291, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1808, "platterRpm", 0, 291, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1809, "interface", "PCIe", 291, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1810, "storegeType", "SSD", 291, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1810, "storageType", "SSD", 291, NOW(), NOW());
 INSERT INTO product_category VALUES (291, 5);
 INSERT INTO product_category VALUES (291, 19);
 INSERT INTO product_category VALUES (291, 21);
@@ -220,7 +220,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1811, "capacity", 500, 292, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1812, "platterRpm", 0, 292, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1813, "interface", "M.2 PCIe", 292, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1814, "storegeType", "SSD", 292, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1814, "storageType", "SSD", 292, NOW(), NOW());
 INSERT INTO product_category VALUES (292, 5);
 INSERT INTO product_category VALUES (292, 19);
 INSERT INTO product_category VALUES (292, 21);
@@ -234,7 +234,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1815, "capacity", 1000, 293, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1816, "platterRpm", 0, 293, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1817, "interface", "M.2 PCIe", 293, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1818, "storegeType", "SSD", 293, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1818, "storageType", "SSD", 293, NOW(), NOW());
 INSERT INTO product_category VALUES (293, 5);
 INSERT INTO product_category VALUES (293, 19);
 INSERT INTO product_category VALUES (293, 21);
@@ -248,7 +248,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1819, "capacity", 250, 294, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1820, "platterRpm", 0, 294, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1821, "interface", "SATA III", 294, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1822, "storegeType", "SSD", 294, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1822, "storageType", "SSD", 294, NOW(), NOW());
 INSERT INTO product_category VALUES (294, 5);
 INSERT INTO product_category VALUES (294, 19);
 INSERT INTO product_category VALUES (294, 21);
@@ -262,7 +262,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1823, "capacity", 2000, 295, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1824, "platterRpm", 0, 295, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1825, "interface", "M.2 PCIe", 295, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1826, "storegeType", "SSD", 295, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1826, "storageType", "SSD", 295, NOW(), NOW());
 INSERT INTO product_category VALUES (295, 5);
 INSERT INTO product_category VALUES (295, 19);
 INSERT INTO product_category VALUES (295, 21);
@@ -276,7 +276,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1827, "capacity", 1000, 296, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1828, "platterRpm", 0, 296, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1829, "interface", "PCIe", 296, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1830, "storegeType", "SSD", 296, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1830, "storageType", "SSD", 296, NOW(), NOW());
 INSERT INTO product_category VALUES (296, 5);
 INSERT INTO product_category VALUES (296, 19);
 INSERT INTO product_category VALUES (296, 21);
@@ -290,7 +290,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1831, "capacity", 512, 297, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1832, "platterRpm", 0, 297, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1833, "interface", "M.2 PCIe", 297, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1834, "storegeType", "SSD", 297, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1834, "storageType", "SSD", 297, NOW(), NOW());
 INSERT INTO product_category VALUES (297, 5);
 INSERT INTO product_category VALUES (297, 19);
 INSERT INTO product_category VALUES (297, 21);
@@ -304,7 +304,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1835, "capacity", 250, 298, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1836, "platterRpm", 0, 298, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1837, "interface", "SATA III", 298, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1838, "storegeType", "SSD", 298, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1838, "storageType", "SSD", 298, NOW(), NOW());
 INSERT INTO product_category VALUES (298, 5);
 INSERT INTO product_category VALUES (298, 19);
 INSERT INTO product_category VALUES (298, 21);
@@ -318,7 +318,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1839, "capacity", 500, 299, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1840, "platterRpm", 0, 299, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1841, "interface", "M.2 PCIe", 299, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1842, "storegeType", "SSD", 299, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1842, "storageType", "SSD", 299, NOW(), NOW());
 INSERT INTO product_category VALUES (299, 5);
 INSERT INTO product_category VALUES (299, 19);
 INSERT INTO product_category VALUES (299, 21);
@@ -332,7 +332,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1843, "capacity", 250, 300, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1844, "platterRpm", 0, 300, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1845, "interface", "PCIe", 300, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1846, "storegeType", "SSD", 300, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1846, "storageType", "SSD", 300, NOW(), NOW());
 INSERT INTO product_category VALUES (300, 5);
 INSERT INTO product_category VALUES (300, 19);
 INSERT INTO product_category VALUES (300, 21);
@@ -346,7 +346,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1847, "capacity", 1000, 301, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1848, "platterRpm", 0, 301, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1849, "interface", "M.2 PCIe", 301, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1850, "storegeType", "SSD", 301, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1850, "storageType", "SSD", 301, NOW(), NOW());
 INSERT INTO product_category VALUES (301, 5);
 INSERT INTO product_category VALUES (301, 19);
 INSERT INTO product_category VALUES (301, 21);
@@ -360,7 +360,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1851, "capacity", 256, 302, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1852, "platterRpm", 0, 302, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1853, "interface", "PCIe", 302, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1854, "storegeType", "SSD", 302, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1854, "storageType", "SSD", 302, NOW(), NOW());
 INSERT INTO product_category VALUES (302, 5);
 INSERT INTO product_category VALUES (302, 19);
 INSERT INTO product_category VALUES (302, 21);
@@ -378,7 +378,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1856, "capacity", 250, 303, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1857, "platterRpm", 0, 303, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1858, "interface", "PCIe", 303, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1859, "storegeType", "SSD", 303, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1859, "storageType", "SSD", 303, NOW(), NOW());
 INSERT INTO product_category VALUES (303, 5);
 INSERT INTO product_category VALUES (303, 19);
 INSERT INTO product_category VALUES (303, 21);
@@ -392,7 +392,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1860, "capacity", 1000, 304, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1861, "platterRpm", 0, 304, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1862, "interface", "M.2 PCIe", 304, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1863, "storegeType", "SSD", 304, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1863, "storageType", "SSD", 304, NOW(), NOW());
 INSERT INTO product_category VALUES (304, 5);
 INSERT INTO product_category VALUES (304, 19);
 INSERT INTO product_category VALUES (304, 21);
@@ -406,7 +406,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1864, "capacity", 2000, 305, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1865, "platterRpm", 0, 305, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1866, "interface", "PCIe", 305, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1867, "storegeType", "SSD", 305, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1867, "storageType", "SSD", 305, NOW(), NOW());
 INSERT INTO product_category VALUES (305, 5);
 INSERT INTO product_category VALUES (305, 19);
 INSERT INTO product_category VALUES (305, 21);
@@ -420,7 +420,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1868, "capacity", 500, 306, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1869, "platterRpm", 0, 306, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1870, "interface", "M.2 PCIe", 306, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1871, "storegeType", "SSD", 306, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1871, "storageType", "SSD", 306, NOW(), NOW());
 INSERT INTO product_category VALUES (306, 5);
 INSERT INTO product_category VALUES (306, 19);
 INSERT INTO product_category VALUES (306, 21);
@@ -434,7 +434,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1872, "capacity", 250, 307, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1873, "platterRpm", 0, 307, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1874, "interface", "SATA III", 307, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1875, "storegeType", "SSD", 307, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1875, "storageType", "SSD", 307, NOW(), NOW());
 INSERT INTO product_category VALUES (307, 5);
 INSERT INTO product_category VALUES (307, 19);
 INSERT INTO product_category VALUES (307, 21);
@@ -448,7 +448,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1876, "capacity", 500, 308, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1877, "platterRpm", 0, 308, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1878, "interface", "M.2 PCIe", 308, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1879, "storegeType", "SSD", 308, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1879, "storageType", "SSD", 308, NOW(), NOW());
 INSERT INTO product_category VALUES (308, 5);
 INSERT INTO product_category VALUES (308, 19);
 INSERT INTO product_category VALUES (308, 21);
@@ -462,7 +462,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1880, "capacity", 1000, 309, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1881, "platterRpm", 0, 309, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1882, "interface", "M.2 PCIe", 309, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1883, "storegeType", "SSD", 309, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1883, "storageType", "SSD", 309, NOW(), NOW());
 INSERT INTO product_category VALUES (309, 5);
 INSERT INTO product_category VALUES (309, 19);
 INSERT INTO product_category VALUES (309, 21);
@@ -476,7 +476,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1884, "capacity", 64, 310, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1885, "platterRpm", 0, 310, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1886, "interface", "SATA III", 310, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1887, "storegeType", "SSD", 310, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1887, "storageType", "SSD", 310, NOW(), NOW());
 INSERT INTO product_category VALUES (310, 5);
 INSERT INTO product_category VALUES (310, 19);
 INSERT INTO product_category VALUES (310, 21);
@@ -490,7 +490,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1888, "capacity", 500, 311, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1889, "platterRpm", 0, 311, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1890, "interface", "SATA III", 311, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1891, "storegeType", "SSD", 311, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1891, "storageType", "SSD", 311, NOW(), NOW());
 INSERT INTO product_category VALUES (311, 5);
 INSERT INTO product_category VALUES (311, 19);
 INSERT INTO product_category VALUES (311, 21);
@@ -504,7 +504,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1892, "capacity", 500, 312, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1893, "platterRpm", 0, 312, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1894, "interface", "SATA III", 312, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1895, "storegeType", "SSD", 312, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1895, "storageType", "SSD", 312, NOW(), NOW());
 INSERT INTO product_category VALUES (312, 5);
 INSERT INTO product_category VALUES (312, 19);
 INSERT INTO product_category VALUES (312, 21);
@@ -518,7 +518,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1896, "capacity", 525, 313, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1897, "platterRpm", 0, 313, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1898, "interface", "SATA", 313, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1899, "storegeType", "SSD", 313, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1899, "storageType", "SSD", 313, NOW(), NOW());
 INSERT INTO product_category VALUES (313, 5);
 INSERT INTO product_category VALUES (313, 19);
 INSERT INTO product_category VALUES (313, 21);
@@ -532,7 +532,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1900, "capacity", 500, 314, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1901, "platterRpm", 0, 314, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1902, "interface", "SATA III", 314, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1903, "storegeType", "SSD", 314, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1903, "storageType", "SSD", 314, NOW(), NOW());
 INSERT INTO product_category VALUES (314, 5);
 INSERT INTO product_category VALUES (314, 19);
 INSERT INTO product_category VALUES (314, 21);
@@ -546,7 +546,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1904, "capacity", 275, 315, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1905, "platterRpm", 0, 315, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1906, "interface", "SATA", 315, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1907, "storegeType", null, 315, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1907, "storageType", null, 315, NOW(), NOW());
 INSERT INTO product_category VALUES (315, 5);
 INSERT INTO product_category VALUES (315, 19);
 INSERT INTO product_category VALUES (315, 21);
@@ -560,7 +560,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1908, "capacity", 500, 316, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1909, "platterRpm", 0, 316, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1910, "interface", "SATA III", 316, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1911, "storegeType", "SSD", 316, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1911, "storageType", "SSD", 316, NOW(), NOW());
 INSERT INTO product_category VALUES (316, 5);
 INSERT INTO product_category VALUES (316, 19);
 INSERT INTO product_category VALUES (316, 21);
@@ -574,7 +574,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1912, "capacity", 500, 317, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1913, "platterRpm", 0, 317, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1914, "interface", "M.2 PCIe", 317, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1915, "storegeType", "SSD", 317, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1915, "storageType", "SSD", 317, NOW(), NOW());
 INSERT INTO product_category VALUES (317, 5);
 INSERT INTO product_category VALUES (317, 19);
 INSERT INTO product_category VALUES (317, 21);
@@ -588,7 +588,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1916, "capacity", 120, 318, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1917, "platterRpm", 0, 318, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1918, "interface", "SATA III", 318, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1919, "storegeType", "SSD", 318, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1919, "storageType", "SSD", 318, NOW(), NOW());
 INSERT INTO product_category VALUES (318, 5);
 INSERT INTO product_category VALUES (318, 19);
 INSERT INTO product_category VALUES (318, 21);
@@ -602,7 +602,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1920, "capacity", 120, 319, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1921, "platterRpm", 0, 319, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1922, "interface", "SATA III", 319, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1923, "storegeType", "SSD", 319, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1923, "storageType", "SSD", 319, NOW(), NOW());
 INSERT INTO product_category VALUES (319, 5);
 INSERT INTO product_category VALUES (319, 19);
 INSERT INTO product_category VALUES (319, 21);
@@ -616,7 +616,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1924, "capacity", 1000, 320, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1925, "platterRpm", 0, 320, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1926, "interface", "M.2 PCIe", 320, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1927, "storegeType", "SSD", 320, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1927, "storageType", "SSD", 320, NOW(), NOW());
 INSERT INTO product_category VALUES (320, 5);
 INSERT INTO product_category VALUES (320, 19);
 INSERT INTO product_category VALUES (320, 21);
@@ -630,7 +630,7 @@ Vestibulum nec congue nibh, eget vestibulum nisl. Nam sollicitudin nibh eros, ne
 INSERT INTO products_attributes VALUES (1928, "capacity", 250, 321, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1929, "platterRpm", 0, 321, NOW(), NOW());
 INSERT INTO products_attributes VALUES (1930, "interface", "SATA III", 321, NOW(), NOW());
-INSERT INTO products_attributes VALUES (1931, "storegeType", "SSD", 321, NOW(), NOW());
+INSERT INTO products_attributes VALUES (1931, "storageType", "SSD", 321, NOW(), NOW());
 INSERT INTO product_category VALUES (321, 5);
 INSERT INTO product_category VALUES (321, 19);
 INSERT INTO product_category VALUES (321, 21);

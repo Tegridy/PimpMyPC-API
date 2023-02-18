@@ -114,19 +114,19 @@ INSERT INTO filters_types VALUES (
 );
 
 INSERT INTO filters VALUES (
-20, 8, "Mini Tower" , "Mini+Tower"
+20, 8, "Mini Tower" , "Mini Tower"
 );
 
 INSERT INTO filters VALUES (
-21, 8, "Midi Tower" , "Midi+Tower"
+21, 8, "Midi Tower" , "Midi Tower"
 );
 
 INSERT INTO filters VALUES (
-23, 8, "Micro Tower" , "Micro+Tower"
+23, 8, "Micro Tower" , "Micro Tower"
 );
 
 INSERT INTO filters VALUES (
-24, 8, "Big Tower" , "Big+Tower"
+24, 8, "Big Tower" , "Big Tower"
 );
 
 INSERT INTO filters_types VALUES (
@@ -236,10 +236,6 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters VALUES (
-43, 15, "MediaTek" , "mediatek"
-);
-
-INSERT INTO filters VALUES (
 44, 15, "Samsung Exynos" , "exynos"
 );
 
@@ -273,10 +269,6 @@ INSERT INTO filters VALUES (
 48, 19, "LGA1200" , "1200"
 );
 
-INSERT INTO filters VALUES (
-49, 19, "TR4" , "TR4"
-);
-
 INSERT INTO filters_types VALUES (
 17, 11, "Number of cores", "cores"
 );
@@ -305,10 +297,6 @@ INSERT INTO filters VALUES (
 55, 17, "16 cores" , "16"
 );
 
-INSERT INTO filters VALUES (
-56, 17, "24 cores" , "24"
-);
-
 
 ------------------------------------------------------------------------
 -- Ram filters --
@@ -327,7 +315,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters VALUES (
-59, 18, "Kingston" , "kingstone"
+59, 18, "Kingston" , "kingston"
 );
 
 INSERT INTO filters VALUES (
@@ -358,7 +346,7 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters_types VALUES (
-21, 14, "Cas timing", "casTiming");
+21, 14, "Cas timing", "cas");
 
 INSERT INTO filters VALUES (
 66, 21, "15" , "15"
@@ -545,15 +533,15 @@ INSERT INTO filters VALUES (
 );
 
 INSERT INTO filters VALUES (
-102, 30, "80 PLUS Bronze" , "bronze"
+102, 30, "80 PLUS Bronze" , "80 PLUS Bronze"
 );
 
 INSERT INTO filters VALUES (
-103, 30, "80 PLUS Platinum" , "platinum"
+103, 30, "80 PLUS Platinum" , "80 PLUS Platinum"
 );
 
 INSERT INTO filters VALUES (
-104, 30, "80 PLUS Titanium" , "titanium"
+104, 30, "80 PLUS Titanium" , "80 PLUS Titanium"
 );
 
 

@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.pimpmypc.api</groupId>
     <artifactId>PimpMyPC</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <name>PimpMyPC</name>
     <description>PimpMyPc computer shop API</description>
     <properties>
@@ -182,6 +182,12 @@
                         <additionalClasspathElement>${project.basedir}/src/test/java/resources
                         </additionalClasspathElement>
                     </additionalClasspathElements>
+
+                    <reuseForks>false</reuseForks>
+                    <forkCount>1</forkCount>
+                    <parallel>classes</parallel>
+                    <threadCount>10</threadCount>
+
                 </configuration>
             </plugin>
             <plugin>

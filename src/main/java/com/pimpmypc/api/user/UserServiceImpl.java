@@ -32,8 +32,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
-        return userRepository.findUserById(id)
+        User user = userRepository.findUserById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " not found"));
+
+        return User.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .address(user.getAddress())
+                .build();
     }
 
     @Override
@@ -59,6 +70,8 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findUserById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " do not exist"));
         return User.builder()
+                .id(user.getId())
+                .username(user.getUsername())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .username(user.getUsername())
