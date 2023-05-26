@@ -36,7 +36,7 @@ Run `docker build -t pmp-api:1.0 --build-arg MYSQL_PASSWORD=pass --build-arg DB_
 >   <img alt="Info" src="https://raw.githubusercontent.com/Mqxx/GitHub-Markdown/main/blockquotes/badge/dark-theme/info.svg">
 > </picture><br>
 >
-> In your MySQL you need to create database named `pmp` and `pmp_test` first.
+> In your MySQL you need to create databases named `pmp` and `pmp_test` first.
 
 ## Running tests
 
